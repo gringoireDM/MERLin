@@ -1,0 +1,764 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
+		501D6F142130BB4F00114F5A /* MERLinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F132130BB4F00114F5A /* MERLinTests.swift */; };
+		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */; };
+		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
+		501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */; };
+		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
+		501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */; };
+		501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F762130BD2000114F5A /* ABVariation.swift */; };
+		501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F772130BD2000114F5A /* ABExperiment.swift */; };
+		501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F782130BD2000114F5A /* ABTesting.swift */; };
+		501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F7E2130BD3600114F5A /* Deeplink.swift */; };
+		501D6F9C2130BD3800114F5A /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
+		501D6F9D2130BD3800114F5A /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
+		501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F822130BD3600114F5A /* DeeplinkManaging.swift */; };
+		501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F842130BD3600114F5A /* DisplayableError.swift */; };
+		501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F852130BD3600114F5A /* DisplayingError.swift */; };
+		501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */; };
+		501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */; };
+		501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F892130BD3700114F5A /* RoutingStep.swift */; };
+		501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8A2130BD3700114F5A /* RouterProtocol.swift */; };
+		501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */; };
+		501D6FA62130BD3800114F5A /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */; };
+		501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */; };
+		501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F902130BD3700114F5A /* UIColors+Hex.swift */; };
+		501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F912130BD3700114F5A /* UIFont+Theme.swift */; };
+		501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F922130BD3700114F5A /* UILabel+Theme.swift */; };
+		501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F932130BD3700114F5A /* UITextField+Theme.swift */; };
+		501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */; };
+		501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F962130BD3700114F5A /* RxExtension.swift */; };
+		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
+		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
+		501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */; };
+		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
+		EF19CDFB08FBB3BD4287DF82 /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		501D6F102130BB4F00114F5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 501D6EFC2130BB4F00114F5A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 501D6F042130BB4F00114F5A;
+			remoteInfo = MERLin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.release.xcconfig"; sourceTree = "<group>"; };
+		293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
+		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MERLinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		501D6F132130BB4F00114F5A /* MERLinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MERLinTests.swift; sourceTree = "<group>"; };
+		501D6F152130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewControllerFactory.swift; sourceTree = "<group>"; };
+		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
+		501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuildContextProtocol.swift; sourceTree = "<group>"; };
+		501D6F6E2130BD1200114F5A /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTestingStateMachine.swift; sourceTree = "<group>"; };
+		501D6F762130BD2000114F5A /* ABVariation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABVariation.swift; sourceTree = "<group>"; };
+		501D6F772130BD2000114F5A /* ABExperiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABExperiment.swift; sourceTree = "<group>"; };
+		501D6F782130BD2000114F5A /* ABTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTesting.swift; sourceTree = "<group>"; };
+		501D6F7E2130BD3600114F5A /* Deeplink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
+		501D6F802130BD3600114F5A /* Module+Deeplink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Module+Deeplink.m"; sourceTree = "<group>"; };
+		501D6F812130BD3600114F5A /* Module+Deeplink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Module+Deeplink.h"; sourceTree = "<group>"; };
+		501D6F822130BD3600114F5A /* DeeplinkManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkManaging.swift; sourceTree = "<group>"; };
+		501D6F842130BD3600114F5A /* DisplayableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableError.swift; sourceTree = "<group>"; };
+		501D6F852130BD3600114F5A /* DisplayingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayingError.swift; sourceTree = "<group>"; };
+		501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBuilding.swift; sourceTree = "<group>"; };
+		501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableRoutingStep.swift; sourceTree = "<group>"; };
+		501D6F892130BD3700114F5A /* RoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingStep.swift; sourceTree = "<group>"; };
+		501D6F8A2130BD3700114F5A /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Theme.swift"; sourceTree = "<group>"; };
+		501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		501D6F902130BD3700114F5A /* UIColors+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColors+Hex.swift"; sourceTree = "<group>"; };
+		501D6F912130BD3700114F5A /* UIFont+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Theme.swift"; sourceTree = "<group>"; };
+		501D6F922130BD3700114F5A /* UILabel+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Theme.swift"; sourceTree = "<group>"; };
+		501D6F932130BD3700114F5A /* UITextField+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Theme.swift"; sourceTree = "<group>"; };
+		501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Theme.swift"; sourceTree = "<group>"; };
+		501D6F962130BD3700114F5A /* RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
+		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
+		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
+		501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDescriptor.swift; sourceTree = "<group>"; };
+		62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
+		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
+		8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		501D6F012130BB4F00114F5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		501D6F0B2130BB4F00114F5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */,
+				EF19CDFB08FBB3BD4287DF82 /* Pods_MERLinTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21FD0799E4225EAD1B17E76C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */,
+				1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */,
+				8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */,
+				62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		501D6EFB2130BB4F00114F5A = {
+			isa = PBXGroup;
+			children = (
+				501D6F072130BB4F00114F5A /* MERLin */,
+				501D6F122130BB4F00114F5A /* MERLinTests */,
+				501D6F062130BB4F00114F5A /* Products */,
+				21FD0799E4225EAD1B17E76C /* Pods */,
+				57DD9DE69C6C08AB102DA391 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		501D6F062130BB4F00114F5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F052130BB4F00114F5A /* MERLin.framework */,
+				501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		501D6F072130BB4F00114F5A /* MERLin */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F082130BB4F00114F5A /* MERLin.h */,
+				501D6F6E2130BD1200114F5A /* Module.swift */,
+				501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */,
+				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
+				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
+				501D6F732130BD2000114F5A /* ABTesting */,
+				501D6F7D2130BD3600114F5A /* Deeplinking */,
+				501D6F832130BD3600114F5A /* Errors */,
+				501D6F972130BD3700114F5A /* Events */,
+				501D6F952130BD3700114F5A /* Extensions */,
+				501D6F862130BD3700114F5A /* Routing */,
+				501D6F8B2130BD3700114F5A /* Theming */,
+				501D6F092130BB4F00114F5A /* Info.plist */,
+			);
+			path = MERLin;
+			sourceTree = "<group>";
+		};
+		501D6F122130BB4F00114F5A /* MERLinTests */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F132130BB4F00114F5A /* MERLinTests.swift */,
+				501D6F152130BB4F00114F5A /* Info.plist */,
+			);
+			path = MERLinTests;
+			sourceTree = "<group>";
+		};
+		501D6F732130BD2000114F5A /* ABTesting */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */,
+				501D6F752130BD2000114F5A /* Protocols */,
+			);
+			path = ABTesting;
+			sourceTree = "<group>";
+		};
+		501D6F752130BD2000114F5A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F762130BD2000114F5A /* ABVariation.swift */,
+				501D6F772130BD2000114F5A /* ABExperiment.swift */,
+				501D6F782130BD2000114F5A /* ABTesting.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		501D6F7D2130BD3600114F5A /* Deeplinking */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F7E2130BD3600114F5A /* Deeplink.swift */,
+				501D6F7F2130BD3600114F5A /* Extensions */,
+				501D6F822130BD3600114F5A /* DeeplinkManaging.swift */,
+			);
+			path = Deeplinking;
+			sourceTree = "<group>";
+		};
+		501D6F7F2130BD3600114F5A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F802130BD3600114F5A /* Module+Deeplink.m */,
+				501D6F812130BD3600114F5A /* Module+Deeplink.h */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		501D6F832130BD3600114F5A /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F842130BD3600114F5A /* DisplayableError.swift */,
+				501D6F852130BD3600114F5A /* DisplayingError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		501D6F862130BD3700114F5A /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */,
+				501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */,
+				501D6F892130BD3700114F5A /* RoutingStep.swift */,
+				501D6F8A2130BD3700114F5A /* RouterProtocol.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		501D6F8B2130BD3700114F5A /* Theming */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */,
+				501D6F8D2130BD3700114F5A /* UIKit+Theming */,
+			);
+			path = Theming;
+			sourceTree = "<group>";
+		};
+		501D6F8D2130BD3700114F5A /* UIKit+Theming */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */,
+				501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */,
+				501D6F902130BD3700114F5A /* UIColors+Hex.swift */,
+				501D6F912130BD3700114F5A /* UIFont+Theme.swift */,
+				501D6F922130BD3700114F5A /* UILabel+Theme.swift */,
+				501D6F932130BD3700114F5A /* UITextField+Theme.swift */,
+				501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */,
+			);
+			path = "UIKit+Theming";
+			sourceTree = "<group>";
+		};
+		501D6F952130BD3700114F5A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F962130BD3700114F5A /* RxExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		501D6F972130BD3700114F5A /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				501D6F982130BD3700114F5A /* EventsListening.swift */,
+				501D6F992130BD3700114F5A /* EventsProducer.swift */,
+				501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		57DD9DE69C6C08AB102DA391 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEA1051BC919A6F019688368 /* Pods_MERLin.framework */,
+				293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		501D6F022130BB4F00114F5A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501D6F9D2130BD3800114F5A /* Module+Deeplink.h in Headers */,
+				501D6F162130BB4F00114F5A /* MERLin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		501D6F042130BB4F00114F5A /* MERLin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 501D6F192130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLin" */;
+			buildPhases = (
+				09614DF450F1F311F0EAFC67 /* [CP] Check Pods Manifest.lock */,
+				501D6F002130BB4F00114F5A /* Sources */,
+				501D6F012130BB4F00114F5A /* Frameworks */,
+				501D6F022130BB4F00114F5A /* Headers */,
+				501D6F032130BB4F00114F5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MERLin;
+			productName = MERLin;
+			productReference = 501D6F052130BB4F00114F5A /* MERLin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		501D6F0D2130BB4F00114F5A /* MERLinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 501D6F1C2130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLinTests" */;
+			buildPhases = (
+				4D8E62532845829E5AA85498 /* [CP] Check Pods Manifest.lock */,
+				501D6F0A2130BB4F00114F5A /* Sources */,
+				501D6F0B2130BB4F00114F5A /* Frameworks */,
+				501D6F0C2130BB4F00114F5A /* Resources */,
+				96FADBFAA6CA9EFBAAFD8429 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				501D6F112130BB4F00114F5A /* PBXTargetDependency */,
+			);
+			name = MERLinTests;
+			productName = MERLinTests;
+			productReference = 501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		501D6EFC2130BB4F00114F5A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Giuseppe Lanza";
+				TargetAttributes = {
+					501D6F042130BB4F00114F5A = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+					};
+					501D6F0D2130BB4F00114F5A = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 501D6EFF2130BB4F00114F5A /* Build configuration list for PBXProject "MERLin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 501D6EFB2130BB4F00114F5A;
+			productRefGroup = 501D6F062130BB4F00114F5A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				501D6F042130BB4F00114F5A /* MERLin */,
+				501D6F0D2130BB4F00114F5A /* MERLinTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		501D6F032130BB4F00114F5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		501D6F0C2130BB4F00114F5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09614DF450F1F311F0EAFC67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MERLin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D8E62532845829E5AA85498 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MERLinTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96FADBFAA6CA9EFBAAFD8429 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LNZWeakCollection/LNZWeakCollection.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNZWeakCollection.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		501D6F002130BB4F00114F5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */,
+				501D6FA62130BD3800114F5A /* UIButton+Theme.swift in Sources */,
+				501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */,
+				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
+				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
+				501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */,
+				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
+				501D6F9C2130BD3800114F5A /* Module+Deeplink.m in Sources */,
+				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
+				501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */,
+				501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */,
+				501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */,
+				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
+				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
+				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
+				501D6F722130BD1200114F5A /* Module.swift in Sources */,
+				501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */,
+				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
+				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
+				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
+				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
+				501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */,
+				501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */,
+				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,
+				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
+				501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */,
+				501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */,
+				501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */,
+				501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		501D6F0A2130BB4F00114F5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501D6F142130BB4F00114F5A /* MERLinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		501D6F112130BB4F00114F5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 501D6F042130BB4F00114F5A /* MERLin */;
+			targetProxy = 501D6F102130BB4F00114F5A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		501D6F172130BB4F00114F5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		501D6F182130BB4F00114F5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		501D6F1A2130BB4F00114F5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MERLin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		501D6F1B2130BB4F00114F5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MERLin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		501D6F1D2130BB4F00114F5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				INFOPLIST_FILE = MERLinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		501D6F1E2130BB4F00114F5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				INFOPLIST_FILE = MERLinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		501D6EFF2130BB4F00114F5A /* Build configuration list for PBXProject "MERLin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501D6F172130BB4F00114F5A /* Debug */,
+				501D6F182130BB4F00114F5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		501D6F192130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501D6F1A2130BB4F00114F5A /* Debug */,
+				501D6F1B2130BB4F00114F5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		501D6F1C2130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501D6F1D2130BB4F00114F5A /* Debug */,
+				501D6F1E2130BB4F00114F5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 501D6EFC2130BB4F00114F5A /* Project object */;
+}
