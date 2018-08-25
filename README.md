@@ -12,11 +12,6 @@
 - [Module Manager](#the-module-manager)
 - [Routing](#routing)
 
-# TheBay-iOS
-
-The Bay app uses an Event Based architectural style. Each module expose a series of events that can happen within the module itself and multiple observers can subscribe to these events.
-The messaging design pattern used for this events management is Publish–subscribe and the particular implementation is powered by `RxSwift`.
-
 # Module
 
 A module in the app is a framework embedded via app target. It can be an EventsProducer and in this case it is responsible for capturing user interactions and exposing an Events Descriptor to events listeners. 
