@@ -1,5 +1,3 @@
-![HBC Digital](https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/hbc-digital-logo.png)
-
 <p align="center">
 <img src="./MerlinLogo.png" alt="MERLin"/>
 </p>
@@ -11,3 +9,5 @@ MERLin' uses RxSwift to power the chosen messaging design pattern which is Publi
 With high modularity comes high testability, control over dependencies and a lower build time.
 
 For more please read our [wiki](https://github.com/gringoireDM/MERLin/wiki).
+
+![HBC Digital](https://raw.githubusercontent.com/gilt/Cleanroom/master/Assets/hbc-digital-logo.png)
