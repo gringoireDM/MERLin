@@ -5,7 +5,6 @@ inhibit_all_warnings! # supresses pods project warnings
 def common
     pod 'LNZWeakCollection', '~>1.1.0'
     pod 'RxCocoa', '~>4.1.2'
-    pod 'SwiftGen', '~>5.3.0'
 end
 
 target 'MERLin' do
