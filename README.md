@@ -1,3 +1,4 @@
+![swfit4.1](https://img.shields.io/badge/swift-4.1-orange.svg)
 <p align="center">
 <img src="./MerlinLogo.png" alt="MERLin"/>
 </p>
