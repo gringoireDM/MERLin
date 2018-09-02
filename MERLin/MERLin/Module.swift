@@ -8,6 +8,13 @@
 
 import UIKit
 
+public enum ViewControllerEvent: EventProtocol {
+    case uninitialized
+    case initialized
+    case appeared
+    case disappeared
+}
+
 open class Module: NSObject {
     public static var defaultRoutingContext: String = "default"
     public static var deeplinkRoutingContext: String = "deeplink"
@@ -21,15 +28,17 @@ open class Module: NSObject {
     public static var buildABTestingManager: () -> (manager: ABTesting?, stateMachine: ABTestingManagerStateMachine?) = { return (nil, nil) }
     
     public let disposeBag = DisposeBag()
+    public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
+    private let _viewControllerEvent = BehaviorSubject<ViewControllerEvent>(value: .uninitialized)
     
     open private(set) var viewControllerFactory: ModuleViewControllerFactory?
     open private(set) var viewControllerTransform: ((UIViewController) -> Void)?
-
+    
     public private(set) var context: ModuleBuildContextProtocol
     public var routingContext: String { return context.routingContext }
-
+    
     public weak var currentViewController: UIViewController?
-
+    
     public init(withBuildContext buildContext: ModuleBuildContextProtocol) {
         context = buildContext
         super.init()
@@ -39,21 +48,20 @@ open class Module: NSObject {
         let controller = currentViewController ?? viewControllerFactory?.instantiateInitialViewController() ?? UIViewController()
         currentViewController = controller
         viewControllerTransform?(controller)
-
-        guard let producer = self as? EventsProducer,
-            let viewControllerOnScreen = producer.reactive.viewControllerOnScreen else { return controller }
+        
+        _viewControllerEvent.onNext(.initialized)
         
         let didAppearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
-            .map { _ in true }
-
+            .map { _ in ViewControllerEvent.appeared }
+        
         let didDisappearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
-            .map { _ in false }
-
+            .map { _ in ViewControllerEvent.disappeared }
+        
         Observable.of(didAppearProducer, didDisappearProducer)
             .merge()
-            .bind(to: viewControllerOnScreen)
+            .bind(to: _viewControllerEvent)
             .disposed(by: disposeBag)
-
+        
         return controller
     }
     

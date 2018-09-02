@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
-		501D6F142130BB4F00114F5A /* MERLinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F132130BB4F00114F5A /* MERLinTests.swift */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
@@ -40,6 +39,9 @@
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
 		501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */; };
+		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
+		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
+		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
 		EF19CDFB08FBB3BD4287DF82 /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
@@ -61,7 +63,6 @@
 		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MERLinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		501D6F132130BB4F00114F5A /* MERLinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MERLinTests.swift; sourceTree = "<group>"; };
 		501D6F152130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewControllerFactory.swift; sourceTree = "<group>"; };
 		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
@@ -93,6 +94,9 @@
 		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
 		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
 		501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDescriptor.swift; sourceTree = "<group>"; };
+		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
+		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
+		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
 		62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 		8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,7 +178,8 @@
 		501D6F122130BB4F00114F5A /* MERLinTests */ = {
 			isa = PBXGroup;
 			children = (
-				501D6F132130BB4F00114F5A /* MERLinTests.swift */,
+				50B11871213BF89E008928AF /* DeeplinkableTests.swift */,
+				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
@@ -265,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				501D6F962130BD3700114F5A /* RxExtension.swift */,
+				50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
 				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
 				501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */,
+				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
 				501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,
 				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
@@ -498,7 +505,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501D6F142130BB4F00114F5A /* MERLinTests.swift in Sources */,
+				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,
+				50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
