@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RxCocoa/RxCocoa.h>
-
-@import RxSwift;
 
 //! Project version number for MERLin.
 FOUNDATION_EXPORT double MERLinVersionNumber;

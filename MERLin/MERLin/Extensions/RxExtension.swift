@@ -6,6 +6,9 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+
 public extension ObservableType {
 
     public func toVoid() -> Observable<Void> {

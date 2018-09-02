@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 public enum ViewControllerEvent: EventProtocol {
     case uninitialized

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 public protocol EventsProducer: class {
     var moduleName: String { get }

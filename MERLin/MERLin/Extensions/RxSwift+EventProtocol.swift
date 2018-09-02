@@ -6,7 +6,8 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 public extension ObservableType where E == EventProtocol {
     public func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {

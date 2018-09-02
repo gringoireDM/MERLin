@@ -6,7 +6,7 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 public typealias ViewControllersFactory = ViewControllerBuilding&DeeplinkManaging
 
