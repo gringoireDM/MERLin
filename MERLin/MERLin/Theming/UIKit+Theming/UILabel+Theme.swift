@@ -20,5 +20,4 @@ public extension Array where Element: UILabel {
             theme.configure(label: $0, withStyle: style, customizing: customizing)
         }
     }
-
 }

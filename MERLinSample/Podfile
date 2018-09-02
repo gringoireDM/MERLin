@@ -1,0 +1,11 @@
+platform :ios, '10.0'
+use_frameworks!
+inhibit_all_warnings! # supresses pods project warnings
+
+abstract_target 'MERLinTargets' do
+    pod 'MERLin', :path => '../'
+
+    target 'MERLinSample'
+    target 'RestaurantsListModule'
+    target 'RestaurantDetailModule'
+end

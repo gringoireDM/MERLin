@@ -1,0 +1,31 @@
+PODS:
+  - LNZWeakCollection (1.1.2)
+  - MERLin (1.0.0):
+    - LNZWeakCollection (~> 1.1.0)
+    - RxCocoa (~> 4.1.2)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+
+DEPENDENCIES:
+  - MERLin (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - LNZWeakCollection
+    - RxCocoa
+    - RxSwift
+
+EXTERNAL SOURCES:
+  MERLin:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LNZWeakCollection: 5060e07316f344f3621cf062a46f53dc63329d5e
+  MERLin: fab8cd0d74c58aa1a8de7148e23c21b70916c106
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+
+PODFILE CHECKSUM: a6ee1cdd068da55588ef8cb0033cd9d15dfe14e3
+
+COCOAPODS: 1.5.3
