@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
 
     s.platform = :ios
-    s.version = "1.0.1"
+    s.version = "1.0.2"
     s.ios.deployment_target = '10.0'
     s.name = "MERLin"
  	s.summary      = "A framework to build an event based, reactive architecture for swift iOS projects"
 	s.swift_version = '4.1'
-	
+    
   	s.description  = <<-DESC
                    MERLin' is a reactive framework that aims to simplify the adoption of an events based architectural style within an iOS app. It emphasise the concept of modularity, taking to the highest level the principle of separation of concerns.
                    DESC
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
     s.source = {
         :git => "https://github.com/gringoireDM/MERLin.git",
-        :tag => "v1.0.1"
+        :tag => "v1.0.2"
     }
     
 	s.dependency 'LNZWeakCollection', '~>1.1.0'
@@ -27,5 +27,5 @@ Pod::Spec.new do |s|
 	
     s.framework = "UIKit"
 	
-    s.source_files = "MERLin/MERLin/**/*.{swift, h, m}"
+    s.source_files = "MERLin/MERLin/**/*.swift", "MERLin/MERLin/Deeplinking/Extensions/*.{h,m}"
 end

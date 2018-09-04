@@ -6,7 +6,7 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
-#import "Module+Deeplink.h"
+#import <MERLin/Module+Deeplink.h>
 #import <MERLin/MERLin-Swift.h>
 
 @implementation Module (Deeplink)

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
-#import <MERLin/MERLin-Swift.h>
 
-@interface Module (Deeplink)
+@class Module;
 
-@end

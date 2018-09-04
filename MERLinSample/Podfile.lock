@@ -1,6 +1,6 @@
 PODS:
   - LNZWeakCollection (1.1.2)
-  - MERLin (1.0.0):
+  - MERLin (1.0.1):
     - LNZWeakCollection (~> 1.1.0)
     - RxCocoa (~> 4.1.2)
   - RxCocoa (4.1.2):
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   LNZWeakCollection: 5060e07316f344f3621cf062a46f53dc63329d5e
-  MERLin: fab8cd0d74c58aa1a8de7148e23c21b70916c106
+  MERLin: b209ff4065b5244902ff15eae1eddb3e77f6ef2b
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
 

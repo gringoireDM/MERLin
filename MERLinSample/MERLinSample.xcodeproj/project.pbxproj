@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CDE720D60DFA4FA3F5B2226 /* Pods_MERLinTargets_RestaurantDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD394B3F3905E67BA41A4B3 /* Pods_MERLinTargets_RestaurantDetailModule.framework */; };
-		3AFD9456ECEA6588AD968BDE /* Pods_MERLinTargets_MERLinSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4177526DBFD4E95A962A66C5 /* Pods_MERLinTargets_MERLinSample.framework */; };
 		50B11881213C19F8008928AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11880213C19F8008928AF /* AppDelegate.swift */; };
 		50B11888213C19FA008928AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B11887213C19FA008928AF /* Assets.xcassets */; };
 		50B1188B213C19FA008928AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B11889213C19FA008928AF /* LaunchScreen.storyboard */; };
@@ -49,7 +47,9 @@
 		50B118FF213C43CF008928AF /* RestaurantDetailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118F3213C43CF008928AF /* RestaurantDetailModule.swift */; };
 		50B11900213C43CF008928AF /* RestaurantDetailBuildContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118F4213C43CF008928AF /* RestaurantDetailBuildContext.swift */; };
 		50B11902213C4679008928AF /* RestaurantDetailStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11901213C4679008928AF /* RestaurantDetailStep.swift */; };
-		7EC13871F1E788A2F1C6A1D3 /* Pods_MERLinTargets_RestaurantsListModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035B93C15A3B21CFFC6B95E9 /* Pods_MERLinTargets_RestaurantsListModule.framework */; };
+		674F6697BFF7850FDBE90869 /* Pods_MERLinTargets_RestaurantDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850E641DA3644250915FF97A /* Pods_MERLinTargets_RestaurantDetailModule.framework */; };
+		AD3D8F1B4812CB89C15802B6 /* Pods_MERLinTargets_MERLinSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105248F76AC03D46CDEADF4B /* Pods_MERLinTargets_MERLinSample.framework */; };
+		BDACBAD7BE36E1D8E9A21690 /* Pods_MERLinTargets_RestaurantsListModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB79F2A8890B9D7068E16B8E /* Pods_MERLinTargets_RestaurantsListModule.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +85,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		035B93C15A3B21CFFC6B95E9 /* Pods_MERLinTargets_RestaurantsListModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_RestaurantsListModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ED53546B5CE7D3665479FF9 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantsListModule.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantsListModule/Pods-MERLinTargets-RestaurantsListModule.release.xcconfig"; sourceTree = "<group>"; };
-		2FD394B3F3905E67BA41A4B3 /* Pods_MERLinTargets_RestaurantDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_RestaurantDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		34F1043767948BA3E375834E /* Pods-MERLinTargets-MERLinSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-MERLinSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample.release.xcconfig"; sourceTree = "<group>"; };
-		4177526DBFD4E95A962A66C5 /* Pods_MERLinTargets_MERLinSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_MERLinSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		105248F76AC03D46CDEADF4B /* Pods_MERLinTargets_MERLinSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_MERLinSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19FBE482839A1D3901C462C1 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-MERLinSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample.debug.xcconfig"; sourceTree = "<group>"; };
+		2A194FC03A0E25A97C5F4F78 /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantDetailModule/Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; sourceTree = "<group>"; };
+		3B032D153F7BCB379008B00B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantsListModule/Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; sourceTree = "<group>"; };
 		50B1187D213C19F8008928AF /* MERLinSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MERLinSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B11880213C19F8008928AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B11887213C19FA008928AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,10 +131,11 @@
 		50B118F3213C43CF008928AF /* RestaurantDetailModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailModule.swift; sourceTree = "<group>"; };
 		50B118F4213C43CF008928AF /* RestaurantDetailBuildContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailBuildContext.swift; sourceTree = "<group>"; };
 		50B11901213C4679008928AF /* RestaurantDetailStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailStep.swift; sourceTree = "<group>"; };
-		5464D628F7ECD15404FC594B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantsListModule/Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; sourceTree = "<group>"; };
-		BC74DB6E2E410D8F1C7BC993 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-MERLinSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample.debug.xcconfig"; sourceTree = "<group>"; };
-		EF95380B3BBB4C281966F1AF /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantDetailModule/Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; sourceTree = "<group>"; };
-		FB455B4783353CA94D00885F /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantDetailModule/Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig"; sourceTree = "<group>"; };
+		530724613DAB68B106225AB7 /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantDetailModule/Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig"; sourceTree = "<group>"; };
+		850E641DA3644250915FF97A /* Pods_MERLinTargets_RestaurantDetailModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_RestaurantDetailModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0AB7EAD13C36EE34C935781 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantsListModule.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantsListModule/Pods-MERLinTargets-RestaurantsListModule.release.xcconfig"; sourceTree = "<group>"; };
+		BB79F2A8890B9D7068E16B8E /* Pods_MERLinTargets_RestaurantsListModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTargets_RestaurantsListModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD504AD43048D701B04E811B /* Pods-MERLinTargets-MERLinSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-MERLinSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			files = (
 				50B118E0213C4374008928AF /* RestaurantDetailModule.framework in Frameworks */,
 				50B118A7213C30BF008928AF /* RestaurantsListModule.framework in Frameworks */,
-				3AFD9456ECEA6588AD968BDE /* Pods_MERLinTargets_MERLinSample.framework in Frameworks */,
+				AD3D8F1B4812CB89C15802B6 /* Pods_MERLinTargets_MERLinSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EC13871F1E788A2F1C6A1D3 /* Pods_MERLinTargets_RestaurantsListModule.framework in Frameworks */,
+				BDACBAD7BE36E1D8E9A21690 /* Pods_MERLinTargets_RestaurantsListModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CDE720D60DFA4FA3F5B2226 /* Pods_MERLinTargets_RestaurantDetailModule.framework in Frameworks */,
+				674F6697BFF7850FDBE90869 /* Pods_MERLinTargets_RestaurantDetailModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +175,8 @@
 				50B118A1213C30BF008928AF /* RestaurantsListModule */,
 				50B118DA213C4374008928AF /* RestaurantDetailModule */,
 				50B1187E213C19F8008928AF /* Products */,
-				B8C2A3FDC82659A9C5BBF854 /* Pods */,
-				FA915D6DCB995E07B3A0B7A2 /* Frameworks */,
+				CEB87912B0D65607BEF51C13 /* Pods */,
+				D63D70F2ABEB272AFE68C682 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -346,25 +346,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B8C2A3FDC82659A9C5BBF854 /* Pods */ = {
+		CEB87912B0D65607BEF51C13 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC74DB6E2E410D8F1C7BC993 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */,
-				34F1043767948BA3E375834E /* Pods-MERLinTargets-MERLinSample.release.xcconfig */,
-				5464D628F7ECD15404FC594B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */,
-				1ED53546B5CE7D3665479FF9 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */,
-				EF95380B3BBB4C281966F1AF /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */,
-				FB455B4783353CA94D00885F /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */,
+				19FBE482839A1D3901C462C1 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */,
+				BD504AD43048D701B04E811B /* Pods-MERLinTargets-MERLinSample.release.xcconfig */,
+				2A194FC03A0E25A97C5F4F78 /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */,
+				530724613DAB68B106225AB7 /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */,
+				3B032D153F7BCB379008B00B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */,
+				B0AB7EAD13C36EE34C935781 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FA915D6DCB995E07B3A0B7A2 /* Frameworks */ = {
+		D63D70F2ABEB272AFE68C682 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4177526DBFD4E95A962A66C5 /* Pods_MERLinTargets_MERLinSample.framework */,
-				035B93C15A3B21CFFC6B95E9 /* Pods_MERLinTargets_RestaurantsListModule.framework */,
-				2FD394B3F3905E67BA41A4B3 /* Pods_MERLinTargets_RestaurantDetailModule.framework */,
+				105248F76AC03D46CDEADF4B /* Pods_MERLinTargets_MERLinSample.framework */,
+				850E641DA3644250915FF97A /* Pods_MERLinTargets_RestaurantDetailModule.framework */,
+				BB79F2A8890B9D7068E16B8E /* Pods_MERLinTargets_RestaurantsListModule.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,12 +395,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50B1188F213C19FA008928AF /* Build configuration list for PBXNativeTarget "MERLinSample" */;
 			buildPhases = (
-				773B14A457B1251459038938 /* [CP] Check Pods Manifest.lock */,
+				9BC0C0F6F4478D60DA64E59F /* [CP] Check Pods Manifest.lock */,
 				50B11879213C19F8008928AF /* Sources */,
 				50B1187A213C19F8008928AF /* Frameworks */,
 				50B1187B213C19F8008928AF /* Resources */,
 				50B118AC213C30BF008928AF /* Embed Frameworks */,
-				6CF887E27FA4E2128CFA2334 /* [CP] Embed Pods Frameworks */,
+				C8424C2092F0B92169526966 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,7 +417,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50B118A9213C30BF008928AF /* Build configuration list for PBXNativeTarget "RestaurantsListModule" */;
 			buildPhases = (
-				EDF60D372A3FDFDED309FEFD /* [CP] Check Pods Manifest.lock */,
+				E12C0A50D4DB156C1E2C8C31 /* [CP] Check Pods Manifest.lock */,
 				50B1189B213C30BF008928AF /* Sources */,
 				50B1189C213C30BF008928AF /* Frameworks */,
 				50B1189D213C30BF008928AF /* Headers */,
@@ -436,7 +436,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50B118E2213C4374008928AF /* Build configuration list for PBXNativeTarget "RestaurantDetailModule" */;
 			buildPhases = (
-				F10BFA6324187AD375688881 /* [CP] Check Pods Manifest.lock */,
+				76B9AF7AE8ADD639BE79486B /* [CP] Check Pods Manifest.lock */,
 				50B118D4213C4374008928AF /* Sources */,
 				50B118D5213C4374008928AF /* Frameworks */,
 				50B118D6213C4374008928AF /* Headers */,
@@ -524,7 +524,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6CF887E27FA4E2128CFA2334 /* [CP] Embed Pods Frameworks */ = {
+		76B9AF7AE8ADD639BE79486B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MERLinTargets-RestaurantDetailModule-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BC0C0F6F4478D60DA64E59F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MERLinTargets-MERLinSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8424C2092F0B92169526966 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -548,25 +584,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		773B14A457B1251459038938 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MERLinTargets-MERLinSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDF60D372A3FDFDED309FEFD /* [CP] Check Pods Manifest.lock */ = {
+		E12C0A50D4DB156C1E2C8C31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -578,24 +596,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MERLinTargets-RestaurantsListModule-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F10BFA6324187AD375688881 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MERLinTargets-RestaurantDetailModule-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -798,7 +798,7 @@
 		};
 		50B11890213C19FA008928AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC74DB6E2E410D8F1C7BC993 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */;
+			baseConfigurationReference = 19FBE482839A1D3901C462C1 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -817,7 +817,7 @@
 		};
 		50B11891213C19FA008928AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34F1043767948BA3E375834E /* Pods-MERLinTargets-MERLinSample.release.xcconfig */;
+			baseConfigurationReference = BD504AD43048D701B04E811B /* Pods-MERLinTargets-MERLinSample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -836,7 +836,7 @@
 		};
 		50B118AA213C30BF008928AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5464D628F7ECD15404FC594B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */;
+			baseConfigurationReference = 3B032D153F7BCB379008B00B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -866,7 +866,7 @@
 		};
 		50B118AB213C30BF008928AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1ED53546B5CE7D3665479FF9 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */;
+			baseConfigurationReference = B0AB7EAD13C36EE34C935781 /* Pods-MERLinTargets-RestaurantsListModule.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -895,7 +895,7 @@
 		};
 		50B118E3213C4374008928AF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF95380B3BBB4C281966F1AF /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */;
+			baseConfigurationReference = 2A194FC03A0E25A97C5F4F78 /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -925,7 +925,7 @@
 		};
 		50B118E4213C4374008928AF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB455B4783353CA94D00885F /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */;
+			baseConfigurationReference = 530724613DAB68B106225AB7 /* Pods-MERLinTargets-RestaurantDetailModule.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

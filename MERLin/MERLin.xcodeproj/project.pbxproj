@@ -18,8 +18,6 @@
 		501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F772130BD2000114F5A /* ABExperiment.swift */; };
 		501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F782130BD2000114F5A /* ABTesting.swift */; };
 		501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F7E2130BD3600114F5A /* Deeplink.swift */; };
-		501D6F9C2130BD3800114F5A /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
-		501D6F9D2130BD3800114F5A /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
 		501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F822130BD3600114F5A /* DeeplinkManaging.swift */; };
 		501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F842130BD3600114F5A /* DisplayableError.swift */; };
 		501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F852130BD3600114F5A /* DisplayingError.swift */; };
@@ -39,6 +37,8 @@
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
 		501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */; };
+		5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
+		5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
@@ -301,7 +301,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501D6F9D2130BD3800114F5A /* Module+Deeplink.h in Headers */,
+				5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */,
 				501D6F162130BB4F00114F5A /* MERLin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,11 +475,11 @@
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
 				501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */,
 				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
-				501D6F9C2130BD3800114F5A /* Module+Deeplink.m in Sources */,
 				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
 				501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */,
 				501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */,
 				501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */,
+				5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */,
 				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
@@ -663,6 +663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -691,6 +692,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
