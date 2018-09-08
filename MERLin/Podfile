@@ -3,8 +3,8 @@ use_frameworks!
 inhibit_all_warnings! # supresses pods project warnings
 
 def common
-    pod 'LNZWeakCollection', '~>1.1.0'
-    pod 'RxCocoa', '~>4.1.2'
+    pod 'LNZWeakCollection', :git => 'https://github.com/gringoireDM/LNZWeakCollection.git', :branch => 'swift_4_2' #'~>1.1.0'
+    pod 'RxCocoa', '~>4.2.0'
 end
 
 target 'MERLin' do

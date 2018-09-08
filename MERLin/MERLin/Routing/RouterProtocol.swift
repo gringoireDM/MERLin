@@ -23,7 +23,7 @@ public protocol Router: class {
      
      - returns: The viewController stack based on the current launch options.
      */
-    func rootViewController(forLaunchOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> UIViewController?
+    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> UIViewController?
     
     /**
      This method should be used to navigate through different routing paths.
