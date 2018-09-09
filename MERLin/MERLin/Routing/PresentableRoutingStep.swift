@@ -27,7 +27,7 @@ public struct ModuleRoutingStep {
     private var wrappedMaker: ModuleMaking
     public var routingContext: String { return wrappedMaker.routingContext }
     
-    public var make: () -> (ModuleProtocol, UIViewController) {
+    public var make: () -> (AnyModule, UIViewController) {
         return wrappedMaker.make
     }
     

@@ -10,8 +10,8 @@ import Foundation
 import LNZWeakCollection
 
 class ModuleWrapper {
-    let module: ModuleProtocol
-    init(_ module: ModuleProtocol) {
+    let module: AnyModule
+    init(_ module: AnyModule) {
         self.module = module
     }
 }
@@ -32,7 +32,7 @@ open class BaseModuleManager {
     //it any longer.
     var moduleRetainer = WeakDictionary<UIViewController, ModuleWrapper>(withWeakRelation: .weakToStrong)
     
-    public func setupEventsListeners(for module: ModuleProtocol) {
+    public func setupEventsListeners(for module: AnyModule) {
         guard let producer = module as? EventsProducer else { return }
         setupEventsListeners(for: producer)
     }
@@ -43,11 +43,11 @@ open class BaseModuleManager {
         }
     }
     
-    public func livingModules() -> [ModuleProtocol] {
+    public func livingModules() -> [AnyModule] {
         return moduleRetainer.values.map { $0.module }
     }
     
-    public func module(for viewController: UIViewController) -> ModuleProtocol? {
+    public func module(for viewController: UIViewController) -> AnyModule? {
         return moduleRetainer[viewController]?.module
     }
     
@@ -100,7 +100,7 @@ extension BaseModuleManager: DeeplinkManaging {
 
 extension BaseModuleManager: ViewControllerBuilding {
     
-    public func setup<T: UIViewController>(_ moduleController: (module: ModuleProtocol, controller: T)) -> T {
+    public func setup<T: UIViewController>(_ moduleController: (module: AnyModule, controller: T)) -> T {
         moduleRetainer.set(ModuleWrapper(moduleController.module), forKey: moduleController.controller)
         setupEventsListeners(for: moduleController.module)
         return moduleController.controller

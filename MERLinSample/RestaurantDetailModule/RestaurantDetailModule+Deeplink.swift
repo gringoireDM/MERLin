@@ -28,7 +28,7 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
     
     public func deeplinkURL() -> URL? {
         guard let schema = RestaurantDetailModule.deeplinkSchemaNames.first else { return nil }
-        return URL(string: "\(schema)://rdp/\(detailContext.id)")!
+        return URL(string: "\(schema)://rdp/\(context.id)")!
     }
     
     private static func context(fromDeeplink deeplink: String) -> RestaurantDetailBuildContext? {
@@ -36,14 +36,14 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
             let idRange = Range(match.range(at: match.numberOfRanges-1), in: deeplink) else { return nil }
         
         let id = String(deeplink[idRange])
-        return RestaurantDetailBuildContext(withRoutingContext: Module.deeplinkRoutingContext, restaurantId: id)
+        return RestaurantDetailBuildContext(withRoutingContext: "Deeplink", restaurantId: id)
     }
     
-    static public func module(fromDeeplink deeplink: String) -> (Module, UIViewController)? {
+    static public func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
         guard let context = RestaurantDetailModule.context(fromDeeplink: deeplink) else { return nil }
         
         let module = RestaurantDetailModule(usingContext: context)
-        return (module, module.buildRootViewController())
+        return (module, module.prepareRootViewController())
     }
     
     @discardableResult public func updateContext(fromDeeplink deeplink: String) -> Bool {

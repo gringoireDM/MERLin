@@ -13,11 +13,11 @@ public struct RestaurantsListStep: RoutingStep {
     
     public let routingContext: String
     
-    public var make: () -> (Module, UIViewController)  {
+    public var make: () -> (AnyModule, UIViewController)  {
         return {
             let context = ModuleContext(routingContext: self.routingContext)
             let module = RestaurantsListModule(usingContext: context)
-            return (module, module.buildRootViewController())
+            return (module, module.prepareRootViewController())
         }
     }
     

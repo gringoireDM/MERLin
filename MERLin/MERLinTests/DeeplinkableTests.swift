@@ -14,10 +14,11 @@ class MockController: UIViewController { }
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     static var deeplinkSchemaNames: [String] = ["test"]
 
-    var context: ModuleBuildContextProtocol
+    var context: ModuleContext
     
-    init(withBuildContext context: ModuleContext) {
-        self.context = context
+    required init(usingContext buildContext: ModuleContext) {
+        self.context = buildContext
+        super.init()
     }
 
     func unmanagedRootViewController() -> UIViewController {
@@ -28,9 +29,8 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
         return MockController.self
     }
     
-    
-    static func module(fromDeeplink deeplink: String) -> (ModuleProtocol, UIViewController)? {
-        let module = MockDeeplinkable(withBuildContext: ModuleContext())
+    static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
+        let module = MockDeeplinkable(usingContext: ModuleContext())
         return (module, module.prepareRootViewController())
     }
     

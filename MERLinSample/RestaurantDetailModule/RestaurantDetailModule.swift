@@ -13,7 +13,11 @@ extension UIStoryboard {
         return UIStoryboard(name: "Restaurant", bundle: Bundle(for: RestaurantDetailModule.self))
     }
 }
-public class RestaurantDetailModule: Module, RoutingEventsProducer, Routable {
+
+public class RestaurantDetailModule: NSObject, ModuleProtocol, RoutingEventsProducer {
+    public var context: RestaurantDetailBuildContext
+    public weak var currentViewController: UIViewController?
+    
     public var moduleName: String = "Restaurant Detail Page"
     public var moduleSection: String = "Restaurant Detail"
     public var moduleType: String = "Detail"
@@ -21,19 +25,16 @@ public class RestaurantDetailModule: Module, RoutingEventsProducer, Routable {
     
     public var events: Observable<EventProtocol> { return _events.toEventProtocol() }
     private var _events = PublishSubject<RestaurantDetailEvent>()
-
-    var detailContext: RestaurantDetailBuildContext { return context as! RestaurantDetailBuildContext }
     
-    open override var viewControllerFactory: ModuleViewControllerFactory? { return UIStoryboard.restaurant }
-
-    open override var viewControllerTransform: ((UIViewController) -> Void)? {
-        return { [weak self] viewController in
-            guard let _self = self, let controller = viewController as? RestaurantDetailViewController else { return }
-            controller.viewModel = RestaurantDetailViewModel(events: _self._events, restaurantId: _self.detailContext.id)
-        }
+    public func unmanagedRootViewController() -> UIViewController {
+        let controller = currentViewController ?? UIStoryboard.restaurant.instantiateInitialViewController()!
+        guard let detailController = controller as? RestaurantDetailViewController else { return controller }
+        detailController.viewModel = RestaurantDetailViewModel(events: _events, restaurantId: context.id)
+        return detailController
     }
     
     public required init(usingContext buildContext: RestaurantDetailBuildContext) {
-        super.init(withBuildContext: buildContext)
+        context = buildContext
+        super.init()
     }
 }

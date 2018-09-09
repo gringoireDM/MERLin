@@ -34,7 +34,7 @@ fileprivate func _capture<E: EventProtocol>(target: E, this: E) -> Bool {
 
 fileprivate func _capture<E: EventProtocol, Payload>(pattern: @escaping (Payload) -> E, this: E) -> Payload? {
     for case let (label?, value) in Mirror(reflecting: this).children {
-        if let result = value as? Payload,
+        if let result = (value as? Payload) ?? (Mirror(reflecting: value).children.first?.value as? Payload),
             let patternLabel = Mirror(reflecting: pattern(result)).children.first?.label,
             label == patternLabel {
             return result

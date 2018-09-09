@@ -18,7 +18,11 @@ extension UIStoryboard {
     }
 }
 
-public class RestaurantsListModule: Module, RoutingEventsProducer, Routable {
+public class RestaurantsListModule: NSObject, ModuleProtocol, RoutingEventsProducer {
+    public weak var currentViewController: UIViewController?
+    
+    public var context: ModuleContext
+    
     public var moduleName: String = "Restaurants List"
     public var moduleSection: String = "Restaurants List"
     public var moduleType: String = "List"
@@ -27,15 +31,16 @@ public class RestaurantsListModule: Module, RoutingEventsProducer, Routable {
     public var events: Observable<EventProtocol> { return _events.toEventProtocol() }
     private let _events = PublishSubject<RestaurantsListEvent>()
     
-    open override var viewControllerFactory: ModuleViewControllerFactory? { return UIStoryboard.restaurantsList }
-    open override var viewControllerTransform: ((UIViewController) -> Void)? {
-        return { [weak self] viewController in
-            guard let _self = self, let controller = viewController as? RestaurantsListViewController else { return }
-            controller.viewModel = RestaurantsListViewModel(events: _self._events)
-        }
+    public func unmanagedRootViewController() -> UIViewController {
+        let controller = currentViewController ?? UIStoryboard.restaurantsList.instantiateInitialViewController()!
+        guard let listController = controller as? RestaurantsListViewController else { return controller }
+        listController.viewModel = RestaurantsListViewModel(events: _events)
+        
+        return listController
     }
     
     public required init(usingContext buildContext: ModuleContext) {
-        super.init(withBuildContext: buildContext)
+        context = buildContext
+        super.init()
     }
 }

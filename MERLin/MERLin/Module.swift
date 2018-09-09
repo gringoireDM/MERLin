@@ -22,19 +22,28 @@ public class ThemeContainer {
     public var theme: ModuleThemeProtocol = ThemeContainer.defaultTheme
 }
 
-public protocol ModuleProtocol: class, NSObjectProtocol {
+public protocol AnyModule: class, NSObjectProtocol {
     var viewControllerEvent: Observable<ViewControllerEvent> { get }
-    
-    var context: ModuleBuildContextProtocol { get }
     
     func unmanagedRootViewController() -> UIViewController
     func prepareRootViewController() -> UIViewController
 }
 
+public protocol ModuleProtocol: AnyModule {
+    associatedtype Context: ModuleBuildContextProtocol
+    var context: Context { get }
+    var routingContext: String { get }
+    
+    init(usingContext buildContext: Context)
+}
+
+public extension ModuleProtocol {
+    public var routingContext: String { return context.routingContext }
+}
+
 private var viewControllerEventHandle: UInt8 = 0
 private var disposeBagHandle:UInt8 = 0
-
-public extension ModuleProtocol where Self: NSObject {
+public extension AnyModule where Self: NSObject {
     public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
     private var _viewControllerEvent: BehaviorSubject<ViewControllerEvent> {
         guard let observable = objc_getAssociatedObject(self, &viewControllerEventHandle) as? BehaviorSubject<ViewControllerEvent> else {
