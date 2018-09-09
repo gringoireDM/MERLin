@@ -9,7 +9,7 @@
 #import <MERLin/Module+Deeplink.h>
 #import <MERLin/MERLin-Swift.h>
 
-@implementation Module (Deeplink)
+@implementation DeeplinkMatcher (Deeplink)
 
 /*!This method will fetch all the subclass of Module
  @return NSArray<Class> *: An array of classes that are subclassing Module

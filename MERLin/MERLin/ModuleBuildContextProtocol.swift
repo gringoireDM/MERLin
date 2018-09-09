@@ -15,7 +15,7 @@ public protocol ModuleBuildContextProtocol {
 public struct ModuleContext: ModuleBuildContextProtocol, Hashable {
     public let routingContext: String
     
-    public init(routingContext: String = Module.defaultRoutingContext) {
+    public init(routingContext: String = "default") {
         self.routingContext = routingContext
     }
 }

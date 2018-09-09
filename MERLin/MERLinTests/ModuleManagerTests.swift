@@ -23,7 +23,10 @@ class MockViewController: UIViewController { }
 
 struct NoEvents: EventProtocol { }
 
-class MockModule: Module, EventsProducer {
+class MockModule: NSObject, ModuleProtocol, EventsProducer {
+    var viewController: UIViewController = UIViewController()
+    var context: ModuleBuildContextProtocol
+    
     
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
@@ -32,15 +35,15 @@ class MockModule: Module, EventsProducer {
     
     var events: Observable<EventProtocol> = PublishSubject<EventProtocol>()
     
-    init() {
-        super.init(withBuildContext: ModuleContext())
+    override init() {
+        context = ModuleContext()
     }
 }
 
 struct MockStep: ModuleMaking {
     var routingContext: String = ""
     
-    var make: () -> (Module, UIViewController) {
+    var make: () -> (ModuleProtocol, UIViewController) {
         return {
             return (MockModule(), MockViewController())
         }

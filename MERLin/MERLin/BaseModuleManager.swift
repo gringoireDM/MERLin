@@ -9,6 +9,12 @@
 import Foundation
 import LNZWeakCollection
 
+class ModuleWrapper {
+    let module: ModuleProtocol
+    init(_ module: ModuleProtocol) {
+        self.module = module
+    }
+}
 
 open class BaseModuleManager {
     
@@ -24,9 +30,9 @@ open class BaseModuleManager {
     //for as long as it stays on screen. When the viewController is dismissed, it will be
     //released, and when this happens, the module itself will be disposed as no one is retaining
     //it any longer.
-    var moduleRetainer = WeakDictionary<UIViewController, Module>(withWeakRelation: .weakToStrong)
+    var moduleRetainer = WeakDictionary<UIViewController, ModuleWrapper>(withWeakRelation: .weakToStrong)
     
-    public func setupEventsListeners(for module: Module) {
+    public func setupEventsListeners(for module: ModuleProtocol) {
         guard let producer = module as? EventsProducer else { return }
         setupEventsListeners(for: producer)
     }
@@ -37,20 +43,20 @@ open class BaseModuleManager {
         }
     }
     
-    public func livingModules() -> [Module] {
-        return moduleRetainer.values
+    public func livingModules() -> [ModuleProtocol] {
+        return moduleRetainer.values.map { $0.module }
     }
     
-    public func module(for viewController: UIViewController) -> Module? {
-        return moduleRetainer[viewController]
+    public func module(for viewController: UIViewController) -> ModuleProtocol? {
+        return moduleRetainer[viewController]?.module
     }
     
     public func addEventsListeners(_ listeners: [EventsListening]) {
         for listener in listeners {
             eventsListeners.append(listener)
             
-            moduleRetainer.values.forEach { (module) in
-                guard let producer = module as? EventsProducer else { return }
+            moduleRetainer.values.forEach { (wrapper) in
+                guard let producer = wrapper.module as? EventsProducer else { return }
                 listener.registerToEvents(for: producer)
             }
         }
@@ -81,7 +87,7 @@ extension BaseModuleManager: DeeplinkManaging {
     public func viewController(fromDeeplink deeplink: String) -> UIViewController? {
         guard let type = deeplinkable(fromDeeplink: deeplink) else { return nil }
         guard let (module, controller) = type.module(fromDeeplink: deeplink) else { return nil }
-        moduleRetainer.set(module, forKey: controller)
+        moduleRetainer.set(ModuleWrapper(module), forKey: controller)
         setupEventsListeners(for: module)
         return controller
     }
@@ -94,8 +100,8 @@ extension BaseModuleManager: DeeplinkManaging {
 
 extension BaseModuleManager: ViewControllerBuilding {
     
-    public func setup<T: UIViewController>(_ moduleController: (module: Module, controller: T)) -> T {
-        moduleRetainer.set(moduleController.module, forKey: moduleController.controller)
+    public func setup<T: UIViewController>(_ moduleController: (module: ModuleProtocol, controller: T)) -> T {
+        moduleRetainer.set(ModuleWrapper(moduleController.module), forKey: moduleController.controller)
         setupEventsListeners(for: moduleController.module)
         return moduleController.controller
     }

@@ -38,7 +38,7 @@ public protocol Deeplinkable: DeeplinkResponder {
     static func classForDeeplinkingViewController() -> UIViewController.Type
     
     ///Instanciate a module and the viewController associated to a specified deeplink.
-    static func module(fromDeeplink deeplink: String) -> (Module, UIViewController)?
+    static func module(fromDeeplink deeplink: String) -> (ModuleProtocol, UIViewController)?
 
     ///For living modules, this method will return the deeplink to recreate self
     ///with the same buildContext (if any).

@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    public static func color(forPalette palette: ThemeColorPalette, usingTheme theme: ModuleThemeProtocol = Module.defaultTheme) -> UIColor {
+    public static func color(forPalette palette: ThemeColorPalette, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme) -> UIColor {
         return theme.color(forColorPalette: palette)
     }
 }

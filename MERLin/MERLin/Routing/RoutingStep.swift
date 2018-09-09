@@ -10,7 +10,7 @@ import Foundation
 
 public protocol ModuleMaking {
     var routingContext: String { get }
-    var make: () -> (Module, UIViewController) { get }
+    var make: () -> (ModuleProtocol, UIViewController) { get }
 }
 
 public protocol RoutingStep: ModuleMaking {
@@ -20,11 +20,11 @@ public protocol RoutingStep: ModuleMaking {
 ///If the routing step happens to be the concrete context of the Module that is Routable
 ///then a default implementation of the make function is provided, using self as context
 ///for the Module concrete initializer.
-extension RoutingStep where Route: Module, Route.Context == Self {
-    public var make: () -> (Module, UIViewController)  {
+extension RoutingStep where Route: ModuleProtocol, Route.Context == Self {
+    public var make: () -> (ModuleProtocol, UIViewController)  {
         return {
             let module = Route(usingContext: self)
-            return (module, module.buildRootViewController())
+            return (module, module.prepareRootViewController())
         }
     }
 }
