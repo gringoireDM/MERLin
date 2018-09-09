@@ -12,18 +12,22 @@ import XCTest
 class MockController: UIViewController { }
 
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
-    var viewController: UIViewController = MockViewController()
-    var context: ModuleBuildContextProtocol
-    
     static var deeplinkSchemaNames: [String] = ["test"]
 
-    static func classForDeeplinkingViewController() -> UIViewController.Type {
-        return MockController.self
-    }
+    var context: ModuleBuildContextProtocol
     
     init(withBuildContext context: ModuleContext) {
         self.context = context
     }
+
+    func unmanagedRootViewController() -> UIViewController {
+        return MockViewController()
+    }
+    
+    static func classForDeeplinkingViewController() -> UIViewController.Type {
+        return MockController.self
+    }
+    
     
     static func module(fromDeeplink deeplink: String) -> (ModuleProtocol, UIViewController)? {
         let module = MockDeeplinkable(withBuildContext: ModuleContext())

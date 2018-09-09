@@ -24,9 +24,7 @@ class MockViewController: UIViewController { }
 struct NoEvents: EventProtocol { }
 
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
-    var viewController: UIViewController = UIViewController()
     var context: ModuleBuildContextProtocol
-    
     
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
@@ -37,6 +35,10 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
     
     override init() {
         context = ModuleContext()
+    }
+    
+    func unmanagedRootViewController() -> UIViewController {
+        return UIViewController()
     }
 }
 

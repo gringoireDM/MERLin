@@ -15,12 +15,19 @@ public enum ViewControllerEvent: EventProtocol {
     case disappeared
 }
 
+public class ThemeContainer {
+    public static var defaultTheme: ModuleThemeProtocol! {
+        didSet { defaultTheme.applyAppearance() }
+    }
+    public var theme: ModuleThemeProtocol = ThemeContainer.defaultTheme
+}
+
 public protocol ModuleProtocol: class, NSObjectProtocol {
     var viewControllerEvent: Observable<ViewControllerEvent> { get }
-    var viewController: UIViewController { get }
     
     var context: ModuleBuildContextProtocol { get }
     
+    func unmanagedRootViewController() -> UIViewController
     func prepareRootViewController() -> UIViewController
 }
 
@@ -48,12 +55,13 @@ public extension ModuleProtocol where Self: NSObject {
     }
     
     public func prepareRootViewController() -> UIViewController {
+        let controller = unmanagedRootViewController()
+
         _viewControllerEvent.onNext(.initialized)
-        
-        let didAppearProducer = viewController.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
+        let didAppearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .map { _ in ViewControllerEvent.appeared }
         
-        let didDisappearProducer = viewController.rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
+        let didDisappearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
             .map { _ in ViewControllerEvent.disappeared }
         
         Observable.of(didAppearProducer, didDisappearProducer)
@@ -61,15 +69,8 @@ public extension ModuleProtocol where Self: NSObject {
             .bind(to: _viewControllerEvent)
             .disposed(by: disposeBag)
         
-        return viewController
+        return controller
     }
-}
-
-public class ThemeContainer {
-    public static var defaultTheme: ModuleThemeProtocol! {
-        didSet { defaultTheme.applyAppearance() }
-    }
-    public var theme: ModuleThemeProtocol = ThemeContainer.defaultTheme
 }
 
 
