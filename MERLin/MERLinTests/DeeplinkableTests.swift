@@ -9,37 +9,6 @@
 import XCTest
 @testable import MERLin
 
-class MockController: UIViewController { }
-
-class MockDeeplinkable: Module, Deeplinkable {
-    override func buildRootViewController() -> UIViewController {
-        let controller = MockController()
-        currentViewController = controller
-        return controller
-    }
-    
-    static var deeplinkSchemaNames: [String] = ["test"]
-
-    static func classForDeeplinkingViewController() -> UIViewController.Type {
-        return MockController.self
-    }
-    
-    static func module(fromDeeplink deeplink: String) -> (Module, UIViewController)? {
-        let module = MockDeeplinkable(withBuildContext: ModuleContext())
-        return (module, module.buildRootViewController())
-    }
-    
-    func deeplinkURL() -> URL? {
-        return URL(string: "test://mock")
-    }
-    
-    static func deeplinkRegexes() -> [NSRegularExpression]? {
-        let regEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
-        let productRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/product\\/?([0-9]+)", options: .caseInsensitive)
-        return [regEx, productRegEx]
-    }
-}
-
 class DeeplinkableTests: XCTestCase {
     
     func testThatMockIsIncludedInAvailableDeeplinkHandlers() {

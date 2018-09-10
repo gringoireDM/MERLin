@@ -3,22 +3,27 @@ PODS:
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
+  - RxTest (4.1.2):
+    - RxSwift (~> 4.0)
 
 DEPENDENCIES:
   - LNZWeakCollection (~> 1.1.0)
   - RxCocoa (~> 4.1.2)
+  - RxTest (~> 4.1.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - LNZWeakCollection
     - RxCocoa
     - RxSwift
+    - RxTest
 
 SPEC CHECKSUMS:
   LNZWeakCollection: 5060e07316f344f3621cf062a46f53dc63329d5e
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
 
-PODFILE CHECKSUM: 1b8760a0e7a63bc91ab6f4807c6225aa5df13a12
+PODFILE CHECKSUM: 5a4b5acfd0213adfc1a972607b23d5ea0a749e47
 
 COCOAPODS: 1.5.3

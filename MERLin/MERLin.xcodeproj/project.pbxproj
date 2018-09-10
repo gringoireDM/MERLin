@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
 		501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */; };
 		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
@@ -37,6 +36,11 @@
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
 		501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */; };
+		502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B9B7221452D6600BBFFC3 /* EventsTests.swift */; };
+		502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */; };
+		502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */; };
+		502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508D21465D6F002B70A4 /* MockViewController.swift */; };
+		502C509021465D91002B70A4 /* MockModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508F21465D91002B70A4 /* MockModule.swift */; };
 		5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
 		5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
@@ -64,7 +68,6 @@
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MERLinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F152130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewControllerFactory.swift; sourceTree = "<group>"; };
 		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
 		501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuildContextProtocol.swift; sourceTree = "<group>"; };
 		501D6F6E2130BD1200114F5A /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
@@ -94,6 +97,11 @@
 		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
 		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
 		501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDescriptor.swift; sourceTree = "<group>"; };
+		502B9B7221452D6600BBFFC3 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
+		502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventsTests.swift; sourceTree = "<group>"; };
+		502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeeplinkableModule.swift; sourceTree = "<group>"; };
+		502C508D21465D6F002B70A4 /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
+		502C508F21465D91002B70A4 /* MockModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModule.swift; sourceTree = "<group>"; };
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
@@ -160,7 +168,6 @@
 			children = (
 				501D6F082130BB4F00114F5A /* MERLin.h */,
 				501D6F6E2130BD1200114F5A /* Module.swift */,
-				501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */,
 				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
 				501D6F732130BD2000114F5A /* ABTesting */,
@@ -178,8 +185,11 @@
 		501D6F122130BB4F00114F5A /* MERLinTests */ = {
 			isa = PBXGroup;
 			children = (
+				502C508A21465CB2002B70A4 /* Mocks */,
 				50B11871213BF89E008928AF /* DeeplinkableTests.swift */,
 				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
+				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
+				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
@@ -283,6 +293,16 @@
 				501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		502C508A21465CB2002B70A4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */,
+				502C508D21465D6F002B70A4 /* MockViewController.swift */,
+				502C508F21465D91002B70A4 /* MockModule.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		57DD9DE69C6C08AB102DA391 /* Frameworks */ = {
@@ -449,12 +469,14 @@
 				"${BUILT_PRODUCTS_DIR}/LNZWeakCollection/LNZWeakCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNZWeakCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -484,7 +506,6 @@
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
-				501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
@@ -505,7 +526,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */,
+				502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */,
 				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,
+				502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */,
+				502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */,
+				502C509021465D91002B70A4 /* MockModule.swift in Sources */,
 				50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

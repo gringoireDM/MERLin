@@ -15,42 +15,58 @@ public enum ViewControllerEvent: EventProtocol {
     case disappeared
 }
 
-open class Module: NSObject {
-    public static var defaultRoutingContext: String = "default"
-    public static var deeplinkRoutingContext: String = "deeplink"
-    
+public class ThemeContainer {
     public static var defaultTheme: ModuleThemeProtocol! {
-        didSet {
-            defaultTheme.applyAppearance()
-        }
+        didSet { defaultTheme.applyAppearance() }
     }
+    public var theme: ModuleThemeProtocol = ThemeContainer.defaultTheme
+}
+
+public protocol AnyModule: class, NSObjectProtocol {
+    var viewControllerEvent: Observable<ViewControllerEvent> { get }
     
-    public static var buildABTestingManager: () -> (manager: ABTesting?, stateMachine: ABTestingManagerStateMachine?) = { return (nil, nil) }
+    func unmanagedRootViewController() -> UIViewController
+    func prepareRootViewController() -> UIViewController
+}
+
+public protocol ModuleProtocol: AnyModule {
+    associatedtype Context: ModuleBuildContextProtocol
+    var context: Context { get }
+    var routingContext: String { get }
     
-    public let disposeBag = DisposeBag()
-    public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
-    private let _viewControllerEvent = BehaviorSubject<ViewControllerEvent>(value: .uninitialized)
-    
-    open private(set) var viewControllerFactory: ModuleViewControllerFactory?
-    open private(set) var viewControllerTransform: ((UIViewController) -> Void)?
-    
-    public private(set) var context: ModuleBuildContextProtocol
+    init(usingContext buildContext: Context)
+}
+
+public extension ModuleProtocol {
     public var routingContext: String { return context.routingContext }
-    
-    public weak var currentViewController: UIViewController?
-    
-    public init(withBuildContext buildContext: ModuleBuildContextProtocol) {
-        context = buildContext
-        super.init()
+}
+
+private var viewControllerEventHandle: UInt8 = 0
+private var disposeBagHandle:UInt8 = 0
+public extension AnyModule where Self: NSObject {
+    public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
+    private var _viewControllerEvent: BehaviorSubject<ViewControllerEvent> {
+        guard let observable = objc_getAssociatedObject(self, &viewControllerEventHandle) as? BehaviorSubject<ViewControllerEvent> else {
+            let observable = BehaviorSubject<ViewControllerEvent>(value: .uninitialized)
+            objc_setAssociatedObject(self, &viewControllerEventHandle, observable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return observable
+        }
+        return observable
+    }
+
+    public var disposeBag: DisposeBag {
+        guard let bag = objc_getAssociatedObject(self, &disposeBagHandle) as? DisposeBag else {
+            let bag = DisposeBag()
+            objc_setAssociatedObject(self, &disposeBagHandle, bag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return bag
+        }
+        return bag
     }
     
-    open func buildRootViewController() -> UIViewController {
-        let controller = currentViewController ?? viewControllerFactory?.instantiateInitialViewController() ?? UIViewController()
-        currentViewController = controller
-        viewControllerTransform?(controller)
-        
+    public func prepareRootViewController() -> UIViewController {
+        let controller = unmanagedRootViewController()
+
         _viewControllerEvent.onNext(.initialized)
-        
         let didAppearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .map { _ in ViewControllerEvent.appeared }
         
@@ -63,9 +79,5 @@ open class Module: NSObject {
             .disposed(by: disposeBag)
         
         return controller
-    }
-    
-    open func updateBuildContext(_ buildContext: ModuleBuildContextProtocol) {
-        context = buildContext
     }
 }

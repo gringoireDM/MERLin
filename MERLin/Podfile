@@ -13,4 +13,5 @@ end
 
 target 'MERLinTests' do
     common
+    pod 'RxTest', '~>4.1.2'
 end

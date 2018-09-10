@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIFont {
-    public static func font(forStyle style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = Module.defaultTheme) -> UIFont {
+    public static func font(forStyle style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme) -> UIFont {
         return theme.font(forStyle: style)
     }
 }

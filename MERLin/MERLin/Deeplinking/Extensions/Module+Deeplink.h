@@ -7,5 +7,5 @@
 //
 
 
-@class Module;
+@class DeeplinkMatcher;
 

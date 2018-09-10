@@ -19,39 +19,6 @@ class MockEventsListener: EventsListening {
     }
 }
 
-class MockViewController: UIViewController { }
-
-struct NoEvents: EventProtocol { }
-
-class MockModule: Module, EventsProducer {
-    
-    var moduleName: String = "MockModule"
-    var moduleSection: String = "ModuleTests"
-    var moduleType: String = "test"
-    var eventsType: EventProtocol.Type = NoEvents.self
-    
-    var events: Observable<EventProtocol> = PublishSubject<EventProtocol>()
-    
-    init() {
-        super.init(withBuildContext: ModuleContext())
-    }
-}
-
-struct MockStep: ModuleMaking {
-    var routingContext: String = ""
-    
-    var make: () -> (Module, UIViewController) {
-        return {
-            return (MockModule(), MockViewController())
-        }
-    }
-}
-
-extension ModuleRoutingStep {
-    static func mock() -> ModuleRoutingStep {
-        return ModuleRoutingStep(withMaker: MockStep())
-    }
-}
 
 class ModuleManagerTests: XCTestCase {
     var moduleManager: BaseModuleManager!
