@@ -34,6 +34,14 @@ fileprivate func _capture<E: EventProtocol>(target: E, this: E) -> Bool {
 
 fileprivate func _capture<E: EventProtocol, Payload>(pattern: @escaping (Payload) -> E, this: E) -> Payload? {
     for case let (label?, value) in Mirror(reflecting: this).children {
+        //At this point we must check if the value of the event is of the same type of Payload.
+        //XCode 10 introduces single value tuples so that
+        //`case event(String)` and `case event(name: String)` will have different types.
+        //In the first case the value will be of type String, in the second will be of type
+        //`(name: String)`. If value do not match payload we are looking for the second case
+        //inspecting the Mirror of value.
+        //multivalue Tuples will always succede in the first type case to `Payload`, so in the
+        //second evaluation we are really just concerned about the single value tuples.
         if let result = (value as? Payload) ?? (Mirror(reflecting: value).children.first?.value as? Payload),
             let patternLabel = Mirror(reflecting: pattern(result)).children.first?.label,
             label == patternLabel {
