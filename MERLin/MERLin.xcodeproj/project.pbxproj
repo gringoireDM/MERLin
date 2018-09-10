@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
 		501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */; };
 		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
@@ -69,7 +68,6 @@
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MERLinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F152130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewControllerFactory.swift; sourceTree = "<group>"; };
 		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
 		501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuildContextProtocol.swift; sourceTree = "<group>"; };
 		501D6F6E2130BD1200114F5A /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 			children = (
 				501D6F082130BB4F00114F5A /* MERLin.h */,
 				501D6F6E2130BD1200114F5A /* Module.swift */,
-				501D6F6B2130BD1100114F5A /* ModuleViewControllerFactory.swift */,
 				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
 				501D6F732130BD2000114F5A /* ABTesting */,
@@ -509,7 +506,6 @@
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
-				501D6F6F2130BD1200114F5A /* ModuleViewControllerFactory.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,

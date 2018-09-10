@@ -19,5 +19,3 @@ public struct RestaurantDetailBuildContext: ModuleBuildContextProtocol, RoutingS
         id = restaurantId
     }
 }
-
-
