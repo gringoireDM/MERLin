@@ -24,7 +24,7 @@ class SimpleRouter: Router {
     
     let disposeBag: DisposeBag = DisposeBag()
     
-    func rootViewController(forLaunchOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> UIViewController? {
+    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> UIViewController? {
         return rootNavigationController
     }
     

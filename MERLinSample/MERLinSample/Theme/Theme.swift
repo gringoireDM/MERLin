@@ -109,10 +109,10 @@ final class Theme: ModuleThemeProtocol {
             .font: font(forStyle: .small(attribute: .regular)),
             .foregroundColor: color(forColorPalette: .primary)
             ], for: .selected)
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
-            NSAttributedStringKey.font.rawValue: font(forStyle: .body(attribute: .regular)),
-            NSAttributedStringKey.foregroundColor.rawValue: color(forColorPalette: .gray_4)
-        ]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = convertToNSAttributedStringKeyDictionary([
+            NSAttributedString.Key.font.rawValue: font(forStyle: .body(attribute: .regular)),
+            NSAttributedString.Key.foregroundColor.rawValue: color(forColorPalette: .gray_4)
+        ])
     }
     
     func cleanThemeCopy() -> Theme {
@@ -136,8 +136,8 @@ extension Theme {
         let mutableCopy = attributedString.mutableCopy() as! NSMutableAttributedString
         
         mutableCopy.setAttributes([
-            NSAttributedStringKey.font: style.font,
-            NSAttributedStringKey.foregroundColor: self.color(forColorPalette: color)
+            NSAttributedString.Key.font: style.font,
+            NSAttributedString.Key.foregroundColor: self.color(forColorPalette: color)
             ], range: range)
         
         return mutableCopy
@@ -227,4 +227,9 @@ extension Theme {
         customizing?(textfield, self)
         return textfield
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
         ]
     }()
 
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         router = SimpleRouter(withFactory: moduleManager)
         moduleManager.addEventsListeners(eventsListeners)
         ThemeContainer.defaultTheme = Theme()
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
         return true
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
         window?.rootViewController = router.rootViewController(forLaunchOptions: launchOptions)
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     }
 
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         guard app.canOpenURL(url) == true else {
             return false
         }
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
         return true
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         _events.onNext(.continueUserActivity(userActivity))
         return true
     }

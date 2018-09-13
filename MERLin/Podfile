@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings! # supresses pods project warnings
 
 def common
-    pod 'LNZWeakCollection', :git => 'https://github.com/gringoireDM/LNZWeakCollection.git', :branch => 'swift_4_2' #'~>1.1.0'
+    pod 'LNZWeakCollection', '~>1.2.0'
     pod 'RxCocoa', '~>4.2.0'
 end
 
@@ -13,5 +13,15 @@ end
 
 target 'MERLinTests' do
     common
-    pod 'RxTest', '~>4.1.2'
+    pod 'RxTest', '~>4.2.0'
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'RxCocoa'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
 end
