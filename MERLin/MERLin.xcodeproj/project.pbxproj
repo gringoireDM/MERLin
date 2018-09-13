@@ -47,7 +47,7 @@
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
-		EF19CDFB08FBB3BD4287DF82 /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
+		A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03D8D7C394AE25D9C54A348E /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1362662CB514BD99E0C44646 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.release.xcconfig"; sourceTree = "<group>"; };
 		293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,9 +107,7 @@
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
-		62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
-		8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,7 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */,
-				EF19CDFB08FBB3BD4287DF82 /* Pods_MERLinTests.framework in Frameworks */,
+				A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +137,8 @@
 			children = (
 				6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */,
 				1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */,
-				8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */,
-				62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */,
+				03D8D7C394AE25D9C54A348E /* Pods-MERLinTests.debug.xcconfig */,
+				1362662CB514BD99E0C44646 /* Pods-MERLinTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -352,11 +352,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 501D6F1C2130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLinTests" */;
 			buildPhases = (
-				4D8E62532845829E5AA85498 /* [CP] Check Pods Manifest.lock */,
+				BD07DB338B6C9D72CE5B21D6 /* [CP] Check Pods Manifest.lock */,
 				501D6F0A2130BB4F00114F5A /* Sources */,
 				501D6F0B2130BB4F00114F5A /* Frameworks */,
 				501D6F0C2130BB4F00114F5A /* Resources */,
-				96FADBFAA6CA9EFBAAFD8429 /* [CP] Embed Pods Frameworks */,
+				ED25333D815F7319C2A0C0CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -380,10 +380,11 @@
 				TargetAttributes = {
 					501D6F042130BB4F00114F5A = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1000;
 					};
 					501D6F0D2130BB4F00114F5A = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -441,7 +442,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4D8E62532845829E5AA85498 /* [CP] Check Pods Manifest.lock */ = {
+		BD07DB338B6C9D72CE5B21D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,7 +460,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		96FADBFAA6CA9EFBAAFD8429 /* [CP] Embed Pods Frameworks */ = {
+		ED25333D815F7319C2A0C0CA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -691,7 +692,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -719,14 +720,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		501D6F1D2130BB4F00114F5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E957D28D012921233022C05 /* Pods-MERLinTests.debug.xcconfig */;
+			baseConfigurationReference = 03D8D7C394AE25D9C54A348E /* Pods-MERLinTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -739,14 +740,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		501D6F1E2130BB4F00114F5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62DB7583EC38AD123E1A82C6 /* Pods-MERLinTests.release.xcconfig */;
+			baseConfigurationReference = 1362662CB514BD99E0C44646 /* Pods-MERLinTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -759,7 +760,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1,9 +1,9 @@
 PODS:
-  - LNZWeakCollection (1.1.2)
-  - MERLin (1.0.2):
-    - LNZWeakCollection (~> 1.1.0)
-    - RxCocoa (~> 4.1.2)
-  - RxCocoa (4.1.2):
+  - LNZWeakCollection (1.2.0)
+  - MERLin (1.2.0):
+    - LNZWeakCollection (~> 1.2.0)
+    - RxCocoa (~> 4.2.0)
+  - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
 
@@ -21,11 +21,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LNZWeakCollection: 5060e07316f344f3621cf062a46f53dc63329d5e
-  MERLin: 064e234be35853afcbaee7351e775d71d9456ad1
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  LNZWeakCollection: 1e3ef61bc5ea104e8c9f36ed5a4a03667b413088
+  MERLin: c3f3f489212c611da8ba783617584d7b413d8235
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
 
-PODFILE CHECKSUM: a6ee1cdd068da55588ef8cb0033cd9d15dfe14e3
+PODFILE CHECKSUM: 6d8a51c8468074fe637360afb3955c849e613f2e
 
 COCOAPODS: 1.5.3
