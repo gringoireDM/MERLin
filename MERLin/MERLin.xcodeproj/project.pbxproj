@@ -46,6 +46,9 @@
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
+		50F6BCDB214C17C00038DD1B /* ThemeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDA214C17C00038DD1B /* ThemeConfiguration.swift */; };
+		50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDC214C1C190038DD1B /* ThemeTests.swift */; };
+		50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDE214C221B0038DD1B /* MockTheme.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
 		A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
@@ -107,6 +110,9 @@
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
+		50F6BCDA214C17C00038DD1B /* ThemeConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeConfiguration.swift; sourceTree = "<group>"; };
+		50F6BCDC214C1C190038DD1B /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		50F6BCDE214C221B0038DD1B /* MockTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTheme.swift; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -190,6 +196,7 @@
 				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
 				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
+				50F6BCDC214C1C190038DD1B /* ThemeTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
@@ -257,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */,
+				50F6BCDA214C17C00038DD1B /* ThemeConfiguration.swift */,
 				501D6F8D2130BD3700114F5A /* UIKit+Theming */,
 			);
 			path = Theming;
@@ -301,6 +309,7 @@
 				502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */,
 				502C508D21465D6F002B70A4 /* MockViewController.swift */,
 				502C508F21465D91002B70A4 /* MockModule.swift */,
+				50F6BCDE214C221B0038DD1B /* MockTheme.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
 				501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */,
+				50F6BCDB214C17C00038DD1B /* ThemeConfiguration.swift in Sources */,
 				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
 				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
 				501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */,
@@ -528,6 +538,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */,
+				50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */,
+				50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */,
 				502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */,
 				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,
 				502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */,

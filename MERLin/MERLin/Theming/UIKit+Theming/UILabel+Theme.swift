@@ -9,13 +9,13 @@
 import UIKit
 
 public extension UILabel {
-    public func applyLabelStyle(_ style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme, customizing: ((UILabel, ModuleThemeProtocol)->Void)? = nil) {
+    public func applyLabelStyle(_ style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = UIWindow.defaultTheme, customizing: ((UILabel, ModuleThemeProtocol)->Void)? = nil) {
         theme.configure(label: self, withStyle: style, customizing: customizing)
     }
 }
 
 public extension Array where Element: UILabel {
-    public func applyLabelStyle(_ style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme, customizing: ((UILabel, ModuleThemeProtocol)->Void)? = nil) {
+    public func applyLabelStyle(_ style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = UIWindow.defaultTheme, customizing: ((UILabel, ModuleThemeProtocol)->Void)? = nil) {
         forEach {
             theme.configure(label: $0, withStyle: style, customizing: customizing)
         }

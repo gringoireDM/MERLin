@@ -53,7 +53,7 @@ public enum ThemeFontStyle {
     }
 }
 
-public protocol ModuleThemeProtocol {
+public protocol ModuleThemeProtocol: class {
     //MARK: Colors
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor
     
