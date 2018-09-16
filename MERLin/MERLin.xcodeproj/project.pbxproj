@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		500290B9214E85B80025FE20 /* UIWindow+applyAppearence.h in Headers */ = {isa = PBXBuildFile; fileRef = 500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */; };
 		500290BA214E85B80025FE20 /* UIWindow+applyAppearence.m in Sources */ = {isa = PBXBuildFile; fileRef = 500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */; };
+		500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 500290BD214E87DE0025FE20 /* SwizzlerUtility.h */; };
+		500290C0214E87DE0025FE20 /* SwizzlerUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 500290BE214E87DE0025FE20 /* SwizzlerUtility.m */; };
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
@@ -76,6 +78,8 @@
 		293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+applyAppearence.h"; sourceTree = "<group>"; };
 		500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+applyAppearence.m"; sourceTree = "<group>"; };
+		500290BD214E87DE0025FE20 /* SwizzlerUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzlerUtility.h; sourceTree = "<group>"; };
+		500290BE214E87DE0025FE20 /* SwizzlerUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzlerUtility.m; sourceTree = "<group>"; };
 		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 		501D6F952130BD3700114F5A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				500290BD214E87DE0025FE20 /* SwizzlerUtility.h */,
+				500290BE214E87DE0025FE20 /* SwizzlerUtility.m */,
 				501D6F962130BD3700114F5A /* RxExtension.swift */,
 				50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */,
 			);
@@ -351,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5023883D214E3F320007BB9D /* UIView+ResettableAppearance.h in Headers */,
+				500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */,
 				5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */,
 				501D6F162130BB4F00114F5A /* MERLin.h in Headers */,
 				500290B9214E85B80025FE20 /* UIWindow+applyAppearence.h in Headers */,
@@ -554,6 +561,7 @@
 				501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */,
 				501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */,
 				501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */,
+				500290C0214E87DE0025FE20 /* SwizzlerUtility.m in Sources */,
 				501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

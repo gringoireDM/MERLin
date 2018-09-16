@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RestaurantsListViewController: UITableViewController, DisplayingError {
+class RestaurantsListViewController: UITableViewController, DisplayingError, Themed {
     func displayError(_ error: DisplayableError) {
         let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -61,6 +61,10 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
             self.items = self.items+restaurants
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
+    }
+    
+    func applyTheme() {
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

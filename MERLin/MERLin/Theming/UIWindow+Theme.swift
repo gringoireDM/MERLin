@@ -16,9 +16,9 @@ public extension UIWindow {
             return objc_getAssociatedObject(self, &staticThemeHandle) as! ThemeProtocol
         } set {
             objc_setAssociatedObject(self, &staticThemeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            UIApplication.shared.windows.forEach {
-                guard $0.theme !== newValue else { return }
-                $0.applyTheme(newValue)
+            UIApplication.shared.windows.forEach { window in
+                guard window.theme === newValue else { return }
+                window.applyTheme(newValue)
             }
         }
     }

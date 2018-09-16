@@ -14,16 +14,11 @@ class MenuItemCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    func applyAppearance() {
         title.applyLabelStyle(.body(attribute: .regular))
         descriptionLabel.applyLabelStyle(.caption(attribute: .regular))
         priceLabel.applyLabelStyle(.body(attribute: .bold))
         priceLabel.textColor = .color(forPalette: .primary)
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
+
 }

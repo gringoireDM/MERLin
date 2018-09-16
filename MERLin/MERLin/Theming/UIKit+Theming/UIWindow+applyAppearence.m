@@ -8,6 +8,7 @@
 
 #import "UIWindow+applyAppearence.h"
 #import <MERLin/MERLin-Swift.h>
+#import "SwizzlerUtility.h"
 
 @implementation UIWindow (applyAppearence)
 
@@ -19,22 +20,7 @@
         SEL originalSelector = @selector(makeKeyWindow);
         SEL swizzledSelector = @selector(swizzled_makeKeyWindow);
         
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        
-        //We try to add the implementation of the swizzled method in the original selector.
-        //This operation will succede only if the subclass did not override the original selector.
-        BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-        
-        if (didAddMethod) {
-            //If we succede, we need to replace the swizzled method implementation with the original
-            //method implementation. In short, this case fallsback in a runtime override.
-            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        } else {
-            //In case of failure, a method override the original method. Then, a simple exchange of
-            //implementations is enough.
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
+        [SwizzlerUtility swizzle:originalSelector withSelector:swizzledSelector onClass:class];
     });
 
 }
