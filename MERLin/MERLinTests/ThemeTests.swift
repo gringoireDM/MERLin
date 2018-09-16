@@ -44,7 +44,7 @@ class ThemeTests: XCTestCase {
         let window = UIWindow()
         window.rootViewController = root
         
-        window.defaultTheme = MockTheme()
+        window.theme = MockTheme()
         
         for controller in [root]+treeNodes {
             XCTAssertEqual(controller.applyTimes, 1)

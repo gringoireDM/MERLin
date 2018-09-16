@@ -58,7 +58,7 @@ fileprivate extension ThemeColorPalette {
     }
 }
 
-final class Theme: ModuleThemeProtocol {
+final class Theme: ThemeProtocol {
     
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor {
         return colorPalette.color
@@ -74,45 +74,74 @@ final class Theme: ModuleThemeProtocol {
 
     func applyAppearance() {
         //UINavigationBar
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = .white
-        UINavigationBar.appearance().tintColor = color(forColorPalette: .primary)
-        UINavigationBar.appearance().titleTextAttributes = [
-            .font: font(forStyle: .headline(attribute: .regular)),
-            .foregroundColor: color(forColorPalette: .gray_4)
-        ]
+        print("APPLYING APPEARANCE")
+        UINavigationBar.resettableAppearance = ResettableAppearence() { [weak self] navBar in
+            guard let _self = self else { return }
+            navBar.isTranslucent = false
+            navBar.barTintColor = .white
+            navBar.tintColor = _self.color(forColorPalette: .primary)
+            navBar.titleTextAttributes = [
+                .font: _self.font(forStyle: .headline(attribute: .regular)),
+                .foregroundColor: _self.color(forColorPalette: .gray_4)
+            ]
+        }
         
         //UIBarButtonItem
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            .font: font(forStyle: .body(attribute: .regular)),
-            .foregroundColor: color(forColorPalette: .primary)
-            ], for: .normal)
+        UIBarButtonItem.resettableAppearance = ResettableAppearence() { [weak self] barButtonItem in
+            guard let _self = self else { return }
+            barButtonItem.setTitleTextAttributes([
+                .font: _self.font(forStyle: .body(attribute: .regular)),
+                .foregroundColor: _self.color(forColorPalette: .primary)
+                ], for: .normal)
+            
+            barButtonItem.setTitleTextAttributes([
+                .font: _self.font(forStyle: .body(attribute: .regular)),
+                .foregroundColor: _self.color(forColorPalette: .gray_4)
+                ], for: .highlighted)
+            
+            barButtonItem.setTitleTextAttributes([
+                .font: _self.font(forStyle: .body(attribute: .regular)),
+                .foregroundColor: _self.color(forColorPalette: .gray_3)
+                ], for: .disabled)
+        }
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            .font: font(forStyle: .body(attribute: .regular)),
-            .foregroundColor: color(forColorPalette: .gray_4)
-            ], for: .highlighted)
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            .font: font(forStyle: .body(attribute: .regular)),
-            .foregroundColor: color(forColorPalette: .gray_3)
-            ], for: .disabled)
         
         //UITabBar
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = .white
-        UITabBar.appearance().tintColor = color(forColorPalette: .primary)
+        UITabBar.resettableAppearance = ResettableAppearence() { [weak self] tabBar in
+            tabBar.isTranslucent = false
+            tabBar.barTintColor = .white
+            tabBar.tintColor = self?.color(forColorPalette: .primary)
+        }
         
         //UITabBarItem
-        UITabBarItem.appearance().badgeColor = color(forColorPalette: .primary)
-        UITabBarItem.appearance().setTitleTextAttributes([
-            .font: font(forStyle: .small(attribute: .regular)),
-            .foregroundColor: color(forColorPalette: .primary)
-            ], for: .selected)
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = convertToNSAttributedStringKeyDictionary([
-            NSAttributedString.Key.font.rawValue: font(forStyle: .body(attribute: .regular)),
-            NSAttributedString.Key.foregroundColor.rawValue: color(forColorPalette: .gray_4)
-        ])
+        UITabBarItem.resettableAppearance = ResettableAppearence() { [weak self] tabBarItem in
+            guard let _self = self else { return }
+            tabBarItem.badgeColor = _self.color(forColorPalette: .primary)
+            tabBarItem.setTitleTextAttributes([
+                .font: _self.font(forStyle: .small(attribute: .regular)),
+                .foregroundColor: _self.color(forColorPalette: .primary)
+                ], for: .selected)
+        }
+        
+        UITextField.resettableAppearance = ResettableAppearence() { [weak self] textField in
+            guard let _self = self else { return }
+            var isContainedInSearchBar = false
+            var cursor: UIView = textField
+            while let superView = cursor.superview {
+                guard let _ = superView as? UISearchBar else {
+                    cursor = superView
+                    continue
+                }
+                isContainedInSearchBar = true
+                break
+            }
+            guard isContainedInSearchBar else { return }
+            
+            textField.defaultTextAttributes = convertToNSAttributedStringKeyDictionary([
+                NSAttributedString.Key.font.rawValue: _self.font(forStyle: .body(attribute: .regular)),
+                NSAttributedString.Key.foregroundColor.rawValue: _self.color(forColorPalette: .gray_4)
+                ])
+        }
     }
     
     func cleanThemeCopy() -> Theme {
@@ -144,7 +173,7 @@ extension Theme {
     }
     
     @discardableResult
-    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ModuleThemeProtocol)->Void)?) -> UILabel {
+    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ThemeProtocol)->Void)?) -> UILabel {
         label.font = style.font
         label.textColor = color(forColorPalette: .gray_4)
         
@@ -158,7 +187,7 @@ extension Theme {
 
 extension Theme {
     @discardableResult
-    func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)? = nil) -> UIButton {
+    func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)? = nil) -> UIButton {
         button.setupTitle(font: style.font)
             .setupLayer(cornerRadius: 2, borderWidth: 0, borderColor: nil)
             .setBackgroundColor(color: color(forColorPalette: .primary), for: .normal)
@@ -176,7 +205,7 @@ extension Theme {
     }
     
     @discardableResult
-    func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)? = nil) -> UIButton {
+    func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)? = nil) -> UIButton {
         button.setupTitle(font: style.font)
             .setupLayer(cornerRadius: 4, borderWidth: 1, borderColor: color(forColorPalette: .primary).cgColor)
             .resetBackgrounds()
@@ -191,7 +220,7 @@ extension Theme {
     }
     
     @discardableResult
-    func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)? = nil) -> UIButton {
+    func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)? = nil) -> UIButton {
         button.setupTitle(font: style.font)
             .setupLayer(cornerRadius: 0, borderWidth: 0, borderColor: nil)
             .resetBackgrounds()
@@ -211,7 +240,7 @@ extension Theme {
 //TextField
 extension Theme {
     @discardableResult
-    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ModuleThemeProtocol)->Void)? = nil) -> UITextField {
+    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)->Void)? = nil) -> UITextField {
         
         textfield.backgroundColor = color(forColorPalette: .gray_1)
         textfield.font = font(forStyle: style)

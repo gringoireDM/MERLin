@@ -55,24 +55,24 @@ private extension ThemeFontStyle {
     }
 }
 
-final class MockTheme: ModuleThemeProtocol {
+final class MockTheme: ThemeProtocol {
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor {
         return colorPalette.color
     }
     
-    func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol) -> Void)?) -> UIButton {
+    func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol) -> Void)?) -> UIButton {
         button.titleLabel?.font = style.font
         customizing?(button, self)
         return button
     }
     
-    func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol) -> Void)?) -> UIButton {
+    func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol) -> Void)?) -> UIButton {
         button.titleLabel?.font = style.font
         customizing?(button, self)
         return button
     }
     
-    func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol) -> Void)?) -> UIButton {
+    func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol) -> Void)?) -> UIButton {
         button.titleLabel?.font = style.font
         customizing?(button, self)
         return button
@@ -98,14 +98,13 @@ final class MockTheme: ModuleThemeProtocol {
         return mutableCopy
     }
     
-    
-    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ModuleThemeProtocol) -> Void)?) -> UILabel {
+    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ThemeProtocol) -> Void)?) -> UILabel {
         label.font = style.font
         customizing?(label, self)
         return label
     }
     
-    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ModuleThemeProtocol) -> Void)?) -> UITextField {
+    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol) -> Void)?) -> UITextField {
         textfield.font = font(forStyle: style)
         customizing?(textfield, self)
         return textfield

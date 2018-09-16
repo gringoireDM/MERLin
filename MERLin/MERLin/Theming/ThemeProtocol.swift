@@ -53,28 +53,28 @@ public enum ThemeFontStyle {
     }
 }
 
-public protocol ModuleThemeProtocol: class {
+public protocol ThemeProtocol: class {
     //MARK: Colors
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor
     
+    //MARK: Fonts
+    func font(forStyle style: ThemeFontStyle) -> UIFont
+    func fontSize(forStyle style: ThemeFontStyle) -> CGFloat
+    
     //MARK: Buttons
-    @discardableResult func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
-    @discardableResult func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
-    @discardableResult func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
+    @discardableResult func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
+    @discardableResult func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
+    @discardableResult func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
     
     //MARK: Labels
     func attributedString(withString string: String, andStyle style: ThemeFontStyle) -> NSAttributedString
     func configure(range: NSRange, of attributedString: NSAttributedString, withStyle style: ThemeFontStyle, andColor color: ThemeColorPalette) -> NSAttributedString
     @discardableResult
-    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ModuleThemeProtocol)->Void)?) -> UILabel
+    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ThemeProtocol)->Void)?) -> UILabel
     
     //MARK: Text Fields
     @discardableResult
-    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ModuleThemeProtocol)->Void)?) -> UITextField
-    
-    //MARK: Fonts
-    func font(forStyle style: ThemeFontStyle) -> UIFont
-    func fontSize(forStyle style: ThemeFontStyle) -> CGFloat
+    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)->Void)?) -> UITextField
     
     func applyAppearance()
     

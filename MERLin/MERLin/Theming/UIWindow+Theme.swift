@@ -11,26 +11,38 @@ import Foundation
 private var staticThemeHandle: UInt8 = 0
 private var themeHandle: UInt8 = 0
 public extension UIWindow {
-    public static var defaultTheme: ModuleThemeProtocol {
+    public static var defaultTheme: ThemeProtocol {
         get {
-            return objc_getAssociatedObject(self, &staticThemeHandle) as! ModuleThemeProtocol
+            return objc_getAssociatedObject(self, &staticThemeHandle) as! ThemeProtocol
         } set {
             objc_setAssociatedObject(self, &staticThemeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            UIApplication.shared.windows.forEach { $0.defaultTheme = newValue }
-        }
-    }
-    public var defaultTheme: ModuleThemeProtocol {
-        get {
-            return objc_getAssociatedObject(self, &themeHandle) as! ModuleThemeProtocol
-        } set {
-            objc_setAssociatedObject(self, &themeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue.applyAppearance()
-            guard let root = rootViewController else { return }
-            
-            UIWindow.traverseViewControllerStackApplyingTheme(from: root)
+            UIApplication.shared.windows.forEach {
+                guard $0.theme !== newValue else { return }
+                $0.applyTheme(newValue)
+            }
         }
     }
     
+    public var theme: ThemeProtocol {
+        get {
+            return objc_getAssociatedObject(self, &themeHandle) as? ThemeProtocol ?? UIWindow.defaultTheme
+        } set {
+            objc_setAssociatedObject(self, &themeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyTheme(theme)
+        }
+    }
+    
+    func applyTheme(_ theme: ThemeProtocol) {
+        theme.applyAppearance()
+        for view in subviews {
+            view.removeFromSuperview()
+            addSubview(view)
+        }
+        
+        guard let root = rootViewController else { return }
+        UIWindow.traverseViewControllerStackApplyingTheme(from: root)
+    }
+
     static func traverseViewControllerStackApplyingTheme(from root: UIViewController) {
         //Standard bredth first traversal. View stack is a tree, therefore
         //no visited set is needed.
@@ -43,6 +55,13 @@ public extension UIWindow {
                 queue += [presented]
             }
         }
+    }
+}
+
+@objc public extension UIWindow {
+    @objc public func applyDefaultTheme(overrideLocal: Bool) {
+        guard overrideLocal || theme === UIWindow.defaultTheme else { return }
+        applyTheme(UIWindow.defaultTheme)
     }
 }
 
