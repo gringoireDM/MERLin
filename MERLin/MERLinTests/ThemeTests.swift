@@ -10,6 +10,11 @@ import XCTest
 @testable import MERLin
 
 class ThemeTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        UIWindow.defaultTheme = MockTheme()
+    }
+    
     func testThatItCanApplyThemeToRootViewController() {
         let root = MockViewController()
         UIWindow.traverseViewControllerStackApplyingTheme(from: root)

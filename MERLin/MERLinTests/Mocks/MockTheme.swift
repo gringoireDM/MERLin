@@ -56,6 +56,8 @@ private extension ThemeFontStyle {
 }
 
 final class MockTheme: ThemeProtocol {
+    var appearanceRules: [AppearanceReversible] = []
+    
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor {
         return colorPalette.color
     }
@@ -117,8 +119,6 @@ final class MockTheme: ThemeProtocol {
     func fontSize(forStyle style: ThemeFontStyle) -> CGFloat {
         return style.fontSize
     }
-    
-    func applyAppearance() { }
     
     final func cleanThemeCopy() -> MockTheme {
         return MockTheme()
