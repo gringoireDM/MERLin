@@ -54,6 +54,8 @@ public enum ThemeFontStyle {
 }
 
 public protocol ThemeProtocol: class {
+    var appearanceRules: [AppearanceReversible] { get }
+    
     //MARK: Colors
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor
     
@@ -75,8 +77,6 @@ public protocol ThemeProtocol: class {
     //MARK: Text Fields
     @discardableResult
     func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)->Void)?) -> UITextField
-    
-    func applyAppearance()
     
     ///This method should return a fresh instance of theme with default values.
     func cleanThemeCopy() -> Self

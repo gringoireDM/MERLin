@@ -27,13 +27,15 @@ public extension UIWindow {
         get {
             return objc_getAssociatedObject(self, &themeHandle) as? ThemeProtocol ?? UIWindow.defaultTheme
         } set {
+            let oldValue = theme
+            oldValue.appearanceRules.revert()
             objc_setAssociatedObject(self, &themeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             applyTheme(theme)
         }
     }
     
     func applyTheme(_ theme: ThemeProtocol) {
-        theme.applyAppearance()
+        theme.appearanceRules.apply()
         for view in subviews {
             view.removeFromSuperview()
             addSubview(view)

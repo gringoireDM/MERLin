@@ -40,9 +40,6 @@
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
 		501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */; };
-		5023883A214E30720007BB9D /* ResettableAppearence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50238839214E30720007BB9D /* ResettableAppearence.swift */; };
-		5023883D214E3F320007BB9D /* UIView+ResettableAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 5023883B214E3F320007BB9D /* UIView+ResettableAppearance.h */; };
-		5023883E214E3F320007BB9D /* UIView+ResettableAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5023883C214E3F320007BB9D /* UIView+ResettableAppearance.m */; };
 		50238840214E444F0007BB9D /* ResettableAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5023883F214E444F0007BB9D /* ResettableAppearanceTests.swift */; };
 		502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B9B7221452D6600BBFFC3 /* EventsTests.swift */; };
 		502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */; };
@@ -57,6 +54,7 @@
 		50F6BCDB214C17C00038DD1B /* UIWindow+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */; };
 		50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDC214C1C190038DD1B /* ThemeTests.swift */; };
 		50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDE214C221B0038DD1B /* MockTheme.swift */; };
+		50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
 		A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
@@ -114,9 +112,6 @@
 		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
 		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
 		501D6F9A2130BD3700114F5A /* EventsDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDescriptor.swift; sourceTree = "<group>"; };
-		50238839214E30720007BB9D /* ResettableAppearence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResettableAppearence.swift; sourceTree = "<group>"; };
-		5023883B214E3F320007BB9D /* UIView+ResettableAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ResettableAppearance.h"; sourceTree = "<group>"; };
-		5023883C214E3F320007BB9D /* UIView+ResettableAppearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ResettableAppearance.m"; sourceTree = "<group>"; };
 		5023883F214E444F0007BB9D /* ResettableAppearanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResettableAppearanceTests.swift; sourceTree = "<group>"; };
 		502B9B7221452D6600BBFFC3 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
 		502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventsTests.swift; sourceTree = "<group>"; };
@@ -129,6 +124,7 @@
 		50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Theme.swift"; sourceTree = "<group>"; };
 		50F6BCDC214C1C190038DD1B /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		50F6BCDE214C221B0038DD1B /* MockTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTheme.swift; sourceTree = "<group>"; };
+		50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceRule.swift; sourceTree = "<group>"; };
 		50FDFF8B214E737C00BC5CFD /* MERLin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MERLin.podspec; path = ../../MERLin.podspec; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,8 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */,
+				50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */,
 				50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */,
-				50238839214E30720007BB9D /* ResettableAppearence.swift */,
 				501D6F8D2130BD3700114F5A /* UIKit+Theming */,
 			);
 			path = Theming;
@@ -295,8 +291,6 @@
 			children = (
 				500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */,
 				500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */,
-				5023883B214E3F320007BB9D /* UIView+ResettableAppearance.h */,
-				5023883C214E3F320007BB9D /* UIView+ResettableAppearance.m */,
 				501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */,
 				501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */,
 				501D6F902130BD3700114F5A /* UIColors+Hex.swift */,
@@ -356,7 +350,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5023883D214E3F320007BB9D /* UIView+ResettableAppearance.h in Headers */,
 				500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */,
 				5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */,
 				501D6F162130BB4F00114F5A /* MERLin.h in Headers */,
@@ -544,15 +537,14 @@
 				5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */,
 				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
+				50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
-				5023883A214E30720007BB9D /* ResettableAppearence.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
 				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
 				501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */,
-				5023883E214E3F320007BB9D /* UIView+ResettableAppearance.m in Sources */,
 				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
 				501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,

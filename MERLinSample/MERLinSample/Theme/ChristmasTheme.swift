@@ -60,6 +60,66 @@ fileprivate extension ThemeColorPalette {
 }
 
 final class ChristmasTheme: ThemeProtocol {
+    lazy var appearanceRules: [AppearanceReversible] = {
+        let navigationAppearance: [AppearanceReversible] = [
+            PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \.isTranslucent, value: false),
+            PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \UINavigationBar.barTintColor, value: color(forColorPalette: .primary)),
+            PropertyAppearanceRule<UINavigationBar, UIColor?>(proxy: UINavigationBar.appearance(), keypath: \.tintColor, value: .white),
+            PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \.titleTextAttributes, value: [
+                .font: font(forStyle: .headline(attribute: .bold)),
+                .foregroundColor: color(forColorPalette: .success)
+                ])
+        ]
+
+        let barButtonAppearance: [AppearanceReversible] = [
+            SelectorAppearanceRule(proxy: UIBarButtonItem.appearance(),
+                                   get: { $0.titleTextAttributes(for: .normal) },
+                                   set: { $0.setTitleTextAttributes($1, for: .normal) },
+                                   value: [
+                                    .font: font(forStyle: .body(attribute: .regular)),
+                                    .foregroundColor: color(forColorPalette: .white)
+                ]),
+            SelectorAppearanceRule(proxy: UIBarButtonItem.appearance(),
+                                   get: { $0.titleTextAttributes(for: .highlighted) },
+                                   set: { $0.setTitleTextAttributes($1, for: .highlighted) },
+                                   value: [
+                                    .font: font(forStyle: .body(attribute: .regular)),
+                                    .foregroundColor: color(forColorPalette: .gray_4)
+                ]),
+            SelectorAppearanceRule(proxy: UIBarButtonItem.appearance(),
+                                   get: { $0.titleTextAttributes(for: .disabled) },
+                                   set: { $0.setTitleTextAttributes($1, for: .disabled) },
+                                   value: [
+                                    .font: font(forStyle: .body(attribute: .regular)),
+                                    .foregroundColor: color(forColorPalette: .gray_3)
+                ])
+        ]
+
+        let tabBarAppearance: [AppearanceReversible] = [
+            PropertyAppearanceRule(proxy: UITabBar.appearance(), keypath: \.isTranslucent, value: false),
+            PropertyAppearanceRule(proxy: UITabBar.appearance(), keypath: \.barTintColor, value: .white),
+            PropertyAppearanceRule<UITabBar, UIColor?>(proxy: UITabBar.appearance(), keypath: \.tintColor, value: color(forColorPalette: .primary))
+        ]
+
+        let tabBarItemAppearance: [AppearanceReversible] = [
+            PropertyAppearanceRule(proxy: UITabBarItem.appearance(), keypath: \UITabBarItem.badgeColor, value: color(forColorPalette: .primary)),
+            SelectorAppearanceRule(proxy: UITabBarItem.appearance(),
+                                   get: { $0.titleTextAttributes(for: .selected) },
+                                   set: { $0.setTitleTextAttributes($1, for: .selected) },
+                                   value: [
+                                    .font: font(forStyle: .small(attribute: .regular)),
+                                    .foregroundColor: color(forColorPalette: .primary)
+                ])
+        ]
+
+        
+        return navigationAppearance + barButtonAppearance + tabBarAppearance + tabBarItemAppearance + [
+            PropertyAppearanceRule(proxy: UITextField.appearance(whenContainedInInstancesOf:[UISearchBar.self]), keypath: \.defaultTextAttributes, value: convertToNSAttributedStringKeyDictionary([
+                NSAttributedString.Key.font.rawValue: font(forStyle: .body(attribute: .regular)),
+                NSAttributedString.Key.foregroundColor.rawValue: color(forColorPalette: .gray_4)
+                ]))
+        ]
+    }()
     
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor {
         return colorPalette.color
@@ -71,78 +131,6 @@ final class ChristmasTheme: ThemeProtocol {
     
     func fontSize(forStyle style: ThemeFontStyle) -> CGFloat {
         return style.fontSize
-    }
-    
-    func applyAppearance() {
-        //UINavigationBar
-        print("APPLYING APPEARANCE")
-        UINavigationBar.resettableAppearance = ResettableAppearence() { [weak self] navBar in
-            guard let _self = self else { return }
-            navBar.isTranslucent = false
-            navBar.barTintColor = _self.color(forColorPalette: .primary)
-            navBar.tintColor = _self.color(forColorPalette: .white)
-            navBar.titleTextAttributes = [
-                .font: _self.font(forStyle: .headline(attribute: .bold)),
-                .foregroundColor: _self.color(forColorPalette: .success)
-            ]
-        }
-        
-        //UIBarButtonItem
-        UIBarButtonItem.resettableAppearance = ResettableAppearence() { [weak self] barButtonItem in
-            guard let _self = self else { return }
-            barButtonItem.setTitleTextAttributes([
-                .font: _self.font(forStyle: .body(attribute: .regular)),
-                .foregroundColor: _self.color(forColorPalette: .primary)
-                ], for: .normal)
-            
-            barButtonItem.setTitleTextAttributes([
-                .font: _self.font(forStyle: .body(attribute: .regular)),
-                .foregroundColor: _self.color(forColorPalette: .gray_4)
-                ], for: .highlighted)
-            
-            barButtonItem.setTitleTextAttributes([
-                .font: _self.font(forStyle: .body(attribute: .regular)),
-                .foregroundColor: _self.color(forColorPalette: .gray_3)
-                ], for: .disabled)
-        }
-        
-        
-        //UITabBar
-        UITabBar.resettableAppearance = ResettableAppearence() { [weak self] tabBar in
-            tabBar.isTranslucent = false
-            tabBar.barTintColor = .white
-            tabBar.tintColor = self?.color(forColorPalette: .primary)
-        }
-        
-        //UITabBarItem
-        UITabBarItem.resettableAppearance = ResettableAppearence() { [weak self] tabBarItem in
-            guard let _self = self else { return }
-            tabBarItem.badgeColor = _self.color(forColorPalette: .primary)
-            tabBarItem.setTitleTextAttributes([
-                .font: _self.font(forStyle: .small(attribute: .regular)),
-                .foregroundColor: _self.color(forColorPalette: .primary)
-                ], for: .selected)
-        }
-        
-        UITextField.resettableAppearance = ResettableAppearence() { [weak self] textField in
-            guard let _self = self else { return }
-            var isContainedInSearchBar = false
-            var cursor: UIView = textField
-            while let superView = cursor.superview {
-                guard let _ = superView as? UISearchBar else {
-                    cursor = superView
-                    continue
-                }
-                isContainedInSearchBar = true
-                break
-            }
-            guard isContainedInSearchBar else { return }
-            
-            textField.defaultTextAttributes = convertToNSAttributedStringKeyDictionary([
-                NSAttributedString.Key.font.rawValue: _self.font(forStyle: .body(attribute: .regular)),
-                NSAttributedString.Key.foregroundColor.rawValue: _self.color(forColorPalette: .gray_4)
-                ])
-        }
     }
     
     func cleanThemeCopy() -> ChristmasTheme {
