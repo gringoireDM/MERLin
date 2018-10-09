@@ -12,7 +12,7 @@ import XCTest
 class ThemeTests: XCTestCase {
     override func setUp() {
         super.setUp()
-        UIWindow.defaultTheme = MockTheme()
+        ThemeManager.defaultTheme = MockTheme()
     }
     
     func testThatItCanApplyThemeToRootViewController() {
@@ -38,19 +38,6 @@ class ThemeTests: XCTestCase {
         
         UIWindow.traverseViewControllerStackApplyingTheme(from: root)
 
-        for controller in [root]+treeNodes {
-            XCTAssertEqual(controller.applyTimes, 1)
-        }
-    }
-    
-    func testThatChangingThemeAppliesChanges() {
-        let root = MockViewController()
-        let treeNodes = prepareHeavilyUnbalancedTree(withDepth: 10, havingRoot: root)
-        let window = UIWindow()
-        window.rootViewController = root
-        
-        window.theme = MockTheme()
-        
         for controller in [root]+treeNodes {
             XCTAssertEqual(controller.applyTimes, 1)
         }
