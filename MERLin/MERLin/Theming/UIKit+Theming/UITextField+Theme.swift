@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UITextField {
-    public func applyBoxedStyle(usingTheme theme: ThemeProtocol = UIWindow.defaultTheme, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)-> Void)? = nil) {
+    public func applyBoxedStyle(usingTheme theme: ThemeProtocol = ThemeManager.defaultTheme, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)-> Void)? = nil) {
         theme.configureBoxedTextField(textfield: self, withTextStyle: style, customizing: customizing)
     }
 }

@@ -34,7 +34,7 @@ class SimpleRouter: Router {
     
     var currentTheme: Themes = .defaultTheme {
         didSet {
-            UIWindow.defaultTheme = currentTheme.theme
+            ThemeManager.defaultTheme = currentTheme.theme
         }
     }
     

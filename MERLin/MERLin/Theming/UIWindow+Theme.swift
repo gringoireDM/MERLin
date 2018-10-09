@@ -8,32 +8,23 @@
 
 import Foundation
 
-private var staticThemeHandle: UInt8 = 0
-private var themeHandle: UInt8 = 0
-public extension UIWindow {
-    public static var defaultTheme: ThemeProtocol {
-        get {
-            return objc_getAssociatedObject(self, &staticThemeHandle) as! ThemeProtocol
-        } set {
-            objc_setAssociatedObject(self, &staticThemeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+public class ThemeManager {
+    public static var defaultTheme: ThemeProtocol! {
+        didSet {
+            if let old = oldValue {
+                old.appearanceRules.revert()
+            }
+            
             UIApplication.shared.windows.forEach { window in
-                guard window.theme === newValue else { return }
-                window.applyTheme(newValue)
+                window.applyTheme(defaultTheme)
             }
         }
     }
-    
-    public var theme: ThemeProtocol {
-        get {
-            return objc_getAssociatedObject(self, &themeHandle) as? ThemeProtocol ?? UIWindow.defaultTheme
-        } set {
-            let oldValue = theme
-            oldValue.appearanceRules.revert()
-            objc_setAssociatedObject(self, &themeHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            applyTheme(theme)
-        }
-    }
-    
+}
+
+private var staticThemeHandle: UInt8 = 0
+private var themeHandle: UInt8 = 0
+public extension UIWindow {
     func applyTheme(_ theme: ThemeProtocol) {
         theme.appearanceRules.apply()
         for view in subviews {
@@ -62,8 +53,7 @@ public extension UIWindow {
 
 @objc public extension UIWindow {
     @objc public func applyDefaultTheme(overrideLocal: Bool) {
-        guard overrideLocal || theme === UIWindow.defaultTheme else { return }
-        applyTheme(UIWindow.defaultTheme)
+        applyTheme(ThemeManager.defaultTheme)
     }
 }
 
