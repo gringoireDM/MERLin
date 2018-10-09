@@ -22,7 +22,6 @@ extension ThemeColorPalette {
         case .success: return .green
         case .info: return .lightGray
         case .sales: return .purple
-        case .custom(let color): return color
         }
     }
 }

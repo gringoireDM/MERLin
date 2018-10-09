@@ -53,7 +53,6 @@ fileprivate extension ThemeColorPalette {
         case .success: return .color(fromHex: "#73bb04")
         case .info: return .color(fromHex: "#3a86ad")
         case .sales: return .color(fromHex: "#e32235")
-        case .custom(let color): return color
         }
     }
 }

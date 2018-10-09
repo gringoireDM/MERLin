@@ -8,13 +8,13 @@
 
 import UIKit
 
-public enum ThemeFontAttribute {
+public enum ThemeFontAttribute: CaseIterable {
     case regular
     case bold
     case sBold
 }
 
-public enum ThemeColorPalette {
+public enum ThemeColorPalette: CaseIterable {
     case white
     case gray_1
     case gray_2
@@ -28,10 +28,9 @@ public enum ThemeColorPalette {
     case success
     case info
     case sales
-    case custom(color: UIColor)
 }
 
-public enum ThemeFontStyle {
+public enum ThemeFontStyle: CaseIterable {
     case small(attribute: ThemeFontAttribute)
     case caption(attribute: ThemeFontAttribute)
     case subhead(attribute: ThemeFontAttribute)
@@ -51,6 +50,21 @@ public enum ThemeFontStyle {
         case .display(let attribute): return attribute
         }
     }
+    
+    public static var allCases: [ThemeFontStyle] {
+        return ThemeFontAttribute.allCases.flatMap {
+            [
+                .small(attribute: $0),
+                .caption(attribute: $0),
+                .subhead(attribute: $0),
+                .body(attribute: $0),
+                .headline(attribute: $0),
+                .title(attribute: $0),
+                .display(attribute: $0)
+            ]
+        }
+    }
+
 }
 
 public protocol ThemeProtocol: class {

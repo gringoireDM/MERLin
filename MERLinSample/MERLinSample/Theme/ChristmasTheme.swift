@@ -54,7 +54,6 @@ fileprivate extension ThemeColorPalette {
         case .success: return .color(fromHex: "#22b21e")
         case .info: return .color(fromHex: "#1e5db2")
         case .sales: return .color(fromHex: "#22b21e")
-        case .custom(let color): return color
         }
     }
 }
