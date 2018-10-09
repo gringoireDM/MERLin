@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         router = SimpleRouter(withFactory: moduleManager)
         moduleManager.addEventsListeners(eventsListeners)
-        ThemeContainer.defaultTheme = Theme()
+        UIWindow.defaultTheme = Theme()
         
         eventsListeners.forEach { $0.registerToEvents(for: self) }
         

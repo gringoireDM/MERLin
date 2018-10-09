@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500290B9214E85B80025FE20 /* UIWindow+applyAppearence.h in Headers */ = {isa = PBXBuildFile; fileRef = 500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */; };
+		500290BA214E85B80025FE20 /* UIWindow+applyAppearence.m in Sources */ = {isa = PBXBuildFile; fileRef = 500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */; };
+		500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 500290BD214E87DE0025FE20 /* SwizzlerUtility.h */; };
+		500290C0214E87DE0025FE20 /* SwizzlerUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 500290BE214E87DE0025FE20 /* SwizzlerUtility.m */; };
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
@@ -46,6 +50,10 @@
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
+		50F6BCDB214C17C00038DD1B /* UIWindow+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */; };
+		50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDC214C1C190038DD1B /* ThemeTests.swift */; };
+		50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDE214C221B0038DD1B /* MockTheme.swift */; };
+		50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
 		A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +73,10 @@
 		1362662CB514BD99E0C44646 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C759F7DD275772AEAD8F7F5 /* Pods-MERLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.release.xcconfig"; sourceTree = "<group>"; };
 		293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+applyAppearence.h"; sourceTree = "<group>"; };
+		500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+applyAppearence.m"; sourceTree = "<group>"; };
+		500290BD214E87DE0025FE20 /* SwizzlerUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzlerUtility.h; sourceTree = "<group>"; };
+		500290BE214E87DE0025FE20 /* SwizzlerUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzlerUtility.m; sourceTree = "<group>"; };
 		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +119,11 @@
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
+		50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Theme.swift"; sourceTree = "<group>"; };
+		50F6BCDC214C1C190038DD1B /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		50F6BCDE214C221B0038DD1B /* MockTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTheme.swift; sourceTree = "<group>"; };
+		50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceRule.swift; sourceTree = "<group>"; };
+		50FDFF8B214E737C00BC5CFD /* MERLin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MERLin.podspec; path = ../../MERLin.podspec; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -166,6 +183,7 @@
 		501D6F072130BB4F00114F5A /* MERLin */ = {
 			isa = PBXGroup;
 			children = (
+				50FDFF8B214E737C00BC5CFD /* MERLin.podspec */,
 				501D6F082130BB4F00114F5A /* MERLin.h */,
 				501D6F6E2130BD1200114F5A /* Module.swift */,
 				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
@@ -190,6 +208,7 @@
 				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
 				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
+				50F6BCDC214C1C190038DD1B /* ThemeTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
@@ -257,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */,
+				50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */,
+				50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */,
 				501D6F8D2130BD3700114F5A /* UIKit+Theming */,
 			);
 			path = Theming;
@@ -265,6 +286,8 @@
 		501D6F8D2130BD3700114F5A /* UIKit+Theming */ = {
 			isa = PBXGroup;
 			children = (
+				500290B7214E85B80025FE20 /* UIWindow+applyAppearence.h */,
+				500290B8214E85B80025FE20 /* UIWindow+applyAppearence.m */,
 				501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */,
 				501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */,
 				501D6F902130BD3700114F5A /* UIColors+Hex.swift */,
@@ -279,6 +302,8 @@
 		501D6F952130BD3700114F5A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				500290BD214E87DE0025FE20 /* SwizzlerUtility.h */,
+				500290BE214E87DE0025FE20 /* SwizzlerUtility.m */,
 				501D6F962130BD3700114F5A /* RxExtension.swift */,
 				50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */,
 			);
@@ -301,6 +326,7 @@
 				502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */,
 				502C508D21465D6F002B70A4 /* MockViewController.swift */,
 				502C508F21465D91002B70A4 /* MockModule.swift */,
+				50F6BCDE214C221B0038DD1B /* MockTheme.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -321,8 +347,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */,
 				5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */,
 				501D6F162130BB4F00114F5A /* MERLin.h in Headers */,
+				500290B9214E85B80025FE20 /* UIWindow+applyAppearence.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +525,7 @@
 				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
 				501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */,
+				50F6BCDB214C17C00038DD1B /* UIWindow+Theme.swift in Sources */,
 				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
 				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
 				501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */,
@@ -505,6 +534,7 @@
 				5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */,
 				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
+				50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
@@ -516,9 +546,11 @@
 				501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,
 				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
+				500290BA214E85B80025FE20 /* UIWindow+applyAppearence.m in Sources */,
 				501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */,
 				501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */,
 				501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */,
+				500290C0214E87DE0025FE20 /* SwizzlerUtility.m in Sources */,
 				501D6FB02130BD3800114F5A /* EventsDescriptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +560,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */,
+				50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */,
+				50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */,
 				502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */,
 				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,
 				502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */,

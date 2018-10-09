@@ -15,12 +15,6 @@ public enum ViewControllerEvent: EventProtocol {
     case disappeared
 }
 
-public class ThemeContainer {
-    public static var defaultTheme: ModuleThemeProtocol! {
-        didSet { defaultTheme.applyAppearance() }
-    }
-    public var theme: ModuleThemeProtocol = ThemeContainer.defaultTheme
-}
 
 public protocol AnyModule: class, NSObjectProtocol {
     var viewControllerEvent: Observable<ViewControllerEvent> { get }
@@ -32,6 +26,7 @@ public protocol AnyModule: class, NSObjectProtocol {
 public protocol ModuleProtocol: AnyModule {
     associatedtype Context: ModuleBuildContextProtocol
     var context: Context { get }
+    
     var routingContext: String { get }
     
     init(usingContext buildContext: Context)

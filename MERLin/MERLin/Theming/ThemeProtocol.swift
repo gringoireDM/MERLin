@@ -8,13 +8,13 @@
 
 import UIKit
 
-public enum ThemeFontAttribute {
+public enum ThemeFontAttribute: CaseIterable {
     case regular
     case bold
     case sBold
 }
 
-public enum ThemeColorPalette {
+public enum ThemeColorPalette: CaseIterable {
     case white
     case gray_1
     case gray_2
@@ -28,10 +28,9 @@ public enum ThemeColorPalette {
     case success
     case info
     case sales
-    case custom(color: UIColor)
 }
 
-public enum ThemeFontStyle {
+public enum ThemeFontStyle: CaseIterable {
     case small(attribute: ThemeFontAttribute)
     case caption(attribute: ThemeFontAttribute)
     case subhead(attribute: ThemeFontAttribute)
@@ -51,32 +50,47 @@ public enum ThemeFontStyle {
         case .display(let attribute): return attribute
         }
     }
+    
+    public static var allCases: [ThemeFontStyle] {
+        return ThemeFontAttribute.allCases.flatMap {
+            [
+                .small(attribute: $0),
+                .caption(attribute: $0),
+                .subhead(attribute: $0),
+                .body(attribute: $0),
+                .headline(attribute: $0),
+                .title(attribute: $0),
+                .display(attribute: $0)
+            ]
+        }
+    }
+
 }
 
-public protocol ModuleThemeProtocol {
+public protocol ThemeProtocol: class {
+    var appearanceRules: [AppearanceReversible] { get }
+    
     //MARK: Colors
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor
-    
-    //MARK: Buttons
-    @discardableResult func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
-    @discardableResult func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
-    @discardableResult func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ModuleThemeProtocol)->Void)?) -> UIButton
-    
-    //MARK: Labels
-    func attributedString(withString string: String, andStyle style: ThemeFontStyle) -> NSAttributedString
-    func configure(range: NSRange, of attributedString: NSAttributedString, withStyle style: ThemeFontStyle, andColor color: ThemeColorPalette) -> NSAttributedString
-    @discardableResult
-    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ModuleThemeProtocol)->Void)?) -> UILabel
-    
-    //MARK: Text Fields
-    @discardableResult
-    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ModuleThemeProtocol)->Void)?) -> UITextField
     
     //MARK: Fonts
     func font(forStyle style: ThemeFontStyle) -> UIFont
     func fontSize(forStyle style: ThemeFontStyle) -> CGFloat
     
-    func applyAppearance()
+    //MARK: Buttons
+    @discardableResult func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
+    @discardableResult func configureSecondaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
+    @discardableResult func configureTextOnlyButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)?) -> UIButton
+    
+    //MARK: Labels
+    func attributedString(withString string: String, andStyle style: ThemeFontStyle) -> NSAttributedString
+    func configure(range: NSRange, of attributedString: NSAttributedString, withStyle style: ThemeFontStyle, andColor color: ThemeColorPalette) -> NSAttributedString
+    @discardableResult
+    func configure(label: UILabel, withStyle style: ThemeFontStyle, customizing: ((UILabel, ThemeProtocol)->Void)?) -> UILabel
+    
+    //MARK: Text Fields
+    @discardableResult
+    func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)->Void)?) -> UITextField
     
     ///This method should return a fresh instance of theme with default values.
     func cleanThemeCopy() -> Self

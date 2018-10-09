@@ -9,11 +9,11 @@
 import UIKit
 
 public extension NSAttributedString {
-    public static func attributedString(withString string: String, andStyle style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme) -> NSAttributedString {
+    public static func attributedString(withString string: String, andStyle style: ThemeFontStyle, usingTheme theme: ThemeProtocol = UIWindow.defaultTheme) -> NSAttributedString {
         return theme.attributedString(withString: string, andStyle: style)
     }
     
-    public static func attributedString(fromHTML string: String, andStyle style: ThemeFontStyle, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme) -> NSAttributedString {
+    public static func attributedString(fromHTML string: String, andStyle style: ThemeFontStyle, usingTheme theme: ThemeProtocol = UIWindow.defaultTheme) -> NSAttributedString {
         guard let data = string.data(using: .utf8) else { return NSAttributedString() }
         do {
             let attributes: [NSAttributedString.DocumentReadingOptionKey: Any] =
@@ -26,7 +26,7 @@ public extension NSAttributedString {
         }
     }
     
-    public func applyStyle(_ style: ThemeFontStyle, andColor color: ThemeColorPalette, toRange range: NSRange, usingTheme theme: ModuleThemeProtocol = ThemeContainer.defaultTheme) -> NSAttributedString {
+    public func applyStyle(_ style: ThemeFontStyle, andColor color: ThemeColorPalette, toRange range: NSRange, usingTheme theme: ThemeProtocol = UIWindow.defaultTheme) -> NSAttributedString {
         return theme.configure(range: range, of: self, withStyle: style, andColor: color)
     }
 }

@@ -1,10 +1,11 @@
 //
-//  Theme.swift
-//  
+//  ChristmasTheme.swift
+//  MERLinSample
 //
-//  Created by Giuseppe Lanza on 20/04/18.
-//  Copyright © 2018 Gilt. All rights reserved.
+//  Created by Giuseppe Lanza on 16/09/2018.
+//  Copyright © 2018 HBCDigital. All rights reserved.
 //
+
 
 import UIKit
 import MERLin
@@ -46,37 +47,36 @@ fileprivate extension ThemeColorPalette {
         case .gray_3: return .color(fromHex: "#9e9e9e")
         case .gray_4: return .color(fromHex: "#3d3d3d")
         case .black: return .color(fromHex: "#1a1a1a")
-        case .primary: return .color(fromHex: "#06498f")
-        case .primaryFocused: return .color(fromHex: "#042e5c")
+        case .primary: return .color(fromHex: "#d42426")
+        case .primaryFocused: return .color(fromHex: "#e04b4c")
         case .error: return .color(fromHex: "#ff0000")
-        case .warning: return .color(fromHex: "#ffcc01")
-        case .success: return .color(fromHex: "#73bb04")
-        case .info: return .color(fromHex: "#3a86ad")
-        case .sales: return .color(fromHex: "#e32235")
+        case .warning: return .color(fromHex: "#d58d24")
+        case .success: return .color(fromHex: "#22b21e")
+        case .info: return .color(fromHex: "#1e5db2")
+        case .sales: return .color(fromHex: "#22b21e")
         }
     }
 }
 
-final class Theme: ThemeProtocol {
+final class ChristmasTheme: ThemeProtocol {
     lazy var appearanceRules: [AppearanceReversible] = {
-        
         let navigationAppearance: [AppearanceReversible] = [
             PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \.isTranslucent, value: false),
-            PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \.barTintColor, value: .white),
-            PropertyAppearanceRule<UINavigationBar, UIColor?>(proxy: UINavigationBar.appearance(), keypath: \.tintColor, value: color(forColorPalette: .primary)),
+            PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \UINavigationBar.barTintColor, value: color(forColorPalette: .primary)),
+            PropertyAppearanceRule<UINavigationBar, UIColor?>(proxy: UINavigationBar.appearance(), keypath: \.tintColor, value: .white),
             PropertyAppearanceRule(proxy: UINavigationBar.appearance(), keypath: \.titleTextAttributes, value: [
-                .font: font(forStyle: .headline(attribute: .regular)),
-                .foregroundColor: color(forColorPalette: .gray_4)
+                .font: font(forStyle: .headline(attribute: .bold)),
+                .foregroundColor: color(forColorPalette: .success)
                 ])
         ]
-        
+
         let barButtonAppearance: [AppearanceReversible] = [
             SelectorAppearanceRule(proxy: UIBarButtonItem.appearance(),
                                    get: { $0.titleTextAttributes(for: .normal) },
                                    set: { $0.setTitleTextAttributes($1, for: .normal) },
                                    value: [
                                     .font: font(forStyle: .body(attribute: .regular)),
-                                    .foregroundColor: color(forColorPalette: .primary)
+                                    .foregroundColor: color(forColorPalette: .white)
                 ]),
             SelectorAppearanceRule(proxy: UIBarButtonItem.appearance(),
                                    get: { $0.titleTextAttributes(for: .highlighted) },
@@ -93,13 +93,13 @@ final class Theme: ThemeProtocol {
                                     .foregroundColor: color(forColorPalette: .gray_3)
                 ])
         ]
-        
+
         let tabBarAppearance: [AppearanceReversible] = [
             PropertyAppearanceRule(proxy: UITabBar.appearance(), keypath: \.isTranslucent, value: false),
             PropertyAppearanceRule(proxy: UITabBar.appearance(), keypath: \.barTintColor, value: .white),
             PropertyAppearanceRule<UITabBar, UIColor?>(proxy: UITabBar.appearance(), keypath: \.tintColor, value: color(forColorPalette: .primary))
         ]
-        
+
         let tabBarItemAppearance: [AppearanceReversible] = [
             PropertyAppearanceRule(proxy: UITabBarItem.appearance(), keypath: \UITabBarItem.badgeColor, value: color(forColorPalette: .primary)),
             SelectorAppearanceRule(proxy: UITabBarItem.appearance(),
@@ -110,6 +110,7 @@ final class Theme: ThemeProtocol {
                                     .foregroundColor: color(forColorPalette: .primary)
                 ])
         ]
+
         
         return navigationAppearance + barButtonAppearance + tabBarAppearance + tabBarItemAppearance + [
             PropertyAppearanceRule(proxy: UITextField.appearance(whenContainedInInstancesOf:[UISearchBar.self]), keypath: \.defaultTextAttributes, value: convertToNSAttributedStringKeyDictionary([
@@ -122,23 +123,23 @@ final class Theme: ThemeProtocol {
     func color(forColorPalette colorPalette: ThemeColorPalette) -> UIColor {
         return colorPalette.color
     }
-
+    
     func font(forStyle style: ThemeFontStyle) -> UIFont {
         return style.font
     }
-
+    
     func fontSize(forStyle style: ThemeFontStyle) -> CGFloat {
         return style.fontSize
     }
     
-    func cleanThemeCopy() -> Theme {
-        return Theme()
+    func cleanThemeCopy() -> ChristmasTheme {
+        return ChristmasTheme()
     }
 }
 
 //MARK: - Labels
 
-extension Theme {
+extension ChristmasTheme {
     func attributedString(withString string: String, andStyle style: ThemeFontStyle) -> NSAttributedString {
         let attributedString = NSAttributedString(string: string,
                                                   attributes: [
@@ -165,14 +166,14 @@ extension Theme {
         label.textColor = color(forColorPalette: .gray_4)
         
         customizing?(label, self)
-
+        
         return label
     }
 }
 
 //MARK: - Buttons
 
-extension Theme {
+extension ChristmasTheme {
     @discardableResult
     func configurePrimaryButton(button: UIButton, withTitleStyle style: ThemeFontStyle, customizing: ((UIButton, ThemeProtocol)->Void)? = nil) -> UIButton {
         button.setupTitle(font: style.font)
@@ -183,9 +184,9 @@ extension Theme {
             .setTitleTextColor(color: color(forColorPalette: .white), for: .normal)
             .setTitleTextColor(color: color(forColorPalette: .gray_3), for: .disabled)
             .tintColor = .white
-
+        
         button.showsTouchWhenHighlighted = false
-
+        
         customizing?(button, self)
         
         return button
@@ -198,9 +199,9 @@ extension Theme {
             .resetBackgrounds()
             .setTitleTextColor(color: color(forColorPalette: .primary), for: .normal)
             .tintColor = color(forColorPalette: .primary)
-
+        
         button.showsTouchWhenHighlighted = false
-
+        
         customizing?(button, self)
         
         return button
@@ -217,7 +218,7 @@ extension Theme {
             .tintColor = color(forColorPalette: .primary)
         
         button.showsTouchWhenHighlighted = false
-
+        
         customizing?(button, self)
         
         return button
@@ -225,7 +226,7 @@ extension Theme {
 }
 
 //TextField
-extension Theme {
+extension ChristmasTheme {
     @discardableResult
     func configureBoxedTextField(textfield: UITextField, withTextStyle style: ThemeFontStyle, customizing: ((UITextField, ThemeProtocol)->Void)? = nil) -> UITextField {
         
@@ -247,5 +248,6 @@ extension Theme {
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
+

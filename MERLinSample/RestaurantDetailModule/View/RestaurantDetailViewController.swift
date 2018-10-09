@@ -20,7 +20,7 @@ enum DetailSectionRows: Int {
     }
 }
 
-class RestaurantDetailViewController: UIViewController, DisplayingError, UITableViewDelegate, UITableViewDataSource {
+class RestaurantDetailViewController: UIViewController, DisplayingError, UITableViewDelegate, UITableViewDataSource, Themed {
     func displayError(_ error: DisplayableError) {
         let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -43,7 +43,7 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        bookButton.applyPrimaryButtonStyle(withTitleStyle: .body(attribute: .bold))
+        applyTheme()
         bookButton.setTitle("Book a Table", for: .normal)
         
         let viewWillAppear = rx.sentMessage(#selector(viewWillAppear(_:)))
@@ -67,6 +67,11 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
         output.error
             .drive(onNext: displayError)
             .disposed(by: disposeBag)
+    }
+    
+    func applyTheme() {
+        bookButton.applyPrimaryButtonStyle(withTitleStyle: .body(attribute: .bold))
+        tableview.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,6 +104,7 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
             let item = menu.items[indexPath.row]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCell", for: indexPath) as! MenuItemCell
+            cell.applyAppearance()
             
             cell.title.text = item.title
             cell.descriptionLabel.text = item.shortDescription

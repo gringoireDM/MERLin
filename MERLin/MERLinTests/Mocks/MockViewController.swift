@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import MERLin
 
-class MockViewController: UIViewController { }
+class MockViewController: UIViewController, Themed {
+    var applyTimes: Int = 0
+    func applyTheme() {
+        applyTimes += 1
+    }
+}
 
 
