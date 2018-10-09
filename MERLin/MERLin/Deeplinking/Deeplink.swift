@@ -3,7 +3,7 @@
 //  Module
 //
 //  Created by Giuseppe Lanza on 20/02/2018.
-//  Copyright © 2018 Gilt. All rights reserved.
+//  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
 import Foundation

@@ -3,7 +3,7 @@
 //  TheBay
 //
 //  Created by Giuseppe Lanza on 14/05/18.
-//  Copyright © 2018 Gilt. All rights reserved.
+//  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
 import Foundation
