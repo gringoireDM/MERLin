@@ -22,8 +22,6 @@ public class ThemeManager {
     }
 }
 
-private var staticThemeHandle: UInt8 = 0
-private var themeHandle: UInt8 = 0
 public extension UIWindow {
     func applyTheme(_ theme: ThemeProtocol) {
         theme.appearanceRules.apply()
@@ -39,13 +37,17 @@ public extension UIWindow {
     static func traverseViewControllerStackApplyingTheme(from root: UIViewController) {
         //Standard bredth first traversal. View stack is a tree, therefore
         //no visited set is needed.
-        var queue = [root]
+        var queue = Set([root])
+        var visited = Set<UIViewController>()
+        
         while let controller = queue.first {
             queue.removeFirst()
+            visited.insert(controller)
             (controller as? Themed)?.applyTheme()
-            queue += controller.children
-            if let presented = controller.presentedViewController {
-                queue += [presented]
+            controller.children.forEach { queue.insert($0) }
+            if let presented = controller.presentedViewController,
+                !visited.contains(presented) {
+                queue.insert(presented)
             }
         }
     }
