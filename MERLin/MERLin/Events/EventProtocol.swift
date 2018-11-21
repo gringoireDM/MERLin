@@ -33,7 +33,7 @@ public extension EventProtocol {
         return decomposed.1
     }
     
-    public func decompose<Payload>() -> (label: String, payload: Payload)? {
+    private func decompose<Payload>() -> (label: String, payload: Payload)? {
         for case let (label?, value) in Mirror(reflecting: self).children {
             //At this point we must check if the value of the event is of the same type of Payload.
             //XCode 10 introduces single value tuples so that
