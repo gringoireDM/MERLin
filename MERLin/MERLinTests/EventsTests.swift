@@ -13,6 +13,7 @@ import RxTest
 
 enum MockEvent: EventProtocol {
     case noPayload
+    case anotherWithoutPayload
     case withAnonymousPayload(String)
     case withNamedPayload(payload: String)
 }
@@ -27,6 +28,37 @@ class EventsTests: XCTestCase {
     override func tearDown() {
         disposeBag = nil
         super.tearDown()
+    }
+    
+    func testThatItCanMatchNoPayloadEvents() {
+        let event = MockEvent.noPayload
+        XCTAssert(event.matches(event: .noPayload))
+    }
+    
+    func testThatItCanFailMatchingNoPayloadEvents() {
+        let event = MockEvent.noPayload
+        XCTAssertFalse(event.matches(event: .anotherWithoutPayload))
+    }
+    
+    func testThatItCanMatchEvents() {
+        let event = MockEvent.withAnonymousPayload("David Bowie")
+        XCTAssert(event.matches(pattern: MockEvent.withAnonymousPayload))
+    }
+    
+    func testThatItCanFailMatchingEvents() {
+        let event = MockEvent.withAnonymousPayload("David Bowie")
+        XCTAssertFalse(event.matches(pattern: MockEvent.withNamedPayload))
+    }
+    
+    func testThatItCanExtractPayload() {
+        let expectedPayload = "David Bowie"
+        let event = MockEvent.withAnonymousPayload("David Bowie")
+        XCTAssertEqual(event.extractPayload(), expectedPayload)
+    }
+    
+    func testThatItCannotExtractPayload() {
+        let event = MockEvent.noPayload
+        XCTAssertNil(event.extractPayload())
     }
     
     func testThatItCanCaptureAnonymousPayloadEvents() {
