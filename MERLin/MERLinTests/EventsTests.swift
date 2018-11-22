@@ -56,6 +56,11 @@ class EventsTests: XCTestCase {
         XCTAssertEqual(event.extractPayload(), expectedPayload)
     }
     
+    func testThatItCannotExtractPayload() {
+        let event = MockEvent.noPayload
+        XCTAssertNil(event.extractPayload())
+    }
+    
     func testThatItCanCaptureAnonymousPayloadEvents() {
         let scheduler = TestScheduler(initialClock: 0)
         let events = scheduler.createHotObservable([
