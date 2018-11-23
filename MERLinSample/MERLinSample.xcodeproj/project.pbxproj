@@ -573,6 +573,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LNZWeakCollection/LNZWeakCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/MERLin/MERLin.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
@@ -580,6 +581,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNZWeakCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MERLin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);

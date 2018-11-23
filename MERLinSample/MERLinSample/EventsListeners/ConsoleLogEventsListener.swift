@@ -8,9 +8,9 @@
 
 import MERLin
 
-class ConsoleLogEventsListener: EventsListening {
-    @discardableResult func registerToEvents(for producer: EventsProducer) -> Bool {
-        producer.events.map { [weak producer] in "[\(producer?.moduleName ?? "Deallocated producer")] \($0)" }
+class ConsoleLogEventsListener: AnyEventsListening {
+    @discardableResult func registerToEvents(for producer: AnyEventsProducer) -> Bool {
+        producer.anyEvents.map { [weak producer] in "[\(producer?.moduleName ?? "Deallocated producer")] \($0)" }
             .subscribe(onNext: { print($0) })
             .disposed(by: producer.disposeBag)
         

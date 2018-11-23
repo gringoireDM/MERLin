@@ -40,10 +40,6 @@ public protocol Router: class {
     func hideLoadingView()
 }
 
-public protocol RouteEventsListening: EventsListening {
-    var router: Router { get }
-}
-
 //MARK: Route to...
 public extension Router {
     private func currentViewController() -> UIViewController {

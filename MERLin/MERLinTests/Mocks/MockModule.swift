@@ -18,9 +18,8 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
     var moduleType: String = "test"
-    var eventsType: EventProtocol.Type = NoEvents.self
     
-    var events: Observable<EventProtocol> = PublishSubject<EventProtocol>()
+    var events: Observable<NoEvents> = PublishSubject<NoEvents>()
     required init(usingContext buildContext: ModuleContext) {
         context = buildContext
         super.init()
