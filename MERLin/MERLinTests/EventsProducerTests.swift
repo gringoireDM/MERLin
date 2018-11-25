@@ -12,24 +12,6 @@ import RxTest
 
 @testable import MERLin
 
-fileprivate enum MockEvent: EventProtocol, Equatable {
-    case noPayload
-    case anotherWithoutPayload
-    case withAnonymousPayload(String)
-    case withNamedPayload(payload: String)
-}
-
-fileprivate class MockProducer: EventsProducer {
-    var moduleName: String = "MockModule"
-    var moduleSection: String = "ModuleTests"
-    var moduleType: String = "test"
-
-    var events: Observable<MockEvent> { return _events }
-    var _events = PublishSubject<MockEvent>()
-    
-    let disposeBag: DisposeBag = DisposeBag()
-}
-
 class EventsProducerTests: XCTestCase {
     var disposeBag: DisposeBag!
     var producer: AnyEventsProducer!
@@ -39,7 +21,7 @@ class EventsProducerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         disposeBag = DisposeBag()
-        producer = MockProducer()
+        producer = MockProducer<MockEvent>()
         scheduler = TestScheduler(initialClock: 0)
         emitter = (producer as! MockProducer)._events
     }
@@ -139,6 +121,18 @@ class EventsProducerTests: XCTestCase {
         ]
         
         XCTAssertEqual(observer.events, expected)
-        
+    }
+    
+    func testThatAListenerCanRegisterToASpecificEventsProducer() {
+        let listener = MockEventsListener<MockEvent>()
+        listener.registerToEvents(for: producer)
+        XCTAssertEqual(listener.registeredProducers.count, 1)
+        XCTAssert(listener.registeredProducers.first === producer)
+    }
+    
+    func testThatAListenerCanIgnoreNotInterestingProducers() {
+        let listener = MockEventsListener<NoEvents>()
+        listener.registerToEvents(for: producer)
+        XCTAssertEqual(listener.registeredProducers.count, 0)
     }
 }

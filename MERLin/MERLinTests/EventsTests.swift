@@ -11,13 +11,6 @@ import RxSwift
 import RxTest
 @testable import MERLin
 
-private enum MockEvent: EventProtocol {
-    case noPayload
-    case anotherWithoutPayload
-    case withAnonymousPayload(String)
-    case withNamedPayload(payload: String)
-}
-
 class EventsTests: XCTestCase {
     var disposeBag: DisposeBag!
     override func setUp() {
