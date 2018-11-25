@@ -50,3 +50,35 @@ public extension EventProtocol {
         return nil
     }
 }
+
+public extension EventProtocol where Self == AnyEvent {
+    public func matches<T: EventProtocol>(event: T) -> Bool {
+        guard let base = base as? T else { return false }
+        return base.matches(event: event)
+    }
+    
+    public func matches<T: EventProtocol, Payload>(pattern: (Payload) -> T) -> Bool {
+        guard let base = base as? T else { return false }
+        return base.matches(pattern: pattern)
+    }
+    
+    public func extractPayload<T: EventProtocol, Payload>(ifMatches pattern: (Payload)->T) -> Payload? {
+        guard let base = base as? T else { return nil }
+        return base.extractPayload(ifMatches: pattern)
+    }
+}
+
+public struct AnyEvent: EventProtocol, CustomReflectable, CustomStringConvertible {
+    var base: Any&EventProtocol
+    init<H: EventProtocol>(base: H) {
+        self.base = base
+    }
+    
+    public var customMirror: Mirror {
+        return Mirror(reflecting: base)
+    }
+    
+    public var description: String {
+        return String(describing: base)
+    }
+}

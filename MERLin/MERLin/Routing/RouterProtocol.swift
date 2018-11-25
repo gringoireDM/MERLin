@@ -10,6 +10,10 @@ import RxSwift
 
 public typealias ViewControllersFactory = ViewControllerBuilding&DeeplinkManaging
 
+public protocol Routing {
+    var router: Router { get }
+}
+
 public protocol Router: class {
     var viewControllersFactory: ViewControllersFactory? { get }
     var topViewController: UIViewController { get }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		500290BF214E87DE0025FE20 /* SwizzlerUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 500290BD214E87DE0025FE20 /* SwizzlerUtility.h */; };
 		500290C0214E87DE0025FE20 /* SwizzlerUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 500290BE214E87DE0025FE20 /* SwizzlerUtility.m */; };
+		5006670721A983ED00CDA08C /* EventsProducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006670621A983ED00CDA08C /* EventsProducerTests.swift */; };
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
@@ -73,6 +74,7 @@
 		293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500290BD214E87DE0025FE20 /* SwizzlerUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzlerUtility.h; sourceTree = "<group>"; };
 		500290BE214E87DE0025FE20 /* SwizzlerUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzlerUtility.m; sourceTree = "<group>"; };
+		5006670621A983ED00CDA08C /* EventsProducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProducerTests.swift; sourceTree = "<group>"; };
 		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				50B11871213BF89E008928AF /* DeeplinkableTests.swift */,
 				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
 				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
+				5006670621A983ED00CDA08C /* EventsProducerTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
 				50F6BCDC214C1C190038DD1B /* ThemeTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
@@ -555,6 +558,7 @@
 				50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */,
 				50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */,
 				502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */,
+				5006670721A983ED00CDA08C /* EventsProducerTests.swift in Sources */,
 				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,
 				502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */,
 				502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */,

@@ -30,16 +30,33 @@ public class EventsProxy<E: EventProtocol> {
     public subscript<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
         return capture(event: pattern)
     }
+}
 
+public extension EventsProxy where E == AnyEvent {
+    public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
+        return events.capture(event: target)
+    }
+    
+    public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
+        return events.capture(event: pattern)
+    }
+    
+    public subscript<T: EventProtocol>(event target: T) -> Observable<T> {
+        return capture(event: target)
+    }
+    
+    public subscript<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
+        return capture(event: pattern)
+    }
 }
 
 public class RoutingEventsProxy<E: EventProtocol>: EventsProxy<E> {
-    var viewControllerEvent: Observable<ViewControllerEvent>
+    public var viewControllerEvent: Observable<ViewControllerEvent>
     
-    var routingContext: String
-    var currentViewController: UIViewController? { return currentVCGetter() }
+    public var routingContext: String
+    public var currentViewController: UIViewController? { return currentVCGetter() }
     
-    var currentVCGetter: ()->UIViewController?
+    private var currentVCGetter: ()->UIViewController?
     
     fileprivate init(ctx: String, currentVC: @escaping ()->UIViewController?, vcEvents: Observable<ViewControllerEvent>, events: Observable<E>) {
         routingContext = ctx
@@ -96,14 +113,15 @@ public extension EventsProducer {
     public var anyEvents: Observable<EventProtocol> { return events.toEventProtocol() }
     
     public func eventsProxy<E: EventProtocol>(_ type: E.Type) -> EventsProxy<E>? {
-        guard let e = events as? Observable<E> else { return nil }
+        //If E is AnyEvent, we want to transform the observable first. if the downcasting fails, then E is not AnyEvent.
+        guard let e = events.toAnyEvent() as? Observable<E> ?? events as? Observable<E> else { return nil }
         return EventsProxy(events: e)
     }
 }
 
 public extension RoutingEventsProducer {
     public func eventsProxy<E: EventProtocol>(_ type: E.Type) -> EventsProxy<E>? {
-        guard let e = events as? Observable<E> else { return nil }
+        guard let e = events.toAnyEvent() as? Observable<E> ?? events as? Observable<E> else { return nil }
         return RoutingEventsProxy(ctx: routingContext, currentVC: { [weak self] in self?.currentViewController }, vcEvents: viewControllerEvent, events: e)
     }
 }

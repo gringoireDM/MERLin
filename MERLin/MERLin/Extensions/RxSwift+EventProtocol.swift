@@ -39,6 +39,23 @@ public extension ObservableType where E: EventProtocol {
     public func toEventProtocol() -> Observable<EventProtocol> {
         return self.map { $0 as EventProtocol }
     }
+    
+    public func toAnyEvent() -> Observable<AnyEvent> {
+        return self.map(AnyEvent.init)
+    }
+}
+
+public extension ObservableType where E == AnyEvent {
+    public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
+        return filter { $0.matches(event: target) }
+            .map { $0.base as? T }
+            .unwrap()
+    }
+    
+    public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
+        return map { $0.extractPayload(ifMatches: pattern) }
+            .unwrap()
+    }
 }
 
 public extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, E: EventProtocol {
