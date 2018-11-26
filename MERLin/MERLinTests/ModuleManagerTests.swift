@@ -10,16 +10,6 @@ import XCTest
 import RxSwift
 @testable import MERLin
 
-class MockEventsListener: EventsListening {
-    var registeredModules = [EventsProducer]()
-    
-    func registerToEvents(for producer: EventsProducer) -> Bool {
-        registeredModules.append(producer)
-        return true
-    }
-}
-
-
 class ModuleManagerTests: XCTestCase {
     var moduleManager: BaseModuleManager!
     override func setUp() {
@@ -45,10 +35,10 @@ class ModuleManagerTests: XCTestCase {
     func testItCanAddEventsListeners() {
         let controllers = [moduleManager.viewController(for: mockStep()), moduleManager.viewController(for: mockStep())]
         
-        let eventsListener = MockEventsListener()
+        let eventsListener = MockAnyEventsListener()
         
         moduleManager.addEventsListeners([eventsListener])
 
-        XCTAssertEqual(eventsListener.registeredModules.count, controllers.count)
+        XCTAssertEqual(eventsListener.registeredProducers.count, controllers.count)
     }
 }

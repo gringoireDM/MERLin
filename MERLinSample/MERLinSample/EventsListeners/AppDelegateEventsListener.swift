@@ -10,20 +10,20 @@ import MERLin
 import RxSwift
 import CoreSpotlight
 
-class AppDelegateEventsListener: RouteEventsListening {
+class AppDelegateEventsListener: EventsListening {
     let router: Router
     
     init(withRouter router: Router) {
         self.router = router
     }
-
-    func registerToEvents(for producer: EventsProducer) -> Bool {
-        producer[event: AppDelegateEvent.didFinishLaunching].toVoid()
+    
+    func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<AppDelegateEvent>) -> Bool {
+        events[event: AppDelegateEvent.didFinishLaunching].toVoid()
             .subscribe(onNext: {
                 //Push notifications registration?
             }).disposed(by: producer.disposeBag)
         
-        producer[event: AppDelegateEvent.willContinueUserActivity]
+        events[event: AppDelegateEvent.willContinueUserActivity]
             .subscribe(onNext: { [weak self] _ in
                 self?.router.showLoadingView()
             }).disposed(by: producer.disposeBag)
@@ -38,12 +38,12 @@ class AppDelegateEventsListener: RouteEventsListening {
                 _ = self?.router.route(toDeeplink: $0)
             }).disposed(by: producer.disposeBag)
         
-        producer[event: AppDelegateEvent.failedToContinueUserActivity]
+        events[event: AppDelegateEvent.failedToContinueUserActivity]
             .subscribe(onNext: { [weak self] _ in
                 self?.router.hideLoadingView()
             }).disposed(by: producer.disposeBag)
         
-        producer[event: AppDelegateEvent.didUseShortcut]
+        events[event: AppDelegateEvent.didUseShortcut]
             .subscribe(onNext: { [weak self] in
                 self?.router.handleShortcutItem($0)
             }).disposed(by: producer.disposeBag)

@@ -10,6 +10,10 @@ import RxSwift
 
 public typealias ViewControllersFactory = ViewControllerBuilding&DeeplinkManaging
 
+public protocol Routing {
+    var router: Router { get }
+}
+
 public protocol Router: class {
     var viewControllersFactory: ViewControllersFactory? { get }
     var topViewController: UIViewController { get }
@@ -38,10 +42,6 @@ public protocol Router: class {
     
     func showLoadingView()
     func hideLoadingView()
-}
-
-public protocol RouteEventsListening: EventsListening {
-    var router: Router { get }
 }
 
 //MARK: Route to...

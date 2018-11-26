@@ -26,9 +26,8 @@ public class RestaurantsListModule: NSObject, ModuleProtocol, RoutingEventsProdu
     public var moduleName: String = "Restaurants List"
     public var moduleSection: String = "Restaurants List"
     public var moduleType: String = "List"
-    public var eventsType: EventProtocol.Type = RestaurantsListEvent.self
     
-    public var events: Observable<EventProtocol> { return _events.toEventProtocol() }
+    public var events: Observable<RestaurantsListEvent> { return _events }
     private let _events = PublishSubject<RestaurantsListEvent>()
     
     public func unmanagedRootViewController() -> UIViewController {

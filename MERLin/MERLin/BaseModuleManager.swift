@@ -18,9 +18,9 @@ class ModuleWrapper {
 
 open class BaseModuleManager {
     
-    private var eventsListeners: [EventsListening]
+    private var eventsListeners: [AnyEventsListening]
     
-    public init(withEventsListeners eventsListeners: [EventsListening] = []) {
+    public init(withEventsListeners eventsListeners: [AnyEventsListening] = []) {
         self.eventsListeners = eventsListeners
     }
     
@@ -33,11 +33,11 @@ open class BaseModuleManager {
     var moduleRetainer = WeakDictionary<UIViewController, ModuleWrapper>(withWeakRelation: .weakToStrong)
     
     public func setupEventsListeners(for module: AnyModule) {
-        guard let producer = module as? EventsProducer else { return }
+        guard let producer = module as? AnyEventsProducer else { return }
         setupEventsListeners(for: producer)
     }
     
-    public func setupEventsListeners(for producer: EventsProducer) {
+    public func setupEventsListeners(for producer: AnyEventsProducer) {
         eventsListeners.forEach { manager in
             manager.registerToEvents(for: producer)
         }
@@ -51,12 +51,12 @@ open class BaseModuleManager {
         return moduleRetainer[viewController]?.module
     }
     
-    public func addEventsListeners(_ listeners: [EventsListening]) {
+    public func addEventsListeners(_ listeners: [AnyEventsListening]) {
         for listener in listeners {
             eventsListeners.append(listener)
             
             moduleRetainer.values.forEach { (wrapper) in
-                guard let producer = wrapper.module as? EventsProducer else { return }
+                guard let producer = wrapper.module as? AnyEventsProducer else { return }
                 listener.registerToEvents(for: producer)
             }
         }

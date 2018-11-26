@@ -8,15 +8,15 @@
 
 import MERLin
 
-class RoutingEventsListener: RouteEventsListening {
+class RoutingEventsListener: EventsListening {
     let router: Router
     
     init(withRouter router: Router) {
         self.router = router
     }
-
-    func registerToEvents(for producer: EventsProducer) -> Bool {
-        producer[event: InternalRestaurantsListEvent.restaurantCellTapped]
+    
+    func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<InternalRestaurantsListEvent>) -> Bool {
+        events[event: InternalRestaurantsListEvent.restaurantCellTapped]
             .map { $0.id }
             .subscribe(onNext: { [weak self] id in
                 let step = ModuleRoutingStep.restaurantsDetail(restaurantId: id)

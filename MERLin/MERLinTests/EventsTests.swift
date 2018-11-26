@@ -11,13 +11,6 @@ import RxSwift
 import RxTest
 @testable import MERLin
 
-enum MockEvent: EventProtocol {
-    case noPayload
-    case anotherWithoutPayload
-    case withAnonymousPayload(String)
-    case withNamedPayload(payload: String)
-}
-
 class EventsTests: XCTestCase {
     var disposeBag: DisposeBag!
     override func setUp() {
@@ -32,12 +25,12 @@ class EventsTests: XCTestCase {
     
     func testThatItCanMatchNoPayloadEvents() {
         let event = MockEvent.noPayload
-        XCTAssert(event.matches(event: .noPayload))
+        XCTAssert(event.matches(event: MockEvent.noPayload))
     }
     
     func testThatItCanFailMatchingNoPayloadEvents() {
         let event = MockEvent.noPayload
-        XCTAssertFalse(event.matches(event: .anotherWithoutPayload))
+        XCTAssertFalse(event.matches(event: MockEvent.anotherWithoutPayload))
     }
     
     func testThatItCanMatchEvents() {
@@ -52,13 +45,39 @@ class EventsTests: XCTestCase {
     
     func testThatItCanExtractPayload() {
         let expectedPayload = "David Bowie"
-        let event = MockEvent.withAnonymousPayload("David Bowie")
+        let event = MockEvent.withAnonymousPayload(expectedPayload)
         XCTAssertEqual(event.extractPayload(), expectedPayload)
     }
     
     func testThatItCannotExtractPayload() {
         let event = MockEvent.noPayload
         XCTAssertNil(event.extractPayload())
+    }
+    
+    func testThatItCanEquateAnyEvent() {
+        let event = AnyEvent(base: MockEvent.noPayload)
+        XCTAssert(event.matches(event: MockEvent.noPayload))
+    }
+    
+    func testThatItCanEquateAnyEventWithPayload() {
+        let event = AnyEvent(base: MockEvent.withAnonymousPayload("David Bowie"))
+        XCTAssert(event.matches(pattern: MockEvent.withAnonymousPayload))
+    }
+    
+    func testThatItCanFailEquatingAnyEvent() {
+        let event = AnyEvent(base: MockEvent.noPayload)
+        XCTAssertFalse(event.matches(event: MockEvent.anotherWithoutPayload))
+    }
+    
+    func testThatItCanFailEquatingAnyEventWithPayload() {
+        let event = AnyEvent(base: MockEvent.withAnonymousPayload("David Bowie"))
+        XCTAssertFalse(event.matches(pattern: MockEvent.withNamedPayload))
+    }
+    
+    func testItCanExtractAnyEventPayload() {
+        let expectedPayload = "David Bowie"
+        let event = AnyEvent(base: MockEvent.withAnonymousPayload(expectedPayload))
+        XCTAssertEqual(event.extractPayload(), expectedPayload)
     }
     
     func testThatItCanCaptureAnonymousPayloadEvents() {
