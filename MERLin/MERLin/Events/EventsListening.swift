@@ -19,13 +19,13 @@ public protocol AnyEventsListening: class {
 
 public protocol EventsListening: AnyEventsListening {
     associatedtype EventsType: EventProtocol
-    @discardableResult func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<EventsType>) -> Bool
+    @discardableResult func registerToEvents(for producer: AnyEventsProducer, events: Observable<EventsType>) -> Bool
 }
 
 public extension EventsListening {
     @discardableResult
     public func registerToEvents(for producer: AnyEventsProducer) -> Bool {
-        guard let events = producer.eventsProxy(EventsType.self) else { return false }
+        guard let events = producer.observable(of: EventsType.self) else { return false }
         return registerToEvents(for: producer, events: events)
     }
 }

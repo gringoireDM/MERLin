@@ -35,24 +35,24 @@ class EventsProducerTests: XCTestCase {
     }
     
     func testThatItCanBuildAProxy() {
-        let proxy = producer.eventsProxy(MockEvent.self)
-        XCTAssertNotNil(proxy)
+        let events = producer.observable(of: MockEvent.self)
+        XCTAssertNotNil(events)
     }
     
     func testThatItCanBuildAnAnyEventProxy() {
-        let proxy = producer.eventsProxy(AnyEvent.self)
-        XCTAssertNotNil(proxy)
+        let events = producer.observable(of: AnyEvent.self)
+        XCTAssertNotNil(events)
     }
     
     func testThatItCanFailCreatingAProxy() {
-        let proxy = producer.eventsProxy(NoEvents.self)
-        XCTAssertNil(proxy)
+        let events = producer.observable(of: NoEvents.self)
+        XCTAssertNil(events)
     }
     
     func testThatItCanEmitEventsThroughProxy() {
         let observer = scheduler.createObserver(MockEvent.self)
-        let proxy = producer.eventsProxy(MockEvent.self)
-        proxy?.events
+        let events = producer.observable(of: MockEvent.self)
+        events?
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -69,8 +69,8 @@ class EventsProducerTests: XCTestCase {
     
     func testThatItCanEmitEventsThroughAnyEventProxy() {
         let observer = scheduler.createObserver(MockEvent.self)
-        let proxy = producer.eventsProxy(AnyEvent.self)
-        proxy?[event: MockEvent.noPayload]
+        let events = producer.observable(of: AnyEvent.self)
+        events?.capture(event: MockEvent.noPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -88,8 +88,8 @@ class EventsProducerTests: XCTestCase {
     func testThatItCanCapturePayloadsThroughProxy() {
         let expectedPayload = "David Bowie"
         let observer = scheduler.createObserver(String.self)
-        let proxy = producer.eventsProxy(MockEvent.self)
-        proxy?[event: MockEvent.withAnonymousPayload]
+        let events = producer.observable(of: MockEvent.self)
+        events?.capture(event: MockEvent.withAnonymousPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -107,8 +107,8 @@ class EventsProducerTests: XCTestCase {
     func testThatItCanCapturePayloadsThroughAnyEventProxy() {
         let expectedPayload = "David Bowie"
         let observer = scheduler.createObserver(String.self)
-        let proxy = producer.eventsProxy(AnyEvent.self)
-        proxy?[event: MockEvent.withAnonymousPayload]
+        let events = producer.observable(of: AnyEvent.self)
+        events?.capture(event: MockEvent.withAnonymousPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         

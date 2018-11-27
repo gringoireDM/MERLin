@@ -15,6 +15,8 @@ struct NoEvents: EventProtocol { }
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
     
+    var currentViewController: UIViewController?
+
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
     var moduleType: String = "test"

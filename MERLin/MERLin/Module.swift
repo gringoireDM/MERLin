@@ -18,7 +18,9 @@ public enum ViewControllerEvent: EventProtocol {
 
 public protocol AnyModule: class, NSObjectProtocol {
     var viewControllerEvent: Observable<ViewControllerEvent> { get }
-    
+    var routingContext: String { get }
+    var currentViewController: UIViewController? { get }
+
     func unmanagedRootViewController() -> UIViewController
     func prepareRootViewController() -> UIViewController
 }
@@ -26,8 +28,6 @@ public protocol AnyModule: class, NSObjectProtocol {
 public protocol ModuleProtocol: AnyModule {
     associatedtype Context: ModuleBuildContextProtocol
     var context: Context { get }
-    
-    var routingContext: String { get }
     
     init(usingContext buildContext: Context)
 }
