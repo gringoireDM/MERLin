@@ -18,7 +18,7 @@ extension UIStoryboard {
     }
 }
 
-public class RestaurantsListModule: NSObject, ModuleProtocol, RoutingEventsProducer {
+public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
     public weak var currentViewController: UIViewController?
     
     public var context: ModuleContext

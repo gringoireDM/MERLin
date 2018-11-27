@@ -8,6 +8,7 @@
 
 import Foundation
 import MERLin
+import RxSwift
 
 class MockAnyEventsListener: AnyEventsListening {
     var registeredProducers: [AnyEventsProducer] = []
@@ -19,7 +20,7 @@ class MockAnyEventsListener: AnyEventsListening {
 
 class MockEventsListener<E: EventProtocol>: EventsListening {
     var registeredProducers: [AnyEventsProducer] = []
-    func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<E>) -> Bool {
+    func registerToEvents(for producer: AnyEventsProducer, events: Observable<E>) -> Bool {
         registeredProducers.append(producer)
         return true
     }

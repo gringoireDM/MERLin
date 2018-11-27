@@ -10,6 +10,7 @@ import Foundation
 import MERLin
 
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
+    var currentViewController: UIViewController?
     static var deeplinkSchemaNames: [String] = ["test"]
     
     var context: ModuleContext
