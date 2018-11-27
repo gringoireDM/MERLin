@@ -7,6 +7,7 @@
 //
 
 import MERLin
+import RxSwift
 
 class RoutingEventsListener: EventsListening {
     let router: Router
@@ -15,8 +16,8 @@ class RoutingEventsListener: EventsListening {
         self.router = router
     }
     
-    func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<InternalRestaurantsListEvent>) -> Bool {
-        events[event: InternalRestaurantsListEvent.restaurantCellTapped]
+    func registerToEvents(for producer: AnyEventsProducer, events: Observable<InternalRestaurantsListEvent>) -> Bool {
+        producer[event: InternalRestaurantsListEvent.restaurantCellTapped]
             .map { $0.id }
             .subscribe(onNext: { [weak self] id in
                 let step = ModuleRoutingStep.restaurantsDetail(restaurantId: id)

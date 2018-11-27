@@ -17,13 +17,13 @@ class AppDelegateEventsListener: EventsListening {
         self.router = router
     }
     
-    func registerToEvents(for producer: AnyEventsProducer, events: EventsProxy<AppDelegateEvent>) -> Bool {
-        events[event: AppDelegateEvent.didFinishLaunching].toVoid()
+    func registerToEvents(for producer: AnyEventsProducer, events: Observable<AppDelegateEvent>) -> Bool {
+        producer[event: AppDelegateEvent.didFinishLaunching].toVoid()
             .subscribe(onNext: {
                 //Push notifications registration?
             }).disposed(by: producer.disposeBag)
         
-        events[event: AppDelegateEvent.willContinueUserActivity]
+        producer[event: AppDelegateEvent.willContinueUserActivity]
             .subscribe(onNext: { [weak self] _ in
                 self?.router.showLoadingView()
             }).disposed(by: producer.disposeBag)
@@ -38,12 +38,12 @@ class AppDelegateEventsListener: EventsListening {
                 _ = self?.router.route(toDeeplink: $0)
             }).disposed(by: producer.disposeBag)
         
-        events[event: AppDelegateEvent.failedToContinueUserActivity]
+        producer[event: AppDelegateEvent.failedToContinueUserActivity]
             .subscribe(onNext: { [weak self] _ in
                 self?.router.hideLoadingView()
             }).disposed(by: producer.disposeBag)
         
-        events[event: AppDelegateEvent.didUseShortcut]
+        producer[event: AppDelegateEvent.didUseShortcut]
             .subscribe(onNext: { [weak self] in
                 self?.router.handleShortcutItem($0)
             }).disposed(by: producer.disposeBag)
