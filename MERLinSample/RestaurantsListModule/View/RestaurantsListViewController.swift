@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RestaurantsListViewController: UITableViewController, DisplayingError, Themed {
+class RestaurantsListViewController: UITableViewController, DisplayingError {
     func displayError(_ error: DisplayableError) {
         let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -79,10 +79,8 @@ class RestaurantsListViewController: UITableViewController, DisplayingError, The
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let item = items[indexPath.row]
         cell.textLabel?.text = item.name
-        cell.textLabel?.applyLabelStyle(.body(attribute: .sBold))
         cell.detailTextLabel?.text = "\(item.priceRate)"
-        cell.detailTextLabel?.applyLabelStyle(.body(attribute: .regular))
-        cell.detailTextLabel?.textColor = UIColor.color(forPalette: .primary)
+        cell.detailTextLabel?.textColor = view.tintColor
         
         if indexPath.row == items.count - 1 {
             requestNewPage.onNext(())

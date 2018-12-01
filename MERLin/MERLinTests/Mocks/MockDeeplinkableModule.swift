@@ -21,11 +21,11 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
     
     func unmanagedRootViewController() -> UIViewController {
-        return MockViewController()
+        return UIViewController()
     }
     
     static func classForDeeplinkingViewController() -> UIViewController.Type {
-        return MockViewController.self
+        return UIViewController.self
     }
     
     static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
