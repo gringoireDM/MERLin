@@ -25,6 +25,26 @@ public extension ObservableType {
     }
 }
 
+public extension ObservableType where E == Bool {
+    public func negate() -> Observable<E> {
+        return self.map { !$0 }
+    }
+    
+    public func takeTrue() -> Observable<E> {
+        return self.filter { $0 }
+    }
+    
+    public func takeFalse() -> Observable<E> {
+        return self.filter { !$0 }
+    }
+}
+
+public extension ObservableType where E == Bool? {
+    public func negate(ifNil: Bool) -> Observable<Bool> {
+        return self.map { $0 == nil ? ifNil : !($0!) }
+    }
+}
+
 public extension PrimitiveSequence where Trait == SingleTrait {
     public func subscribeWithDisplayableErrorHandling(on view: DisplayingError?, disposeBag: DisposeBag) {
         doDisplayableErrorHandling(on: view)

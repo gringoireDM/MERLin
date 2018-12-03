@@ -37,7 +37,7 @@ struct MockStep: ModuleMaking {
     
     var make: () -> (AnyModule, UIViewController) {
         return {
-            return (MockModule(usingContext: ModuleContext()), MockViewController())
+            return (MockModule(usingContext: ModuleContext()), UIViewController())
         }
     }
 }

@@ -41,4 +41,41 @@ class ModuleManagerTests: XCTestCase {
 
         XCTAssertEqual(eventsListener.registeredProducers.count, controllers.count)
     }
+    
+    func testThatItCanRetrieveTheRightViewControllerTypeForDeeplink() {
+        let deeplink = "test://mock/2341234"
+        let type = moduleManager.viewControllerType(fromDeeplink: deeplink)
+        XCTAssert(type == MockDeeplinkable.classForDeeplinkingViewController())
+    }
+    
+    func testThatItCanFailRetrievingDeeplinkableClass() {
+        let deeplink = "test://failing/deeplink"
+        let type = moduleManager.viewControllerType(fromDeeplink: deeplink)
+        XCTAssertNil(type)
+    }
+    
+    func testItCanGetAViewControllerForDeeplink() {
+        let deeplink = "test://mock/2341234"
+        guard let viewController = moduleManager.viewController(fromDeeplink: deeplink) else {
+            XCTFail()
+            return
+        }
+        XCTAssert(type(of: viewController) == MockDeeplinkable.classForDeeplinkingViewController())
+    }
+    
+    func testItCanFailRetrievingAViewController() {
+        let deeplink = "test://failing/deeplink"
+        let viewController = moduleManager.viewController(fromDeeplink: deeplink)
+        XCTAssertNil(viewController)
+    }
+    
+    func testItCanReturnRemaindersForSmartDeeplinks() {
+        let deeplink = "test://mock/2341234/product/1234"
+        let expectedRemainder = "test://product/1234"
+        
+        let remainder = moduleManager.unmatchedDeeplinkRemainder(fromDeeplink: deeplink)
+        XCTAssertNotNil(remainder)
+        XCTAssertEqual(remainder, expectedRemainder)
+
+    }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <MERLin/Module+Deeplink.h>
 #import <MERLin/MERLin-Swift.h>
 

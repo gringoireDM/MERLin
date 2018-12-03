@@ -20,7 +20,7 @@ enum DetailSectionRows: Int {
     }
 }
 
-class RestaurantDetailViewController: UIViewController, DisplayingError, UITableViewDelegate, UITableViewDataSource, Themed {
+class RestaurantDetailViewController: UIViewController, DisplayingError, UITableViewDelegate, UITableViewDataSource {
     func displayError(_ error: DisplayableError) {
         let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -70,7 +70,8 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
     }
     
     func applyTheme() {
-        bookButton.applyPrimaryButtonStyle(withTitleStyle: .body(attribute: .bold))
+        bookButton.backgroundColor = view.tintColor
+        bookButton.setTitleColor(.white, for: .normal)
         tableview.reloadData()
     }
     

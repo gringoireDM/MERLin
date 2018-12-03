@@ -28,14 +28,6 @@
 		501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */; };
 		501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F892130BD3700114F5A /* RoutingStep.swift */; };
 		501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8A2130BD3700114F5A /* RouterProtocol.swift */; };
-		501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */; };
-		501D6FA62130BD3800114F5A /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */; };
-		501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */; };
-		501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F902130BD3700114F5A /* UIColors+Hex.swift */; };
-		501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F912130BD3700114F5A /* UIFont+Theme.swift */; };
-		501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F922130BD3700114F5A /* UILabel+Theme.swift */; };
-		501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F932130BD3700114F5A /* UITextField+Theme.swift */; };
-		501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */; };
 		501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F962130BD3700114F5A /* RxExtension.swift */; };
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
@@ -43,17 +35,12 @@
 		502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B9B7221452D6600BBFFC3 /* EventsTests.swift */; };
 		502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */; };
 		502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */; };
-		502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508D21465D6F002B70A4 /* MockViewController.swift */; };
 		502C509021465D91002B70A4 /* MockModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508F21465D91002B70A4 /* MockModule.swift */; };
 		5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
 		5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
-		50F6BCDB214C17C00038DD1B /* UIWindow+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */; };
-		50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDC214C1C190038DD1B /* ThemeTests.swift */; };
-		50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6BCDE214C221B0038DD1B /* MockTheme.swift */; };
-		50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */; };
 		529C22D3BE9DD3B64B6237AD /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1051BC919A6F019688368 /* Pods_MERLin.framework */; };
 		A7139654AE994BD4909AF9CC /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293013DF78E94B290AA2C6AA /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
@@ -99,14 +86,6 @@
 		501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableRoutingStep.swift; sourceTree = "<group>"; };
 		501D6F892130BD3700114F5A /* RoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingStep.swift; sourceTree = "<group>"; };
 		501D6F8A2130BD3700114F5A /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
-		501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
-		501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Theme.swift"; sourceTree = "<group>"; };
-		501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
-		501D6F902130BD3700114F5A /* UIColors+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColors+Hex.swift"; sourceTree = "<group>"; };
-		501D6F912130BD3700114F5A /* UIFont+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Theme.swift"; sourceTree = "<group>"; };
-		501D6F922130BD3700114F5A /* UILabel+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Theme.swift"; sourceTree = "<group>"; };
-		501D6F932130BD3700114F5A /* UITextField+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Theme.swift"; sourceTree = "<group>"; };
-		501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Theme.swift"; sourceTree = "<group>"; };
 		501D6F962130BD3700114F5A /* RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
 		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
 		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
@@ -114,15 +93,10 @@
 		502B9B7221452D6600BBFFC3 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
 		502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventsTests.swift; sourceTree = "<group>"; };
 		502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeeplinkableModule.swift; sourceTree = "<group>"; };
-		502C508D21465D6F002B70A4 /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		502C508F21465D91002B70A4 /* MockModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModule.swift; sourceTree = "<group>"; };
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
-		50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Theme.swift"; sourceTree = "<group>"; };
-		50F6BCDC214C1C190038DD1B /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		50F6BCDE214C221B0038DD1B /* MockTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTheme.swift; sourceTree = "<group>"; };
-		50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceRule.swift; sourceTree = "<group>"; };
 		50FDFF8B214E737C00BC5CFD /* MERLin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MERLin.podspec; path = ../../MERLin.podspec; sourceTree = "<group>"; };
 		6679BC817EB0E2029B3D025A /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA1051BC919A6F019688368 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,7 +168,6 @@
 				501D6F972130BD3700114F5A /* Events */,
 				501D6F952130BD3700114F5A /* Extensions */,
 				501D6F862130BD3700114F5A /* Routing */,
-				501D6F8B2130BD3700114F5A /* Theming */,
 				501D6F092130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLin;
@@ -209,7 +182,6 @@
 				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
 				5006670621A983ED00CDA08C /* EventsProducerTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
-				50F6BCDC214C1C190038DD1B /* ThemeTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
@@ -247,8 +219,8 @@
 		501D6F7F2130BD3600114F5A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				501D6F802130BD3600114F5A /* Module+Deeplink.m */,
 				501D6F812130BD3600114F5A /* Module+Deeplink.h */,
+				501D6F802130BD3600114F5A /* Module+Deeplink.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,31 +243,6 @@
 				501D6F8A2130BD3700114F5A /* RouterProtocol.swift */,
 			);
 			path = Routing;
-			sourceTree = "<group>";
-		};
-		501D6F8B2130BD3700114F5A /* Theming */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F8C2130BD3700114F5A /* ThemeProtocol.swift */,
-				50F88D4C216C0B28000C8D6F /* AppearanceRule.swift */,
-				50F6BCDA214C17C00038DD1B /* UIWindow+Theme.swift */,
-				501D6F8D2130BD3700114F5A /* UIKit+Theming */,
-			);
-			path = Theming;
-			sourceTree = "<group>";
-		};
-		501D6F8D2130BD3700114F5A /* UIKit+Theming */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F8E2130BD3700114F5A /* UIButton+Theme.swift */,
-				501D6F8F2130BD3700114F5A /* UIColor+Theme.swift */,
-				501D6F902130BD3700114F5A /* UIColors+Hex.swift */,
-				501D6F912130BD3700114F5A /* UIFont+Theme.swift */,
-				501D6F922130BD3700114F5A /* UILabel+Theme.swift */,
-				501D6F932130BD3700114F5A /* UITextField+Theme.swift */,
-				501D6F942130BD3700114F5A /* NSAttributedString+Theme.swift */,
-			);
-			path = "UIKit+Theming";
 			sourceTree = "<group>";
 		};
 		501D6F952130BD3700114F5A /* Extensions */ = {
@@ -321,11 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */,
-				502C508D21465D6F002B70A4 /* MockViewController.swift */,
 				502C508F21465D91002B70A4 /* MockModule.swift */,
 				5006670821AB3AD300CDA08C /* MockEventProducer.swift */,
 				5006670C21AB3B9200CDA08C /* MockEventsListener.swift */,
-				50F6BCDE214C221B0038DD1B /* MockTheme.swift */,
 				5006670A21AB3B4000CDA08C /* MockEvent.swift */,
 			);
 			path = Mocks;
@@ -518,35 +463,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */,
-				501D6FA62130BD3800114F5A /* UIButton+Theme.swift in Sources */,
 				501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */,
 				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
-				501D6FA72130BD3800114F5A /* UIColor+Theme.swift in Sources */,
-				50F6BCDB214C17C00038DD1B /* UIWindow+Theme.swift in Sources */,
 				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
 				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
-				501D6FAA2130BD3800114F5A /* UILabel+Theme.swift in Sources */,
 				501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */,
 				501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */,
 				5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */,
 				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
-				50F88D4D216C0B28000C8D6F /* AppearanceRule.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
 				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
-				501D6FA52130BD3800114F5A /* ThemeProtocol.swift in Sources */,
 				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
-				501D6FA92130BD3800114F5A /* UIFont+Theme.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,
 				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
-				501D6FAC2130BD3800114F5A /* NSAttributedString+Theme.swift in Sources */,
-				501D6FA82130BD3800114F5A /* UIColors+Hex.swift in Sources */,
-				501D6FAB2130BD3800114F5A /* UITextField+Theme.swift in Sources */,
 				501D6FB02130BD3800114F5A /* EventProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,9 +491,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5006670D21AB3B9200CDA08C /* MockEventsListener.swift in Sources */,
-				502C508E21465D6F002B70A4 /* MockViewController.swift in Sources */,
-				50F6BCDD214C1C190038DD1B /* ThemeTests.swift in Sources */,
-				50F6BCDF214C221B0038DD1B /* MockTheme.swift in Sources */,
 				502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */,
 				5006670721A983ED00CDA08C /* EventsProducerTests.swift in Sources */,
 				50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */,

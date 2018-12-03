@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		500290C2214E9FB40025FE20 /* ChristmasTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500290C1214E9FB40025FE20 /* ChristmasTheme.swift */; };
 		50B11881213C19F8008928AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11880213C19F8008928AF /* AppDelegate.swift */; };
 		50B11888213C19FA008928AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B11887213C19FA008928AF /* Assets.xcassets */; };
 		50B1188B213C19FA008928AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B11889213C19FA008928AF /* LaunchScreen.storyboard */; };
@@ -27,8 +26,6 @@
 		50B118C3213C31A2008928AF /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118B9213C31A2008928AF /* RestaurantsListViewController.swift */; };
 		50B118C4213C31A2008928AF /* RestaurantsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B118BA213C31A2008928AF /* RestaurantsList.storyboard */; };
 		50B118C7213C33DE008928AF /* RestaurantsListStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118C6213C33DE008928AF /* RestaurantsListStep.swift */; };
-		50B118CA213C34DF008928AF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118C9213C34DF008928AF /* Theme.swift */; };
-		50B118CC213C34E9008928AF /* UIButton+Setters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118CB213C34E9008928AF /* UIButton+Setters.swift */; };
 		50B118D1213C3633008928AF /* ConsoleLogEventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118CE213C3632008928AF /* ConsoleLogEventsListener.swift */; };
 		50B118D2213C3633008928AF /* RoutingEventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118CF213C3632008928AF /* RoutingEventsListener.swift */; };
 		50B118D3213C3633008928AF /* AppDelegateEventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118D0213C3632008928AF /* AppDelegateEventsListener.swift */; };
@@ -90,7 +87,6 @@
 		19FBE482839A1D3901C462C1 /* Pods-MERLinTargets-MERLinSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-MERLinSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample.debug.xcconfig"; sourceTree = "<group>"; };
 		2A194FC03A0E25A97C5F4F78 /* Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantDetailModule/Pods-MERLinTargets-RestaurantDetailModule.debug.xcconfig"; sourceTree = "<group>"; };
 		3B032D153F7BCB379008B00B /* Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERLinTargets-RestaurantsListModule/Pods-MERLinTargets-RestaurantsListModule.debug.xcconfig"; sourceTree = "<group>"; };
-		500290C1214E9FB40025FE20 /* ChristmasTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChristmasTheme.swift; sourceTree = "<group>"; };
 		50B1187D213C19F8008928AF /* MERLinSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MERLinSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B11880213C19F8008928AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B11887213C19FA008928AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 		50B118B9213C31A2008928AF /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
 		50B118BA213C31A2008928AF /* RestaurantsList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RestaurantsList.storyboard; sourceTree = "<group>"; };
 		50B118C6213C33DE008928AF /* RestaurantsListStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsListStep.swift; sourceTree = "<group>"; };
-		50B118C9213C34DF008928AF /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		50B118CB213C34E9008928AF /* UIButton+Setters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Setters.swift"; sourceTree = "<group>"; };
 		50B118CE213C3632008928AF /* ConsoleLogEventsListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogEventsListener.swift; sourceTree = "<group>"; };
 		50B118CF213C3632008928AF /* RoutingEventsListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingEventsListener.swift; sourceTree = "<group>"; };
 		50B118D0213C3632008928AF /* AppDelegateEventsListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateEventsListener.swift; sourceTree = "<group>"; };
@@ -199,7 +193,6 @@
 				50B1189A213C3047008928AF /* Router */,
 				50B11894213C1BC9008928AF /* AppDelegateEvents.swift */,
 				50B11880213C19F8008928AF /* AppDelegate.swift */,
-				50B118C8213C34D5008928AF /* Theme */,
 				50B118C5213C33C3008928AF /* RoutingSteps */,
 				50B11887213C19FA008928AF /* Assets.xcassets */,
 				50B11889213C19FA008928AF /* LaunchScreen.storyboard */,
@@ -274,16 +267,6 @@
 				50B11901213C4679008928AF /* RestaurantDetailStep.swift */,
 			);
 			path = RoutingSteps;
-			sourceTree = "<group>";
-		};
-		50B118C8213C34D5008928AF /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				50B118CB213C34E9008928AF /* UIButton+Setters.swift */,
-				50B118C9213C34DF008928AF /* Theme.swift */,
-				500290C1214E9FB40025FE20 /* ChristmasTheme.swift */,
-			);
-			path = Theme;
 			sourceTree = "<group>";
 		};
 		50B118CD213C3611008928AF /* EventsListeners */ = {
@@ -620,11 +603,8 @@
 				50B11898213C3031008928AF /* RoutingContext.swift in Sources */,
 				50B118C7213C33DE008928AF /* RestaurantsListStep.swift in Sources */,
 				50B118D2213C3633008928AF /* RoutingEventsListener.swift in Sources */,
-				50B118CA213C34DF008928AF /* Theme.swift in Sources */,
 				50B11881213C19F8008928AF /* AppDelegate.swift in Sources */,
 				50B118D3213C3633008928AF /* AppDelegateEventsListener.swift in Sources */,
-				500290C2214E9FB40025FE20 /* ChristmasTheme.swift in Sources */,
-				50B118CC213C34E9008928AF /* UIButton+Setters.swift in Sources */,
 				50B11902213C4679008928AF /* RestaurantDetailStep.swift in Sources */,
 				50B11895213C1BC9008928AF /* AppDelegateEvents.swift in Sources */,
 			);

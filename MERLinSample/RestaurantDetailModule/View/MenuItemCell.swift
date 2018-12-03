@@ -15,10 +15,10 @@ class MenuItemCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     func applyAppearance() {
-        title.applyLabelStyle(.body(attribute: .regular))
-        descriptionLabel.applyLabelStyle(.caption(attribute: .regular))
-        priceLabel.applyLabelStyle(.body(attribute: .bold))
-        priceLabel.textColor = .color(forPalette: .primary)
+        title.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        priceLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        priceLabel.textColor = tintColor
     }
 
 }
