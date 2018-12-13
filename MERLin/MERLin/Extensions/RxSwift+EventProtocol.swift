@@ -11,8 +11,7 @@ import RxCocoa
 
 public extension ObservableType where E == EventProtocol {
     public func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {
-        return map { $0 as? T }
-            .unwrap()
+        return compactMap { $0 as? T }
     }
     
     public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
@@ -32,8 +31,7 @@ public extension ObservableType where E: EventProtocol {
     }
 
     public func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
-        return map { $0.extractPayload(ifMatches: pattern) }
-            .unwrap()
+        return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
     
     public func toEventProtocol() -> Observable<EventProtocol> {
@@ -48,13 +46,11 @@ public extension ObservableType where E: EventProtocol {
 public extension ObservableType where E == AnyEvent {
     public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
         return filter { $0.matches(event: target) }
-            .map { $0.base as? T }
-            .unwrap()
+            .compactMap { $0.base as? T }
     }
     
     public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
-        return map { $0.extractPayload(ifMatches: pattern) }
-            .unwrap()
+        return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
 }
 
@@ -64,8 +60,7 @@ public extension SharedSequenceConvertibleType where SharingStrategy == DriverSh
     }
 
     public func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Driver<Payload> {
-        return map { $0.extractPayload(ifMatches: pattern) }
-            .unwrap()
+        return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
     
 }

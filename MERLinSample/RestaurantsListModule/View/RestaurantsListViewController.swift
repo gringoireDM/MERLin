@@ -40,9 +40,9 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
         
         let getFirstPage = Driver.merge(Driver<Void>.just(()), refreshControl.rx.controlEvent(.valueChanged).asDriverIgnoreError())
 
-        let didSelect = tableView.rx.itemSelected.map { [weak self] in
+        let didSelect = tableView.rx.itemSelected.compactMap { [weak self] in
             return self?.items[$0.row]
-        }.unwrap().asDriverIgnoreError()
+        }.asDriverIgnoreError()
         
         let input = Input(getFirstPage: getFirstPage, nextPage: requestNewPage.asDriverIgnoreError(), didSelect: didSelect)
         guard let output = viewModel?.transform(input: input) else { return }

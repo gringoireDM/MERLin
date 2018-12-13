@@ -23,6 +23,22 @@ public extension ObservableType {
         return self.throttle(0.5, scheduler: MainScheduler.asyncInstance)
             .observeOn(MainScheduler.asyncInstance)
     }
+
+    public func compactMap<R>(_ transform: @escaping (E) throws -> R?) -> Observable<R> {
+        return map(transform).filter { $0 != nil }.map { $0! }
+    }
+}
+
+public extension PrimitiveSequenceType where TraitType == MaybeTrait {
+    public func compactMap<R>(_ transform: @escaping (ElementType) throws -> R?) -> Maybe<R> {
+        return map(transform).filter { $0 != nil }.map { $0! }
+    }
+}
+
+public extension SharedSequenceConvertibleType {
+    public func compactMap<R>(_ transform: @escaping (E) -> R?) -> SharedSequence<SharingStrategy, R> {
+        return map(transform).filter { $0 != nil }.map { $0! }
+    }
 }
 
 public extension ObservableType where E == Bool {

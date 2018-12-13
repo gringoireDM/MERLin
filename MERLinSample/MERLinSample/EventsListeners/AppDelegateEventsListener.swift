@@ -31,9 +31,8 @@ class AppDelegateEventsListener: EventsListening {
         Observable<String>.merge([
             producer[event: AppDelegateEvent.openURL].map { $0.absoluteString },
             producer[event: AppDelegateEvent.continueUserActivity]
-                .map { $0.userInfo?[CSSearchableItemActivityIdentifier] as? String }
                 .do(onNext: {[weak self] _ in self?.router.hideLoadingView()})
-                .unwrap()
+                .compactMap { $0.userInfo?[CSSearchableItemActivityIdentifier] as? String }
             ]).subscribe(onNext: {[weak self] in
                 _ = self?.router.route(toDeeplink: $0)
             }).disposed(by: producer.disposeBag)

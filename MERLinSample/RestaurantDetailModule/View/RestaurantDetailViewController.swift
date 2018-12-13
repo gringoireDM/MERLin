@@ -51,8 +51,7 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
             .asDriverIgnoreError()
 
         let bookTapped = bookButton.rx.tap
-            .map { [weak self] in self?.restaurant }
-            .unwrap()
+            .compactMap { [weak self] in self?.restaurant }
             .asDriverIgnoreError()
         
         let input = Input(viewWillAppear: viewWillAppear, bookButtonTapped: bookTapped)
