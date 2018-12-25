@@ -66,19 +66,34 @@ public extension Router {
             if closeButton {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
-            guard let navController = topController as? UINavigationController else { fallthrough }
+            guard let navController = topController as? UINavigationController else {
+                topController.present(viewController, animated: true, completion: nil)
+                return viewController
+            }
             navController.pushViewController(viewController, animated: true)
-        case .modal:
-            viewController.modalPresentationStyle = destination.modalPresentationStyle
+        case let .modal(style):
+            viewController.modalPresentationStyle = style
             topController.present(viewController, animated: true, completion: nil)
-        case let .modalWithNavigation(closeButton, onClose):
+        case let .modalWithNavigation(style, closeButton, onClose):
             let navigationController = UINavigationController(rootViewController: viewController)
             if closeButton {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
-            navigationController.modalPresentationStyle = destination.modalPresentationStyle
+            navigationController.modalPresentationStyle = style
             topController.present(navigationController, animated: true, completion: nil)
-        case .embed: fatalError("Not yet implemented")
+        case let .embed(parentController, container):
+            guard let embeddedView = viewController.view else { fatalError() }
+            viewController.willMove(toParent: parentController)
+            parentController.addChild(viewController)
+            container.translatesAutoresizingMaskIntoConstraints = false
+            container.addSubview(embeddedView)
+            NSLayoutConstraint.activate([
+                embeddedView.topAnchor.constraint(equalTo: container.topAnchor),
+                embeddedView.rightAnchor.constraint(equalTo: container.rightAnchor),
+                embeddedView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+                embeddedView.leftAnchor.constraint(equalTo: container.leftAnchor)
+                ])
+            viewController.didMove(toParent: parentController)
         }
         
         return viewController

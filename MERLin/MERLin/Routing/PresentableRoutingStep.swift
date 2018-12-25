@@ -9,15 +9,15 @@
 import Foundation
 
 public enum RoutingStepPresentationMode {
-    case embed //This is used for viewController embedded in other viewControllers. An example would be UITabBarController
+    case embed(parentController: UIViewController, containerView: UIView)
     case push(withCloseButton: Bool, onClose: (()->())?)
-    case modal
-    case modalWithNavigation(withCloseButton: Bool, onClose: (()->())?)
-    
+    case modal(modalPresentationStyle: UIModalPresentationStyle)
+    case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: Bool, onClose: (()->())?)
+
     public func override(withCloseButton closeButton: Bool, onClose: (()->())?) -> RoutingStepPresentationMode? {
         switch self {
         case .push: return .push(withCloseButton: closeButton, onClose: onClose)
-        case .modalWithNavigation: return .modalWithNavigation(withCloseButton: closeButton, onClose: onClose)
+        case let .modalWithNavigation(style, _, _): return .modalWithNavigation(modalPresentationStyle: style, withCloseButton: closeButton, onClose: onClose)
         case .embed, .modal: return nil
         }
     }
@@ -39,11 +39,9 @@ public struct ModuleRoutingStep {
 public struct PresentableRoutingStep {
     public let step: ModuleRoutingStep
     public let presentationMode: RoutingStepPresentationMode
-    public let modalPresentationStyle: UIModalPresentationStyle
     
-    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode, modalPresentationStyle: UIModalPresentationStyle = .fullScreen) {
+    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode) {
         self.step = step
         self.presentationMode = presentationMode
-        self.modalPresentationStyle = modalPresentationStyle
     }
 }
