@@ -42,6 +42,7 @@
 		502E0E6321D2F40D004A4F56 /* RxExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6221D2F40D004A4F56 /* RxExtensionTests.swift */; };
 		502E0E6521D2FF29004A4F56 /* RxExtensionTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6421D2FF29004A4F56 /* RxExtensionTestCase.swift */; };
 		502E0E6721D2FF9F004A4F56 /* BoolRxExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6621D2FF9F004A4F56 /* BoolRxExtensionTests.swift */; };
+		502E0E6921D3A8C5004A4F56 /* RxExtension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6821D3A8C5004A4F56 /* RxExtension+String.swift */; };
 		5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* Module+Deeplink.m */; };
 		5074DF32213ECD010021294D /* Module+Deeplink.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* Module+Deeplink.h */; };
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
@@ -106,6 +107,7 @@
 		502E0E6221D2F40D004A4F56 /* RxExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtensionTests.swift; sourceTree = "<group>"; };
 		502E0E6421D2FF29004A4F56 /* RxExtensionTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtensionTestCase.swift; sourceTree = "<group>"; };
 		502E0E6621D2FF9F004A4F56 /* BoolRxExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolRxExtensionTests.swift; sourceTree = "<group>"; };
+		502E0E6821D3A8C5004A4F56 /* RxExtension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxExtension+String.swift"; sourceTree = "<group>"; };
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			children = (
 				501D6F962130BD3700114F5A /* RxExtension.swift */,
 				502E0E5E21CF9482004A4F56 /* RxExtension+Bool.swift */,
+				502E0E6821D3A8C5004A4F56 /* RxExtension+String.swift */,
 				502E0E6021CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift */,
 				50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */,
 			);
@@ -492,6 +495,7 @@
 				502E0E5F21CF9482004A4F56 /* RxExtension+Bool.swift in Sources */,
 				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
+				502E0E6921D3A8C5004A4F56 /* RxExtension+String.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
 				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,

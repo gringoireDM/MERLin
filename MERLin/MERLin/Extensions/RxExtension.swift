@@ -19,9 +19,9 @@ public extension ObservableType {
         return self.filter { $0 != nil }.map { $0! }
     }
     
-    public func toRoutableObservable() -> Observable<E> {
-        return self.throttle(0.5, scheduler: MainScheduler.asyncInstance)
-            .observeOn(MainScheduler.asyncInstance)
+    public func toRoutableObservable(throttleTime: TimeInterval = 0.5, scheduler: SchedulerType = MainScheduler.asyncInstance) -> Observable<E> {
+        return self.throttle(throttleTime, scheduler: MainScheduler.asyncInstance)
+            .observeOn(scheduler)
     }
 
     public func compactMap<R>(_ transform: @escaping (E) throws -> R?) -> Observable<R> {
@@ -54,18 +54,6 @@ public extension PrimitiveSequence where Trait == SingleTrait {
     
     public func toVoid() -> PrimitiveSequence<SingleTrait, Void> {
         return self.map { _ in }
-    }
-}
-
-public extension SharedSequenceConvertibleType where Self.E == String {
-    public func isNotEmpty() -> SharedSequence<SharingStrategy, Bool> {
-        return self.map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
-    }
-}
-
-public extension SharedSequenceConvertibleType where Self.E == String? {
-    public func isNotEmpty() -> SharedSequence<SharingStrategy, Bool> {
-        return self.map { $0?.trimmingCharacters(in: .whitespaces).isEmpty == false }
     }
 }
 

@@ -42,6 +42,15 @@ extension RxExtensionTestCase {
         
         return observer
     }
+    
+    func buildTest<Value, Expected, Trait>(value: Value, test: @escaping (Single<Value>) -> PrimitiveSequence<Trait, Expected>) -> TestableObserver<Expected> {
+        let observer = scheduler.start { () -> Observable<Expected> in
+            let emitter = Single.just(value)
+            return test(emitter).asObservable()
+        }
+        
+        return observer
+    }
 }
 
 extension Recorded: Equatable where Value == Event<Void> {
