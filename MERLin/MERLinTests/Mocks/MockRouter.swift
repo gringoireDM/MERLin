@@ -34,7 +34,7 @@ class MockRouter: Router {
         window.addSubview(topViewController.view)
     }
     
-    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> UIViewController? {
+    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> UIViewController? {
         return topViewController
     }
     

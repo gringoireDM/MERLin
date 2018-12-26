@@ -85,7 +85,7 @@ public extension Router {
             }
             navigationController.modalPresentationStyle = style
             topController.present(navigationController, animated: destination.animated, completion: nil)
-        case .embed: return nil
+        case .embed, .none: return nil
         }
         
         return viewController

@@ -44,7 +44,7 @@ public extension SharedSequenceConvertibleType where E == Bool {
 }
 
 public extension SharedSequenceConvertibleType where E == Bool? {
-    public func negate(ifNil: Bool) -> SharedSequence<SharingStrategy, Bool>{
+    public func negate(ifNil: Bool) -> SharedSequence<SharingStrategy, Bool> {
         return self.map { $0 == nil ? ifNil : !($0!) }
     }
 }

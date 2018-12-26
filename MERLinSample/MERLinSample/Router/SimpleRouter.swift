@@ -18,7 +18,7 @@ class SimpleRouter: Router {
     
     var topViewController: UIViewController { return rootNavigationController }
     private lazy var rootNavigationController: UINavigationController =  {
-        let presentableStep = PresentableRoutingStep(withStep: .restaurantsList(), presentationMode: .embed)
+        let presentableStep = PresentableRoutingStep(withStep: .restaurantsList(), presentationMode: .none)
         return UINavigationController(rootViewController: viewControllersFactory!.viewController(for: presentableStep))
     }()
     

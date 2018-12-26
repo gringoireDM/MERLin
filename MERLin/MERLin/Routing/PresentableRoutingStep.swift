@@ -9,16 +9,17 @@
 import Foundation
 
 public enum RoutingStepPresentationMode {
+    case none
     case embed(parentController: UIViewController, containerView: UIView)
-    case push(withCloseButton: Bool, onClose: (()->())?)
+    case push(withCloseButton: Bool, onClose: (() -> Void)?)
     case modal(modalPresentationStyle: UIModalPresentationStyle)
-    case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: Bool, onClose: (()->())?)
+    case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: Bool, onClose: (() -> Void)?)
 
-    public func override(withCloseButton closeButton: Bool, onClose: (()->())?) -> RoutingStepPresentationMode? {
+    public func override(withCloseButton closeButton: Bool, onClose: (() -> Void)?) -> RoutingStepPresentationMode? {
         switch self {
         case .push: return .push(withCloseButton: closeButton, onClose: onClose)
         case let .modalWithNavigation(style, _, _): return .modalWithNavigation(modalPresentationStyle: style, withCloseButton: closeButton, onClose: onClose)
-        case .embed, .modal: return nil
+        case .embed, .modal, .none: return nil
         }
     }
 }
