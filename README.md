@@ -1,4 +1,4 @@
-![swfit4.2](https://img.shields.io/badge/swift-4.2-orange.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e84770b28b9d4174bad2fae164afeee5)](https://www.codacy.com/app/gringoireDM/MERLin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gringoireDM/MERLin&amp;utm_campaign=Badge_Grade)![swfit4.2](https://img.shields.io/badge/swift-4.2-orange.svg)
 <p align="center">
 <img src="./MerlinLogo.png" alt="MERLin"/>
 </p>
