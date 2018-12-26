@@ -85,6 +85,24 @@ class EventsProducerTests: XCTestCase {
         XCTAssertEqual(observer.events, expected)
     }
     
+    func testThatItCanEmitEventsThroughProducerSubscript() {
+        let observer = scheduler.createObserver(MockEvent.self)
+
+        producer[event: MockEvent.noPayload]
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        
+        scheduler.scheduleAt(1) { self.emitter.onNext(.noPayload) }
+        
+        scheduler.start()
+        
+        let expected: [Recorded<Event<MockEvent>>] = [
+            .next(1, .noPayload)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
     func testThatItCanCapturePayloadsThroughProxy() {
         let expectedPayload = "David Bowie"
         let observer = scheduler.createObserver(String.self)
@@ -109,6 +127,25 @@ class EventsProducerTests: XCTestCase {
         let observer = scheduler.createObserver(String.self)
         let events = producer.observable(of: AnyEvent.self)
         events?.capture(event: MockEvent.withAnonymousPayload)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        
+        scheduler.scheduleAt(1) { self.emitter.onNext(MockEvent.withAnonymousPayload(expectedPayload)) }
+        
+        scheduler.start()
+        
+        let expected: [Recorded<Event<String>>] = [
+            .next(1, expectedPayload)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testThatItCanCapturePayloadsThroughSubscript() {
+        let expectedPayload = "David Bowie"
+        let observer = scheduler.createObserver(String.self)
+        
+        producer[event: MockEvent.withAnonymousPayload]
             .subscribe(observer)
             .disposed(by: disposeBag)
         
