@@ -39,9 +39,11 @@ public struct ModuleRoutingStep {
 public struct PresentableRoutingStep {
     public let step: ModuleRoutingStep
     public let presentationMode: RoutingStepPresentationMode
+    public let animated: Bool
     
-    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode) {
+    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode, animated: Bool = true) {
         self.step = step
         self.presentationMode = presentationMode
+        self.animated = animated
     }
 }

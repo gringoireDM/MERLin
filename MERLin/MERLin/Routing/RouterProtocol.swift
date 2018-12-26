@@ -46,7 +46,7 @@ public protocol Router: class {
 
 //MARK: Route to...
 public extension Router {
-    private func currentViewController() -> UIViewController {
+    internal func currentViewController() -> UIViewController {
         var currentController = topViewController
         while let presented = currentController.presentedViewController {
             currentController = presented
@@ -56,10 +56,14 @@ public extension Router {
 
     @discardableResult public func route(to destination: PresentableRoutingStep) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory else { return nil }
+        let viewController = viewControllersFactory.viewController(for: destination)
+        
+        if case let .embed(info) = destination.presentationMode {
+            // We can avoid to compute the topController in this case
+            return embed(viewController: viewController, embedInfo: info)
+        }
         
         let topController = currentViewController()
-        
-        let viewController = viewControllersFactory.viewController(for: destination)
         
         switch destination.presentationMode {
         case let .push(closeButton, onClose):
@@ -67,10 +71,10 @@ public extension Router {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
             guard let navController = topController as? UINavigationController else {
-                topController.present(viewController, animated: true, completion: nil)
+                topController.present(viewController, animated: destination.animated, completion: nil)
                 return viewController
             }
-            navController.pushViewController(viewController, animated: true)
+            navController.pushViewController(viewController, animated: destination.animated)
         case let .modal(style):
             viewController.modalPresentationStyle = style
             topController.present(viewController, animated: true, completion: nil)
@@ -80,25 +84,30 @@ public extension Router {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
             navigationController.modalPresentationStyle = style
-            topController.present(navigationController, animated: true, completion: nil)
-        case let .embed(parentController, container):
-            guard let embeddedView = viewController.view else { fatalError() }
-            viewController.willMove(toParent: parentController)
-            parentController.addChild(viewController)
-            container.translatesAutoresizingMaskIntoConstraints = false
-            container.addSubview(embeddedView)
-            NSLayoutConstraint.activate([
-                embeddedView.topAnchor.constraint(equalTo: container.topAnchor),
-                embeddedView.rightAnchor.constraint(equalTo: container.rightAnchor),
-                embeddedView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-                embeddedView.leftAnchor.constraint(equalTo: container.leftAnchor)
-                ])
-            viewController.didMove(toParent: parentController)
+            topController.present(navigationController, animated: destination.animated, completion: nil)
+        case .embed: return nil
         }
         
         return viewController
     }
 
+    func embed(viewController: UIViewController, embedInfo: (UIViewController, UIView)) -> UIViewController? {
+        let (parentController, container) = embedInfo
+        guard let embeddedView = viewController.view else { return nil }
+        viewController.willMove(toParent: parentController)
+        parentController.addChild(viewController)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(embeddedView)
+        NSLayoutConstraint.activate([
+            embeddedView.topAnchor.constraint(equalTo: container.topAnchor),
+            embeddedView.rightAnchor.constraint(equalTo: container.rightAnchor),
+            embeddedView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            embeddedView.leftAnchor.constraint(equalTo: container.leftAnchor)
+            ])
+        viewController.didMove(toParent: parentController)
+        return viewController
+    }
+    
     private func closeButton(for viewController: UIViewController, onClose: (() ->())?) -> UIBarButtonItem {
         let button = UIBarButtonItem(title: "Close", style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
