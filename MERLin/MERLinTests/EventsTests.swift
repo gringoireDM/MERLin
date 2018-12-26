@@ -83,11 +83,11 @@ class EventsTests: XCTestCase {
     func testThatItCanCaptureAnonymousPayloadEvents() {
         let scheduler = TestScheduler(initialClock: 0)
         let events = scheduler.createHotObservable([
-            next(100, MockEvent.withAnonymousPayload("100")),
-            next(200, MockEvent.withAnonymousPayload("200")),
-            next(300, MockEvent.withNamedPayload(payload: "100")),
-            next(400, MockEvent.withAnonymousPayload("400")),
-            next(300, MockEvent.noPayload)
+            .next(100, MockEvent.withAnonymousPayload("100")),
+            .next(200, MockEvent.withAnonymousPayload("200")),
+            .next(300, MockEvent.withNamedPayload(payload: "100")),
+            .next(400, MockEvent.withAnonymousPayload("400")),
+            .next(300, MockEvent.noPayload)
             ])
         let results = scheduler.createObserver(String.self)
         
@@ -98,9 +98,9 @@ class EventsTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<String>>] = [
-            next(100, "100"),
-            next(200, "200"),
-            next(400, "400"),
+            .next(100, "100"),
+            .next(200, "200"),
+            .next(400, "400"),
         ]
         
         XCTAssertEqual(results.events, expected)
@@ -109,11 +109,11 @@ class EventsTests: XCTestCase {
     func testThatItCanCaptureNamedPayloadEvents() {
         let scheduler = TestScheduler(initialClock: 0)
         let events = scheduler.createHotObservable([
-            next(100, MockEvent.withNamedPayload(payload: "100")),
-            next(200, MockEvent.withAnonymousPayload("200")),
-            next(300, MockEvent.withNamedPayload(payload: "100")),
-            next(400, MockEvent.withAnonymousPayload("400")),
-            next(300, MockEvent.noPayload)
+            .next(100, MockEvent.withNamedPayload(payload: "100")),
+            .next(200, MockEvent.withAnonymousPayload("200")),
+            .next(300, MockEvent.withNamedPayload(payload: "100")),
+            .next(400, MockEvent.withAnonymousPayload("400")),
+            .next(300, MockEvent.noPayload)
             ])
         let results = scheduler.createObserver(String.self)
         
@@ -124,8 +124,8 @@ class EventsTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<String>>] = [
-            next(100, "100"),
-            next(300, "100"),
+            .next(100, "100"),
+            .next(300, "100"),
             ]
         
         XCTAssertEqual(results.events, expected)
@@ -134,11 +134,11 @@ class EventsTests: XCTestCase {
     func testThatItCanCaptureNoPayloadEvents() {
         let scheduler = TestScheduler(initialClock: 0)
         let events = scheduler.createHotObservable([
-            next(100, MockEvent.noPayload),
-            next(200, MockEvent.noPayload),
-            next(300, MockEvent.withNamedPayload(payload: "100")),
-            next(400, MockEvent.withAnonymousPayload("400")),
-            next(300, MockEvent.noPayload)
+            .next(100, MockEvent.noPayload),
+            .next(200, MockEvent.noPayload),
+            .next(300, MockEvent.withNamedPayload(payload: "100")),
+            .next(400, MockEvent.withAnonymousPayload("400")),
+            .next(300, MockEvent.noPayload)
             ])
         let results = scheduler.createObserver(String.self)
         
@@ -150,9 +150,9 @@ class EventsTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<String>>] = [
-            next(100, ""),
-            next(200, ""),
-            next(300, ""),
+            .next(100, ""),
+            .next(200, ""),
+            .next(300, ""),
             ]
         
         XCTAssertEqual(results.events, expected)

@@ -61,7 +61,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.start()
 
         let expected: [Recorded<Event<MockEvent>>] = [
-            next(1, .noPayload)
+            .next(1, .noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -79,7 +79,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<MockEvent>>] = [
-            next(1, .noPayload)
+            .next(1, .noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -98,7 +98,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<String>>] = [
-            next(1, expectedPayload)
+            .next(1, expectedPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -117,7 +117,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.start()
         
         let expected: [Recorded<Event<String>>] = [
-            next(1, expectedPayload)
+            .next(1, expectedPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
