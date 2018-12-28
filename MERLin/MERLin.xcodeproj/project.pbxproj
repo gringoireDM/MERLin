@@ -35,6 +35,7 @@
 		501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F992130BD3700114F5A /* EventsProducer.swift */; };
 		501D6FB02130BD3800114F5A /* EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F9A2130BD3700114F5A /* EventProtocol.swift */; };
 		502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B9B7221452D6600BBFFC3 /* EventsTests.swift */; };
+		502BD37721D63A9400EFBE14 /* StringRxExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BD37621D63A9400EFBE14 /* StringRxExtensionTests.swift */; };
 		502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */; };
 		502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */; };
 		502C509021465D91002B70A4 /* MockModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508F21465D91002B70A4 /* MockModule.swift */; };
@@ -102,6 +103,7 @@
 		501D6F992130BD3700114F5A /* EventsProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProducer.swift; sourceTree = "<group>"; };
 		501D6F9A2130BD3700114F5A /* EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventProtocol.swift; sourceTree = "<group>"; };
 		502B9B7221452D6600BBFFC3 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
+		502BD37621D63A9400EFBE14 /* StringRxExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRxExtensionTests.swift; sourceTree = "<group>"; };
 		502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventsTests.swift; sourceTree = "<group>"; };
 		502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeeplinkableModule.swift; sourceTree = "<group>"; };
 		502C508F21465D91002B70A4 /* MockModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModule.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
 				502E0E6221D2F40D004A4F56 /* RxExtensionTests.swift */,
 				502E0E6621D2FF9F004A4F56 /* BoolRxExtensionTests.swift */,
+				502BD37621D63A9400EFBE14 /* StringRxExtensionTests.swift */,
 				500652E521D3C14C009466F9 /* RouterTests.swift */,
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
@@ -536,6 +539,7 @@
 				5006670921AB3AD300CDA08C /* MockEventProducer.swift in Sources */,
 				5006670B21AB3B4000CDA08C /* MockEvent.swift in Sources */,
 				50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */,
+				502BD37721D63A9400EFBE14 /* StringRxExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

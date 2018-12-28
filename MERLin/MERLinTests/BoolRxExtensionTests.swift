@@ -39,8 +39,8 @@ class BoolRxExtensionTests: XCTestCase, RxExtensionTestCase {
             return emitter.negate()
         }
         
-        let expected: [Recorded<Event<Bool>>] = [
-            .next(1, false),
+        let expected = [
+            Recorded.next(1, false),
             .next(2, true)
         ]
         
