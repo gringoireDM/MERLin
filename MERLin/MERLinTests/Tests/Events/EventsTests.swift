@@ -100,7 +100,7 @@ class EventsTests: XCTestCase {
         let expected: [Recorded<Event<String>>] = [
             .next(100, "100"),
             .next(200, "200"),
-            .next(400, "400"),
+            .next(400, "400")
         ]
         
         XCTAssertEqual(results.events, expected)
@@ -125,7 +125,7 @@ class EventsTests: XCTestCase {
         
         let expected: [Recorded<Event<String>>] = [
             .next(100, "100"),
-            .next(300, "100"),
+            .next(300, "100")
             ]
         
         XCTAssertEqual(results.events, expected)
@@ -152,7 +152,7 @@ class EventsTests: XCTestCase {
         let expected: [Recorded<Event<String>>] = [
             .next(100, ""),
             .next(200, ""),
-            .next(300, ""),
+            .next(300, "")
             ]
         
         XCTAssertEqual(results.events, expected)

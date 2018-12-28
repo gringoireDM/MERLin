@@ -29,7 +29,6 @@ class StringRxExtensionTests: XCTestCase, RxExtensionTestCase {
         super.tearDown()
     }
     
-    
     func testItCanCheckNonEmpty() {
         let events = [
             Recorded.next(1, "Frank Sinatra"),

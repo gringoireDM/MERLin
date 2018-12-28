@@ -49,8 +49,8 @@ class ViewControllerEventsTests: XCTestCase {
         let observer = makeObserverAndSubscribe()
         scheduler.start()
 
-        let expected: [Recorded<Event<ViewControllerEvent>>] = [
-            next(0, .uninitialized)
+        let expected = [
+            Recorded.next(0, ViewControllerEvent.uninitialized)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -64,10 +64,10 @@ class ViewControllerEventsTests: XCTestCase {
         
         scheduler.start()
 
-        let expected: [Recorded<Event<ViewControllerEvent>>] = [
-            next(0, .uninitialized),
-            next(1, .initialized),
-            completed(1) //ViewControlelr dies so it causes the completed.
+        let expected = [
+            Recorded.next(0, ViewControllerEvent.uninitialized),
+            .next(1, .initialized),
+            .completed(1) //ViewControlelr dies so it causes the completed.
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -84,10 +84,10 @@ class ViewControllerEventsTests: XCTestCase {
         }
         scheduler.start()
         
-        let expected: [Recorded<Event<ViewControllerEvent>>] = [
-            next(0, .uninitialized),
-            next(1, .initialized),
-            next(2, .appeared),
+        let expected = [
+            Recorded.next(0, ViewControllerEvent.uninitialized),
+            .next(1, .initialized),
+            .next(2, .appeared)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -105,11 +105,11 @@ class ViewControllerEventsTests: XCTestCase {
         }
         scheduler.start()
         
-        let expected: [Recorded<Event<ViewControllerEvent>>] = [
-            next(0, .uninitialized),
-            next(1, .initialized),
-            next(1, .appeared),
-            next(2, .disappeared),
+        let expected = [
+            Recorded.next(0, ViewControllerEvent.uninitialized),
+            .next(1, .initialized),
+            .next(1, .appeared),
+            .next(2, .disappeared)
             ]
         
         XCTAssertEqual(observer.events, expected)

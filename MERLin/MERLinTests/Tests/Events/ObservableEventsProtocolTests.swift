@@ -43,8 +43,8 @@ class ObservableEventsProtocolTests: XCTestCase {
         scheduler.scheduleAt(1) { self.emitter.onNext(MockEvent.noPayload) }
         scheduler.start()
         
-        let expected: [Recorded<Event<MockEvent>>] = [
-            next(1, MockEvent.noPayload)
+        let expected = [
+            Recorded.next(1, MockEvent.noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -76,8 +76,8 @@ class ObservableEventsProtocolTests: XCTestCase {
         scheduler.scheduleAt(2) { self.emitter.onNext(MockEvent.anotherWithoutPayload) }
         scheduler.start()
         
-        let expected: [Recorded<Event<MockEvent>>] = [
-            .next(1, MockEvent.noPayload)
+        let expected = [
+            Recorded.next(1, MockEvent.noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -116,8 +116,8 @@ class ObservableEventsProtocolTests: XCTestCase {
         scheduler.scheduleAt(2) { self.emitter.onNext(MockEvent.anotherWithoutPayload) }
         scheduler.start()
         
-        let expected: [Recorded<Event<MockEvent>>] = [
-            .next(1, MockEvent.noPayload)
+        let expected = [
+            Recorded.next(1, MockEvent.noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
