@@ -18,10 +18,6 @@
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
 		501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */; };
 		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
-		501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */; };
-		501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F762130BD2000114F5A /* ABVariation.swift */; };
-		501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F772130BD2000114F5A /* ABExperiment.swift */; };
-		501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F782130BD2000114F5A /* ABTesting.swift */; };
 		501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F7E2130BD3600114F5A /* Deeplink.swift */; };
 		501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F822130BD3600114F5A /* DeeplinkManaging.swift */; };
 		501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F842130BD3600114F5A /* DisplayableError.swift */; };
@@ -85,10 +81,6 @@
 		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
 		501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuildContextProtocol.swift; sourceTree = "<group>"; };
 		501D6F6E2130BD1200114F5A /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTestingStateMachine.swift; sourceTree = "<group>"; };
-		501D6F762130BD2000114F5A /* ABVariation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABVariation.swift; sourceTree = "<group>"; };
-		501D6F772130BD2000114F5A /* ABExperiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABExperiment.swift; sourceTree = "<group>"; };
-		501D6F782130BD2000114F5A /* ABTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTesting.swift; sourceTree = "<group>"; };
 		501D6F7E2130BD3600114F5A /* Deeplink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
 		501D6F802130BD3600114F5A /* Module+Deeplink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Module+Deeplink.m"; sourceTree = "<group>"; };
 		501D6F812130BD3600114F5A /* Module+Deeplink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Module+Deeplink.h"; sourceTree = "<group>"; };
@@ -184,7 +176,6 @@
 				501D6F6E2130BD1200114F5A /* Module.swift */,
 				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
-				501D6F732130BD2000114F5A /* ABTesting */,
 				501D6F7D2130BD3600114F5A /* Deeplinking */,
 				501D6F832130BD3600114F5A /* Errors */,
 				501D6F972130BD3700114F5A /* Events */,
@@ -204,25 +195,6 @@
 				501D6F152130BB4F00114F5A /* Info.plist */,
 			);
 			path = MERLinTests;
-			sourceTree = "<group>";
-		};
-		501D6F732130BD2000114F5A /* ABTesting */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F742130BD2000114F5A /* ABTestingStateMachine.swift */,
-				501D6F752130BD2000114F5A /* Protocols */,
-			);
-			path = ABTesting;
-			sourceTree = "<group>";
-		};
-		501D6F752130BD2000114F5A /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F762130BD2000114F5A /* ABVariation.swift */,
-				501D6F772130BD2000114F5A /* ABExperiment.swift */,
-				501D6F782130BD2000114F5A /* ABTesting.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		501D6F7D2130BD3600114F5A /* Deeplinking */ = {
@@ -541,16 +513,12 @@
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
 				501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */,
 				501D6FAF2130BD3800114F5A /* EventsProducer.swift in Sources */,
-				501D6F792130BD2100114F5A /* ABTestingStateMachine.swift in Sources */,
-				501D6F7B2130BD2100114F5A /* ABExperiment.swift in Sources */,
 				5074DF31213ECD010021294D /* Module+Deeplink.m in Sources */,
 				502E0E5F21CF9482004A4F56 /* RxExtension+Bool.swift in Sources */,
-				501D6F7C2130BD2100114F5A /* ABTesting.swift in Sources */,
 				501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */,
 				502E0E6921D3A8C5004A4F56 /* RxExtension+String.swift in Sources */,
 				501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */,
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
-				501D6F7A2130BD2100114F5A /* ABVariation.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
 				502E0E6121CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift in Sources */,
@@ -732,6 +700,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MERLin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -761,6 +730,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MERLin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
