@@ -5,3 +5,6 @@ podfile: ./MERLin/Podfile
 xcode_workspace: ./MERLin/MERLin.xcworkspace
 xcode_scheme: MERLin
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+
+before_install:
+    - pod repo update
