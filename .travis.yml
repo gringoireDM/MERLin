@@ -8,3 +8,6 @@ xcode_destination: platform=iOS Simulator,OS=11.4,name=iPhone X
 
 before_install:
     - pod repo update
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
