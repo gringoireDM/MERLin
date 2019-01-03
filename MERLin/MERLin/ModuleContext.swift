@@ -10,7 +10,7 @@ import Foundation
 
 public protocol AnyModuleContextProtocol {
     var routingContext: String { get }
-    var make: () -> (AnyModule, UIViewController) { get }
+    func make() -> (AnyModule, UIViewController)
 }
 
 public protocol ModuleContextProtocol: AnyModuleContextProtocol {
@@ -20,15 +20,17 @@ public protocol ModuleContextProtocol: AnyModuleContextProtocol {
 public class ModuleContext: AnyModuleContextProtocol, Hashable {
     public let routingContext: String
     private var moduleType: String
-    public var make: () -> (AnyModule, UIViewController) = { fatalError("Unimplemented") }
+    private var initializer: (ModuleContext) -> AnyModule
 
     public init<Module: ModuleProtocol>(routingContext: String = "default", building moduleType: Module.Type)  where Module.Context == ModuleContext {
         self.routingContext = routingContext
         self.moduleType = String(describing: moduleType)
-        self.make = { [unowned self] in
-            let module = Module(usingContext: self)
-            return (module, module.prepareRootViewController())
-        }
+        self.initializer = Module.init
+    }
+    
+    public func make() -> (AnyModule, UIViewController) {
+        let module = initializer(self)
+        return (module, module.prepareRootViewController())
     }
     
     public static func == (lhs: ModuleContext, rhs: ModuleContext) -> Bool {
@@ -42,10 +44,8 @@ public class ModuleContext: AnyModuleContextProtocol, Hashable {
 }
 
 public extension ModuleContextProtocol where ModuleType.Context == Self {
-    public var make: () -> (AnyModule, UIViewController) {
-        return {
-            let module = ModuleType(usingContext: self)
-            return (module, module.prepareRootViewController())
-        }
+    public func make() -> (AnyModule, UIViewController) {
+        let module = ModuleType(usingContext: self)
+        return (module, module.prepareRootViewController())
     }
 }

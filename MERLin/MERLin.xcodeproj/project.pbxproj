@@ -14,6 +14,7 @@
 		5006670B21AB3B4000CDA08C /* MockEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006670A21AB3B4000CDA08C /* MockEvent.swift */; };
 		5006670D21AB3B9200CDA08C /* MockEventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006670C21AB3B9200CDA08C /* MockEventsListener.swift */; };
 		500BC38321DEACBE00BA39F2 /* ModuleContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500BC38221DEACBE00BA39F2 /* ModuleContextTests.swift */; };
+		500BC38521DEB83A00BA39F2 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500BC38421DEB83A00BA39F2 /* ModuleTests.swift */; };
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
@@ -74,6 +75,7 @@
 		5006670A21AB3B4000CDA08C /* MockEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvent.swift; sourceTree = "<group>"; };
 		5006670C21AB3B9200CDA08C /* MockEventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsListener.swift; sourceTree = "<group>"; };
 		500BC38221DEACBE00BA39F2 /* ModuleContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleContextTests.swift; sourceTree = "<group>"; };
+		500BC38421DEB83A00BA39F2 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		501D6F052130BB4F00114F5A /* MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F082130BB4F00114F5A /* MERLin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERLin.h; sourceTree = "<group>"; };
 		501D6F092130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				50B11871213BF89E008928AF /* DeeplinkableTests.swift */,
 				50B11870213BF89E008928AF /* ModuleManagerTests.swift */,
 				500BC38221DEACBE00BA39F2 /* ModuleContextTests.swift */,
+				500BC38421DEB83A00BA39F2 /* ModuleTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				502C509021465D91002B70A4 /* MockModule.swift in Sources */,
 				500652E621D3C14C009466F9 /* RouterTests.swift in Sources */,
 				500BC38321DEACBE00BA39F2 /* ModuleContextTests.swift in Sources */,
+				500BC38521DEB83A00BA39F2 /* ModuleTests.swift in Sources */,
 				502E0E6521D2FF29004A4F56 /* RxExtensionTestCase.swift in Sources */,
 				5006670921AB3AD300CDA08C /* MockEventProducer.swift in Sources */,
 				5006670B21AB3B4000CDA08C /* MockEvent.swift in Sources */,
