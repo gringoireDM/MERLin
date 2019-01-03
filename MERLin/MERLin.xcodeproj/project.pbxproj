@@ -16,7 +16,7 @@
 		501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501D6F052130BB4F00114F5A /* MERLin.framework */; };
 		501D6F162130BB4F00114F5A /* MERLin.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F082130BB4F00114F5A /* MERLin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */; };
-		501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */; };
+		501D6F712130BD1200114F5A /* ModuleContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6D2130BD1200114F5A /* ModuleContext.swift */; };
 		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
 		501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F7E2130BD3600114F5A /* Deeplink.swift */; };
 		501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F822130BD3600114F5A /* DeeplinkManaging.swift */; };
@@ -24,7 +24,6 @@
 		501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F852130BD3600114F5A /* DisplayingError.swift */; };
 		501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */; };
 		501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */; };
-		501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F892130BD3700114F5A /* RoutingStep.swift */; };
 		501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8A2130BD3700114F5A /* RouterProtocol.swift */; };
 		501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F962130BD3700114F5A /* RxExtension.swift */; };
 		501D6FAE2130BD3800114F5A /* EventsListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F982130BD3700114F5A /* EventsListening.swift */; };
@@ -79,7 +78,7 @@
 		501D6F0E2130BB4F00114F5A /* MERLinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MERLinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D6F152130BB4F00114F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModuleManager.swift; sourceTree = "<group>"; };
-		501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuildContextProtocol.swift; sourceTree = "<group>"; };
+		501D6F6D2130BD1200114F5A /* ModuleContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleContext.swift; sourceTree = "<group>"; };
 		501D6F6E2130BD1200114F5A /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		501D6F7E2130BD3600114F5A /* Deeplink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
 		501D6F802130BD3600114F5A /* Module+Deeplink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Module+Deeplink.m"; sourceTree = "<group>"; };
@@ -89,7 +88,6 @@
 		501D6F852130BD3600114F5A /* DisplayingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayingError.swift; sourceTree = "<group>"; };
 		501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBuilding.swift; sourceTree = "<group>"; };
 		501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableRoutingStep.swift; sourceTree = "<group>"; };
-		501D6F892130BD3700114F5A /* RoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingStep.swift; sourceTree = "<group>"; };
 		501D6F8A2130BD3700114F5A /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		501D6F962130BD3700114F5A /* RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
 		501D6F982130BD3700114F5A /* EventsListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListening.swift; sourceTree = "<group>"; };
@@ -174,7 +172,7 @@
 				50FDFF8B214E737C00BC5CFD /* MERLin.podspec */,
 				501D6F082130BB4F00114F5A /* MERLin.h */,
 				501D6F6E2130BD1200114F5A /* Module.swift */,
-				501D6F6D2130BD1200114F5A /* ModuleBuildContextProtocol.swift */,
+				501D6F6D2130BD1200114F5A /* ModuleContext.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
 				501D6F7D2130BD3600114F5A /* Deeplinking */,
 				501D6F832130BD3600114F5A /* Errors */,
@@ -230,7 +228,6 @@
 			children = (
 				501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */,
 				501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */,
-				501D6F892130BD3700114F5A /* RoutingStep.swift */,
 				501D6F8A2130BD3700114F5A /* RouterProtocol.swift */,
 			);
 			path = Routing;
@@ -507,7 +504,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501D6FA32130BD3800114F5A /* RoutingStep.swift in Sources */,
 				501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */,
 				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
@@ -524,7 +520,7 @@
 				502E0E6121CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift in Sources */,
 				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
 				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
-				501D6F712130BD1200114F5A /* ModuleBuildContextProtocol.swift in Sources */,
+				501D6F712130BD1200114F5A /* ModuleContext.swift in Sources */,
 				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
 				501D6FB02130BD3800114F5A /* EventProtocol.swift in Sources */,
 			);

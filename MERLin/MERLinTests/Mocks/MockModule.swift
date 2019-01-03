@@ -32,18 +32,8 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
     }
 }
 
-struct MockStep: ModuleMaking {
-    var routingContext: String = ""
-    
-    var make: () -> (AnyModule, UIViewController) {
-        return {
-            return (MockModule(usingContext: ModuleContext()), UIViewController())
-        }
-    }
-}
-
 extension ModuleRoutingStep {
     static func mock() -> ModuleRoutingStep {
-        return ModuleRoutingStep(withMaker: MockStep())
+        return ModuleRoutingStep(withMaker: ModuleContext(building: MockModule.self))
     }
 }

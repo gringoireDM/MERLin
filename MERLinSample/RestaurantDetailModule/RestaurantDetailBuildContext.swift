@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct RestaurantDetailBuildContext: ModuleBuildContextProtocol, RoutingStep {
-    public typealias Route = RestaurantDetailModule
+public struct RestaurantDetailBuildContext: ModuleContextProtocol {
+    public typealias ModuleType = RestaurantDetailModule
     
     public var routingContext: String
     public var id: String

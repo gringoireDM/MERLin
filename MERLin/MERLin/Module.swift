@@ -26,7 +26,7 @@ public protocol AnyModule: class, NSObjectProtocol {
 }
 
 public protocol ModuleProtocol: AnyModule {
-    associatedtype Context: ModuleBuildContextProtocol
+    associatedtype Context: AnyModuleContextProtocol
     var context: Context { get }
     
     init(usingContext buildContext: Context)

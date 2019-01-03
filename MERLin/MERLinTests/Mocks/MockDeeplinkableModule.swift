@@ -31,7 +31,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
     
     static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
-        let module = MockDeeplinkable(usingContext: ModuleContext())
+        let module = MockDeeplinkable(usingContext: ModuleContext(building: MockDeeplinkable.self))
         return (module, module.prepareRootViewController())
     }
     
