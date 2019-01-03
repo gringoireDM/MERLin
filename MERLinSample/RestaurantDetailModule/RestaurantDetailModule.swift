@@ -16,7 +16,6 @@ extension UIStoryboard {
 
 public class RestaurantDetailModule: NSObject, ModuleProtocol, EventsProducer {
     public var context: RestaurantDetailBuildContext
-    public weak var currentViewController: UIViewController?
     
     public var moduleName: String = "Restaurant Detail Page"
     public var moduleSection: String = "Restaurant Detail"
@@ -26,7 +25,7 @@ public class RestaurantDetailModule: NSObject, ModuleProtocol, EventsProducer {
     private var _events = PublishSubject<RestaurantDetailEvent>()
     
     public func unmanagedRootViewController() -> UIViewController {
-        let controller = currentViewController ?? UIStoryboard.restaurant.instantiateInitialViewController()!
+        let controller = UIStoryboard.restaurant.instantiateInitialViewController()!
         guard let detailController = controller as? RestaurantDetailViewController else { return controller }
         detailController.viewModel = RestaurantDetailViewModel(events: _events, restaurantId: context.id)
         return detailController

@@ -20,7 +20,7 @@ public protocol ModuleContextProtocol: AnyModuleContextProtocol {
 public class ModuleContext: AnyModuleContextProtocol, Hashable {
     public let routingContext: String
     private var moduleType: String
-    public var make: () -> (AnyModule, UIViewController) = { fatalError() }
+    public var make: () -> (AnyModule, UIViewController) = { fatalError("Unimplemented") }
 
     public init<Module: ModuleProtocol>(routingContext: String = "default", building moduleType: Module.Type)  where Module.Context == ModuleContext {
         self.routingContext = routingContext

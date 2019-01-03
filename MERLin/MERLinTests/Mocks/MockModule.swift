@@ -19,7 +19,6 @@ struct MockContext: ModuleContextProtocol, Equatable {
 
 class ContextualizedMockModule: NSObject, ModuleProtocol {
     var context: MockContext
-    var currentViewController: UIViewController?
 
     required init(usingContext buildContext: MockContext) {
         context = buildContext
@@ -34,8 +33,6 @@ class ContextualizedMockModule: NSObject, ModuleProtocol {
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
     
-    var currentViewController: UIViewController?
-
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
     var moduleType: String = "test"
