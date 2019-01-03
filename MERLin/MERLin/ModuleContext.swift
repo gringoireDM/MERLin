@@ -32,7 +32,7 @@ public class ModuleContext: AnyModuleContextProtocol, Hashable {
     }
     
     public static func == (lhs: ModuleContext, rhs: ModuleContext) -> Bool {
-        return lhs.routingContext == rhs.routingContext && lhs.moduleType == rhs.moduleType
+        return lhs.hashValue == rhs.hashValue
     }
     
     public func hash(into hasher: inout Hasher) {

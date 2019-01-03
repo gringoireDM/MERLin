@@ -12,6 +12,25 @@ import RxSwift
 
 struct NoEvents: EventProtocol, Equatable { }
 
+struct MockContext: ModuleContextProtocol, Equatable {
+    typealias ModuleType = ContextualizedMockModule
+    var routingContext: String
+}
+
+class ContextualizedMockModule: NSObject, ModuleProtocol {
+    var context: MockContext
+    var currentViewController: UIViewController?
+
+    required init(usingContext buildContext: MockContext) {
+        context = buildContext
+        super.init()
+    }
+    
+    func unmanagedRootViewController() -> UIViewController {
+        return UIViewController()
+    }
+}
+
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
     
