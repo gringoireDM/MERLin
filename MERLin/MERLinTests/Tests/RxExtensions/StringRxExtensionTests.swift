@@ -6,10 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
+import RxCocoa
 import RxSwift
 import RxTest
-import RxCocoa
+import XCTest
 
 @testable import MERLin
 
@@ -84,7 +84,7 @@ class StringRxExtensionTests: XCTestCase, RxExtensionTestCase {
         
         XCTAssertEqual(observer.events, expected)
     }
-
+    
     func testItCanChekEmptyOptionals() {
         let events = [
             Recorded.next(1, "Frank Sinatra"),
@@ -106,6 +106,7 @@ class StringRxExtensionTests: XCTestCase, RxExtensionTestCase {
     }
     
     // MARK: Driver Extension
+    
     func testItCanCheckNonEmptyDriver() {
         let events = [
             Recorded.next(1, "Frank Sinatra"),

@@ -6,8 +6,8 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 public extension Reactive where Base: UICollectionViewFlowLayout {
     public var itemSize: Binder<CGSize> {

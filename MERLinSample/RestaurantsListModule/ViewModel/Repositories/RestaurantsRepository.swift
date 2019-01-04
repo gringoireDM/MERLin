@@ -13,12 +13,11 @@ protocol RestaurantsRepository {
     func getRestaurants(limit: Int) -> Single<[ShortRestaurantProtocol]>
 }
 
-//This extension is meant to combine the getter from repositories with fallbacks.
-//The preferences are in FIFO order and on error the next repository acts as fallback.
-//if ultimately all the repositories cannot handle the request the error is propagated
+// This extension is meant to combine the getter from repositories with fallbacks.
+// The preferences are in FIFO order and on error the next repository acts as fallback.
+// if ultimately all the repositories cannot handle the request the error is propagated
 //to the listeners.
 extension Array where Element == RestaurantsRepository {
-    
     func getFirstPage() -> Single<[ShortRestaurantProtocol]> {
         var getRestaurants: Single<[ShortRestaurantProtocol]>!
         for repo in self {
@@ -26,8 +25,8 @@ extension Array where Element == RestaurantsRepository {
                 getRestaurants = repo.getRestaurants(limit: 20)
             } else {
                 getRestaurants = getRestaurants.catchError { _ in
-                    //could check if the error is a connectivity error and have a better error handling
-                    return repo.getRestaurants(limit: 20)
+                    // could check if the error is a connectivity error and have a better error handling
+                    repo.getRestaurants(limit: 20)
                 }
             }
         }
@@ -41,8 +40,8 @@ extension Array where Element == RestaurantsRepository {
                 getRestaurants = repo.getNext()
             } else {
                 getRestaurants = getRestaurants.catchError { _ in
-                    //could check if the error is a connectivity error and have a better error handling
-                    return repo.getNext()
+                    // could check if the error is a connectivity error and have a better error handling
+                    repo.getNext()
                 }
             }
         }

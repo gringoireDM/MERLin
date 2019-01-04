@@ -34,7 +34,7 @@ class RestaurantsListViewModel: RestaurantsListViewModelProtocol {
     
     let disposeBag = DisposeBag()
     private let repositories: [RestaurantsRepository] = [
-        MockRepository(), //This should simulate the fetch from the server
+        MockRepository() // This should simulate the fetch from the server
     ]
     
     private let events: PublishSubject<RestaurantsListEvent>
@@ -50,20 +50,19 @@ class RestaurantsListViewModel: RestaurantsListViewModelProtocol {
             .disposed(by: disposeBag)
         
         let errors = PublishSubject<DisplayableError>()
-        let getFirstPage = repositories.getFirstPage() 
+        let getFirstPage = repositories.getFirstPage()
         
         let newRestaurantsOutput = input.getFirstPage
-            .flatMap({ _ in return getFirstPage.asDriver(onErrorSendErrorTo: errors) })
+            .flatMap({ _ in getFirstPage.asDriver(onErrorSendErrorTo: errors) })
         
         let getNextPage = repositories.getNextPage()
         
         let nextPage = input.nextPage
             .flatMap({ _ in
-                return getNextPage.asDriver(onErrorSendErrorTo: errors)
+                getNextPage.asDriver(onErrorSendErrorTo: errors)
             })
         
         let output = Output(newRestaurantsList: newRestaurantsOutput, newPage: nextPage, error: errors.asDriverIgnoreError())
         return output
     }
-    
 }

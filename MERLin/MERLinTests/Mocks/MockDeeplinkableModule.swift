@@ -9,7 +9,7 @@
 import Foundation
 import MERLin
 
-class MockViewController: UIViewController { }
+class MockViewController: UIViewController {}
 
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     static var deeplinkSchemaNames: [String] = ["test"]
@@ -17,7 +17,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     var context: ModuleContext
     
     required init(usingContext buildContext: ModuleContext) {
-        self.context = buildContext
+        context = buildContext
         super.init()
     }
     

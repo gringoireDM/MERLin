@@ -6,9 +6,9 @@
 //  Copyright © 2018 Gilt. All rights reserved.
 //
 
+import CoreSpotlight
 import MERLin
 import RxSwift
-import CoreSpotlight
 
 class AppDelegateEventsListener: EventsListening {
     let router: Router
@@ -20,7 +20,7 @@ class AppDelegateEventsListener: EventsListening {
     func registerToEvents(for producer: AnyEventsProducer, events: Observable<AppDelegateEvent>) -> Bool {
         producer[event: AppDelegateEvent.didFinishLaunching].toVoid()
             .subscribe(onNext: {
-                //Push notifications registration?
+                // Push notifications registration?
             }).disposed(by: producer.disposeBag)
         
         producer[event: AppDelegateEvent.willContinueUserActivity]
@@ -31,11 +31,11 @@ class AppDelegateEventsListener: EventsListening {
         Observable<String>.merge([
             producer[event: AppDelegateEvent.openURL].map { $0.absoluteString },
             producer[event: AppDelegateEvent.continueUserActivity]
-                .do(onNext: {[weak self] _ in self?.router.hideLoadingView()})
+                .do(onNext: { [weak self] _ in self?.router.hideLoadingView() })
                 .compactMap { $0.userInfo?[CSSearchableItemActivityIdentifier] as? String }
-            ]).subscribe(onNext: {[weak self] in
-                _ = self?.router.route(toDeeplink: $0)
-            }).disposed(by: producer.disposeBag)
+        ]).subscribe(onNext: { [weak self] in
+            _ = self?.router.route(toDeeplink: $0)
+        }).disposed(by: producer.disposeBag)
         
         producer[event: AppDelegateEvent.failedToContinueUserActivity]
             .subscribe(onNext: { [weak self] _ in
@@ -49,5 +49,4 @@ class AppDelegateEventsListener: EventsListening {
         
         return true
     }
-
 }

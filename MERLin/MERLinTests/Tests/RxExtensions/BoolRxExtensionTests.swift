@@ -6,10 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
+import RxCocoa
 import RxSwift
 import RxTest
-import RxCocoa
+import XCTest
 
 @testable import MERLin
 

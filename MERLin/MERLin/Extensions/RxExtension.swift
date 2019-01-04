@@ -6,24 +6,23 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 public extension ObservableType {
-
     public func toVoid() -> Observable<Void> {
-        return self.map { _ in }
+        return map { _ in }
     }
-
+    
     public func unwrap<T>() -> Observable<T> where E == T? {
-        return self.filter { $0 != nil }.map { $0! }
+        return filter { $0 != nil }.map { $0! }
     }
     
     public func toRoutableObservable(throttleTime: TimeInterval = 0.5, scheduler: SchedulerType = MainScheduler.asyncInstance) -> Observable<E> {
-        return self.throttle(throttleTime, scheduler: MainScheduler.asyncInstance)
+        return throttle(throttleTime, scheduler: MainScheduler.asyncInstance)
             .observeOn(scheduler)
     }
-
+    
     public func compactMap<R>(_ transform: @escaping (E) throws -> R?) -> Observable<R> {
         return map(transform).filter { $0 != nil }.map { $0! }
     }
@@ -43,29 +42,29 @@ public extension SharedSequenceConvertibleType {
 
 public extension PrimitiveSequence where Trait == SingleTrait {
     public func unwrapOrError<T>(_ error: Error) -> Single<T> where Element == T? {
-        return self.filter { $0 != nil }.map { $0! }
+        return filter { $0 != nil }.map { $0! }
             .ifEmpty(switchTo: Single.error(error))
     }
     
     public func unwrapOrSwitch<T>(to single: Single<T>) -> Single<T> where Element == T? {
-        return self.filter { $0 != nil }.map { $0! }
+        return filter { $0 != nil }.map { $0! }
             .ifEmpty(switchTo: single)
     }
     
     public func toVoid() -> PrimitiveSequence<SingleTrait, Void> {
-        return self.map { _ in }
+        return map { _ in }
     }
 }
 
 public extension SharedSequenceConvertibleType {
     public func unwrap<T>() -> SharedSequence<SharingStrategy, T> where E == T? {
-        return self.filter { $0 != nil }.map { $0! }
+        return filter { $0 != nil }.map { $0! }
     }
 }
 
 public extension ObservableConvertibleType {
     func asDriver<O>(onErrorSendErrorTo errorHandler: O) -> Driver<E> where O: ObserverType, O.E == DisplayableError {
-        return self.asDriver(onErrorRecover: { error in
+        return asDriver(onErrorRecover: { error in
             guard let _error = error as? DisplayableError else {
                 print(error.localizedDescription)
                 return .empty()
@@ -76,6 +75,6 @@ public extension ObservableConvertibleType {
     }
     
     func asDriverIgnoreError() -> Driver<E> {
-        return self.asDriver(onErrorRecover: { _ in .empty() })
+        return asDriver(onErrorRecover: { _ in .empty() })
     }
 }

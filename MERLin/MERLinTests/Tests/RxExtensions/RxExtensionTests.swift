@@ -6,17 +6,17 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
+import RxCocoa
 import RxSwift
 import RxTest
-import RxCocoa
+import XCTest
 
 @testable import MERLin
 
 class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
-
+    
     override func setUp() {
         super.setUp()
         disposeBag = DisposeBag()
@@ -30,7 +30,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     }
     
     // MARK: Observable Extension
-
+    
     func testItCanUnwrap() {
         let events = [
             Recorded.next(1, true),
@@ -49,13 +49,13 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         
         XCTAssertEqual(observer.events, expected)
     }
-
+    
     func testItCanCompactMap() {
         let events = [
             Recorded.next(1, "1"),
             .next(2, "2"),
             .next(3, "a")
-            ]
+        ]
         
         let observer = buildTest(emitting: events) { emitter in
             return emitter
@@ -158,7 +158,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
             .compactMap { $0.errorMessage }
             .subscribe(errorObserver)
             .disposed(by: disposeBag)
-
+        
         let observer = buildTest(emitting: events) { emitter in
             return emitter.asDriver(onErrorSendErrorTo: errors)
         }

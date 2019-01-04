@@ -19,7 +19,7 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
     struct Input: RestaurantsListVMInput {
         var getFirstPage: Driver<Void>
         var nextPage: Driver<Void>
-
+        
         var didSelect: Driver<ShortRestaurantProtocol>
     }
     
@@ -29,7 +29,7 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
     let disposeBag = DisposeBag()
     
     let requestNewPage = PublishSubject<Void>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +39,7 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
         tableView.refreshControl = refreshControl
         
         let getFirstPage = Driver.merge(Driver<Void>.just(()), refreshControl.rx.controlEvent(.valueChanged).asDriverIgnoreError())
-
+        
         let didSelect = tableView.rx.itemSelected.compactMap { [weak self] in
             return self?.items[$0.row]
         }.asDriverIgnoreError()
@@ -51,14 +51,14 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
             .drive(onNext: displayError)
             .disposed(by: disposeBag)
         
-        output.newRestaurantsList.drive(onNext: {[unowned self] restaurants in
+        output.newRestaurantsList.drive(onNext: { [unowned self] restaurants in
             self.items = restaurants
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }).disposed(by: disposeBag)
         
-        output.newPage.drive(onNext: {[unowned self] restaurants in
-            self.items = self.items+restaurants
+        output.newPage.drive(onNext: { [unowned self] restaurants in
+            self.items = self.items + restaurants
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
     }

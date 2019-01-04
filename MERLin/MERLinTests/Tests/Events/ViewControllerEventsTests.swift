@@ -6,10 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
-import RxTest
-import RxSwift
 @testable import MERLin
+import RxSwift
+import RxTest
+import XCTest
 
 class ViewControllerEventsTests: XCTestCase {
     var disposeBag: DisposeBag!
@@ -37,7 +37,7 @@ class ViewControllerEventsTests: XCTestCase {
         module.viewControllerEvent
             .subscribe(observer)
             .disposed(by: disposeBag)
-
+        
         return observer
     }
     
@@ -49,7 +49,7 @@ class ViewControllerEventsTests: XCTestCase {
     func testThatInitialStateIsUninitialised() {
         let observer = makeObserverAndSubscribe()
         scheduler.start()
-
+        
         let expected = [
             Recorded.next(0, ViewControllerEvent.uninitialized)
         ]
@@ -64,11 +64,11 @@ class ViewControllerEventsTests: XCTestCase {
         }
         
         scheduler.start()
-
+        
         let expected = [
             Recorded.next(0, ViewControllerEvent.uninitialized),
             .next(1, .initialized),
-            .completed(1) //ViewControlelr dies so it causes the completed.
+            .completed(1) // ViewControlelr dies so it causes the completed.
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -111,7 +111,7 @@ class ViewControllerEventsTests: XCTestCase {
             .next(1, .initialized),
             .next(1, .appeared),
             .next(2, .disappeared)
-            ]
+        ]
         
         XCTAssertEqual(observer.events, expected)
     }

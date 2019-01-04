@@ -6,8 +6,8 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
 @testable import MERLin
+import XCTest
 
 class RouterTests: XCTestCase {
     var router: MockRouter!
@@ -20,13 +20,13 @@ class RouterTests: XCTestCase {
         router = MockRouter(withRootViewController: root)
         router.viewControllersFactory = moduleManager
     }
-
+    
     override func tearDown() {
         router = nil
         root = nil
         moduleManager = nil
     }
-
+    
     func testCurrentViewController() {
         let current = router.currentViewController()
         XCTAssertEqual(current, router.topViewController)

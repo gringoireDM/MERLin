@@ -8,7 +8,7 @@
 
 import RxSwift
 
-public typealias ViewControllersFactory = ViewControllerBuilding&DeeplinkManaging
+public typealias ViewControllersFactory = ViewControllerBuilding & DeeplinkManaging
 
 public protocol Routing {
     var router: Router { get }
@@ -44,7 +44,8 @@ public protocol Router: class {
     func hideLoadingView()
 }
 
-//MARK: Route to...
+// MARK: Route to...
+
 public extension Router {
     internal func currentViewController() -> UIViewController {
         var currentController = topViewController
@@ -53,7 +54,7 @@ public extension Router {
         }
         return currentController
     }
-
+    
     @discardableResult public func route(to destination: PresentableRoutingStep) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory else { return nil }
         let viewController = viewControllersFactory.viewController(for: destination)
@@ -90,7 +91,7 @@ public extension Router {
         
         return viewController
     }
-
+    
     func embed(viewController: UIViewController, embedInfo: (UIViewController, UIView)) -> UIViewController? {
         let (parentController, container) = embedInfo
         guard let embeddedView = viewController.view else { return nil }
@@ -103,12 +104,12 @@ public extension Router {
             embeddedView.rightAnchor.constraint(equalTo: container.rightAnchor),
             embeddedView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             embeddedView.leftAnchor.constraint(equalTo: container.leftAnchor)
-            ])
+        ])
         viewController.didMove(toParent: parentController)
         return viewController
     }
     
-    private func closeButton(for viewController: UIViewController, onClose: (() ->())?) -> UIBarButtonItem {
+    private func closeButton(for viewController: UIViewController, onClose: (() -> Void)?) -> UIBarButtonItem {
         let button = UIBarButtonItem(title: "Close", style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
             viewController.dismiss(animated: true, completion: onClose)
@@ -117,9 +118,9 @@ public extension Router {
     }
 }
 
-//MARK: Deeplink
+// MARK: Deeplink
+
 public extension Router {
-    
     @discardableResult public func route(toDeeplink deeplink: String) -> UIViewController? {
         return handleDeeplink(deeplink)
     }
@@ -146,11 +147,11 @@ public extension Router {
     private func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
-                print("Could not open deeplink: \(deeplink)")
-                return nil
+            print("Could not open deeplink: \(deeplink)")
+            return nil
         }
         
-        //First check on top of the stack
+        // First check on top of the stack
         var currentController = from ?? currentViewController()
         
         var handled = false
@@ -158,12 +159,12 @@ public extension Router {
             handled = viewControllersFactory.update(viewController: currentController, fromDeeplink: deeplink)
         } else if let contained = (currentController as? UINavigationController)?.viewControllers.last,
             contained.isMember(of: controllerClass) {
-            //currentController might be a navigation controller (most likely) containing the controller class
+            // currentController might be a navigation controller (most likely) containing the controller class
             handled = viewControllersFactory.update(viewController: contained, fromDeeplink: deeplink)
         }
         
-        //The update method can fail. If for any reason we were not able to find a controller, or to update it
-        //we want to fallback on the default present/push logic
+        // The update method can fail. If for any reason we were not able to find a controller, or to update it
+        // we want to fallback on the default present/push logic
         if !handled {
             guard let deeplinkedViewController = viewControllersFactory.viewController(fromDeeplink: deeplink) else {
                 return nil
@@ -179,7 +180,7 @@ public extension Router {
                 navigationController.pushViewController(deeplinkedViewController, animated: animated)
             } else {
                 let navigationController = UINavigationController(rootViewController: deeplinkedViewController)
-
+                
                 currentController.present(navigationController, animated: animated, completion: nil)
                 
                 deeplinkedViewController.navigationItem.leftBarButtonItem = closeButton(for: deeplinkedViewController, onClose: nil)
@@ -190,10 +191,10 @@ public extension Router {
         return pushUnmatched(fromDeeplink: deeplink, from: currentController) ?? currentController
     }
     
-    ///If the deeplink is composed by a part that was not matched by the deeplinked controller
+    /// If the deeplink is composed by a part that was not matched by the deeplinked controller
     ///there might be a next deeplink path. Ex: thebay://productarray/1234/pdp/112233
-    ///would cause product array to match the first part, and to have `/pdp/112233` unmatched
-    ///a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
+    /// would cause product array to match the first part, and to have `/pdp/112233` unmatched
+    /// a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
     @discardableResult
     public func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?) -> UIViewController? {
         guard let newDeeplink = viewControllersFactory?.unmatchedDeeplinkRemainder(fromDeeplink: deeplink) else {

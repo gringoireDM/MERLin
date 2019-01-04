@@ -5,6 +5,7 @@ inhibit_all_warnings! # supresses pods project warnings
 def common
     pod 'LNZWeakCollection', '~>1.2.0'
     pod 'RxCocoa', '~>4.3.0'
+    pod 'SwiftFormat/CLI'
 end
 
 target 'MERLin' do
@@ -14,4 +15,9 @@ end
 target 'MERLinTests' do
     common
     pod 'RxTest', '~>4.2.0'
+end
+
+post_install do |installer|
+    # ensure git hooks are taken from the directory checked into git
+    system("git config core.hooksPath .githooks")
 end

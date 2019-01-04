@@ -14,7 +14,7 @@ public enum RoutingStepPresentationMode {
     case push(withCloseButton: Bool, onClose: (() -> Void)?)
     case modal(modalPresentationStyle: UIModalPresentationStyle)
     case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: Bool, onClose: (() -> Void)?)
-
+    
     public func override(withCloseButton closeButton: Bool, onClose: (() -> Void)?) -> RoutingStepPresentationMode? {
         switch self {
         case .push: return .push(withCloseButton: closeButton, onClose: onClose)

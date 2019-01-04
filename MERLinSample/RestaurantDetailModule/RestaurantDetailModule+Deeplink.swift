@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension RestaurantDetailModule: DeeplinkContextUpdatable {
     public static var deeplinkSchemaNames: [String] = ["rest"]
     public static func deeplinkRegexes() -> [NSRegularExpression]? {
@@ -33,13 +32,13 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
     
     private static func context(fromDeeplink deeplink: String) -> RestaurantDetailBuildContext? {
         guard let match = deeplinkRegexes()?.compactMap({ $0.firstMatch(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) }).first,
-            let idRange = Range(match.range(at: match.numberOfRanges-1), in: deeplink) else { return nil }
+            let idRange = Range(match.range(at: match.numberOfRanges - 1), in: deeplink) else { return nil }
         
         let id = String(deeplink[idRange])
         return RestaurantDetailBuildContext(withRoutingContext: "Deeplink", restaurantId: id)
     }
     
-    static public func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
+    public static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
         guard let context = RestaurantDetailModule.context(fromDeeplink: deeplink) else { return nil }
         
         let module = RestaurantDetailModule(usingContext: context)
@@ -47,11 +46,11 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
     }
     
     @discardableResult public func updateContext(fromDeeplink deeplink: String) -> Bool {
-        return false //don't want to replace the current restaurant on screen if any.
+        return false // don't want to replace the current restaurant on screen if any.
     }
 }
 
-//Adding deeplink knowledge for ProductIdentifying
+// Adding deeplink knowledge for ProductIdentifying
 public extension RestaurantProtocol {
     public var deeplinkURL: URL? {
         guard let schema = RestaurantDetailModule.deeplinkSchemaNames.first else { return nil }

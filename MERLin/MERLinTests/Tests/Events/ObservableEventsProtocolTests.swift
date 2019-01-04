@@ -6,10 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
+import RxCocoa
 import RxSwift
 import RxTest
-import RxCocoa
+import XCTest
 
 @testable import MERLin
 
@@ -17,15 +17,15 @@ class ObservableEventsProtocolTests: XCTestCase {
     var scheduler: TestScheduler!
     var emitter: PublishSubject<EventProtocol>!
     var disposeBag: DisposeBag!
-
+    
     override func setUp() {
         super.setUp()
-
+        
         disposeBag = DisposeBag()
         scheduler = TestScheduler(initialClock: 0)
         emitter = PublishSubject<EventProtocol>()
     }
-
+    
     override func tearDown() {
         disposeBag = nil
         scheduler = nil
@@ -144,5 +144,4 @@ class ObservableEventsProtocolTests: XCTestCase {
         
         XCTAssertEqual(observer.events, expected)
     }
-
 }

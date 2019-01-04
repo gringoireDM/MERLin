@@ -6,9 +6,9 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
-import RxSwift
 @testable import MERLin
+import RxSwift
+import XCTest
 
 class ModuleManagerTests: XCTestCase {
     var moduleManager: BaseModuleManager!
@@ -38,7 +38,7 @@ class ModuleManagerTests: XCTestCase {
         let eventsListener = MockAnyEventsListener()
         
         moduleManager.addEventsListeners([eventsListener])
-
+        
         XCTAssertEqual(eventsListener.registeredProducers.count, controllers.count)
     }
     

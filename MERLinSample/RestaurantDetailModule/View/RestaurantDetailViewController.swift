@@ -49,7 +49,7 @@ class RestaurantDetailViewController: UIViewController, DisplayingError, UITable
         let viewWillAppear = rx.sentMessage(#selector(viewWillAppear(_:)))
             .toVoid()
             .asDriverIgnoreError()
-
+        
         let bookTapped = bookButton.rx.tap
             .compactMap { [weak self] in self?.restaurant }
             .asDriverIgnoreError()

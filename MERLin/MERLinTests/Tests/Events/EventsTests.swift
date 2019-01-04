@@ -6,10 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
+@testable import MERLin
 import RxSwift
 import RxTest
-@testable import MERLin
+import XCTest
 
 class EventsTests: XCTestCase {
     var disposeBag: DisposeBag!
@@ -88,7 +88,7 @@ class EventsTests: XCTestCase {
             .next(300, MockEvent.withNamedPayload(payload: "100")),
             .next(400, MockEvent.withAnonymousPayload("400")),
             .next(300, MockEvent.noPayload)
-            ])
+        ])
         let results = scheduler.createObserver(String.self)
         
         events.capture(event: MockEvent.withAnonymousPayload)
@@ -114,7 +114,7 @@ class EventsTests: XCTestCase {
             .next(300, MockEvent.withNamedPayload(payload: "100")),
             .next(400, MockEvent.withAnonymousPayload("400")),
             .next(300, MockEvent.noPayload)
-            ])
+        ])
         let results = scheduler.createObserver(String.self)
         
         events.capture(event: MockEvent.withNamedPayload)
@@ -126,7 +126,7 @@ class EventsTests: XCTestCase {
         let expected: [Recorded<Event<String>>] = [
             .next(100, "100"),
             .next(300, "100")
-            ]
+        ]
         
         XCTAssertEqual(results.events, expected)
     }
@@ -139,7 +139,7 @@ class EventsTests: XCTestCase {
             .next(300, MockEvent.withNamedPayload(payload: "100")),
             .next(400, MockEvent.withAnonymousPayload("400")),
             .next(300, MockEvent.noPayload)
-            ])
+        ])
         let results = scheduler.createObserver(String.self)
         
         events.capture(event: MockEvent.noPayload)
@@ -153,7 +153,7 @@ class EventsTests: XCTestCase {
             .next(100, ""),
             .next(200, ""),
             .next(300, "")
-            ]
+        ]
         
         XCTAssertEqual(results.events, expected)
     }

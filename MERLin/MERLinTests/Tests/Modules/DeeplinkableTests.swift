@@ -6,11 +6,10 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
 @testable import MERLin
+import XCTest
 
 class DeeplinkableTests: XCTestCase {
-    
     func testThatMockIsIncludedInAvailableDeeplinkHandlers() {
         let mockType = DeeplinkMatcher.typedAvailableDeeplinkHandlers.values.filter { (type) -> Bool in
             return type == MockDeeplinkable.self
@@ -35,7 +34,7 @@ class DeeplinkableTests: XCTestCase {
         
         XCTAssertEqual(remainder, expectedRemainder)
     }
-
+    
     func testDeeplinkRemainderWithMatchingGroup() {
         let deeplink = "test://mock/2341234/product/1234"
         let expectedRemainder = "test://product/1234"
@@ -45,7 +44,7 @@ class DeeplinkableTests: XCTestCase {
         
         XCTAssertEqual(remainder, expectedRemainder)
     }
-
+    
     func testNoRemainder() {
         let deeplink = "test://mock/"
         let remainder = MockDeeplinkable.remainderDeeplink(fromDeeplink: deeplink)
@@ -72,7 +71,7 @@ class DeeplinkableTests: XCTestCase {
         let remainder = MockDeeplinkable.remainderDeeplink(fromDeeplink: deeplink)
         XCTAssertNotNil(remainder)
         XCTAssertEqual(remainder, expectedRemainder)
-
+        
         guard let newDeepLink = remainder else {
             XCTFail("No remainder. \(expectedRemainder) was expected.")
             return

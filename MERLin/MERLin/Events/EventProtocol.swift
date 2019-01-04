@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol EventProtocol { }
+public protocol EventProtocol {}
 
 public extension EventProtocol {
     public func matches(event: Self) -> Bool {
@@ -25,7 +25,7 @@ public extension EventProtocol {
         return decompose()?.payload
     }
     
-    public func extractPayload<Payload>(ifMatches pattern: (Payload)->Self) -> Payload? {
+    public func extractPayload<Payload>(ifMatches pattern: (Payload) -> Self) -> Payload? {
         guard let decomposed: (String, Payload) = decompose(),
             let patternLabel = Mirror(reflecting: pattern(decomposed.1)).children.first?.label,
             decomposed.0 == patternLabel else { return nil }
@@ -35,14 +35,14 @@ public extension EventProtocol {
     
     private func decompose<Payload>() -> (label: String, payload: Payload)? {
         for case let (label?, value) in Mirror(reflecting: self).children {
-            //At this point we must check if the value of the event is of the same type of Payload.
-            //XCode 10 introduces single value tuples so that
-            //`case event(String)` and `case event(name: String)` will have different types.
-            //In the first case the value will be of type String, in the second will be of type
-            //`(name: String)`. If value do not match payload we are looking for the second case
-            //inspecting the Mirror of value.
-            //multivalue Tuples will always succede in the first type case to `Payload`, so in the
-            //second evaluation we are really just concerned about the single value tuples.
+            // At this point we must check if the value of the event is of the same type of Payload.
+            // XCode 10 introduces single value tuples so that
+            // `case event(String)` and `case event(name: String)` will have different types.
+            // In the first case the value will be of type String, in the second will be of type
+            // `(name: String)`. If value do not match payload we are looking for the second case
+            // inspecting the Mirror of value.
+            // multivalue Tuples will always succede in the first type case to `Payload`, so in the
+            // second evaluation we are really just concerned about the single value tuples.
             if let result = (value as? Payload) ?? (Mirror(reflecting: value).children.first?.value as? Payload) {
                 return (label, result)
             }
@@ -62,14 +62,14 @@ public extension EventProtocol where Self == AnyEvent {
         return base.matches(pattern: pattern)
     }
     
-    public func extractPayload<T: EventProtocol, Payload>(ifMatches pattern: (Payload)->T) -> Payload? {
+    public func extractPayload<T: EventProtocol, Payload>(ifMatches pattern: (Payload) -> T) -> Payload? {
         guard let base = base as? T else { return nil }
         return base.extractPayload(ifMatches: pattern)
     }
 }
 
 public struct AnyEvent: EventProtocol, CustomReflectable, CustomStringConvertible {
-    var base: Any&EventProtocol
+    var base: Any & EventProtocol
     init<H: EventProtocol>(base: H) {
         self.base = base
     }
