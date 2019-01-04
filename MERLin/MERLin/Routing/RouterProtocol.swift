@@ -96,7 +96,7 @@ public extension Router {
         guard let embeddedView = viewController.view else { return nil }
         viewController.willMove(toParent: parentController)
         parentController.addChild(viewController)
-        container.translatesAutoresizingMaskIntoConstraints = false
+        embeddedView.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(embeddedView)
         NSLayoutConstraint.activate([
             embeddedView.topAnchor.constraint(equalTo: container.topAnchor),
