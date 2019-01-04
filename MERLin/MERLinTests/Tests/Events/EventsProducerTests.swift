@@ -61,7 +61,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.start()
 
         let expected: [Recorded<Event<MockEvent>>] = [
-            next(1, .noPayload)
+            .next(1, .noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -78,8 +78,26 @@ class EventsProducerTests: XCTestCase {
         
         scheduler.start()
         
-        let expected: [Recorded<Event<MockEvent>>] = [
-            next(1, .noPayload)
+        let expected = [
+            Recorded.next(1, MockEvent.noPayload)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testThatItCanEmitEventsThroughProducerSubscript() {
+        let observer = scheduler.createObserver(MockEvent.self)
+
+        producer[event: MockEvent.noPayload]
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        
+        scheduler.scheduleAt(1) { self.emitter.onNext(.noPayload) }
+        
+        scheduler.start()
+        
+        let expected = [
+            Recorded.next(1, MockEvent.noPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -97,8 +115,8 @@ class EventsProducerTests: XCTestCase {
         
         scheduler.start()
         
-        let expected: [Recorded<Event<String>>] = [
-            next(1, expectedPayload)
+        let expected = [
+            Recorded.next(1, expectedPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -116,8 +134,27 @@ class EventsProducerTests: XCTestCase {
         
         scheduler.start()
         
-        let expected: [Recorded<Event<String>>] = [
-            next(1, expectedPayload)
+        let expected = [
+            Recorded.next(1, expectedPayload)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testThatItCanCapturePayloadsThroughSubscript() {
+        let expectedPayload = "David Bowie"
+        let observer = scheduler.createObserver(String.self)
+        
+        producer[event: MockEvent.withAnonymousPayload]
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        
+        scheduler.scheduleAt(1) { self.emitter.onNext(MockEvent.withAnonymousPayload(expectedPayload)) }
+        
+        scheduler.start()
+        
+        let expected = [
+            Recorded.next(1, expectedPayload)
         ]
         
         XCTAssertEqual(observer.events, expected)

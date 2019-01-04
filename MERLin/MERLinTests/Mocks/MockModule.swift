@@ -10,7 +10,7 @@ import Foundation
 import MERLin
 import RxSwift
 
-struct NoEvents: EventProtocol { }
+struct NoEvents: EventProtocol, Equatable { }
 
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
