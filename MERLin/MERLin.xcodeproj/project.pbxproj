@@ -753,7 +753,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03D8D7C394AE25D9C54A348E /* Pods-MERLinTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
 				INFOPLIST_FILE = MERLinTests/Info.plist;
@@ -773,7 +772,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1362662CB514BD99E0C44646 /* Pods-MERLinTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
 				INFOPLIST_FILE = MERLinTests/Info.plist;
