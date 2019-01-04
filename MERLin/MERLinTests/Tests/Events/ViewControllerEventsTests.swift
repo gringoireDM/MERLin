@@ -19,7 +19,8 @@ class ViewControllerEventsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         disposeBag = DisposeBag()
-        module = MockModule(usingContext: ModuleContext(routingContext: "mock"))
+        let context = ModuleContext(routingContext: "mock", building: MockModule.self)
+        module = MockModule(usingContext: context)
         scheduler = TestScheduler(initialClock: 0)
     }
     

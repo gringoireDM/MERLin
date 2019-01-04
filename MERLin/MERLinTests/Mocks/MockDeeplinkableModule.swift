@@ -12,7 +12,6 @@ import MERLin
 class MockViewController: UIViewController { }
 
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
-    var currentViewController: UIViewController? = MockViewController()
     static var deeplinkSchemaNames: [String] = ["test"]
     
     var context: ModuleContext
@@ -23,7 +22,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
     
     func unmanagedRootViewController() -> UIViewController {
-        return currentViewController!
+        return MockViewController()
     }
     
     static func classForDeeplinkingViewController() -> UIViewController.Type {
@@ -31,7 +30,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
     
     static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
-        let module = MockDeeplinkable(usingContext: ModuleContext())
+        let module = MockDeeplinkable(usingContext: ModuleContext(building: MockDeeplinkable.self))
         return (module, module.prepareRootViewController())
     }
     

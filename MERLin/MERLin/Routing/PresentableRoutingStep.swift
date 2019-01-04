@@ -25,14 +25,14 @@ public enum RoutingStepPresentationMode {
 }
 
 public struct ModuleRoutingStep {
-    private var wrappedMaker: ModuleMaking
+    private var wrappedMaker: AnyModuleContextProtocol
     public var routingContext: String { return wrappedMaker.routingContext }
     
     public var make: () -> (AnyModule, UIViewController) {
         return wrappedMaker.make
     }
     
-    public init(withMaker maker: ModuleMaking) {
+    public init(withMaker maker: AnyModuleContextProtocol) {
         wrappedMaker = maker
     }
 }

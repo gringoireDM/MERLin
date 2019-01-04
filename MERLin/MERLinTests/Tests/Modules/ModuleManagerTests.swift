@@ -76,6 +76,5 @@ class ModuleManagerTests: XCTestCase {
         let remainder = moduleManager.unmatchedDeeplinkRemainder(fromDeeplink: deeplink)
         XCTAssertNotNil(remainder)
         XCTAssertEqual(remainder, expectedRemainder)
-
     }
 }

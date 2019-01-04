@@ -18,7 +18,6 @@
 		50B118A8213C30BF008928AF /* RestaurantsListModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50B118A0213C30BF008928AF /* RestaurantsListModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B118BB213C31A2008928AF /* RestaurantsListModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118AD213C31A2008928AF /* RestaurantsListModule.swift */; };
 		50B118BC213C31A2008928AF /* ShortRestaurantProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118AF213C31A2008928AF /* ShortRestaurantProtocol.swift */; };
-		50B118BD213C31A2008928AF /* RoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118B0213C31A2008928AF /* RoutingStep.swift */; };
 		50B118BE213C31A2008928AF /* ListPageStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118B3213C31A2008928AF /* ListPageStateMachine.swift */; };
 		50B118BF213C31A2008928AF /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118B4213C31A2008928AF /* MockRepository.swift */; };
 		50B118C1213C31A2008928AF /* RestaurantsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B118B6213C31A2008928AF /* RestaurantsRepository.swift */; };
@@ -100,7 +99,6 @@
 		50B118A3213C30BF008928AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B118AD213C31A2008928AF /* RestaurantsListModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsListModule.swift; sourceTree = "<group>"; };
 		50B118AF213C31A2008928AF /* ShortRestaurantProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortRestaurantProtocol.swift; sourceTree = "<group>"; };
-		50B118B0213C31A2008928AF /* RoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingStep.swift; sourceTree = "<group>"; };
 		50B118B3213C31A2008928AF /* ListPageStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPageStateMachine.swift; sourceTree = "<group>"; };
 		50B118B4213C31A2008928AF /* MockRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		50B118B6213C31A2008928AF /* RestaurantsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsRepository.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 			children = (
 				50B118A2213C30BF008928AF /* RestaurantsListModule.h */,
 				50B118AD213C31A2008928AF /* RestaurantsListModule.swift */,
-				50B118B0213C31A2008928AF /* RoutingStep.swift */,
 				50B118AE213C31A2008928AF /* Model */,
 				50B118B1213C31A2008928AF /* ViewModel */,
 				50B118B8213C31A2008928AF /* View */,
@@ -620,7 +617,6 @@
 				50B118BF213C31A2008928AF /* MockRepository.swift in Sources */,
 				50B118BC213C31A2008928AF /* ShortRestaurantProtocol.swift in Sources */,
 				50B118C2213C31A2008928AF /* RestaurantsListViewModel.swift in Sources */,
-				50B118BD213C31A2008928AF /* RoutingStep.swift in Sources */,
 				50B118C1213C31A2008928AF /* RestaurantsRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ typealias InternalRestaurantsListEvent = RestaurantsListEvent
 
 extension ModuleRoutingStep {
     static func restaurantsList(routingContext: RoutingContext = .mainFlow) -> ModuleRoutingStep {
-        let step = RestaurantsListStep(routingContext: routingContext.rawValue)
+        let step = ModuleContext(routingContext: routingContext.rawValue, building: RestaurantsListModule.self)
         return ModuleRoutingStep(withMaker: step)
     }
 }

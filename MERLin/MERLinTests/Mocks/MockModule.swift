@@ -12,11 +12,27 @@ import RxSwift
 
 struct NoEvents: EventProtocol, Equatable { }
 
+struct MockContext: ModuleContextProtocol, Equatable {
+    typealias ModuleType = ContextualizedMockModule
+    var routingContext: String
+}
+
+class ContextualizedMockModule: NSObject, ModuleProtocol {
+    var context: MockContext
+
+    required init(usingContext buildContext: MockContext) {
+        context = buildContext
+        super.init()
+    }
+    
+    func unmanagedRootViewController() -> UIViewController {
+        return UIViewController()
+    }
+}
+
 class MockModule: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
     
-    var currentViewController: UIViewController?
-
     var moduleName: String = "MockModule"
     var moduleSection: String = "ModuleTests"
     var moduleType: String = "test"
@@ -32,18 +48,8 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
     }
 }
 
-struct MockStep: ModuleMaking {
-    var routingContext: String = ""
-    
-    var make: () -> (AnyModule, UIViewController) {
-        return {
-            return (MockModule(usingContext: ModuleContext()), UIViewController())
-        }
-    }
-}
-
 extension ModuleRoutingStep {
     static func mock() -> ModuleRoutingStep {
-        return ModuleRoutingStep(withMaker: MockStep())
+        return ModuleRoutingStep(withMaker: ModuleContext(building: MockModule.self))
     }
 }

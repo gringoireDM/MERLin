@@ -19,14 +19,12 @@ public enum ViewControllerEvent: EventProtocol {
 public protocol AnyModule: class, NSObjectProtocol {
     var viewControllerEvent: Observable<ViewControllerEvent> { get }
     var routingContext: String { get }
-    var currentViewController: UIViewController? { get }
 
     func unmanagedRootViewController() -> UIViewController
-    func prepareRootViewController() -> UIViewController
 }
 
 public protocol ModuleProtocol: AnyModule {
-    associatedtype Context: ModuleBuildContextProtocol
+    associatedtype Context: AnyModuleContextProtocol
     var context: Context { get }
     
     init(usingContext buildContext: Context)
@@ -36,9 +34,30 @@ public extension ModuleProtocol {
     public var routingContext: String { return context.routingContext }
 }
 
+private class ViewControllerWrapper {
+    weak var controller: UIViewController?
+    init(controller: UIViewController) { self.controller = controller }
+}
+
 private var viewControllerEventHandle: UInt8 = 0
+private var viewControllerHandle: UInt8 = 0
 private var disposeBagHandle:UInt8 = 0
-public extension AnyModule where Self: NSObject {
+public extension AnyModule {
+    public internal(set) var rootViewController: UIViewController? {
+        get {
+            let wrapper = objc_getAssociatedObject(self, &viewControllerHandle) as? ViewControllerWrapper
+            return wrapper?.controller
+        } set {
+            guard let viewController = newValue else {
+                objc_setAssociatedObject(self, &viewControllerHandle, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return
+            }
+            guard viewController != rootViewController else { return }
+            let wrapper = ViewControllerWrapper(controller: viewController)
+            objc_setAssociatedObject(self, &viewControllerHandle, wrapper, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
     public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
     private var _viewControllerEvent: BehaviorSubject<ViewControllerEvent> {
         guard let observable = objc_getAssociatedObject(self, &viewControllerEventHandle) as? BehaviorSubject<ViewControllerEvent> else {
@@ -59,8 +78,10 @@ public extension AnyModule where Self: NSObject {
     }
     
     public func prepareRootViewController() -> UIViewController {
+        guard rootViewController == nil else { return rootViewController! }
         let controller = unmanagedRootViewController()
-
+        rootViewController = controller
+        
         _viewControllerEvent.onNext(.initialized)
         let didAppearProducer = controller.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .map { _ in ViewControllerEvent.appeared }

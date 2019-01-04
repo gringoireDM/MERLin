@@ -19,8 +19,6 @@ extension UIStoryboard {
 }
 
 public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
-    public weak var currentViewController: UIViewController?
-    
     public var context: ModuleContext
     
     public var moduleName: String = "Restaurants List"
@@ -31,7 +29,7 @@ public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
     private let _events = PublishSubject<RestaurantsListEvent>()
     
     public func unmanagedRootViewController() -> UIViewController {
-        let controller = currentViewController ?? UIStoryboard.restaurantsList.instantiateInitialViewController()!
+        let controller = UIStoryboard.restaurantsList.instantiateInitialViewController()!
         guard let listController = controller as? RestaurantsListViewController else { return controller }
         listController.viewModel = RestaurantsListViewModel(events: _events)
         
