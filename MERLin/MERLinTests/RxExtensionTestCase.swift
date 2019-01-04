@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import RxCocoa
 import RxSwift
 import RxTest
-import RxCocoa
 
 protocol RxExtensionTestCase {
     var scheduler: TestScheduler! { get }

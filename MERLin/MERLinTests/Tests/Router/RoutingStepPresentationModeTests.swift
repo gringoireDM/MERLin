@@ -11,14 +11,13 @@ import XCTest
 @testable import MERLin
 
 class RoutingStepPresentationModeTests: XCTestCase {
-    
     func testItCanOverridePushWithCloseButton() {
         var value = 1
         let mode = RoutingStepPresentationMode.push(withCloseButton: false, onClose: nil)
         guard let newMode = mode.override(withCloseButton: true, onClose: { value += 1 }),
             case let .push(closeButton, onClose) = newMode else {
-                XCTFail("newMode is not push")
-                return
+            XCTFail("newMode is not push")
+            return
         }
         XCTAssert(closeButton)
         onClose?()
@@ -30,8 +29,8 @@ class RoutingStepPresentationModeTests: XCTestCase {
         let mode = RoutingStepPresentationMode.modalWithNavigation(modalPresentationStyle: .currentContext, withCloseButton: false, onClose: nil)
         guard let newMode = mode.override(withCloseButton: true, onClose: { value += 1 }),
             case let .modalWithNavigation(style, closeButton, onClose) = newMode else {
-                XCTFail("newMode is not modal with navigation")
-                return
+            XCTFail("newMode is not modal with navigation")
+            return
         }
         XCTAssertEqual(style, .currentContext)
         XCTAssert(closeButton)
@@ -47,7 +46,7 @@ class RoutingStepPresentationModeTests: XCTestCase {
         ]
         
         for mode in modes {
-            XCTAssertNil(mode.override(withCloseButton: true) { })
+            XCTAssertNil(mode.override(withCloseButton: true) {})
         }
     }
 }

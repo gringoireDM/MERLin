@@ -6,9 +6,9 @@
 //  Copyright © 2018 HBCDigital. All rights reserved.
 //
 
-import UIKit
 import MERLin
 import RxSwift
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
@@ -20,21 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     
     var events: Observable<AppDelegateEvent> { return _events }
     private let _events = PublishSubject<AppDelegateEvent>()
-
+    
     var window: UIWindow?
-
+    
     var moduleManager: BaseModuleManager = BaseModuleManager()
-
+    
     var router: SimpleRouter!
     lazy var eventsListeners: [AnyEventsListening] = {
-        return [
+        [
             ConsoleLogEventsListener(),
             AppDelegateEventsListener(withRouter: router),
             RoutingEventsListener(withRouter: router)
         ]
     }()
-
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         router = SimpleRouter(withFactory: moduleManager)
         moduleManager.addEventsListeners(eventsListeners)
         
@@ -44,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         window = UIWindow()
         window?.rootViewController = router.rootViewController(forLaunchOptions: launchOptions)
         window?.makeKeyAndVisible()
@@ -53,9 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
         
         return true
     }
-
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         guard app.canOpenURL(url) == true else {
             return false
         }
@@ -81,6 +79,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         _events.onNext(.didUseShortcut(shortcutItem))
     }
-
 }
-

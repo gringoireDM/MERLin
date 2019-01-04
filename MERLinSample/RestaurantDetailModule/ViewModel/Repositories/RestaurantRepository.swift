@@ -12,7 +12,6 @@ protocol RestaurantRepository {
     func getRestaurantDetail(for id: String) -> Single<RestaurantProtocol>
 }
 
-
 extension Array where Element == RestaurantRepository {
     func getDetail(for id: String) -> Single<RestaurantProtocol> {
         var getRestaurant: Single<RestaurantProtocol>!
@@ -21,8 +20,8 @@ extension Array where Element == RestaurantRepository {
                 getRestaurant = repo.getRestaurantDetail(for: id)
             } else {
                 getRestaurant = getRestaurant.catchError { _ in
-                    //could check if the error is a connectivity error and have a better error handling
-                    return repo.getRestaurantDetail(for: id)
+                    // could check if the error is a connectivity error and have a better error handling
+                    repo.getRestaurantDetail(for: id)
                 }
             }
         }

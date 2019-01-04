@@ -48,10 +48,10 @@ class RestaurantDetailViewModel: RestaurantDetailViewModelProtcol {
             .disposed(by: disposeBag)
         
         let errors = PublishSubject<DisplayableError>()
-
+        
         let getDetail = repositories.getDetail(for: id)
         
-        let restaurantDetailFetched = input.viewWillAppear.flatMap({ _ in return getDetail.asDriver(onErrorSendErrorTo: errors) })
+        let restaurantDetailFetched = input.viewWillAppear.flatMap({ _ in getDetail.asDriver(onErrorSendErrorTo: errors) })
         
         return Output(restaurantDetailFetched: restaurantDetailFetched, error: errors.asDriverIgnoreError())
     }

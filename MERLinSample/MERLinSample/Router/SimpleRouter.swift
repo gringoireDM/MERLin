@@ -17,24 +17,24 @@ class SimpleRouter: Router {
     }
     
     var topViewController: UIViewController { return rootNavigationController }
-    private lazy var rootNavigationController: UINavigationController =  {
+    private lazy var rootNavigationController: UINavigationController = {
         let presentableStep = PresentableRoutingStep(withStep: .restaurantsList(), presentationMode: .none)
         return UINavigationController(rootViewController: viewControllersFactory!.viewController(for: presentableStep))
     }()
     
-    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> UIViewController? {
+    func rootViewController(forLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> UIViewController? {
         return rootNavigationController
     }
     
     func handleShortcutItem(_ item: UIApplicationShortcutItem) {
-        //Not implemented
+        // Not implemented
     }
     
     func showLoadingView() {
-        //Not implemented
+        // Not implemented
     }
     
     func hideLoadingView() {
-        //Not implemented
+        // Not implemented
     }
 }

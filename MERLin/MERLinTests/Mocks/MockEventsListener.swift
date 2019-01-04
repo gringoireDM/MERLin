@@ -25,4 +25,3 @@ class MockEventsListener<E: EventProtocol>: EventsListening {
         return true
     }
 }
-

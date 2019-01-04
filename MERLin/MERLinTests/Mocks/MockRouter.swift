@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import RxSwift
 import MERLin
+import RxSwift
 
 class MockRouter: Router {
     var window: UIWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -22,7 +22,7 @@ class MockRouter: Router {
     }
     
     var disposeBag: DisposeBag = DisposeBag()
-
+    
     init(withRootViewController root: UIViewController) {
         topViewController = root
         setCurrentToWindow()
@@ -38,7 +38,7 @@ class MockRouter: Router {
         return topViewController
     }
     
-    func handleShortcutItem(_ item: UIApplicationShortcutItem) { }
-    func showLoadingView() { }
-    func hideLoadingView() { }
+    func handleShortcutItem(_ item: UIApplicationShortcutItem) {}
+    func showLoadingView() {}
+    func hideLoadingView() {}
 }

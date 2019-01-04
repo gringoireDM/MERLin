@@ -12,7 +12,7 @@ public protocol AnyEventsProducer: class {
     var moduleName: String { get }
     var moduleSection: String { get }
     var moduleType: String { get }
-
+    
     var disposeBag: DisposeBag { get }
     var anyEvents: Observable<EventProtocol> { get }
     
@@ -47,7 +47,7 @@ public extension EventsProducer {
     public var anyEvents: Observable<EventProtocol> { return events.toEventProtocol() }
     
     public func observable<E: EventProtocol>(of type: E.Type) -> Observable<E>? {
-        //If E is AnyEvent, we want to transform the observable first. if the downcasting fails, then E is not AnyEvent.
+        // If E is AnyEvent, we want to transform the observable first. if the downcasting fails, then E is not AnyEvent.
         guard let e = events.toAnyEvent() as? Observable<E> ?? events as? Observable<E> else { return nil }
         return e
     }

@@ -6,9 +6,9 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
 import RxSwift
 import RxTest
+import XCTest
 
 @testable import MERLin
 
@@ -25,7 +25,7 @@ class EventsProducerTests: XCTestCase {
         scheduler = TestScheduler(initialClock: 0)
         emitter = (producer as! MockProducer)._events
     }
-
+    
     override func tearDown() {
         disposeBag = nil
         producer = nil
@@ -59,7 +59,7 @@ class EventsProducerTests: XCTestCase {
         scheduler.scheduleAt(1) { self.emitter.onNext(.noPayload) }
         
         scheduler.start()
-
+        
         let expected: [Recorded<Event<MockEvent>>] = [
             .next(1, .noPayload)
         ]
@@ -87,7 +87,7 @@ class EventsProducerTests: XCTestCase {
     
     func testThatItCanEmitEventsThroughProducerSubscript() {
         let observer = scheduler.createObserver(MockEvent.self)
-
+        
         producer[event: MockEvent.noPayload]
             .subscribe(observer)
             .disposed(by: disposeBag)

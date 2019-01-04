@@ -9,7 +9,6 @@
 import Foundation
 
 class MenuItemCell: UITableViewCell {
-    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -20,5 +19,4 @@ class MenuItemCell: UITableViewCell {
         priceLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         priceLabel.textColor = tintColor
     }
-
 }

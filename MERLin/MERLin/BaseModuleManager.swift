@@ -17,19 +17,18 @@ class ModuleWrapper {
 }
 
 open class BaseModuleManager {
-    
     private var eventsListeners: [AnyEventsListening]
     
     public init(withEventsListeners eventsListeners: [AnyEventsListening] = []) {
         self.eventsListeners = eventsListeners
     }
     
-    //Hash consing design pattern.
-    //The module will be retained by the viewController in this data structure,
-    //but the reference to the view controller is weak. UIKit will retain the viewController
-    //for as long as it stays on screen. When the viewController is dismissed, it will be
-    //released, and when this happens, the module itself will be disposed as no one is retaining
-    //it any longer.
+    // Hash consing design pattern.
+    // The module will be retained by the viewController in this data structure,
+    // but the reference to the view controller is weak. UIKit will retain the viewController
+    // for as long as it stays on screen. When the viewController is dismissed, it will be
+    // released, and when this happens, the module itself will be disposed as no one is retaining
+    // it any longer.
     var moduleRetainer = WeakDictionary<UIViewController, ModuleWrapper>(withWeakRelation: .weakToStrong)
     
     public func setupEventsListeners(for module: AnyModule) {
@@ -64,7 +63,8 @@ open class BaseModuleManager {
 }
 
 extension BaseModuleManager: DeeplinkManaging {
-    //MARK: - Deeplinks
+    // MARK: - Deeplinks
+    
     private func deeplinkable(fromDeeplink deeplink: String) -> Deeplinkable.Type? {
         guard let type = DeeplinkMatcher.typedAvailableDeeplinkHandlers.compactMap({ (pair) -> Deeplinkable.Type? in
             let (key, value) = pair
@@ -99,7 +99,6 @@ extension BaseModuleManager: DeeplinkManaging {
 }
 
 extension BaseModuleManager: ViewControllerBuilding {
-    
     public func setup<T: UIViewController>(_ moduleController: (module: AnyModule, controller: T)) -> T {
         moduleRetainer.set(ModuleWrapper(moduleController.module), forKey: moduleController.controller)
         setupEventsListeners(for: moduleController.module)
