@@ -8,6 +8,14 @@
 
 import Foundation
 
+public enum DeeplinkMatchingPriority: Int {
+    case veryLow
+    case low
+    case medium
+    case high
+    case veryHigh
+}
+
 /**
  Make a Module subclass conforming this protocol to make that module
  automatically deeplinkable. The principle behind this automatic implementation
@@ -32,6 +40,8 @@ import Foundation
 }
 
 public protocol Deeplinkable: DeeplinkResponder {
+    static var priority: DeeplinkMatchingPriority { get }
+    
     /// The class for the ViewController pointed by the deeplink. This can be used by the
     /// router for introspection on the current ViewControllers in the stack, to decide
     /// If a currently alive module must be updated, or if a new one must be created.
@@ -53,6 +63,7 @@ public protocol DeeplinkContextUpdatable: Deeplinkable {
 }
 
 public extension Deeplinkable {
+    public static var priority: DeeplinkMatchingPriority { return .medium }
     /**
      This method will return a new deeplink composed by the first schema name defined
      in the concrete class, plus the unmatched part of the original deeplink.

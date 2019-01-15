@@ -65,11 +65,15 @@ open class BaseModuleManager {
 extension BaseModuleManager: DeeplinkManaging {
     // MARK: - Deeplinks
     
-    private func deeplinkable(fromDeeplink deeplink: String) -> Deeplinkable.Type? {
-        guard let type = DeeplinkMatcher.typedAvailableDeeplinkHandlers.compactMap({ (pair) -> Deeplinkable.Type? in
+    func deeplinkable(fromDeeplink deeplink: String) -> Deeplinkable.Type? {
+        let responders = DeeplinkMatcher.typedAvailableDeeplinkHandlers.compactMap({ (pair) -> Deeplinkable.Type? in
             let (key, value) = pair
             guard key.numberOfMatches(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) > 0 else { return nil }
             return value as? Deeplinkable.Type
+        })
+        
+        guard let type = responders.sorted(by: { (lhs, rhs) -> Bool in
+            lhs.priority.rawValue > rhs.priority.rawValue
         }).first else { return nil }
         return type
     }
