@@ -42,6 +42,21 @@ class ModuleManagerTests: XCTestCase {
         XCTAssertEqual(eventsListener.registeredProducers.count, controllers.count)
     }
     
+    func testCorrectResponders() {
+        let deeplink = "test://mock/product/1234"
+        
+        let type = moduleManager.deeplinkable(fromDeeplink: deeplink)
+        XCTAssert(type == MockDeeplinkable.self)
+        
+        guard let remainder = MockDeeplinkable.remainderDeeplink(fromDeeplink: deeplink) else {
+            XCTFail()
+            return
+        }
+        
+        let secondType = moduleManager.deeplinkable(fromDeeplink: remainder)
+        XCTAssert(secondType == LowPriorityMockDeeplinkableModule.self)
+    }
+    
     func testThatItCanRetrieveTheRightViewControllerTypeForDeeplink() {
         let deeplink = "test://mock/2341234"
         let type = moduleManager.viewControllerType(fromDeeplink: deeplink)
