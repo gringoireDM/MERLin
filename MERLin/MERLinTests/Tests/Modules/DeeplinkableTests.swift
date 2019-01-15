@@ -35,6 +35,16 @@ class DeeplinkableTests: XCTestCase {
         XCTAssertEqual(remainder, expectedRemainder)
     }
     
+    func testDeeplinkRemainderWithSecondSchema() {
+        let deeplink = "anotherTest://mock/product/1234"
+        let expectedRemainder = "anotherTest://product/1234"
+        
+        let remainder = MockDeeplinkable.remainderDeeplink(fromDeeplink: deeplink)
+        XCTAssertNotNil(remainder)
+        
+        XCTAssertEqual(remainder, expectedRemainder)
+    }
+    
     func testDeeplinkRemainderWithMatchingGroup() {
         let deeplink = "test://mock/2341234/product/1234"
         let expectedRemainder = "test://product/1234"

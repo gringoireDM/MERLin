@@ -12,7 +12,7 @@ import MERLin
 class MockViewController: UIViewController {}
 
 class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
-    static var deeplinkSchemaNames: [String] = ["test"]
+    static var deeplinkSchemaNames: [String] = ["test", "anotherTest"]
     
     var context: ModuleContext
     
@@ -39,8 +39,11 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
     
     static func deeplinkRegexes() -> [NSRegularExpression]? {
-        let regEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
-        let productRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/product\\/?([0-9]+)", options: .caseInsensitive)
-        return [regEx, productRegEx]
+        let testRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
+        let testProductRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/product\\/?([0-9]+)", options: .caseInsensitive)
+        let anotherTestRegEx = try! NSRegularExpression(pattern: "\\banotherTest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
+        let anotherTestProductRegEx = try! NSRegularExpression(pattern: "\\banotherTest\\:\\/\\/product\\/?([0-9]+)", options: .caseInsensitive)
+        
+        return [testRegEx, testProductRegEx, anotherTestRegEx, anotherTestProductRegEx]
     }
 }
