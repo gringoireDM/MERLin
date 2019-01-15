@@ -42,6 +42,16 @@ public enum DeeplinkMatchingPriority: Int {
 public protocol Deeplinkable: DeeplinkResponder {
     static var priority: DeeplinkMatchingPriority { get }
     
+    /**
+     This method will return a new deeplink composed by the first schema name defined
+     in the concrete class, plus the unmatched part of the original deeplink.
+     
+     - parameter deeplink: The original deeplink you want the remainder of.
+     - returns: A new deeplink for the unmatched part of the deeplink in parameter, or
+     nil if there are no unmatched parameters in the deeplink.
+     */
+    static func remainderDeeplink(fromDeeplink deeplink: String) -> String?
+    
     /// The class for the ViewController pointed by the deeplink. This can be used by the
     /// router for introspection on the current ViewControllers in the stack, to decide
     /// If a currently alive module must be updated, or if a new one must be created.
@@ -64,14 +74,7 @@ public protocol DeeplinkContextUpdatable: Deeplinkable {
 
 public extension Deeplinkable {
     public static var priority: DeeplinkMatchingPriority { return .medium }
-    /**
-     This method will return a new deeplink composed by the first schema name defined
-     in the concrete class, plus the unmatched part of the original deeplink.
-     
-     - parameter deeplink: The original deeplink you want the remainder of.
-     - returns: A new deeplink for the unmatched part of the deeplink in parameter, or
-     nil if there are no unmatched parameters in the deeplink.
-     */
+    
     public static func remainderDeeplink(fromDeeplink deeplink: String) -> String? {
         let optionalSchema = deeplinkSchemaNames.first {
             return deeplink.hasPrefix($0)
