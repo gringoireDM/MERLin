@@ -62,7 +62,11 @@ public extension Deeplinkable {
      nil if there are no unmatched parameters in the deeplink.
      */
     public static func remainderDeeplink(fromDeeplink deeplink: String) -> String? {
-        guard let schema = deeplinkSchemaNames.first,
+        let optionalSchema = deeplinkSchemaNames.first {
+            return deeplink.hasPrefix($0)
+        }
+        
+        guard let schema = optionalSchema,
             let match = deeplinkRegexes()?.compactMap({ $0.firstMatch(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) }).first,
             let range = Range(match.range(at: 0), in: deeplink) else { return nil }
         
