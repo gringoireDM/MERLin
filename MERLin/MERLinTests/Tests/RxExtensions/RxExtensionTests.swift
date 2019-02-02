@@ -104,6 +104,72 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         XCTAssertEqual(observer.events.map { $0.value.element }, ["a"])
     }
     
+    func testItCanCompactFlatMapFirst() {
+        let events = [
+            Recorded.next(1, true),
+            .next(2, nil),
+            .next(3, false)
+        ]
+        
+        let observer = buildTest(emitting: events) { emitter in
+            return emitter.compactFlatMapFirst { value -> Observable<Bool>? in
+                guard let value = value else { return nil }
+                return Observable<Bool>.just(value)
+            }
+        }
+        
+        let expected: [Recorded<Event<Bool>>] = [
+            .next(1, true),
+            .next(3, false)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanCompactFlatMap() {
+        let events = [
+            Recorded.next(1, true),
+            .next(2, nil),
+            .next(3, false)
+        ]
+        
+        let observer = buildTest(emitting: events) { emitter in
+            return emitter.compactFlatMap { value -> Observable<Bool>? in
+                guard let value = value else { return nil }
+                return Observable<Bool>.just(value)
+            }
+        }
+        
+        let expected: [Recorded<Event<Bool>>] = [
+            .next(1, true),
+            .next(3, false)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanCompactFlatMapLatest() {
+        let events = [
+            Recorded.next(1, true),
+            .next(2, nil),
+            .next(3, false)
+        ]
+        
+        let observer = buildTest(emitting: events) { emitter in
+            return emitter.compactFlatMapLatest { value -> Observable<Bool>? in
+                guard let value = value else { return nil }
+                return Observable<Bool>.just(value)
+            }
+        }
+        
+        let expected: [Recorded<Event<Bool>>] = [
+            .next(1, true),
+            .next(3, false)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
     // MARK: Driver Extension
     
     func testItCanUnwrapDriver() {
@@ -222,6 +288,74 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         let expected = [
             Recorded.next(200, ()),
             .completed(200)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanCompactFlatMapSingle() {
+        let value: Bool? = true
+        let observer = buildTest(value: value) { emitter in
+            return emitter.compactFlatMapOrSwitch(to: .just(false)) {
+                guard let value = $0 else { return nil }
+                return .just(value)
+            }
+        }
+        
+        let expected = [
+            Recorded.next(200, true),
+            .completed(200)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanSwitchOnCompactFlatMapSingle() {
+        let value: Bool? = nil
+        let observer = buildTest(value: value) { emitter in
+            return emitter.compactFlatMapOrSwitch(to: .just(false)) {
+                guard let value = $0 else { return nil }
+                return .just(value)
+            }
+        }
+        
+        let expected = [
+            Recorded.next(200, false),
+            .completed(200)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanCompactFlatMapWithoutErroringSingle() {
+        let value: Bool? = true
+        let observer = buildTest(value: value) { emitter in
+            return emitter.compactFlatMapOrError("Error") { val -> Single<Bool>? in
+                guard let value = val else { return nil }
+                return .just(value)
+            }
+        }
+        
+        let expected = [
+            Recorded.next(200, true),
+            .completed(200)
+        ]
+        
+        XCTAssertEqual(observer.events, expected)
+    }
+    
+    func testItCanErrorOnCompactFlatMapSingle() {
+        let value: Bool? = nil
+        let expectedError: Error = "error"
+        let observer = buildTest(value: value) { emitter in
+            return emitter.compactFlatMapOrError(expectedError) { val -> Single<Bool>? in
+                guard let value = val else { return nil }
+                return .just(value)
+            }
+        }
+        
+        let expected: [Recorded<Event<Bool>>] = [
+            .error(200, expectedError)
         ]
         
         XCTAssertEqual(observer.events, expected)

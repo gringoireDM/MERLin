@@ -26,6 +26,21 @@ public extension ObservableType {
     public func compactMap<R>(_ transform: @escaping (E) throws -> R?) -> Observable<R> {
         return map(transform).filter { $0 != nil }.map { $0! }
     }
+    
+    public func compactFlatMapFirst<O: ObservableConvertibleType>(_ selector: @escaping (E) throws -> O?) -> Observable<O.E> {
+        return compactMap(selector)
+            .flatMapFirst { $0 }
+    }
+    
+    public func compactFlatMap<O: ObservableConvertibleType>(_ selector: @escaping (E) throws -> O?) -> Observable<O.E> {
+        return compactMap(selector)
+            .flatMap { $0 }
+    }
+    
+    public func compactFlatMapLatest<O: ObservableConvertibleType>(_ selector: @escaping (E) throws -> O?) -> Observable<O.E> {
+        return compactMap(selector)
+            .flatMapLatest { $0 }
+    }
 }
 
 public extension PrimitiveSequenceType where TraitType == MaybeTrait {
@@ -53,6 +68,16 @@ public extension PrimitiveSequence where Trait == SingleTrait {
     
     public func toVoid() -> PrimitiveSequence<SingleTrait, Void> {
         return map { _ in }
+    }
+    
+    public func compactFlatMapOrSwitch<R>(to single: Single<R>, _ selector: @escaping (ElementType) throws -> Single<R>?) -> Single<R> {
+        return map(selector)
+            .flatMap { $0 ?? single }
+    }
+    
+    public func compactFlatMapOrError<R>(_ error: Error, _ selector: @escaping (ElementType) throws -> Single<R>?) -> Single<R> {
+        return map(selector)
+            .flatMap { $0 ?? .error(error) }
     }
 }
 
