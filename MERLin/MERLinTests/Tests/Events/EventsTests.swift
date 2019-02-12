@@ -157,4 +157,56 @@ class EventsTests: XCTestCase {
         
         XCTAssertEqual(results.events, expected)
     }
+    
+    func testItCanExcludeNoPayloadEvents() {
+        let scheduler = TestScheduler(initialClock: 0)
+        let events: TestableObservable<EventProtocol> = scheduler.createHotObservable([
+            .next(100, MockEvent.noPayload),
+            .next(200, MockEvent.noPayload),
+            .next(300, MockEvent.withNamedPayload(payload: "100")),
+            .next(400, MockEvent.withAnonymousPayload("400")),
+            .next(300, MockEvent.noPayload)
+        ])
+        let results = scheduler.createObserver(MockEvent.self)
+        
+        events.exclude(event: MockEvent.noPayload)
+            .subscribe(results)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expected: [Recorded<Event<MockEvent>>] = [
+            .next(300, .withNamedPayload(payload: "100")),
+            .next(400, .withAnonymousPayload("400"))
+        ]
+        
+        XCTAssertEqual(results.events, expected)
+    }
+    
+    func testItCanExcludeWithPayloadEvents() {
+        let scheduler = TestScheduler(initialClock: 0)
+        let events: TestableObservable<EventProtocol> = scheduler.createHotObservable([
+            .next(100, MockEvent.noPayload),
+            .next(200, MockEvent.noPayload),
+            .next(300, MockEvent.withNamedPayload(payload: "100")),
+            .next(400, MockEvent.withAnonymousPayload("400")),
+            .next(500, MockEvent.noPayload)
+        ])
+        let results = scheduler.createObserver(MockEvent.self)
+        
+        events.exclude(event: MockEvent.withNamedPayload)
+            .subscribe(results)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expected: [Recorded<Event<MockEvent>>] = [
+            .next(100, MockEvent.noPayload),
+            .next(200, MockEvent.noPayload),
+            .next(400, .withAnonymousPayload("400")),
+            .next(500, MockEvent.noPayload)
+        ]
+        
+        XCTAssertEqual(results.events, expected)
+    }
 }
