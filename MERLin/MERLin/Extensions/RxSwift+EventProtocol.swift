@@ -14,9 +14,19 @@ public extension ObservableType where E == EventProtocol {
         return compactMap { $0 as? T }
     }
     
+    public func exclude<T: EventProtocol>(event target: T) -> Observable<T> {
+        return listen(to: T.self)
+            .exclude(event: target)
+    }
+    
     public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
         return listen(to: T.self)
             .capture(event: target)
+    }
+    
+    public func exclude<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<T> {
+        return listen(to: T.self)
+            .exclude(event: pattern)
     }
     
     public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
@@ -26,8 +36,16 @@ public extension ObservableType where E == EventProtocol {
 }
 
 public extension ObservableType where E: EventProtocol {
+    public func exclude(event target: E) -> Observable<E> {
+        return filter { !$0.matches(event: target) }
+    }
+    
     public func capture(event target: E) -> Observable<E> {
         return filter { $0.matches(event: target) }
+    }
+    
+    public func exclude<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<E> {
+        return filter { $0.extractPayload(ifMatches: pattern) == nil }
     }
     
     public func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
