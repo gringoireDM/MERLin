@@ -76,6 +76,10 @@ public extension Deeplinkable {
     public static var priority: DeeplinkMatchingPriority { return .medium }
     
     public static func remainderDeeplink(fromDeeplink deeplink: String) -> String? {
+        return defaultRemainderDeeplink(fromDeeplink: deeplink)
+    }
+    
+    public static func defaultRemainderDeeplink(fromDeeplink deeplink: String) -> String? {
         let optionalSchema = deeplinkSchemaNames.first {
             return deeplink.hasPrefix($0)
         }
