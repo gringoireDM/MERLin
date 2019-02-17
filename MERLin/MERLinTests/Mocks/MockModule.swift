@@ -10,7 +10,7 @@ import Foundation
 import MERLin
 import RxSwift
 
-struct NoEvents: EventProtocol, Equatable { }
+struct NoEvents: EventProtocol, Equatable {}
 
 struct MockContext: ModuleContextProtocol, Equatable {
     typealias ModuleType = ContextualizedMockModule
@@ -19,7 +19,7 @@ struct MockContext: ModuleContextProtocol, Equatable {
 
 class ContextualizedMockModule: NSObject, ModuleProtocol {
     var context: MockContext
-
+    
     required init(usingContext buildContext: MockContext) {
         context = buildContext
         super.init()
@@ -44,7 +44,7 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
     }
     
     func unmanagedRootViewController() -> UIViewController {
-        return UIViewController()
+        return MockViewController()
     }
 }
 

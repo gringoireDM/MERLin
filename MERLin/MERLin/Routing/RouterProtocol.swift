@@ -141,13 +141,13 @@ public extension Router {
      - parameter from: The viewController to be considered "top of the stack". If nil, the current
      view controller will be computed in runtime.
      - parameter shouldPush: Determine if the deeplinked viewController should be pushed or presented
-     modally in case the "top of the stack" viewController is an UINavigationController
+     modally in case the "top of the stack" viewController is an UINavigationController. Should push
+     also ignores updatable controllers, unless the deeplink is not updatable itself from the current deeplink
      */
     @discardableResult
-    private func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false) -> UIViewController? {
+    public func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
-            print("Could not open deeplink: \(deeplink)")
             return nil
         }
         
@@ -155,12 +155,22 @@ public extension Router {
         var currentController = from ?? currentViewController()
         
         var handled = false
-        if currentController.isMember(of: controllerClass) {
-            handled = viewControllersFactory.update(viewController: currentController, fromDeeplink: deeplink)
-        } else if let contained = (currentController as? UINavigationController)?.viewControllers.last,
-            contained.isMember(of: controllerClass) {
-            // currentController might be a navigation controller (most likely) containing the controller class
-            handled = viewControllersFactory.update(viewController: contained, fromDeeplink: deeplink)
+        
+        let controllers = (currentController as? UITabBarController)?.viewControllers?.enumerated() ?? [currentController].enumerated()
+        for (i, controller) in controllers {
+            if controller.isMember(of: controllerClass) {
+                handled = viewControllersFactory.update(viewController: controller, fromDeeplink: deeplink)
+            } else if !shouldPush || controller == (currentController as? UITabBarController)?.selectedViewController,
+                let contained = (controller as? UINavigationController)?.viewControllers.last,
+                contained.isMember(of: controllerClass) {
+                // currentController might be a navigation controller (most likely) containing the controller class
+                handled = viewControllersFactory.update(viewController: contained, fromDeeplink: deeplink)
+            }
+            
+            if handled {
+                (currentController as? UITabBarController)?.selectedIndex = i
+                break
+            }
         }
         
         // The update method can fail. If for any reason we were not able to find a controller, or to update it
@@ -171,12 +181,16 @@ public extension Router {
             }
             
             var animated = false
-            if UIApplication.shared.applicationState == .active {
-                animated = true
-            }
+            
+            #if !TEST
+                if UIApplication.shared.applicationState == .active {
+                    animated = true
+                }
+            #endif
             
             if shouldPush,
-                let navigationController = currentController as? UINavigationController {
+                let navigationController = currentController as? UINavigationController ??
+                (currentController as? UITabBarController)?.selectedViewController as? UINavigationController {
                 navigationController.pushViewController(deeplinkedViewController, animated: animated)
             } else {
                 let navigationController = UINavigationController(rootViewController: deeplinkedViewController)

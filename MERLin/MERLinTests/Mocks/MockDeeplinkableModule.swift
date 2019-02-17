@@ -47,7 +47,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
     }
 }
 
-class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, Deeplinkable {
+class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkContextUpdatable {
     static var priority: DeeplinkMatchingPriority = .low
     static var deeplinkSchemaNames: [String] = ["test", "anotherTest"]
     
@@ -82,5 +82,9 @@ class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, Deeplinkable 
         let anotherTestProductRegEx = try! NSRegularExpression(pattern: "\\banotherTest\\:\\/\\/.*product\\/?([0-9]+)", options: .caseInsensitive)
         
         return [testRegEx, testProductRegEx, anotherTestRegEx, anotherTestProductRegEx]
+    }
+    
+    func updateContext(fromDeeplink deeplink: String) -> Bool {
+        return !deeplink.contains("mock")
     }
 }

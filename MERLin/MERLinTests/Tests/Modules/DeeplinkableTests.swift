@@ -86,6 +86,7 @@ class DeeplinkableTests: XCTestCase {
             XCTFail("No remainder. \(expectedRemainder) was expected.")
             return
         }
+        
         let secondRemainder = MockDeeplinkable.remainderDeeplink(fromDeeplink: newDeepLink)
         XCTAssertNil(secondRemainder)
     }
