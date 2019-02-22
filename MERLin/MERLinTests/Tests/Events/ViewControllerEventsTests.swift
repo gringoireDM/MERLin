@@ -14,7 +14,7 @@ import XCTest
 class MockPageViewController: UIViewController, PageRepresenting {
     var pageName: String = "MockPage"
     var section: String = "Test"
-    var type: String = "Mock"
+    var pageType: String = "Mock"
 }
 
 class ViewControllerEventsTests: XCTestCase {
@@ -166,9 +166,9 @@ class ViewControllerEventsTests: XCTestCase {
         Observable.merge(
             module.viewControllerEvent
                 .exclude(event: ViewControllerEvent.newViewController)
-                .map { [unowned self] in EventContainer($0, self.module.moduleName, self.module.moduleSection, self.module.moduleType) },
+                .map { [unowned self] in EventContainer($0, self.module.pageName, self.module.section, self.module.pageType) },
             module.viewControllerEvent.capture(event: ViewControllerEvent.newViewController)
-                .flatMap { (vc, obs) in obs.map { EventContainer($0, vc.pageName, vc.section, vc.type) } }
+                .flatMap { (vc, obs) in obs.map { EventContainer($0, vc.pageName, vc.section, vc.pageType) } }
         ).subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -190,13 +190,13 @@ class ViewControllerEventsTests: XCTestCase {
         scheduler.start()
         
         let expected = [
-            Recorded.next(0, EventContainer(.uninitialized, module!.moduleName, module!.moduleSection, module!.moduleType)),
-            .next(1, EventContainer(.initialized, module!.moduleName, module!.moduleSection, module!.moduleType)),
-            .next(1, EventContainer(.appeared, module!.moduleName, module!.moduleSection, module!.moduleType)),
-            .next(2, EventContainer(.initialized, expectedController.pageName, expectedController.section, expectedController.type)),
-            .next(2, EventContainer(.disappeared, module!.moduleName, module!.moduleSection, module!.moduleType)),
-            .next(2, EventContainer(.appeared, expectedController.pageName, expectedController.section, expectedController.type)),
-            .next(3, EventContainer(.disappeared, expectedController.pageName, expectedController.section, expectedController.type))
+            Recorded.next(0, EventContainer(.uninitialized, module!.pageName, module!.section, module!.pageType)),
+            .next(1, EventContainer(.initialized, module!.pageName, module!.section, module!.pageType)),
+            .next(1, EventContainer(.appeared, module!.pageName, module!.section, module!.pageType)),
+            .next(2, EventContainer(.initialized, expectedController.pageName, expectedController.section, expectedController.pageType)),
+            .next(2, EventContainer(.disappeared, module!.pageName, module!.section, module!.pageType)),
+            .next(2, EventContainer(.appeared, expectedController.pageName, expectedController.section, expectedController.pageType)),
+            .next(3, EventContainer(.disappeared, expectedController.pageName, expectedController.section, expectedController.pageType))
         ]
         
         XCTAssertEqual(observer.events, expected)

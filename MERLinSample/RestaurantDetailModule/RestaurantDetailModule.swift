@@ -14,12 +14,12 @@ extension UIStoryboard {
     }
 }
 
-public class RestaurantDetailModule: NSObject, ModuleProtocol, EventsProducer {
+public class RestaurantDetailModule: NSObject, ModuleProtocol, EventsProducer, PageRepresenting {
     public var context: RestaurantDetailBuildContext
     
-    public var moduleName: String = "Restaurant Detail Page"
-    public var moduleSection: String = "Restaurant Detail"
-    public var moduleType: String = "Detail"
+    public var pageName: String = "Restaurant Detail Page"
+    public var section: String = "Restaurant Detail"
+    public var type: String = "Detail"
     
     public var events: Observable<RestaurantDetailEvent> { return _events }
     private var _events = PublishSubject<RestaurantDetailEvent>()

@@ -10,7 +10,8 @@ import MERLin
 
 class ConsoleLogEventsListener: AnyEventsListening {
     @discardableResult func registerToEvents(for producer: AnyEventsProducer) -> Bool {
-        producer.anyEvents.map { [weak producer] in "[\(producer?.moduleName ?? "Deallocated producer")] \($0)" }
+        let pageName = (producer as? PageRepresenting)?.pageName ?? "\(producer)"
+        producer.anyEvents.map { [weak producer] in "[\(pageName)] \($0)" }
             .subscribe(onNext: { print($0) })
             .disposed(by: producer.disposeBag)
         
