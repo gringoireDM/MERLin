@@ -31,7 +31,7 @@ public enum ViewControllerEvent: EventProtocol, Equatable {
 public protocol PageRepresenting: class {
     var pageName: String { get }
     var section: String { get }
-    var type: String { get }
+    var pageType: String { get }
 }
 
 public protocol AnyModule: class, NSObjectProtocol {

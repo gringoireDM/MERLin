@@ -9,10 +9,6 @@
 import RxSwift
 
 public protocol AnyEventsProducer: class {
-    var moduleName: String { get }
-    var moduleSection: String { get }
-    var moduleType: String { get }
-    
     var disposeBag: DisposeBag { get }
     var anyEvents: Observable<EventProtocol> { get }
     

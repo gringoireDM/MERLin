@@ -30,12 +30,12 @@ class ContextualizedMockModule: NSObject, ModuleProtocol {
     }
 }
 
-class MockModule: NSObject, ModuleProtocol, EventsProducer {
+class MockModule: NSObject, ModuleProtocol, EventsProducer, PageRepresenting {
     var context: ModuleContext
     
-    var moduleName: String = "MockModule"
-    var moduleSection: String = "ModuleTests"
-    var moduleType: String = "test"
+    var pageName: String = "MockModule"
+    var section: String = "ModuleTests"
+    var pageType: String = "test"
     
     var events: Observable<NoEvents> = PublishSubject<NoEvents>()
     required init(usingContext buildContext: ModuleContext) {

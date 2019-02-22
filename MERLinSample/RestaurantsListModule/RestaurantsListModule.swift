@@ -18,12 +18,12 @@ extension UIStoryboard {
     }
 }
 
-public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
+public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer, PageRepresenting {
     public var context: ModuleContext
     
-    public var moduleName: String = "Restaurants List"
-    public var moduleSection: String = "Restaurants List"
-    public var moduleType: String = "List"
+    public var pageName: String = "Restaurants List"
+    public var section: String = "Restaurants List"
+    public var type: String = "List"
     
     public var events: Observable<RestaurantsListEvent> { return _events }
     private let _events = PublishSubject<RestaurantsListEvent>()
