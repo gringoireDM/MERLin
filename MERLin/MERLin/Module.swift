@@ -14,7 +14,7 @@ public enum ViewControllerEvent: EventProtocol, Equatable {
     case appeared
     case disappeared
     
-    case newViewController(UIViewController & PageRepresenting, events: Observable<ViewControllerEvent>)
+    case newViewController((UIViewController & PageRepresenting)?, events: Observable<ViewControllerEvent>)
     
     public static func == (lhs: ViewControllerEvent, rhs: ViewControllerEvent) -> Bool {
         switch (lhs, rhs) {
@@ -22,7 +22,9 @@ public enum ViewControllerEvent: EventProtocol, Equatable {
              (.initialized, .initialized),
              (.appeared, .appeared),
              (.disappeared, .disappeared): return true
-        case let (.newViewController(lhsController, _), .newViewController(rhsController, _)): return lhsController == rhsController
+        case let (.newViewController(lhsController, _), .newViewController(rhsController, _)):
+            guard let lhsVC = lhsController, let rhsVC = rhsController else { return false }
+            return lhsVC == rhsVC
         default: return false
         }
     }
@@ -122,6 +124,8 @@ public extension AnyModule {
     public func trackViewController(viewController: UIViewController & PageRepresenting) {
         let events = BehaviorSubject<ViewControllerEvent>(value: .initialized)
         bindViewController(viewController, to: events)
-        _viewControllerEvent.onNext(.newViewController(viewController, events: events))
+        
+        weak var weakController = viewController
+        _viewControllerEvent.onNext(.newViewController(weakController, events: events))
     }
 }
