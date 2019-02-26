@@ -140,7 +140,7 @@ class ViewControllerEventsTests: XCTestCase {
             Recorded.next(0, ViewControllerEvent.uninitialized),
             .next(1, .initialized),
             .next(1, .appeared),
-            .next(2, .newViewController(expectedController, events: .empty())),
+            .next(2, .newViewController(PageInfo(withPage: expectedController), events: .empty())),
             .next(2, .disappeared)
         ]
         
