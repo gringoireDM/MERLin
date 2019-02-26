@@ -8,13 +8,25 @@
 
 import RxSwift
 
+public struct PageInfo: Equatable {
+    public let pageName: String
+    public let section: String
+    public let pageType: String
+    
+    init(withPage page: PageRepresenting) {
+        pageName = page.pageName
+        section = page.section
+        pageType = page.pageType
+    }
+}
+
 public enum ViewControllerEvent: EventProtocol, Equatable {
     case uninitialized
     case initialized
     case appeared
     case disappeared
     
-    case newViewController((UIViewController & PageRepresenting)?, events: Observable<ViewControllerEvent>)
+    case newViewController(PageInfo, events: Observable<ViewControllerEvent>)
     
     public static func == (lhs: ViewControllerEvent, rhs: ViewControllerEvent) -> Bool {
         switch (lhs, rhs) {
@@ -22,18 +34,23 @@ public enum ViewControllerEvent: EventProtocol, Equatable {
              (.initialized, .initialized),
              (.appeared, .appeared),
              (.disappeared, .disappeared): return true
-        case let (.newViewController(lhsController, _), .newViewController(rhsController, _)):
-            guard let lhsVC = lhsController, let rhsVC = rhsController else { return false }
-            return lhsVC == rhsVC
+        case let (.newViewController(lhsPageInfo, _), .newViewController(rhsPageInfo, _)):
+            return lhsPageInfo == rhsPageInfo
         default: return false
         }
     }
 }
 
-public protocol PageRepresenting: class {
+public protocol PageRepresenting {
     var pageName: String { get }
     var section: String { get }
     var pageType: String { get }
+}
+
+public extension PageRepresenting {
+    func pageInfo() -> PageInfo {
+        return PageInfo(withPage: self)
+    }
 }
 
 public protocol AnyModule: class, NSObjectProtocol {
@@ -124,8 +141,6 @@ public extension AnyModule {
     public func trackViewController(viewController: UIViewController & PageRepresenting) {
         let events = BehaviorSubject<ViewControllerEvent>(value: .initialized)
         bindViewController(viewController, to: events)
-        
-        weak var weakController = viewController
-        _viewControllerEvent.onNext(.newViewController(weakController, events: events))
+        _viewControllerEvent.onNext(.newViewController(viewController.pageInfo(), events: events))
     }
 }
