@@ -189,7 +189,7 @@ class RouterTests: XCTestCase {
     }
     
     func testItCanSmartDeeplinkFromCurrentContext() {
-        let (tabBarRouter, mock, updatable) = setupTabBarRootViewController()
+        let (tabBarRouter, _, _) = setupTabBarRootViewController()
         let deeplink = "test://mock/product/1234"
         
         let controller = tabBarRouter.handleDeeplink(deeplink, shouldPush: true)

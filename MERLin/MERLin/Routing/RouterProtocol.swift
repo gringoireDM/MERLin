@@ -19,6 +19,7 @@ public protocol Router: class {
     var topViewController: UIViewController { get }
     var disposeBag: DisposeBag { get }
     
+    var closeButtonString: String { get }
     /**
      This method has the duty to return the right rootViewController depending on launching options. If there is a deeplink,
      this method should catch it and adjust the rootviewcontroller stack accordingly.
@@ -35,7 +36,7 @@ public protocol Router: class {
      - parameter routingStep: The destination routingStep.
      */
     @discardableResult func route(to destination: PresentableRoutingStep) -> UIViewController?
-    
+    @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController?
     @discardableResult func route(toDeeplink deeplink: String) -> UIViewController?
     
     func handleShortcutItem(_ item: UIApplicationShortcutItem)
@@ -47,6 +48,7 @@ public protocol Router: class {
 // MARK: Route to...
 
 public extension Router {
+    public var closeButtonString: String { return "Close" }
     internal func currentViewController() -> UIViewController {
         var currentController = topViewController
         while let presented = currentController.presentedViewController {
@@ -55,41 +57,44 @@ public extension Router {
         return currentController
     }
     
-    @discardableResult public func route(to destination: PresentableRoutingStep) -> UIViewController? {
-        guard let viewControllersFactory = viewControllersFactory else { return nil }
-        let viewController = viewControllersFactory.viewController(for: destination)
-        
-        if case let .embed(info) = destination.presentationMode {
+    @discardableResult public func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController? {
+        if case let .embed(info) = mode {
             // We can avoid to compute the topController in this case
             return embed(viewController: viewController, embedInfo: info)
         }
         
         let topController = currentViewController()
         
-        switch destination.presentationMode {
+        switch mode {
         case let .push(closeButton, onClose):
             if closeButton {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
             guard let navController = topController as? UINavigationController else {
-                topController.present(viewController, animated: destination.animated, completion: nil)
+                topController.present(viewController, animated: animated, completion: nil)
                 return viewController
             }
-            navController.pushViewController(viewController, animated: destination.animated)
+            navController.pushViewController(viewController, animated: animated)
         case let .modal(style):
             viewController.modalPresentationStyle = style
-            topController.present(viewController, animated: true, completion: nil)
+            topController.present(viewController, animated: animated, completion: nil)
         case let .modalWithNavigation(style, closeButton, onClose):
             let navigationController = UINavigationController(rootViewController: viewController)
             if closeButton {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
             navigationController.modalPresentationStyle = style
-            topController.present(navigationController, animated: destination.animated, completion: nil)
-        case .embed, .none: return nil
+            topController.present(navigationController, animated: animated, completion: nil)
+        case .embed, .none: return viewController
         }
         
         return viewController
+    }
+    
+    @discardableResult public func route(to destination: PresentableRoutingStep) -> UIViewController? {
+        guard let viewControllersFactory = viewControllersFactory else { return nil }
+        let viewController = viewControllersFactory.viewController(for: destination)
+        return route(to: viewController, withPresentationMode: destination.presentationMode, animated: destination.animated)
     }
     
     func embed(viewController: UIViewController, embedInfo: (UIViewController, UIView)) -> UIViewController? {
@@ -110,7 +115,7 @@ public extension Router {
     }
     
     private func closeButton(for viewController: UIViewController, onClose: (() -> Void)?) -> UIBarButtonItem {
-        let button = UIBarButtonItem(title: "Close", style: .plain, target: nil, action: nil)
+        let button = UIBarButtonItem(title: closeButtonString, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
             viewController.dismiss(animated: true, completion: onClose)
         }).disposed(by: disposeBag)
