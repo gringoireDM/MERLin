@@ -6,6 +6,11 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
-@class DeeplinkMatcher;
+@interface DeeplinkMatcher : NSObject
+
++ (NSMutableDictionary *) availableDeeplinkHandlers;
+
+@end
 

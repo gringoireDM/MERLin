@@ -23,7 +23,7 @@ public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer, Pa
     
     public var pageName: String = "Restaurants List"
     public var section: String = "Restaurants List"
-    public var type: String = "List"
+    public var pageType: String = "List"
     
     public var events: Observable<RestaurantsListEvent> { return _events }
     private let _events = PublishSubject<RestaurantsListEvent>()

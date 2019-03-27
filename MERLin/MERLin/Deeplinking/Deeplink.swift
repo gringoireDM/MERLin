@@ -101,10 +101,9 @@ public extension Deeplinkable {
 /// value (which is a class) can handle. This variable is fed in runtime, and it should never need
 /// manual maintenance. To feed the matcher with a new module, just make it conformant with
 /// Deeplinkable protocol and subclassing Module.
-@objc public class DeeplinkMatcher: NSObject {
-    @objc public internal(set) static var availableDeeplinkHandlers: NSMutableDictionary = [:]
-    public static var typedAvailableDeeplinkHandlers: [NSRegularExpression: DeeplinkResponder.Type] {
-        return availableDeeplinkHandlers.reduce([NSRegularExpression: DeeplinkResponder.Type]()) {
+public extension DeeplinkMatcher {
+    static var typedAvailableDeeplinkHandlers: [NSRegularExpression: DeeplinkResponder.Type] {
+        return DeeplinkMatcher.availableDeeplinkHandlers().reduce([NSRegularExpression: DeeplinkResponder.Type]()) {
             guard let key = $1.key as? NSRegularExpression, let value = $1.value as? DeeplinkResponder.Type else { return $0 }
             var mutableInitial = $0
             mutableInitial[key] = value

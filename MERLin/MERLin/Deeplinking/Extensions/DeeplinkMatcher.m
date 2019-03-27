@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MERLin/Module+Deeplink.h>
+#import <MERLin/DeeplinkMatcher.h>
 #import <MERLin/MERLin-Swift.h>
 
-@implementation DeeplinkMatcher (Deeplink)
+@implementation DeeplinkMatcher
+
+static NSMutableDictionary * _availableDeeplinkHandlers;
+
++ (NSMutableDictionary *) availableDeeplinkHandlers {
+    return _availableDeeplinkHandlers;
+}
+
 
 /*!This method will fetch all the subclass of Module
  @return NSArray<Class> *: An array of classes that are subclassing Module
@@ -41,6 +48,7 @@
 +(void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        _availableDeeplinkHandlers = [NSMutableDictionary new];
         //Searching in all the `Module` subclasses for deeplinkable modules and registering
         //them to available deeplinking path.
         for (Class class in [self potentialDeeplinkResponders]) {
