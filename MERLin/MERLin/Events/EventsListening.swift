@@ -23,7 +23,7 @@ public protocol EventsListening: AnyEventsListening {
 
 public extension EventsListening {
     @discardableResult
-    public func registerToEvents(for producer: AnyEventsProducer) -> Bool {
+    func registerToEvents(for producer: AnyEventsProducer) -> Bool {
         guard let events = producer.observable(of: EventsType.self) else { return false }
         return registerToEvents(for: producer, events: events)
     }

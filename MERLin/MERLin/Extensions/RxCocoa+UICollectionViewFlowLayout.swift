@@ -10,19 +10,19 @@ import RxCocoa
 import RxSwift
 
 public extension Reactive where Base: UICollectionViewFlowLayout {
-    public var itemSize: Binder<CGSize> {
+    var itemSize: Binder<CGSize> {
         return Binder(base) {
             $0.itemSize = $1
         }
     }
     
-    public var headerReferenceSize: Binder<CGSize> {
+    var headerReferenceSize: Binder<CGSize> {
         return Binder(base) {
             $0.headerReferenceSize = $1
         }
     }
     
-    public var footerReferenceSize: Binder<CGSize> {
+    var footerReferenceSize: Binder<CGSize> {
         return Binder(base) {
             $0.footerReferenceSize = $1
         }

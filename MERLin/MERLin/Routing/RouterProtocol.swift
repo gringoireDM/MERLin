@@ -48,7 +48,7 @@ public protocol Router: class {
 // MARK: Route to...
 
 public extension Router {
-    public var closeButtonString: String { return "Close" }
+    var closeButtonString: String { return "Close" }
     internal func currentViewController() -> UIViewController {
         var currentController = topViewController
         while let presented = currentController.presentedViewController {
@@ -57,7 +57,7 @@ public extension Router {
         return currentController
     }
     
-    @discardableResult public func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController? {
+    @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController? {
         if case let .embed(info) = mode {
             // We can avoid to compute the topController in this case
             return embed(viewController: viewController, embedInfo: info)
@@ -91,7 +91,7 @@ public extension Router {
         return viewController
     }
     
-    @discardableResult public func route(to destination: PresentableRoutingStep) -> UIViewController? {
+    @discardableResult func route(to destination: PresentableRoutingStep) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory else { return nil }
         let viewController = viewControllersFactory.viewController(for: destination)
         return route(to: viewController, withPresentationMode: destination.presentationMode, animated: destination.animated)
@@ -126,7 +126,7 @@ public extension Router {
 // MARK: Deeplink
 
 public extension Router {
-    @discardableResult public func route(toDeeplink deeplink: String) -> UIViewController? {
+    @discardableResult func route(toDeeplink deeplink: String) -> UIViewController? {
         return handleDeeplink(deeplink)
     }
     
@@ -150,7 +150,7 @@ public extension Router {
      also ignores updatable controllers, unless the deeplink is not updatable itself from the current deeplink
      */
     @discardableResult
-    public func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false) -> UIViewController? {
+    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
             return nil
@@ -215,7 +215,7 @@ public extension Router {
     /// would cause product array to match the first part, and to have `/pdp/112233` unmatched
     /// a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
     @discardableResult
-    public func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?) -> UIViewController? {
+    func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?) -> UIViewController? {
         guard let newDeeplink = viewControllersFactory?.unmatchedDeeplinkRemainder(fromDeeplink: deeplink) else {
             return nil
         }
