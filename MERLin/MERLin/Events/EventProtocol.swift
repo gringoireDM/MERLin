@@ -11,21 +11,21 @@ import Foundation
 public protocol EventProtocol {}
 
 public extension EventProtocol {
-    public func matches(event: Self) -> Bool {
+    func matches(event: Self) -> Bool {
         let targetStr = Mirror(reflecting: event).children.first?.label ?? String(describing: event)
         let thisStr = Mirror(reflecting: self).children.first?.label ?? String(describing: self)
         return thisStr == targetStr
     }
     
-    public func matches<Payload>(pattern: (Payload) -> Self) -> Bool {
+    func matches<Payload>(pattern: (Payload) -> Self) -> Bool {
         return extractPayload(ifMatches: pattern) != nil
     }
     
-    public func extractPayload<Payload>() -> Payload? {
+    func extractPayload<Payload>() -> Payload? {
         return decompose()?.payload
     }
     
-    public func extractPayload<Payload>(ifMatches pattern: (Payload) -> Self) -> Payload? {
+    func extractPayload<Payload>(ifMatches pattern: (Payload) -> Self) -> Payload? {
         guard let decomposed: (String, Payload) = decompose(),
             let patternLabel = Mirror(reflecting: pattern(decomposed.1)).children.first?.label,
             decomposed.0 == patternLabel else { return nil }
@@ -52,18 +52,18 @@ public extension EventProtocol {
 }
 
 public extension EventProtocol where Self == AnyEvent {
-    public func matches<T: EventProtocol>(event: T) -> Bool {
-        guard let base = base as? T else { return false }
+    func matches<T: EventProtocol>(event: T) -> Bool {
+        guard let base = self.base as? T else { return false }
         return base.matches(event: event)
     }
     
-    public func matches<T: EventProtocol, Payload>(pattern: (Payload) -> T) -> Bool {
-        guard let base = base as? T else { return false }
+    func matches<T: EventProtocol, Payload>(pattern: (Payload) -> T) -> Bool {
+        guard let base = self.base as? T else { return false }
         return base.matches(pattern: pattern)
     }
     
-    public func extractPayload<T: EventProtocol, Payload>(ifMatches pattern: (Payload) -> T) -> Payload? {
-        guard let base = base as? T else { return nil }
+    func extractPayload<T: EventProtocol, Payload>(ifMatches pattern: (Payload) -> T) -> Payload? {
+        guard let base = self.base as? T else { return nil }
         return base.extractPayload(ifMatches: pattern)
     }
 }

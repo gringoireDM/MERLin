@@ -21,11 +21,11 @@ public class ModuleContext: AnyModuleContextProtocol, Hashable {
     public let routingContext: String
     private var moduleType: String
     private var initializer: (ModuleContext) -> AnyModule
-
-    public init<Module: ModuleProtocol>(routingContext: String = "default", building moduleType: Module.Type)  where Module.Context == ModuleContext {
+    
+    public init<Module: ModuleProtocol>(routingContext: String = "default", building moduleType: Module.Type) where Module.Context == ModuleContext {
         self.routingContext = routingContext
         self.moduleType = String(describing: moduleType)
-        self.initializer = Module.init
+        initializer = Module.init
     }
     
     public func make() -> (AnyModule, UIViewController) {
@@ -44,7 +44,7 @@ public class ModuleContext: AnyModuleContextProtocol, Hashable {
 }
 
 public extension ModuleContextProtocol where ModuleType.Context == Self {
-    public func make() -> (AnyModule, UIViewController) {
+    func make() -> (AnyModule, UIViewController) {
         let module = ModuleType(usingContext: self)
         return (module, module.prepareRootViewController())
     }

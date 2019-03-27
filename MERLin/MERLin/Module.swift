@@ -68,7 +68,7 @@ public protocol ModuleProtocol: AnyModule {
 }
 
 public extension ModuleProtocol {
-    public var routingContext: String { return context.routingContext }
+    var routingContext: String { return context.routingContext }
 }
 
 private class ViewControllerWrapper {
@@ -80,7 +80,7 @@ private var viewControllerEventHandle: UInt8 = 0
 private var viewControllerHandle: UInt8 = 0
 private var disposeBagHandle: UInt8 = 0
 public extension AnyModule {
-    public internal(set) var rootViewController: UIViewController? {
+    internal(set) var rootViewController: UIViewController? {
         get {
             let wrapper = objc_getAssociatedObject(self, &viewControllerHandle) as? ViewControllerWrapper
             return wrapper?.controller
@@ -95,7 +95,7 @@ public extension AnyModule {
         }
     }
     
-    public var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
+    var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
     private var _viewControllerEvent: BehaviorSubject<ViewControllerEvent> {
         guard let observable = objc_getAssociatedObject(self, &viewControllerEventHandle) as? BehaviorSubject<ViewControllerEvent> else {
             let observable = BehaviorSubject<ViewControllerEvent>(value: .uninitialized)
@@ -105,7 +105,7 @@ public extension AnyModule {
         return observable
     }
     
-    public var disposeBag: DisposeBag {
+    var disposeBag: DisposeBag {
         guard let bag = objc_getAssociatedObject(self, &disposeBagHandle) as? DisposeBag else {
             let bag = DisposeBag()
             objc_setAssociatedObject(self, &disposeBagHandle, bag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -114,7 +114,7 @@ public extension AnyModule {
         return bag
     }
     
-    public func prepareRootViewController() -> UIViewController {
+    func prepareRootViewController() -> UIViewController {
         guard rootViewController == nil else { return rootViewController! }
         let controller = unmanagedRootViewController()
         rootViewController = controller
@@ -138,7 +138,7 @@ public extension AnyModule {
     
     /// Call this function to send an event to all your listeners to notify that an internal routing is happening
     /// for the current module.
-    public func trackViewController(viewController: UIViewController & PageRepresenting) {
+    func trackViewController(viewController: UIViewController & PageRepresenting) {
         let events = BehaviorSubject<ViewControllerEvent>(value: .initialized)
         bindViewController(viewController, to: events)
         _viewControllerEvent.onNext(.newViewController(viewController.pageInfo(), events: events))

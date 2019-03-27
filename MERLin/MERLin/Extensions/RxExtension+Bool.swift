@@ -10,41 +10,41 @@ import RxCocoa
 import RxSwift
 
 public extension ObservableType where E == Bool {
-    public func negate() -> Observable<E> {
+    func negate() -> Observable<E> {
         return map { !$0 }
     }
     
-    public func takeTrue() -> Observable<E> {
+    func takeTrue() -> Observable<E> {
         return filter { $0 }
     }
     
-    public func takeFalse() -> Observable<E> {
+    func takeFalse() -> Observable<E> {
         return filter { !$0 }
     }
 }
 
 public extension ObservableType where E == Bool? {
-    public func negate(ifNil: Bool) -> Observable<Bool> {
+    func negate(ifNil: Bool) -> Observable<Bool> {
         return map { $0 == nil ? ifNil : !($0!) }
     }
 }
 
 public extension SharedSequenceConvertibleType where E == Bool {
-    public func negate() -> SharedSequence<SharingStrategy, E> {
+    func negate() -> SharedSequence<SharingStrategy, E> {
         return map { !$0 }
     }
     
-    public func takeTrue() -> SharedSequence<SharingStrategy, E> {
+    func takeTrue() -> SharedSequence<SharingStrategy, E> {
         return filter { $0 }
     }
     
-    public func takeFalse() -> SharedSequence<SharingStrategy, E> {
+    func takeFalse() -> SharedSequence<SharingStrategy, E> {
         return filter { !$0 }
     }
 }
 
 public extension SharedSequenceConvertibleType where E == Bool? {
-    public func negate(ifNil: Bool) -> SharedSequence<SharingStrategy, Bool> {
+    func negate(ifNil: Bool) -> SharedSequence<SharingStrategy, Bool> {
         return map { $0 == nil ? ifNil : !($0!) }
     }
 }

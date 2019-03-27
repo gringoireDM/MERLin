@@ -10,74 +10,74 @@ import RxCocoa
 import RxSwift
 
 public extension ObservableType where E == EventProtocol {
-    public func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {
+    func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {
         return compactMap { $0 as? T }
     }
     
-    public func exclude<T: EventProtocol>(event target: T) -> Observable<T> {
+    func exclude<T: EventProtocol>(event target: T) -> Observable<T> {
         return listen(to: T.self)
             .exclude(event: target)
     }
     
-    public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
+    func capture<T: EventProtocol>(event target: T) -> Observable<T> {
         return listen(to: T.self)
             .capture(event: target)
     }
     
-    public func exclude<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<T> {
+    func exclude<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<T> {
         return listen(to: T.self)
             .exclude(event: pattern)
     }
     
-    public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
+    func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
         return listen(to: T.self)
             .capture(event: pattern)
     }
 }
 
 public extension ObservableType where E: EventProtocol {
-    public func exclude(event target: E) -> Observable<E> {
+    func exclude(event target: E) -> Observable<E> {
         return filter { !$0.matches(event: target) }
     }
     
-    public func capture(event target: E) -> Observable<E> {
+    func capture(event target: E) -> Observable<E> {
         return filter { $0.matches(event: target) }
     }
     
-    public func exclude<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<E> {
+    func exclude<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<E> {
         return filter { $0.extractPayload(ifMatches: pattern) == nil }
     }
     
-    public func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
+    func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
         return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
     
-    public func toEventProtocol() -> Observable<EventProtocol> {
+    func toEventProtocol() -> Observable<EventProtocol> {
         return map { $0 as EventProtocol }
     }
     
-    public func toAnyEvent() -> Observable<AnyEvent> {
+    func toAnyEvent() -> Observable<AnyEvent> {
         return map(AnyEvent.init)
     }
 }
 
 public extension ObservableType where E == AnyEvent {
-    public func capture<T: EventProtocol>(event target: T) -> Observable<T> {
+    func capture<T: EventProtocol>(event target: T) -> Observable<T> {
         return filter { $0.matches(event: target) }
             .compactMap { $0.base as? T }
     }
     
-    public func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
+    func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
         return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
 }
 
 public extension SharedSequenceConvertibleType where E: EventProtocol {
-    public func capture(event target: E) -> SharedSequence<SharingStrategy, E> {
+    func capture(event target: E) -> SharedSequence<SharingStrategy, E> {
         return filter { $0.matches(event: target) }
     }
     
-    public func capture<Payload>(event pattern: @escaping (Payload) -> E) -> SharedSequence<SharingStrategy, Payload> {
+    func capture<Payload>(event pattern: @escaping (Payload) -> E) -> SharedSequence<SharingStrategy, Payload> {
         return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
 }
