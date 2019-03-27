@@ -52,7 +52,7 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
 
 // Adding deeplink knowledge for ProductIdentifying
 public extension RestaurantProtocol {
-    public var deeplinkURL: URL? {
+    var deeplinkURL: URL? {
         guard let schema = RestaurantDetailModule.deeplinkSchemaNames.first else { return nil }
         return URL(string: "\(schema)://rdp/\(id)")!
     }

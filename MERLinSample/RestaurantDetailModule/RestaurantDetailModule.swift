@@ -19,7 +19,7 @@ public class RestaurantDetailModule: NSObject, ModuleProtocol, EventsProducer, P
     
     public var pageName: String = "Restaurant Detail Page"
     public var section: String = "Restaurant Detail"
-    public var type: String = "Detail"
+    public var pageType: String = "Detail"
     
     public var events: Observable<RestaurantDetailEvent> { return _events }
     private var _events = PublishSubject<RestaurantDetailEvent>()

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MERLin/DeeplinkMatcher.h>
 
 //! Project version number for MERLin.
 FOUNDATION_EXPORT double MERLinVersionNumber;
