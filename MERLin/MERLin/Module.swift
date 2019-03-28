@@ -23,7 +23,9 @@ public struct PageInfo: Equatable {
 public enum ViewControllerEvent: EventProtocol, Equatable {
     case uninitialized
     case initialized
+    case willAppear
     case appeared
+    case willDisappear
     case disappeared
     
     case newViewController(PageInfo, events: Observable<ViewControllerEvent>)
@@ -32,7 +34,9 @@ public enum ViewControllerEvent: EventProtocol, Equatable {
         switch (lhs, rhs) {
         case (.uninitialized, .uninitialized),
              (.initialized, .initialized),
+             (.willAppear, .willAppear),
              (.appeared, .appeared),
+             (.willDisappear, .willDisappear),
              (.disappeared, .disappeared): return true
         case let (.newViewController(lhsPageInfo, _), .newViewController(rhsPageInfo, _)):
             return lhsPageInfo == rhsPageInfo
@@ -124,13 +128,19 @@ public extension AnyModule {
     }
     
     private func bindViewController(_ viewController: UIViewController, to events: BehaviorSubject<ViewControllerEvent>) {
+        let willAppearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .map { _ in ViewControllerEvent.willAppear }
+        
         let didAppearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .map { _ in ViewControllerEvent.appeared }
+        
+        let willDisappearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewWillDisappear(_:)))
+            .map { _ in ViewControllerEvent.willDisappear }
         
         let didDisappearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
             .map { _ in ViewControllerEvent.disappeared }
         
-        Observable.of(didAppearProducer, didDisappearProducer)
+        Observable.of(willAppearProducer, didAppearProducer, willDisappearProducer, didDisappearProducer)
             .merge()
             .bind(to: events)
             .disposed(by: disposeBag)
