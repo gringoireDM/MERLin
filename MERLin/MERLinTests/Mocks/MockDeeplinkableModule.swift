@@ -30,7 +30,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
         return MockViewController.self
     }
     
-    static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
+    static func module(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> (AnyModule, UIViewController)? {
         let module = MockDeeplinkable(usingContext: ModuleContext(building: MockDeeplinkable.self))
         return (module, module.prepareRootViewController())
     }
@@ -66,7 +66,7 @@ class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkConte
         return MockViewController.self
     }
     
-    static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
+    static func module(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> (AnyModule, UIViewController)? {
         let module = LowPriorityMockDeeplinkableModule(usingContext: ModuleContext(building: MockDeeplinkable.self))
         return (module, module.prepareRootViewController())
     }
@@ -84,7 +84,7 @@ class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkConte
         return [testRegEx, testProductRegEx, anotherTestRegEx, anotherTestProductRegEx]
     }
     
-    func updateContext(fromDeeplink deeplink: String) -> Bool {
+    func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
         return !deeplink.contains("mock")
     }
 }
