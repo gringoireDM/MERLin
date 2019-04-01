@@ -58,7 +58,7 @@ public protocol Deeplinkable: DeeplinkResponder {
     static func classForDeeplinkingViewController() -> UIViewController.Type
     
     /// Instanciate a module and the viewController associated to a specified deeplink.
-    static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)?
+    static func module(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> (AnyModule, UIViewController)?
     
     /// For living modules, this method will return the deeplink to recreate self
     /// with the same buildContext (if any).
@@ -69,7 +69,7 @@ public protocol DeeplinkContextUpdatable: Deeplinkable {
     /// This method will update the context of an existing module using a deeplink.
     /// If the module cannot handle the request for any reason the return value of this
     /// method will be false.
-    @discardableResult func updateContext(fromDeeplink deeplink: String) -> Bool
+    @discardableResult func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool
 }
 
 public extension Deeplinkable {
@@ -89,6 +89,11 @@ public extension Deeplinkable {
             let range = Range(match.range(at: 0), in: deeplink) else { return nil }
         
         let remainder = String(deeplink.suffix(from: range.upperBound))
+            .split(separator: "/")
+            .filter { !$0.isEmpty }
+            .map(String.init)
+            .joined(separator: "/")
+        
         guard remainder.count > 0 && remainder != "/" else { return nil }
         
         let resultingDeeplink = "\(schema)://\(remainder)".replacingOccurrences(of: "///", with: "//")

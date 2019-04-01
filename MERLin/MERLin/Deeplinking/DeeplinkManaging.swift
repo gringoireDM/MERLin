@@ -10,7 +10,7 @@ import Foundation
 
 public protocol DeeplinkManaging: class {
     func viewControllerType(fromDeeplink deeplink: String) -> UIViewController.Type?
-    @discardableResult func update(viewController: UIViewController, fromDeeplink deeplink: String) -> Bool
-    func viewController(fromDeeplink deeplink: String) -> UIViewController?
+    @discardableResult func update(viewController: UIViewController, fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool
+    func viewController(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> UIViewController?
     func unmatchedDeeplinkRemainder(fromDeeplink deeplink: String) -> String?
 }

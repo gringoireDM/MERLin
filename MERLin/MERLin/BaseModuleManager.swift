@@ -83,14 +83,14 @@ extension BaseModuleManager: DeeplinkManaging {
         return type.classForDeeplinkingViewController()
     }
     
-    @discardableResult public func update(viewController: UIViewController, fromDeeplink deeplink: String) -> Bool {
+    @discardableResult public func update(viewController: UIViewController, fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
         guard let module = self.module(for: viewController) as? DeeplinkContextUpdatable else { return false }
-        return module.updateContext(fromDeeplink: deeplink)
+        return module.updateContext(fromDeeplink: deeplink, userInfo: userInfo)
     }
     
-    public func viewController(fromDeeplink deeplink: String) -> UIViewController? {
+    public func viewController(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> UIViewController? {
         guard let type = deeplinkable(fromDeeplink: deeplink) else { return nil }
-        guard let (module, controller) = type.module(fromDeeplink: deeplink) else { return nil }
+        guard let (module, controller) = type.module(fromDeeplink: deeplink, userInfo: userInfo) else { return nil }
         moduleRetainer.set(ModuleWrapper(module), forKey: controller)
         setupEventsListeners(for: module)
         return controller

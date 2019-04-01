@@ -71,7 +71,7 @@ class ModuleManagerTests: XCTestCase {
     
     func testItCanGetAViewControllerForDeeplink() {
         let deeplink = "test://mock/2341234"
-        guard let viewController = moduleManager.viewController(fromDeeplink: deeplink) else {
+        guard let viewController = moduleManager.viewController(fromDeeplink: deeplink, userInfo: nil) else {
             XCTFail()
             return
         }
@@ -80,7 +80,7 @@ class ModuleManagerTests: XCTestCase {
     
     func testItCanFailRetrievingAViewController() {
         let deeplink = "test://failing/deeplink"
-        let viewController = moduleManager.viewController(fromDeeplink: deeplink)
+        let viewController = moduleManager.viewController(fromDeeplink: deeplink, userInfo: nil)
         XCTAssertNil(viewController)
     }
     
