@@ -19,7 +19,7 @@ public extension ObservableType {
     }
     
     func toRoutableObservable(throttleTime: TimeInterval = 0.5, scheduler: SchedulerType = MainScheduler.asyncInstance) -> Observable<E> {
-        return throttle(throttleTime, scheduler: MainScheduler.asyncInstance)
+        return throttle(throttleTime, latest: false, scheduler: MainScheduler.asyncInstance)
             .observeOn(scheduler)
     }
     
