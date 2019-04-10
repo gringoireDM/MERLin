@@ -11,6 +11,8 @@ import RxCocoa
 import RxSwift
 import RxTest
 
+import XCTest
+
 protocol RxExtensionTestCase {
     var scheduler: TestScheduler! { get }
     var disposeBag: DisposeBag! { get }
@@ -51,4 +53,37 @@ extension RxExtensionTestCase {
         
         return observer
     }
+}
+
+func == (lhs: Event<Void>, rhs: Event<Void>) -> Bool {
+    switch (lhs, rhs) {
+    case (.next, .next),
+         (.completed, .completed):
+        return true
+        
+    case let (.error(lhsErr), .error(rhsErr)):
+        let error1 = lhsErr as NSError
+        let error2 = rhsErr as NSError
+        
+        return error1.domain == error2.domain
+            && error1.code == error2.code
+            && "\(lhsErr)" == "\(rhsErr)"
+        
+    default: return false
+    }
+}
+
+func == (lhs: Recorded<Event<Void>>, rhs: Recorded<Event<Void>>) -> Bool {
+    return lhs.time == rhs.time && lhs.value == rhs.value
+}
+
+func XCTAssertEqual(_ lhs: [Recorded<Event<Void>>], _ rhs: [Recorded<Event<Void>>], file: StaticString = #file, line: UInt = #line) {
+    guard lhs.count == rhs.count else {
+        XCTFail(file: file, line: line)
+        return
+    }
+    
+    XCTAssert(zip(lhs, rhs).reduce(true) {
+        $0 && $1.0 == $1.1
+    }, file: file, line: line)
 }
