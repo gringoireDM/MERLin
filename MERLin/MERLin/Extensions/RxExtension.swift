@@ -66,7 +66,7 @@ public extension PrimitiveSequence where Trait == SingleTrait {
             .ifEmpty(switchTo: single)
     }
     
-    func toVoid() -> PrimitiveSequence<SingleTrait, Void> {
+    func toVoid() -> Single<Void> {
         return map { _ in }
     }
     
