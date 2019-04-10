@@ -11,7 +11,7 @@ import RxSwift
 
 public extension ObservableType {
     func toVoid() -> Observable<Void> {
-        return map { _ in }
+        return map { _ in Void() }
     }
     
     func unwrap<T>() -> Observable<T> where E == T? {
@@ -67,7 +67,7 @@ public extension PrimitiveSequence where Trait == SingleTrait {
     }
     
     func toVoid() -> PrimitiveSequence<SingleTrait, Void> {
-        return map { _ in }
+        return map { _ in Void() }
     }
     
     func compactFlatMapOrSwitch<R>(to single: Single<R>, _ selector: @escaping (ElementType) throws -> Single<R>?) -> Single<R> {

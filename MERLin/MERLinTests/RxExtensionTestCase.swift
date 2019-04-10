@@ -52,9 +52,3 @@ extension RxExtensionTestCase {
         return observer
     }
 }
-
-extension Recorded: Equatable where Value == Event<Void> {
-    public static func == (lhs: Recorded<Value>, rhs: Recorded<Value>) -> Bool {
-        return lhs.time == rhs.time
-    }
-}
