@@ -14,7 +14,7 @@ public protocol Routing {
     var router: Router { get }
 }
 
-public protocol Router: class {
+public protocol Router: AnyObject {
     var viewControllersFactory: ViewControllersFactory? { get }
     var topViewController: UIViewController { get }
     var disposeBag: DisposeBag { get }
@@ -63,7 +63,10 @@ public extension Router {
             return embed(viewController: viewController, embedInfo: info)
         }
         
-        let topController = currentViewController()
+        var topController = currentViewController()
+        if let selectedController = (topController as? UITabBarController)?.selectedViewController {
+            topController = selectedController
+        }
         
         switch mode {
         case let .push(closeButton, onClose):
@@ -150,7 +153,7 @@ public extension Router {
      also ignores updatable controllers, unless the deeplink is not updatable itself from the current deeplink
      */
     @discardableResult
-    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, userInfo: [String: Any]?) -> UIViewController? {
+    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, traverseAll: Bool = false, userInfo: [String: Any]?) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
             return nil
@@ -165,7 +168,7 @@ public extension Router {
         for (i, controller) in controllers {
             if controller.isMember(of: controllerClass) {
                 handled = viewControllersFactory.update(viewController: controller, fromDeeplink: deeplink, userInfo: userInfo)
-            } else if !shouldPush || controller == (currentController as? UITabBarController)?.selectedViewController,
+            } else if !shouldPush || traverseAll || controller == (currentController as? UITabBarController)?.selectedViewController,
                 let contained = (controller as? UINavigationController)?.viewControllers.last,
                 contained.isMember(of: controllerClass) {
                 // currentController might be a navigation controller (most likely) containing the controller class
@@ -220,6 +223,6 @@ public extension Router {
             return nil
         }
         
-        return handleDeeplink(newDeeplink, from: from, shouldPush: true, userInfo: userInfo)
+        return handleDeeplink(newDeeplink, from: from, shouldPush: true, traverseAll: false, userInfo: userInfo)
     }
 }
