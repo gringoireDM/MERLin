@@ -23,6 +23,21 @@ class EventsTests: XCTestCase {
         super.tearDown()
     }
     
+    func testLabelsForEventsWithNoPayloads() {
+        let event = MockEvent.noPayload
+        XCTAssertEqual(event.label, "noPayload")
+    }
+    
+    func testLabelsForEventsWithPayloads() {
+        let event = MockEvent.withNamedPayload(payload: "David Bowie")
+        XCTAssertEqual(event.label, "withNamedPayload")
+    }
+    
+    func testLabelsForEventsWithAnonymousPayloads() {
+        let event = MockEvent.withAnonymousPayload("David Bowie")
+        XCTAssertEqual(event.label, "withAnonymousPayload")
+    }
+    
     func testThatItCanMatchNoPayloadEvents() {
         let event = MockEvent.noPayload
         XCTAssert(event.matches(event: MockEvent.noPayload))
