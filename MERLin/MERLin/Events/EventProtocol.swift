@@ -11,10 +11,13 @@ import Foundation
 public protocol EventProtocol {}
 
 public extension EventProtocol {
+    var label: String {
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
+    }
+    
     func matches(event: Self) -> Bool {
-        let targetStr = Mirror(reflecting: event).children.first?.label ?? String(describing: event)
-        let thisStr = Mirror(reflecting: self).children.first?.label ?? String(describing: self)
-        return thisStr == targetStr
+        let targetStr = event.label
+        return label == targetStr
     }
     
     func matches<Payload>(pattern: (Payload) -> Self) -> Bool {
