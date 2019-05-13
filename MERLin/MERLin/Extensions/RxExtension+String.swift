@@ -9,7 +9,7 @@
 import RxCocoa
 import RxSwift
 
-public extension ObservableType where Self.E == String {
+public extension ObservableType where Self.Element == String {
     func isEmpty() -> Observable<Bool> {
         return map { $0.trimmingCharacters(in: .whitespaces).isEmpty }
     }
@@ -19,7 +19,7 @@ public extension ObservableType where Self.E == String {
     }
 }
 
-public extension ObservableType where Self.E == String? {
+public extension ObservableType where Self.Element == String? {
     func isEmpty() -> Observable<Bool> {
         return map { $0?.trimmingCharacters(in: .whitespaces).isEmpty ?? true }
     }
@@ -29,7 +29,7 @@ public extension ObservableType where Self.E == String? {
     }
 }
 
-public extension SharedSequenceConvertibleType where Self.E == String {
+public extension SharedSequenceConvertibleType where Self.Element == String {
     func isEmpty() -> SharedSequence<SharingStrategy, Bool> {
         return map { $0.trimmingCharacters(in: .whitespaces).isEmpty }
     }
@@ -39,7 +39,7 @@ public extension SharedSequenceConvertibleType where Self.E == String {
     }
 }
 
-public extension SharedSequenceConvertibleType where Self.E == String? {
+public extension SharedSequenceConvertibleType where Self.Element == String? {
     func isEmpty() -> SharedSequence<SharingStrategy, Bool> {
         return map { $0?.trimmingCharacters(in: .whitespaces).isEmpty ?? true }
     }

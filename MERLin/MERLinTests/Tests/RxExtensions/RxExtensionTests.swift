@@ -39,32 +39,12 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.unwrap()
+            emitter.unwrap()
         }
         
         let expected: [Recorded<Event<Bool>>] = [
             .next(1, true),
             .next(3, false)
-        ]
-        
-        XCTAssertEqual(observer.events, expected)
-    }
-    
-    func testItCanCompactMap() {
-        let events = [
-            Recorded.next(1, "1"),
-            .next(2, "2"),
-            .next(3, "a")
-        ]
-        
-        let observer = buildTest(emitting: events) { emitter in
-            return emitter
-                .compactMap(Int.init)
-        }
-        
-        let expected: [Recorded<Event<Int>>] = [
-            .next(1, 1),
-            .next(2, 2)
         ]
         
         XCTAssertEqual(observer.events, expected)
@@ -78,7 +58,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.toVoid()
+            emitter.toVoid()
         }
         
         let expected = [
@@ -98,7 +78,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.toRoutableObservable(throttleTime: 5, scheduler: scheduler)
+            emitter.toRoutableObservable(throttleTime: .seconds(5), scheduler: scheduler)
         }
         
         XCTAssertEqual(observer.events.map { $0.value.element }, ["a"])
@@ -112,7 +92,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.compactFlatMapFirst { value -> Observable<Bool>? in
+            emitter.compactFlatMapFirst { value -> Observable<Bool>? in
                 guard let value = value else { return nil }
                 return Observable<Bool>.just(value)
             }
@@ -134,7 +114,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.compactFlatMap { value -> Observable<Bool>? in
+            emitter.compactFlatMap { value -> Observable<Bool>? in
                 guard let value = value else { return nil }
                 return Observable<Bool>.just(value)
             }
@@ -156,7 +136,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.compactFlatMapLatest { value -> Observable<Bool>? in
+            emitter.compactFlatMapLatest { value -> Observable<Bool>? in
                 guard let value = value else { return nil }
                 return Observable<Bool>.just(value)
             }
@@ -180,7 +160,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.asDriverIgnoreError().unwrap()
+            emitter.asDriverIgnoreError().unwrap()
         }
         
         let expected = [
@@ -199,7 +179,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         ]
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.asDriverIgnoreError()
+            emitter.asDriverIgnoreError()
                 .compactMap(Int.init)
         }
         
@@ -226,7 +206,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
             .disposed(by: disposeBag)
         
         let observer = buildTest(emitting: events) { emitter in
-            return emitter.asDriver(onErrorSendErrorTo: errors)
+            emitter.asDriver(onErrorSendErrorTo: errors)
         }
         
         XCTAssertEqual(observer.events, [Recorded.next(1, "1"), .completed(2)])
@@ -239,7 +219,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         let value: Bool? = true
         
         let observer = buildTest(value: value) { emitter in
-            return emitter.unwrapOrError("error")
+            emitter.unwrapOrError("error")
         }
         
         let expected = [
@@ -254,7 +234,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         let value: Bool? = nil
         
         let observer = buildTest(value: value) { emitter in
-            return emitter.unwrapOrError("error")
+            emitter.unwrapOrError("error")
         }
         
         let expected: [Recorded<Event<Bool>>] = [
@@ -269,7 +249,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         let fallback = Single.just(true)
         
         let observer = buildTest(value: value) { emitter in
-            return emitter.unwrapOrSwitch(to: fallback)
+            emitter.unwrapOrSwitch(to: fallback)
         }
         
         let expected = [
@@ -282,7 +262,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     
     func testItCanMapToVoidSingle() {
         let observer = buildTest(value: true) { emitter in
-            return emitter.toVoid()
+            emitter.toVoid()
         }
         
         let expected = [
@@ -296,7 +276,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     func testItCanCompactFlatMapSingle() {
         let value: Bool? = true
         let observer = buildTest(value: value) { emitter in
-            return emitter.compactFlatMapOrSwitch(to: .just(false)) {
+            emitter.compactFlatMapOrSwitch(to: .just(false)) {
                 guard let value = $0 else { return nil }
                 return .just(value)
             }
@@ -313,7 +293,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     func testItCanSwitchOnCompactFlatMapSingle() {
         let value: Bool? = nil
         let observer = buildTest(value: value) { emitter in
-            return emitter.compactFlatMapOrSwitch(to: .just(false)) {
+            emitter.compactFlatMapOrSwitch(to: .just(false)) {
                 guard let value = $0 else { return nil }
                 return .just(value)
             }
@@ -330,7 +310,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     func testItCanCompactFlatMapWithoutErroringSingle() {
         let value: Bool? = true
         let observer = buildTest(value: value) { emitter in
-            return emitter.compactFlatMapOrError("Error") { val -> Single<Bool>? in
+            emitter.compactFlatMapOrError("Error") { val -> Single<Bool>? in
                 guard let value = val else { return nil }
                 return .just(value)
             }
@@ -348,7 +328,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         let value: Bool? = nil
         let expectedError: Error = "error"
         let observer = buildTest(value: value) { emitter in
-            return emitter.compactFlatMapOrError(expectedError) { val -> Single<Bool>? in
+            emitter.compactFlatMapOrError(expectedError) { val -> Single<Bool>? in
                 guard let value = val else { return nil }
                 return .just(value)
             }
@@ -365,7 +345,7 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     
     func testItCanCompactMapMaybe() {
         let observer = buildTest(value: "1") { emitter in
-            return emitter.asMaybe()
+            emitter.asMaybe()
                 .compactMap(Int.init)
         }
         

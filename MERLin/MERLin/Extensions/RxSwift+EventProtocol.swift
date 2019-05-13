@@ -9,7 +9,7 @@
 import RxCocoa
 import RxSwift
 
-public extension ObservableType where E == EventProtocol {
+public extension ObservableType where Element == EventProtocol {
     func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {
         return compactMap { $0 as? T }
     }
@@ -35,20 +35,20 @@ public extension ObservableType where E == EventProtocol {
     }
 }
 
-public extension ObservableType where E: EventProtocol {
-    func exclude(event target: E) -> Observable<E> {
+public extension ObservableType where Element: EventProtocol {
+    func exclude(event target: Element) -> Observable<Element> {
         return filter { !$0.matches(event: target) }
     }
     
-    func capture(event target: E) -> Observable<E> {
+    func capture(event target: Element) -> Observable<Element> {
         return filter { $0.matches(event: target) }
     }
     
-    func exclude<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<E> {
+    func exclude<Payload>(event pattern: @escaping (Payload) -> Element) -> Observable<Element> {
         return filter { $0.extractPayload(ifMatches: pattern) == nil }
     }
     
-    func capture<Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
+    func capture<Payload>(event pattern: @escaping (Payload) -> Element) -> Observable<Payload> {
         return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
     
@@ -61,7 +61,7 @@ public extension ObservableType where E: EventProtocol {
     }
 }
 
-public extension ObservableType where E == AnyEvent {
+public extension ObservableType where Element == AnyEvent {
     func capture<T: EventProtocol>(event target: T) -> Observable<T> {
         return filter { $0.matches(event: target) }
             .compactMap { $0.base as? T }
@@ -72,12 +72,12 @@ public extension ObservableType where E == AnyEvent {
     }
 }
 
-public extension SharedSequenceConvertibleType where E: EventProtocol {
-    func capture(event target: E) -> SharedSequence<SharingStrategy, E> {
+public extension SharedSequenceConvertibleType where Element: EventProtocol {
+    func capture(event target: Element) -> SharedSequence<SharingStrategy, Element> {
         return filter { $0.matches(event: target) }
     }
     
-    func capture<Payload>(event pattern: @escaping (Payload) -> E) -> SharedSequence<SharingStrategy, Payload> {
+    func capture<Payload>(event pattern: @escaping (Payload) -> Element) -> SharedSequence<SharingStrategy, Payload> {
         return compactMap { $0.extractPayload(ifMatches: pattern) }
     }
 }
