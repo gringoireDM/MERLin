@@ -550,24 +550,24 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LNZWeakCollection/LNZWeakCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/MERLin/MERLin.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNZWeakCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MERLin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MERLinTargets-MERLinSample/Pods-MERLinTargets-MERLinSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E12C0A50D4DB156C1E2C8C31 /* [CP] Check Pods Manifest.lock */ = {

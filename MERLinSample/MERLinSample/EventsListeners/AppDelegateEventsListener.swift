@@ -34,7 +34,7 @@ class AppDelegateEventsListener: EventsListening {
                 .do(onNext: { [weak self] _ in self?.router.hideLoadingView() })
                 .compactMap { $0.userInfo?[CSSearchableItemActivityIdentifier] as? String }
         ]).subscribe(onNext: { [weak self] in
-            _ = self?.router.route(toDeeplink: $0)
+            _ = self?.router.route(toDeeplink: $0, userInfo: nil)
         }).disposed(by: producer.disposeBag)
         
         producer[event: AppDelegateEvent.failedToContinueUserActivity]

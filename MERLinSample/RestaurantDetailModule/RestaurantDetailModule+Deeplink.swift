@@ -38,14 +38,14 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
         return RestaurantDetailBuildContext(withRoutingContext: "Deeplink", restaurantId: id)
     }
     
-    public static func module(fromDeeplink deeplink: String) -> (AnyModule, UIViewController)? {
+    public static func module(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> (AnyModule, UIViewController)? {
         guard let context = RestaurantDetailModule.context(fromDeeplink: deeplink) else { return nil }
         
         let module = RestaurantDetailModule(usingContext: context)
         return (module, module.prepareRootViewController())
     }
     
-    @discardableResult public func updateContext(fromDeeplink deeplink: String) -> Bool {
+    public func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
         return false // don't want to replace the current restaurant on screen if any.
     }
 }
