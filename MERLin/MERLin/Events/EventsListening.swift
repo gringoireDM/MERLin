@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-public protocol AnyEventsListening: class {
+public protocol AnyEventsListening: AnyObject {
     /// This method allows the event manager to register to a module's events.
     /// - parameter moduel: The module exposing the events
     /// - returns: Bool indicating if the module's events can be handled by the event manager
@@ -26,5 +26,15 @@ public extension EventsListening {
     func registerToEvents(for producer: AnyEventsProducer) -> Bool {
         guard let events = producer.observable(of: EventsType.self) else { return false }
         return registerToEvents(for: producer, events: events)
+    }
+}
+
+public protocol EventsListenerAggregator: AnyEventsListening {
+    var listeners: [AnyEventsListening] { get }
+}
+
+public extension EventsListenerAggregator {
+    @discardableResult func registerToEvents(for producer: AnyEventsProducer) -> Bool {
+        return listeners.reduce(false) { $0 || $1.registerToEvents(for: producer) }
     }
 }

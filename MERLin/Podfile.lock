@@ -8,12 +8,12 @@ PODS:
   - RxSwift (5.0.0)
   - RxTest (5.0.0):
     - RxSwift (~> 5)
-  - SwiftFormat/CLI (0.40.8)
+  - SwiftFormat/CLI (0.40.9)
 
 DEPENDENCIES:
-  - LNZWeakCollection (~> 1.3.1)
-  - RxCocoa
-  - RxTest
+  - LNZWeakCollection (~> 1.3.2)
+  - RxCocoa (~> 5.0.0)
+  - RxTest (~> 5.0.0)
   - SwiftFormat/CLI (~> 0.40.5)
 
 SPEC REPOS:
@@ -31,8 +31,8 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
-  SwiftFormat: d9e5ca1aed735164fe9d26510ec508ddb8a93598
+  SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
 
-PODFILE CHECKSUM: 443f8d5f75d290e5af8e47dd6fc50f0a066086b1
+PODFILE CHECKSUM: 78c04540c533191c3d263ced8e5ff2d1e5529265
 
 COCOAPODS: 1.6.1

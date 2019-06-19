@@ -25,3 +25,10 @@ class MockEventsListener<E: EventProtocol>: EventsListening {
         return true
     }
 }
+
+class MockListenerAggregator: EventsListenerAggregator {
+    var listeners: [AnyEventsListening]
+    init(withListeners listeners: [AnyEventsListening]) {
+        self.listeners = listeners
+    }
+}
