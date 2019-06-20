@@ -8,57 +8,7 @@
 
 import RxSwift
 
-public struct PageInfo: Equatable {
-    public let pageName: String
-    public let section: String
-    public let pageType: String
-    
-    init(withPage page: PageRepresenting) {
-        pageName = page.pageName
-        section = page.section
-        pageType = page.pageType
-    }
-}
-
-public enum ViewControllerEvent: EventProtocol, Equatable {
-    case uninitialized
-    case initialized
-    case willAppear
-    case appeared
-    case willDisappear
-    case disappeared
-    
-    case newViewController(PageInfo, events: Observable<ViewControllerEvent>)
-    
-    public static func == (lhs: ViewControllerEvent, rhs: ViewControllerEvent) -> Bool {
-        switch (lhs, rhs) {
-        case (.uninitialized, .uninitialized),
-             (.initialized, .initialized),
-             (.willAppear, .willAppear),
-             (.appeared, .appeared),
-             (.willDisappear, .willDisappear),
-             (.disappeared, .disappeared): return true
-        case let (.newViewController(lhsPageInfo, _), .newViewController(rhsPageInfo, _)):
-            return lhsPageInfo == rhsPageInfo
-        default: return false
-        }
-    }
-}
-
-public protocol PageRepresenting {
-    var pageName: String { get }
-    var section: String { get }
-    var pageType: String { get }
-}
-
-public extension PageRepresenting {
-    func pageInfo() -> PageInfo {
-        return PageInfo(withPage: self)
-    }
-}
-
-public protocol AnyModule: class, NSObjectProtocol {
-    var viewControllerEvent: Observable<ViewControllerEvent> { get }
+public protocol AnyModule: AnyObject, NSObjectProtocol {
     var routingContext: String { get }
     
     func unmanagedRootViewController() -> UIViewController
@@ -75,14 +25,20 @@ public extension ModuleProtocol {
     var routingContext: String { return context.routingContext }
 }
 
-private class ViewControllerWrapper {
+private class ViewControllerWrapper: Equatable {
+    static func == (lhs: ViewControllerWrapper, rhs: ViewControllerWrapper) -> Bool {
+        return lhs.controller == rhs.controller
+    }
+    
     weak var controller: UIViewController?
-    init(controller: UIViewController) { self.controller = controller }
+    init(controller: UIViewController?) { self.controller = controller }
 }
 
-private var viewControllerEventHandle: UInt8 = 0
 private var viewControllerHandle: UInt8 = 0
 private var disposeBagHandle: UInt8 = 0
+private var newWrappedViewControllerObsHandle: UInt8 = 0
+private var newViewControllerObsHandle: UInt8 = 0
+
 public extension AnyModule {
     internal(set) var rootViewController: UIViewController? {
         get {
@@ -99,16 +55,6 @@ public extension AnyModule {
         }
     }
     
-    var viewControllerEvent: Observable<ViewControllerEvent> { return _viewControllerEvent }
-    private var _viewControllerEvent: BehaviorSubject<ViewControllerEvent> {
-        guard let observable = objc_getAssociatedObject(self, &viewControllerEventHandle) as? BehaviorSubject<ViewControllerEvent> else {
-            let observable = BehaviorSubject<ViewControllerEvent>(value: .uninitialized)
-            objc_setAssociatedObject(self, &viewControllerEventHandle, observable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return observable
-        }
-        return observable
-    }
-    
     var disposeBag: DisposeBag {
         guard let bag = objc_getAssociatedObject(self, &disposeBagHandle) as? DisposeBag else {
             let bag = DisposeBag()
@@ -118,39 +64,46 @@ public extension AnyModule {
         return bag
     }
     
+    private var _newViewControllers: BehaviorSubject<ViewControllerWrapper> {
+        guard let observable = objc_getAssociatedObject(self, &newWrappedViewControllerObsHandle) as? BehaviorSubject<ViewControllerWrapper> else {
+            let initial = ViewControllerWrapper(controller: rootViewController)
+            let observable = BehaviorSubject<ViewControllerWrapper>(value: initial)
+            objc_setAssociatedObject(self, &newWrappedViewControllerObsHandle, observable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return observable
+        }
+        return observable
+    }
+    
+    /// This observable notifies of new view controllers presented due to internal routing
+    /// for this to work, it is necessary that as part of your internal routing system you invoke the
+    /// `signalNew(viewController:)` function to emit a new event.
+    /// This observable will always emit the latest signaled viewController, but it will not retain it.
+    /// If the latest signaled viewController was released any new subscription will have no initial value.
+    var newViewControllers: Observable<UIViewController> {
+        guard let observable = objc_getAssociatedObject(self, &newViewControllerObsHandle) as? Observable<UIViewController> else {
+            let observable = _newViewControllers
+                .distinctUntilChanged()
+                .compactMap { $0.controller }
+            objc_setAssociatedObject(self, &newViewControllerObsHandle, observable, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return observable
+        }
+        return observable
+    }
+    
     func prepareRootViewController() -> UIViewController {
         guard rootViewController == nil else { return rootViewController! }
         let controller = unmanagedRootViewController()
         rootViewController = controller
-        _viewControllerEvent.onNext(.initialized)
-        bindViewController(controller, to: _viewControllerEvent)
+        signalNew(viewController: controller)
         return controller
     }
     
-    private func bindViewController(_ viewController: UIViewController, to events: BehaviorSubject<ViewControllerEvent>) {
-        let willAppearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .map { _ in ViewControllerEvent.willAppear }
-        
-        let didAppearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
-            .map { _ in ViewControllerEvent.appeared }
-        
-        let willDisappearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewWillDisappear(_:)))
-            .map { _ in ViewControllerEvent.willDisappear }
-        
-        let didDisappearProducer = (viewController as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
-            .map { _ in ViewControllerEvent.disappeared }
-        
-        Observable.of(willAppearProducer, didAppearProducer, willDisappearProducer, didDisappearProducer)
-            .merge()
-            .bind(to: events)
-            .disposed(by: disposeBag)
-    }
-    
-    /// Call this function to send an event to all your listeners to notify that an internal routing is happening
-    /// for the current module.
-    func trackViewController(viewController: UIViewController & PageRepresenting) {
-        let events = BehaviorSubject<ViewControllerEvent>(value: .initialized)
-        bindViewController(viewController, to: events)
-        _viewControllerEvent.onNext(.newViewController(viewController.pageInfo(), events: events))
+    /// This function will make sure that a new event with the new ViewController is emitted
+    /// through the `newViewControllers` observable. This function does not retain the view controller
+    /// as well as the observable. RootViewController is always automatically notified when the
+    /// `prepareRootViewController` function is invoked.
+    func signalNew(viewController: UIViewController) {
+        let wrapped = ViewControllerWrapper(controller: viewController)
+        _newViewControllers.onNext(wrapped)
     }
 }
