@@ -8,11 +8,24 @@
 
 import RxSwift
 
-public enum ViewControllerEvent: EventProtocol, Equatable {
+public enum ViewControllerEvent: EventProtocol, Equatable, CaseIterable {
     case willAppear
     case appeared
     case willDisappear
     case disappeared
+    
+    fileprivate func toSelector() -> Selector {
+        switch self {
+        case .willAppear:
+            return #selector(UIViewController.viewWillAppear(_:))
+        case .appeared:
+            return #selector(UIViewController.viewDidAppear(_:))
+        case .willDisappear:
+            return #selector(UIViewController.viewWillDisappear(_:))
+        case .disappeared:
+            return #selector(UIViewController.viewDidDisappear(_:))
+        }
+    }
 }
 
 private var viewControllerEventHandle: UInt8 = 0
@@ -27,23 +40,10 @@ public extension UIViewController {
     }
     
     private func makeVCEvents() -> Observable<ViewControllerEvent> {
-        let willAppearProducer = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .map { _ in ViewControllerEvent.willAppear }
-        
-        let didAppearProducer = rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
-            .map { _ in ViewControllerEvent.appeared }
-        
-        let willDisappearProducer = rx.sentMessage(#selector(UIViewController.viewWillDisappear(_:)))
-            .map { _ in ViewControllerEvent.willDisappear }
-        
-        let didDisappearProducer = rx.sentMessage(#selector(UIViewController.viewDidDisappear(_:)))
-            .map { _ in ViewControllerEvent.disappeared }
-        
         return Observable.merge(
-            willAppearProducer,
-            didAppearProducer,
-            willDisappearProducer,
-            didDisappearProducer
+            ViewControllerEvent.allCases.map { event in
+                rx.sentMessage(event.toSelector()).map { _ in event }
+            }
         )
     }
 }

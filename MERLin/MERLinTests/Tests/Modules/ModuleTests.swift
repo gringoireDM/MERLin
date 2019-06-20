@@ -149,8 +149,12 @@ class ModuleTests: XCTestCase {
     }
     
     struct VCEvent: Equatable {
-        var vc: UIViewController
-        var ev: ViewControllerEvent
+        var controller: UIViewController
+        var event: ViewControllerEvent
+        init(_ controller: UIViewController, _ event: ViewControllerEvent) {
+            self.controller = controller
+            self.event = event
+        }
     }
     
     func testViewControllerFlowScenario() {
@@ -186,12 +190,12 @@ class ModuleTests: XCTestCase {
         scheduler.start()
         
         let expected = [
-            Recorded.next(1, VCEvent(vc: root, ev: .willAppear)),
-            .next(1, VCEvent(vc: root, ev: .appeared)),
-            .next(3, VCEvent(vc: root, ev: .willDisappear)),
-            .next(3, VCEvent(vc: newVC, ev: .willAppear)),
-            .next(3, VCEvent(vc: root, ev: .disappeared)),
-            .next(3, VCEvent(vc: newVC, ev: .appeared))
+            Recorded.next(1, VCEvent(root, .willAppear)),
+            .next(1, VCEvent(root, .appeared)),
+            .next(3, VCEvent(root, .willDisappear)),
+            .next(3, VCEvent(newVC, .willAppear)),
+            .next(3, VCEvent(root, .disappeared)),
+            .next(3, VCEvent(newVC, .appeared))
         ]
         
         XCTAssertEqual(observer.events, expected)
