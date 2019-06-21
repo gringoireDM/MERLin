@@ -30,10 +30,10 @@ class ContextualizedMockModule: NSObject, ModuleProtocol {
     }
 }
 
-class MockModule: NSObject, ModuleProtocol, EventsProducer {
+class MockModule<T: EventProtocol>: NSObject, ModuleProtocol, EventsProducer {
     var context: ModuleContext
     
-    var events: Observable<NoEvents> = PublishSubject<NoEvents>()
+    var events: Observable<T> = PublishSubject<T>()
     required init(usingContext buildContext: ModuleContext) {
         context = buildContext
         super.init()
@@ -46,6 +46,6 @@ class MockModule: NSObject, ModuleProtocol, EventsProducer {
 
 extension ModuleRoutingStep {
     static func mock() -> ModuleRoutingStep {
-        return ModuleRoutingStep(withMaker: ModuleContext(building: MockModule.self))
+        return ModuleRoutingStep(withMaker: ModuleContext(building: MockModule<NoEvents>.self))
     }
 }

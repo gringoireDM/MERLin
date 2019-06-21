@@ -48,6 +48,8 @@
 		504308DE22AEA789008AC2AB /* MockModuleConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504308DD22AEA789008AC2AB /* MockModuleConsumer.swift */; };
 		504A93EE22ACF1F700D6C63C /* ModuleEventsConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A93ED22ACF1F700D6C63C /* ModuleEventsConsumer.swift */; };
 		505D0A7F22BD352D00547532 /* ViewControllerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D0A7E22BD352D00547532 /* ViewControllerEvent.swift */; };
+		505D0A8122BD498C00547532 /* EventsConsumerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D0A8022BD498C00547532 /* EventsConsumerTests.swift */; };
+		505D0A8322BD4B0600547532 /* ModuleConsumerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D0A8222BD4B0600547532 /* ModuleConsumerTests.swift */; };
 		5074DF31213ECD010021294D /* DeeplinkMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F802130BD3600114F5A /* DeeplinkMatcher.m */; };
 		5074DF32213ECD010021294D /* DeeplinkMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6F812130BD3600114F5A /* DeeplinkMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
@@ -116,6 +118,8 @@
 		504308DD22AEA789008AC2AB /* MockModuleConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModuleConsumer.swift; sourceTree = "<group>"; };
 		504A93ED22ACF1F700D6C63C /* ModuleEventsConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleEventsConsumer.swift; sourceTree = "<group>"; };
 		505D0A7E22BD352D00547532 /* ViewControllerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEvent.swift; sourceTree = "<group>"; };
+		505D0A8022BD498C00547532 /* EventsConsumerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsConsumerTests.swift; sourceTree = "<group>"; };
+		505D0A8222BD4B0600547532 /* ModuleConsumerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleConsumerTests.swift; sourceTree = "<group>"; };
 		50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+EventProtocol.swift"; sourceTree = "<group>"; };
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 			children = (
 				502B9B7221452D6600BBFFC3 /* EventsTests.swift */,
 				5006670621A983ED00CDA08C /* EventsProducerTests.swift */,
+				505D0A8022BD498C00547532 /* EventsConsumerTests.swift */,
+				505D0A8222BD4B0600547532 /* ModuleConsumerTests.swift */,
 				502E0E5B21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
 			);
@@ -579,7 +585,9 @@
 				502C509021465D91002B70A4 /* MockModule.swift in Sources */,
 				500652E621D3C14C009466F9 /* RouterTests.swift in Sources */,
 				500BC38321DEACBE00BA39F2 /* ModuleContextTests.swift in Sources */,
+				505D0A8322BD4B0600547532 /* ModuleConsumerTests.swift in Sources */,
 				500BC38521DEB83A00BA39F2 /* ModuleTests.swift in Sources */,
+				505D0A8122BD498C00547532 /* EventsConsumerTests.swift in Sources */,
 				502E0E6521D2FF29004A4F56 /* RxExtensionTestCase.swift in Sources */,
 				5006670921AB3AD300CDA08C /* MockEventProducer.swift in Sources */,
 				504308DE22AEA789008AC2AB /* MockModuleConsumer.swift in Sources */,

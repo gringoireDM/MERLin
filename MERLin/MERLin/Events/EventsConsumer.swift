@@ -18,12 +18,14 @@ public protocol AnyEventsConsumer: AnyObject {
     /// This method allows the event manager to register to a module's events.
     /// - parameter producer: The producer exposing the events
     /// - returns: Bool indicating if the module's events can be handled by the event manager
-    @discardableResult func consumeEvents(from producer: AnyEventsProducer) -> Bool
+    @discardableResult
+    func consumeEvents(from producer: AnyEventsProducer) -> Bool
 }
 
 public protocol EventsConsumer: AnyEventsConsumer {
     associatedtype EventsType: EventProtocol
-    @discardableResult func consumeEvents(from producer: AnyEventsProducer, events: Observable<EventsType>) -> Bool
+    @discardableResult
+    func consumeEvents(from producer: AnyEventsProducer, events: Observable<EventsType>) -> Bool
 }
 
 public extension EventsConsumer {
@@ -39,7 +41,8 @@ public protocol EventsConsumersAggregator: AnyEventsConsumer {
 }
 
 public extension EventsConsumersAggregator {
-    @discardableResult func consumeEvents(from producer: AnyEventsProducer) -> Bool {
+    @discardableResult
+    func consumeEvents(from producer: AnyEventsProducer) -> Bool {
         return consumers.reduce(false) { $0 || $1.consumeEvents(from: producer) }
     }
 }

@@ -12,6 +12,7 @@ import RxSwift
 public typealias AnyEventsProducerModule = AnyEventsProducer & AnyModule
 
 public protocol AnyModuleEventsConsumer: AnyEventsConsumer {
+    @discardableResult
     func consumeEvents(from module: AnyEventsProducerModule) -> Bool
 }
 
@@ -25,15 +26,18 @@ public extension AnyModuleEventsConsumer {
 
 public protocol ModuleEventsConsumer: AnyModuleEventsConsumer {
     associatedtype EventsType: EventProtocol
+    @discardableResult
     func consumeEvents(from module: AnyEventsProducerModule, events: Observable<EventsType>) -> Bool
 }
 
 public extension ModuleEventsConsumer {
+    @discardableResult
     func consumeEvents(from producer: AnyEventsProducer) -> Bool {
         guard let producer = producer as? AnyEventsProducerModule else { return false }
         return consumeEvents(from: producer)
     }
     
+    @discardableResult
     func consumeEvents(from module: AnyEventsProducerModule) -> Bool {
         guard let events = module.observable(of: EventsType.self) else { return false }
         return consumeEvents(from: module, events: events)
@@ -50,7 +54,8 @@ public protocol ModuleEventsConsumersAggregator: AnyEventsConsumer {
 }
 
 public extension ModuleEventsConsumersAggregator {
-    @discardableResult func consumeEvents(from producer: AnyEventsProducer) -> Bool {
+    @discardableResult
+    func consumeEvents(from producer: AnyEventsProducer) -> Bool {
         guard let producer = producer as? AnyEventsProducerModule,
             handledRoutingContext == nil || handledRoutingContext!.contains(producer.routingContext) else { return false }
         

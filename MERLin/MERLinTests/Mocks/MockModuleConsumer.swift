@@ -10,14 +10,18 @@ import Foundation
 import MERLin
 import RxSwift
 
-class MockAnyModuleConsumer<T: EventProtocol>: AnyModuleEventsConsumer {
+class MockAnyModuleConsumer: AnyModuleEventsConsumer {
+    var registeredProducers: [AnyModule] = []
     func consumeEvents(from module: AnyEventsProducerModule) -> Bool {
+        registeredProducers.append(module)
         return true
     }
 }
 
 class MockModuleConsumer<T: EventProtocol>: ModuleEventsConsumer {
+    var registeredProducers: [AnyModule] = []
     func consumeEvents(from module: AnyEventsProducerModule, events: Observable<T>) -> Bool {
+        registeredProducers.append(module)
         return true
     }
 }
@@ -26,7 +30,7 @@ class MockModuleConsumerAggregator: ModuleEventsConsumersAggregator {
     var moduleConsumers: [AnyModuleEventsConsumer]
     var handledRoutingContext: [String]?
     
-    init(withConsumers consumers: [AnyModuleEventsConsumer], handledContexts: [String]?) {
+    init(withConsumers consumers: [AnyModuleEventsConsumer], handledContexts: [String]? = nil) {
         moduleConsumers = consumers
         handledRoutingContext = handledContexts
     }

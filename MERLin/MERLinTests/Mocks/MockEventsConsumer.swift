@@ -12,7 +12,6 @@ import RxSwift
 
 class MockAnyEventsConsumer: AnyEventsConsumer {
     var registeredProducers: [AnyEventsProducer] = []
-    
     func consumeEvents(from producer: AnyEventsProducer) -> Bool {
         registeredProducers.append(producer)
         return true
