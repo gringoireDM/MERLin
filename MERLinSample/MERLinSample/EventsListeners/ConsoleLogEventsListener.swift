@@ -8,8 +8,8 @@
 
 import MERLin
 
-class ConsoleLogEventsListener: AnyEventsListening {
-    @discardableResult func registerToEvents(for producer: AnyEventsProducer) -> Bool {
+class ConsoleLogEventsListener: AnyEventsConsumer {
+    @discardableResult func consumeEvents(from producer: AnyEventsProducer) -> Bool {
         let pageName = "\(type(of: producer))"
         producer.anyEvents.map { "[\(pageName)] \($0)" }
             .subscribe(onNext: { print($0) })
