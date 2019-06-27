@@ -10,14 +10,14 @@ import CoreSpotlight
 import MERLin
 import RxSwift
 
-class AppDelegateEventsListener: EventsListening {
+class AppDelegateEventsListener: EventsConsumer {
     let router: Router
     
     init(withRouter router: Router) {
         self.router = router
     }
     
-    func registerToEvents(for producer: AnyEventsProducer, events: Observable<AppDelegateEvent>) -> Bool {
+    func consumeEvents(from producer: AnyEventsProducer, events: Observable<AppDelegateEvent>) -> Bool {
         producer[event: AppDelegateEvent.didFinishLaunching].toVoid()
             .subscribe(onNext: {
                 // Push notifications registration?

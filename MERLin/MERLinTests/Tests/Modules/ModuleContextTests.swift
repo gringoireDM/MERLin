@@ -6,16 +6,16 @@
 //  Copyright © 2019 Giuseppe Lanza. All rights reserved.
 //
 
-import XCTest
 @testable import MERLin
+import XCTest
 
 class ModuleContextTests: XCTestCase {
     func testThatContextCanBuildModule() {
-        let context = ModuleContext(routingContext: "test", building: MockModule.self)
+        let context = ModuleContext(routingContext: "test", building: MockModule<NoEvents>.self)
         let (module, _) = context.make()
         
-        XCTAssert(module is MockModule)
-        XCTAssertEqual((module as? MockModule)?.context, context)
+        XCTAssert(module is MockModule<NoEvents>)
+        XCTAssertEqual((module as? MockModule<NoEvents>)?.context, context)
     }
     
     func testThatContextCanBuildContextualizedModule() {

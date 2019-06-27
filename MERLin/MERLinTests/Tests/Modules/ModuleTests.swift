@@ -12,13 +12,13 @@ import RxTest
 import XCTest
 
 class ModuleTests: XCTestCase {
-    var module: MockModule!
+    var module: MockModule<NoEvents>!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     
     override func setUp() {
         super.setUp()
-        module = MockModule(usingContext: ModuleContext(building: MockModule.self))
+        module = MockModule(usingContext: ModuleContext(building: MockModule<NoEvents>.self))
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
     }

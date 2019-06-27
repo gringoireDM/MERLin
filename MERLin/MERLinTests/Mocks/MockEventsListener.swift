@@ -10,18 +10,25 @@ import Foundation
 import MERLin
 import RxSwift
 
-class MockAnyEventsListener: AnyEventsListening {
+class MockAnyEventsListener: AnyEventsListener {
     var registeredProducers: [AnyEventsProducer] = []
-    func registerToEvents(for producer: AnyEventsProducer) -> Bool {
+    func listenEvents(from producer: AnyEventsProducer) -> Bool {
         registeredProducers.append(producer)
         return true
     }
 }
 
-class MockEventsListener<E: EventProtocol>: EventsListening {
+class MockEventsListener<E: EventProtocol>: EventsListener {
     var registeredProducers: [AnyEventsProducer] = []
-    func registerToEvents(for producer: AnyEventsProducer, events: Observable<E>) -> Bool {
+    func listenEvents(from producer: AnyEventsProducer, events: Observable<E>) -> Bool {
         registeredProducers.append(producer)
         return true
+    }
+}
+
+class MockListenersAggregator: EventsListenersAggregator {
+    var listeners: [AnyEventsListener]
+    init(withListeners listeners: [AnyEventsListener]) {
+        self.listeners = listeners
     }
 }

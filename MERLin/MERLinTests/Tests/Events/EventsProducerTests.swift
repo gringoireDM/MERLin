@@ -159,17 +159,4 @@ class EventsProducerTests: XCTestCase {
         
         XCTAssertEqual(observer.events, expected)
     }
-    
-    func testThatAListenerCanRegisterToASpecificEventsProducer() {
-        let listener = MockEventsListener<MockEvent>()
-        listener.registerToEvents(for: producer)
-        XCTAssertEqual(listener.registeredProducers.count, 1)
-        XCTAssert(listener.registeredProducers.first === producer)
-    }
-    
-    func testThatAListenerCanIgnoreNotInterestingProducers() {
-        let listener = MockEventsListener<NoEvents>()
-        listener.registerToEvents(for: producer)
-        XCTAssertEqual(listener.registeredProducers.count, 0)
-    }
 }

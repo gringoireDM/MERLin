@@ -17,9 +17,9 @@ class ModuleWrapper {
 }
 
 open class BaseModuleManager {
-    private var eventsListeners: [AnyEventsListening]
+    private var eventsListeners: [AnyEventsListener]
     
-    public init(withEventsListeners eventsListeners: [AnyEventsListening] = []) {
+    public init(withEventsListeners eventsListeners: [AnyEventsListener] = []) {
         self.eventsListeners = eventsListeners
     }
     
@@ -38,7 +38,7 @@ open class BaseModuleManager {
     
     public func setupEventsListeners(for producer: AnyEventsProducer) {
         eventsListeners.forEach { manager in
-            manager.registerToEvents(for: producer)
+            manager.listenEvents(from: producer)
         }
     }
     
@@ -50,13 +50,13 @@ open class BaseModuleManager {
         return moduleRetainer[viewController]?.module
     }
     
-    public func addEventsListeners(_ listeners: [AnyEventsListening]) {
+    public func addEventsListeners(_ listeners: [AnyEventsListener]) {
         for listener in listeners {
             eventsListeners.append(listener)
             
             moduleRetainer.values.forEach { (wrapper) in
                 guard let producer = wrapper.module as? AnyEventsProducer else { return }
-                listener.registerToEvents(for: producer)
+                listener.listenEvents(from: producer)
             }
         }
     }
@@ -66,11 +66,11 @@ extension BaseModuleManager: DeeplinkManaging {
     // MARK: - Deeplinks
     
     func deeplinkable(fromDeeplink deeplink: String) -> Deeplinkable.Type? {
-        let responders = DeeplinkMatcher.typedAvailableDeeplinkHandlers.compactMap({ (pair) -> Deeplinkable.Type? in
+        let responders = DeeplinkMatcher.typedAvailableDeeplinkHandlers.compactMap { (pair) -> Deeplinkable.Type? in
             let (key, value) = pair
             guard key.numberOfMatches(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) > 0 else { return nil }
             return value as? Deeplinkable.Type
-        })
+        }
         
         guard let type = responders.sorted(by: { (lhs, rhs) -> Bool in
             lhs.priority.rawValue > rhs.priority.rawValue
