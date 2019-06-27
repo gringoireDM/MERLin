@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     var moduleManager: BaseModuleManager = BaseModuleManager()
     
     var router: SimpleRouter!
-    lazy var eventsListeners: [AnyEventsConsumer] = {
+    lazy var eventsListeners: [AnyEventsListener] = {
         [
             ConsoleLogEventsListener(),
             AppDelegateEventsListener(withRouter: router),
@@ -36,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EventsProducer {
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         router = SimpleRouter(withFactory: moduleManager)
-        moduleManager.addEventsConsumers(eventsListeners)
+        moduleManager.addEventsListeners(eventsListeners)
         
-        eventsListeners.forEach { $0.consumeEvents(from: self) }
+        eventsListeners.forEach { $0.listenEvents(from: self) }
         
         return true
     }
