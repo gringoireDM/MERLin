@@ -33,10 +33,10 @@ class ObservableEventsProtocolTests: XCTestCase {
         super.tearDown()
     }
     
-    func testThatItCanConsumeSpecificEvents() {
+    func testThatItCanListenSpecificEvents() {
         let observer = scheduler.createObserver(MockEvent.self)
         emitter
-            .consume(eventType: MockEvent.self)
+            .listen(eventType: MockEvent.self)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -53,7 +53,7 @@ class ObservableEventsProtocolTests: XCTestCase {
     func testThatItCanIgnoreEvents() {
         let observer = scheduler.createObserver(NoEvents.self)
         emitter
-            .consume(eventType: NoEvents.self)
+            .listen(eventType: NoEvents.self)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -106,7 +106,7 @@ class ObservableEventsProtocolTests: XCTestCase {
     func testThatDriverCanCaptureEvents() {
         let observer = scheduler.createObserver(MockEvent.self)
         emitter
-            .consume(eventType: MockEvent.self)
+            .listen(eventType: MockEvent.self)
             .asDriverIgnoreError()
             .capture(event: MockEvent.noPayload)
             .drive(observer)
@@ -127,7 +127,7 @@ class ObservableEventsProtocolTests: XCTestCase {
         let expectedEvent = MockEvent.withAnonymousPayload("Life on Mars")
         let observer = scheduler.createObserver(String.self)
         emitter
-            .consume(eventType: MockEvent.self)
+            .listen(eventType: MockEvent.self)
             .asDriverIgnoreError()
             .capture(event: MockEvent.withAnonymousPayload)
             .drive(observer)

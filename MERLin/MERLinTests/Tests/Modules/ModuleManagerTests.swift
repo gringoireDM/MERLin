@@ -32,14 +32,14 @@ class ModuleManagerTests: XCTestCase {
         XCTAssertNotNil(moduleManager.module(for: viewController))
     }
     
-    func testItCanAddEventsConsumers() {
+    func testItCanAddEventsListeners() {
         let controllers = [moduleManager.viewController(for: mockStep()), moduleManager.viewController(for: mockStep())]
         
-        let eventsConsumer = MockAnyEventsConsumer()
+        let eventsListener = MockAnyEventsListener()
         
-        moduleManager.addEventsConsumers([eventsConsumer])
+        moduleManager.addEventsListeners([eventsListener])
         
-        XCTAssertEqual(eventsConsumer.registeredProducers.count, controllers.count)
+        XCTAssertEqual(eventsListener.registeredProducers.count, controllers.count)
     }
     
     func testCorrectResponders() {

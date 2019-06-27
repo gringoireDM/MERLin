@@ -17,15 +17,10 @@ class ModuleWrapper {
 }
 
 open class BaseModuleManager {
-    private var eventsConsumers: [AnyEventsConsumer]
+    private var eventsListeners: [AnyEventsListener]
     
-    @available(*, unavailable, renamed: "init(withEventsConsumers:)")
-    public init(withEventsListeners eventsListeners: [AnyEventsConsumer] = []) {
-        fatalError("unavailable. Use init(withEventsConsumers:)")
-    }
-    
-    public init(withEventsConsumers consumers: [AnyEventsConsumer] = []) {
-        eventsConsumers = consumers
+    public init(withEventsListeners eventsListeners: [AnyEventsListener] = []) {
+        self.eventsListeners = eventsListeners
     }
     
     // Hash consing design pattern.
@@ -36,21 +31,14 @@ open class BaseModuleManager {
     // it any longer.
     var moduleRetainer = WeakDictionary<UIViewController, ModuleWrapper>(withWeakRelation: .weakToStrong)
     
-    @available(*, unavailable, renamed: "setupEventsConsumers(for:)")
-    public func setupEventsListeners(for module: AnyModule) {}
-    @available(*, unavailable, renamed: "setupEventsConsumers(for:)")
-    public func setupEventsListeners(for producer: AnyEventsProducer) {}
-    @available(*, unavailable, renamed: "addEventsConsumers")
-    public func addEventsListeners(_ listeners: [AnyEventsConsumer]) {}
-    
-    public func setupEventsConsumers(for module: AnyModule) {
+    public func setupEventsListeners(for module: AnyModule) {
         guard let producer = module as? AnyEventsProducer else { return }
-        setupEventsConsumers(for: producer)
+        setupEventsListeners(for: producer)
     }
     
-    public func setupEventsConsumers(for producer: AnyEventsProducer) {
-        eventsConsumers.forEach { manager in
-            manager.consumeEvents(from: producer)
+    public func setupEventsListeners(for producer: AnyEventsProducer) {
+        eventsListeners.forEach { manager in
+            manager.listenEvents(from: producer)
         }
     }
     
@@ -62,13 +50,13 @@ open class BaseModuleManager {
         return moduleRetainer[viewController]?.module
     }
     
-    public func addEventsConsumers(_ consumers: [AnyEventsConsumer]) {
-        for consumer in consumers {
-            eventsConsumers.append(consumer)
+    public func addEventsListeners(_ listeners: [AnyEventsListener]) {
+        for listener in listeners {
+            eventsListeners.append(listener)
             
             moduleRetainer.values.forEach { (wrapper) in
                 guard let producer = wrapper.module as? AnyEventsProducer else { return }
-                consumer.consumeEvents(from: producer)
+                listener.listenEvents(from: producer)
             }
         }
     }
@@ -104,7 +92,7 @@ extension BaseModuleManager: DeeplinkManaging {
         guard let type = deeplinkable(fromDeeplink: deeplink) else { return nil }
         guard let (module, controller) = type.module(fromDeeplink: deeplink, userInfo: userInfo) else { return nil }
         moduleRetainer.set(ModuleWrapper(module), forKey: controller)
-        setupEventsConsumers(for: module)
+        setupEventsListeners(for: module)
         return controller
     }
     
@@ -117,7 +105,7 @@ extension BaseModuleManager: DeeplinkManaging {
 extension BaseModuleManager: ViewControllerBuilding {
     public func setup<T: UIViewController>(_ moduleController: (module: AnyModule, controller: T)) -> T {
         moduleRetainer.set(ModuleWrapper(moduleController.module), forKey: moduleController.controller)
-        setupEventsConsumers(for: moduleController.module)
+        setupEventsListeners(for: moduleController.module)
         return moduleController.controller
     }
     

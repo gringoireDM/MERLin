@@ -10,32 +10,27 @@ import RxCocoa
 import RxSwift
 
 public extension ObservableType where Element == EventProtocol {
-    @available(*, unavailable, renamed: "consume(eventType:)")
-    func listen<T: EventProtocol>(to eventType: T.Type) -> Observable<T> {
-        fatalError("renamed: use consume(eventType:) now")
-    }
-    
-    func consume<T: EventProtocol>(eventType: T.Type) -> Observable<T> {
+    func listen<T: EventProtocol>(eventType: T.Type) -> Observable<T> {
         return compactMap { $0 as? T }
     }
     
     func exclude<T: EventProtocol>(event target: T) -> Observable<T> {
-        return consume(eventType: T.self)
+        return listen(eventType: T.self)
             .exclude(event: target)
     }
     
     func capture<T: EventProtocol>(event target: T) -> Observable<T> {
-        return consume(eventType: T.self)
+        return listen(eventType: T.self)
             .capture(event: target)
     }
     
     func exclude<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<T> {
-        return consume(eventType: T.self)
+        return listen(eventType: T.self)
             .exclude(event: pattern)
     }
     
     func capture<T: EventProtocol, Payload>(event pattern: @escaping (Payload) -> T) -> Observable<Payload> {
-        return consume(eventType: T.self)
+        return listen(eventType: T.self)
             .capture(event: pattern)
     }
 }
