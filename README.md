@@ -10,3 +10,5 @@ MERLin' uses RxSwift to power the chosen messaging design pattern which is Publi
 With high modularity comes high testability, control over dependencies and a lower build time.
 
 For more please read our [wiki](https://github.com/gringoireDM/MERLin/wiki).
+
+Wanna talk with us and ask for more information? Join our [slack channel](https://join.slack.com/t/merlin-framework/shared_invite/enQtNjYyMzQ3NDc1NDg5LTcxOTgyYjZhYzk0OTI4YjFjOGZlM2FlMjYxMzFkNzA2ZTI4Y2I4ZGRiYmE0ZjdmMTdjODkyYWFmMDdmOGU3ZjA)
