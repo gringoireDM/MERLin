@@ -1,6 +1,6 @@
 os: osx
 language: objective-c
-osx_image: xcode10.2.1
+osx_image: xcode10.2
 podfile: ./MERLin/Podfile
 xcode_workspace: ./MERLin/MERLin.xcworkspace
 xcode_scheme: MERLin
