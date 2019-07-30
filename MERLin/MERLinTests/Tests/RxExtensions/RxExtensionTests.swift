@@ -191,28 +191,6 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         XCTAssertEqual(observer.events, expected)
     }
     
-    func testDriverCanSendError() {
-        let errors = PublishSubject<DisplayableError>()
-        let events = [
-            Recorded.next(1, "1"),
-            .error(2, "error"),
-            .next(3, "3")
-        ]
-        
-        let errorObserver = scheduler.createObserver(String.self)
-        errors
-            .compactMap { $0.errorMessage }
-            .subscribe(errorObserver)
-            .disposed(by: disposeBag)
-        
-        let observer = buildTest(emitting: events) { emitter in
-            emitter.asDriver(onErrorSendErrorTo: errors)
-        }
-        
-        XCTAssertEqual(observer.events, [Recorded.next(1, "1"), .completed(2)])
-        XCTAssertEqual(errorObserver.events, [Recorded.next(2, "error")])
-    }
-    
     // MARK: Single Extension
     
     func testItCanUnwrapSingle() {
@@ -358,7 +336,4 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
     }
 }
 
-extension String: DisplayableError {
-    public var title: String? { return nil }
-    public var errorMessage: String? { return self }
-}
+extension String: Error {}

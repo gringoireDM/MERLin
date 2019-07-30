@@ -23,8 +23,6 @@
 		501D6F722130BD1200114F5A /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F6E2130BD1200114F5A /* Module.swift */; };
 		501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F7E2130BD3600114F5A /* Deeplink.swift */; };
 		501D6F9E2130BD3800114F5A /* DeeplinkManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F822130BD3600114F5A /* DeeplinkManaging.swift */; };
-		501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F842130BD3600114F5A /* DisplayableError.swift */; };
-		501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F852130BD3600114F5A /* DisplayingError.swift */; };
 		501D6FA12130BD3800114F5A /* ViewControllerBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */; };
 		501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */; };
 		501D6FA42130BD3800114F5A /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D6F8A2130BD3700114F5A /* RouterProtocol.swift */; };
@@ -92,8 +90,6 @@
 		501D6F802130BD3600114F5A /* DeeplinkMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeeplinkMatcher.m; sourceTree = "<group>"; };
 		501D6F812130BD3600114F5A /* DeeplinkMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeeplinkMatcher.h; sourceTree = "<group>"; };
 		501D6F822130BD3600114F5A /* DeeplinkManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkManaging.swift; sourceTree = "<group>"; };
-		501D6F842130BD3600114F5A /* DisplayableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableError.swift; sourceTree = "<group>"; };
-		501D6F852130BD3600114F5A /* DisplayingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayingError.swift; sourceTree = "<group>"; };
 		501D6F872130BD3700114F5A /* ViewControllerBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBuilding.swift; sourceTree = "<group>"; };
 		501D6F882130BD3700114F5A /* PresentableRoutingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableRoutingStep.swift; sourceTree = "<group>"; };
 		501D6F8A2130BD3700114F5A /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
@@ -180,7 +176,6 @@
 				501D6F6D2130BD1200114F5A /* ModuleContext.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
 				501D6F7D2130BD3600114F5A /* Deeplinking */,
-				501D6F832130BD3600114F5A /* Errors */,
 				501D6F972130BD3700114F5A /* Events */,
 				501D6F952130BD3700114F5A /* Extensions */,
 				501D6F862130BD3700114F5A /* Routing */,
@@ -217,15 +212,6 @@
 				501D6F802130BD3600114F5A /* DeeplinkMatcher.m */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		501D6F832130BD3600114F5A /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F842130BD3600114F5A /* DisplayableError.swift */,
-				501D6F852130BD3600114F5A /* DisplayingError.swift */,
-			);
-			path = Errors;
 			sourceTree = "<group>";
 		};
 		501D6F862130BD3700114F5A /* Routing */ = {
@@ -544,7 +530,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501D6FA02130BD3800114F5A /* DisplayingError.swift in Sources */,
 				501D6F702130BD1200114F5A /* BaseModuleManager.swift in Sources */,
 				501D6FA22130BD3800114F5A /* PresentableRoutingStep.swift in Sources */,
 				505D0A7F22BD352D00547532 /* ViewControllerEvent.swift in Sources */,
@@ -560,7 +545,6 @@
 				501D6FAE2130BD3800114F5A /* EventsListener.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
 				502E0E6121CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift in Sources */,
-				501D6F9F2130BD3800114F5A /* DisplayableError.swift in Sources */,
 				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleContext.swift in Sources */,
 				501D6F9B2130BD3800114F5A /* Deeplink.swift in Sources */,
