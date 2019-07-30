@@ -38,6 +38,31 @@ class EventsTests: XCTestCase {
         XCTAssertEqual(event.label, "withAnonymousPayload")
     }
     
+    func testLabelsForEventsWithBlocks() {
+        let event = MockBlockEvent.withBlock(block: { print($0) })
+        XCTAssertEqual(event.label, "withBlock")
+    }
+    
+    func testLabelsForEventsWithAnonymousBlocks() {
+        let event = MockBlockEvent.withUnnamedBlock { print($0) }
+        XCTAssertEqual(event.label, "withUnnamedBlock")
+    }
+    
+    func testLabelsForEventsWithMixBlocks() {
+        let event = MockBlockEvent.withMixBlock("David Bowie", block: { print($0) })
+        XCTAssertEqual(event.label, "withMixBlock")
+    }
+    
+    func testLabelsForEventsWithAnonymousMixBlocks() {
+        let event = MockBlockEvent.withUnnamedMixBlock("David Bowie") { print($0) }
+        XCTAssertEqual(event.label, "withUnnamedMixBlock")
+    }
+    
+    func testLabelsForEventsWithNamedMixBlocks() {
+        let event = MockBlockEvent.withNamedMixBlock(name: "David Bowie", block: { print($0) })
+        XCTAssertEqual(event.label, "withNamedMixBlock")
+    }
+    
     func testThatItCanMatchNoPayloadEvents() {
         let event = MockEvent.noPayload
         XCTAssert(event.matches(event: MockEvent.noPayload))
@@ -53,9 +78,59 @@ class EventsTests: XCTestCase {
         XCTAssert(event.matches(pattern: MockEvent.withAnonymousPayload))
     }
     
+    func testThatItCanMatchEventsWithBlocks() {
+        let event = MockBlockEvent.withBlock(block: { print($0) })
+        XCTAssert(event.matches(pattern: MockBlockEvent.withBlock))
+    }
+    
+    func testThatItCanMatchEventsWithAnonymousBlocks() {
+        let event = MockBlockEvent.withUnnamedBlock { print($0) }
+        XCTAssert(event.matches(pattern: MockBlockEvent.withUnnamedBlock))
+    }
+    
+    func testThatItCanMatchEventsWithMixBlocks() {
+        let event = MockBlockEvent.withMixBlock("David Bowie", block: { print($0) })
+        XCTAssert(event.matches(pattern: MockBlockEvent.withMixBlock))
+    }
+    
+    func testThatItCanMatchEventsWithAnonymousMixBlocks() {
+        let event = MockBlockEvent.withUnnamedMixBlock("David Bowie") { print($0) }
+        XCTAssert(event.matches(pattern: MockBlockEvent.withUnnamedMixBlock))
+    }
+    
+    func testThatItCanMatchEventsWithNamedMixBlocks() {
+        let event = MockBlockEvent.withNamedMixBlock(name: "David Bowie", block: { print($0) })
+        XCTAssert(event.matches(pattern: MockBlockEvent.withNamedMixBlock))
+    }
+    
     func testThatItCanFailMatchingEvents() {
         let event = MockEvent.withAnonymousPayload("David Bowie")
         XCTAssertFalse(event.matches(pattern: MockEvent.withNamedPayload))
+    }
+    
+    func testThatItCanFailMatchingEventsWithBlocks() {
+        let event = MockBlockEvent.withBlock(block: { print($0) })
+        XCTAssertFalse(event.matches(pattern: MockBlockEvent.withUnnamedBlock))
+    }
+    
+    func testThatItCanFailMatchingEventsWithAnonymousBlocks() {
+        let event = MockBlockEvent.withUnnamedBlock { print($0) }
+        XCTAssertFalse(event.matches(pattern: MockBlockEvent.withBlock))
+    }
+    
+    func testThatItCanFailMatchingEventsWithMixBlocks() {
+        let event = MockBlockEvent.withMixBlock("David Bowie", block: { print($0) })
+        XCTAssertFalse(event.matches(pattern: MockBlockEvent.withUnnamedMixBlock))
+    }
+    
+    func testThatItCanFailMatchingEventsWithAnonymousMixBlocks() {
+        let event = MockBlockEvent.withUnnamedMixBlock("David Bowie") { print($0) }
+        XCTAssertFalse(event.matches(pattern: MockBlockEvent.withMixBlock))
+    }
+    
+    func testThatItCanFailMatchingEventsWithNamedMixBlocks() {
+        let event = MockBlockEvent.withNamedMixBlock(name: "David Bowie", block: { print($0) })
+        XCTAssertFalse(event.matches(pattern: MockBlockEvent.withMixBlock))
     }
     
     func testThatItCanExtractPayload() {

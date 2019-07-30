@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270FB33C17C621014D7AC361 /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96EF42188862DC1468FF443 /* Pods_MERLin.framework */; };
+		4B27C1729306A9F003F8132A /* Pods_MERLin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB10A2EEC338E0B99AB8C5C0 /* Pods_MERLin.framework */; };
 		500652E621D3C14C009466F9 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500652E521D3C14C009466F9 /* RouterTests.swift */; };
 		500652E821D3C1A0009466F9 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500652E721D3C1A0009466F9 /* MockRouter.swift */; };
 		5006670721A983ED00CDA08C /* EventsProducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006670621A983ED00CDA08C /* EventsProducerTests.swift */; };
@@ -55,7 +55,7 @@
 		50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1186E213BF84F008928AF /* RxSwift+EventProtocol.swift */; };
 		50B11872213BF89E008928AF /* ModuleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11870213BF89E008928AF /* ModuleManagerTests.swift */; };
 		50B11873213BF89E008928AF /* DeeplinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B11871213BF89E008928AF /* DeeplinkableTests.swift */; };
-		CED5BEF42C4D4381CE6DF3E9 /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B55764604AA0484EE4ADDC /* Pods_MERLinTests.framework */; };
+		834CC8B25EF895BF66E8C1EB /* Pods_MERLinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544ACCAB7B9C170AB13AAEEB /* Pods_MERLinTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,10 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06B55764604AA0484EE4ADDC /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		298716FAA8E0233ADF2A190D /* Pods-MERLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.release.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.release.xcconfig"; sourceTree = "<group>"; };
-		2A23C0730724070A96B352FB /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4BEA1F8626F34C7A1CF91862 /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
+		0F42D72A6FA17F42CA96E673 /* Pods-MERLin.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.test.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.test.xcconfig"; sourceTree = "<group>"; };
+		2300FAB70E840CEEA053E4A3 /* Pods-MERLinTests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.test.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.test.xcconfig"; sourceTree = "<group>"; };
+		479DED9B63CA69DAC8E89ACA /* Pods-MERLinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.debug.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		500652E521D3C14C009466F9 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		500652E721D3C1A0009466F9 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		5006670621A983ED00CDA08C /* EventsProducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProducerTests.swift; sourceTree = "<group>"; };
@@ -124,10 +123,11 @@
 		50B11870213BF89E008928AF /* ModuleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleManagerTests.swift; sourceTree = "<group>"; };
 		50B11871213BF89E008928AF /* DeeplinkableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkableTests.swift; sourceTree = "<group>"; };
 		50FDFF8B214E737C00BC5CFD /* MERLin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MERLin.podspec; path = ../../MERLin.podspec; sourceTree = "<group>"; };
-		889548098BFC628D8FE0220D /* Pods-MERLinTests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.test.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.test.xcconfig"; sourceTree = "<group>"; };
-		A96EF42188862DC1468FF443 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B53368DBFA8F143CE9A5FF51 /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
-		DA9EAAFBE6DF3FEE76C4C90B /* Pods-MERLin.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.test.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.test.xcconfig"; sourceTree = "<group>"; };
+		544ACCAB7B9C170AB13AAEEB /* Pods_MERLinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A09449CF06B66FF9DE54FD /* Pods-MERLinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLinTests.release.xcconfig"; path = "Target Support Files/Pods-MERLinTests/Pods-MERLinTests.release.xcconfig"; sourceTree = "<group>"; };
+		88E5D6AF85982C4CA4848DBA /* Pods-MERLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.release.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.release.xcconfig"; sourceTree = "<group>"; };
+		CB10A2EEC338E0B99AB8C5C0 /* Pods_MERLin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERLin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80DABDF6C06FB8220758388 /* Pods-MERLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERLin.debug.xcconfig"; path = "Target Support Files/Pods-MERLin/Pods-MERLin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				270FB33C17C621014D7AC361 /* Pods_MERLin.framework in Frameworks */,
+				4B27C1729306A9F003F8132A /* Pods_MERLin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				501D6F0F2130BB4F00114F5A /* MERLin.framework in Frameworks */,
-				CED5BEF42C4D4381CE6DF3E9 /* Pods_MERLinTests.framework in Frameworks */,
+				834CC8B25EF895BF66E8C1EB /* Pods_MERLinTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,7 @@
 				501D6F122130BB4F00114F5A /* MERLinTests */,
 				501D6F062130BB4F00114F5A /* Products */,
 				BA66787E107E2D70E1410650 /* Pods */,
-				BBA648D0A256AC1A339BEC45 /* Frameworks */,
+				E0CFFA7B90CED79A029C96FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,21 +333,21 @@
 		BA66787E107E2D70E1410650 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4BEA1F8626F34C7A1CF91862 /* Pods-MERLin.debug.xcconfig */,
-				DA9EAAFBE6DF3FEE76C4C90B /* Pods-MERLin.test.xcconfig */,
-				298716FAA8E0233ADF2A190D /* Pods-MERLin.release.xcconfig */,
-				2A23C0730724070A96B352FB /* Pods-MERLinTests.debug.xcconfig */,
-				889548098BFC628D8FE0220D /* Pods-MERLinTests.test.xcconfig */,
-				B53368DBFA8F143CE9A5FF51 /* Pods-MERLinTests.release.xcconfig */,
+				F80DABDF6C06FB8220758388 /* Pods-MERLin.debug.xcconfig */,
+				0F42D72A6FA17F42CA96E673 /* Pods-MERLin.test.xcconfig */,
+				88E5D6AF85982C4CA4848DBA /* Pods-MERLin.release.xcconfig */,
+				479DED9B63CA69DAC8E89ACA /* Pods-MERLinTests.debug.xcconfig */,
+				2300FAB70E840CEEA053E4A3 /* Pods-MERLinTests.test.xcconfig */,
+				88A09449CF06B66FF9DE54FD /* Pods-MERLinTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		BBA648D0A256AC1A339BEC45 /* Frameworks */ = {
+		E0CFFA7B90CED79A029C96FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A96EF42188862DC1468FF443 /* Pods_MERLin.framework */,
-				06B55764604AA0484EE4ADDC /* Pods_MERLinTests.framework */,
+				CB10A2EEC338E0B99AB8C5C0 /* Pods_MERLin.framework */,
+				544ACCAB7B9C170AB13AAEEB /* Pods_MERLinTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -371,7 +371,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 501D6F192130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLin" */;
 			buildPhases = (
-				20733843107013AC3ED69ED0 /* [CP] Check Pods Manifest.lock */,
+				567E44AC601DCF2539A76A64 /* [CP] Check Pods Manifest.lock */,
 				501D6F002130BB4F00114F5A /* Sources */,
 				501D6F012130BB4F00114F5A /* Frameworks */,
 				501D6F022130BB4F00114F5A /* Headers */,
@@ -390,11 +390,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 501D6F1C2130BB4F00114F5A /* Build configuration list for PBXNativeTarget "MERLinTests" */;
 			buildPhases = (
-				A91FDE8C59BBC3B29A419582 /* [CP] Check Pods Manifest.lock */,
+				E2933BEFC0EAF5E105C2BC43 /* [CP] Check Pods Manifest.lock */,
 				501D6F0A2130BB4F00114F5A /* Sources */,
 				501D6F0B2130BB4F00114F5A /* Frameworks */,
 				501D6F0C2130BB4F00114F5A /* Resources */,
-				050766C09649683E28F4271F /* [CP] Embed Pods Frameworks */,
+				3D89F8726E30312D8439BEA2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -463,7 +463,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		050766C09649683E28F4271F /* [CP] Embed Pods Frameworks */ = {
+		3D89F8726E30312D8439BEA2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +493,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MERLinTests/Pods-MERLinTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		20733843107013AC3ED69ED0 /* [CP] Check Pods Manifest.lock */ = {
+		567E44AC601DCF2539A76A64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -515,7 +515,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A91FDE8C59BBC3B29A419582 /* [CP] Check Pods Manifest.lock */ = {
+		E2933BEFC0EAF5E105C2BC43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -674,7 +674,7 @@
 		};
 		50098A222219DC0E00CCC65A /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA9EAAFBE6DF3FEE76C4C90B /* Pods-MERLin.test.xcconfig */;
+			baseConfigurationReference = 0F42D72A6FA17F42CA96E673 /* Pods-MERLin.test.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -705,7 +705,7 @@
 		};
 		50098A232219DC0E00CCC65A /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 889548098BFC628D8FE0220D /* Pods-MERLinTests.test.xcconfig */;
+			baseConfigurationReference = 2300FAB70E840CEEA053E4A3 /* Pods-MERLinTests.test.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
@@ -845,7 +845,7 @@
 		};
 		501D6F1A2130BB4F00114F5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BEA1F8626F34C7A1CF91862 /* Pods-MERLin.debug.xcconfig */;
+			baseConfigurationReference = F80DABDF6C06FB8220758388 /* Pods-MERLin.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -875,7 +875,7 @@
 		};
 		501D6F1B2130BB4F00114F5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 298716FAA8E0233ADF2A190D /* Pods-MERLin.release.xcconfig */;
+			baseConfigurationReference = 88E5D6AF85982C4CA4848DBA /* Pods-MERLin.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -904,7 +904,7 @@
 		};
 		501D6F1D2130BB4F00114F5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A23C0730724070A96B352FB /* Pods-MERLinTests.debug.xcconfig */;
+			baseConfigurationReference = 479DED9B63CA69DAC8E89ACA /* Pods-MERLinTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
@@ -924,7 +924,7 @@
 		};
 		501D6F1E2130BB4F00114F5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B53368DBFA8F143CE9A5FF51 /* Pods-MERLinTests.release.xcconfig */;
+			baseConfigurationReference = 88A09449CF06B66FF9DE54FD /* Pods-MERLinTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
