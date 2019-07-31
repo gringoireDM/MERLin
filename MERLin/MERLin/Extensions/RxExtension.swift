@@ -84,17 +84,6 @@ public extension SharedSequenceConvertibleType {
 }
 
 public extension ObservableConvertibleType {
-    func asDriver<O>(onErrorSendErrorTo errorHandler: O) -> Driver<Element> where O: ObserverType, O.Element == DisplayableError {
-        return asDriver(onErrorRecover: { error in
-            guard let _error = error as? DisplayableError else {
-                print(error.localizedDescription)
-                return .empty()
-            }
-            errorHandler.onNext(_error)
-            return .empty()
-        })
-    }
-    
     func asDriverIgnoreError() -> Driver<Element> {
         return asDriver(onErrorRecover: { _ in .empty() })
     }
