@@ -9,11 +9,6 @@
 import Foundation
 import RxSwift
 
-@available(*, unavailable, renamed: "AnyEventsListener")
-public protocol AnyEventsListening {}
-@available(*, unavailable, renamed: "EventsListener")
-public protocol EventsListening {}
-
 public protocol AnyEventsListener: AnyObject {
     /// This method allows the event manager to subscribe to a module's events.
     /// - parameter producer: The producer exposing the events
