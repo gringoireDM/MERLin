@@ -60,6 +60,7 @@ public extension ModuleEventsListenersAggregator {
             handledRoutingContext == nil || handledRoutingContext!.contains(producer.routingContext) else { return false }
         
         return moduleListeners
-            .reduce(false) { $0 || $1.listenEvents(from: producer) }
+            .map { $0.listenEvents(from: producer) }
+            .reduce(false) { $0 || $1 }
     }
 }
