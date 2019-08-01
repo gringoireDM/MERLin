@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.platform = :ios
-    s.version = "2.0.0"
+    s.version = "2.1.0"
     s.ios.deployment_target = '10.0'
     s.name = "MERLin"
  	s.summary      = "A framework to build an event based, reactive architecture for swift iOS projects"
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
     s.source = {
         :git => "https://github.com/gringoireDM/MERLin.git",
-        :tag => "v2.0.0"
+        :tag => "v2.1.0"
     }
     
 	s.dependency 'LNZWeakCollection', '~>1.3.2'
