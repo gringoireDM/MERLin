@@ -33,6 +33,13 @@ class EventsTests: XCTestCase {
         XCTAssertEqual(event.label, "withNamedPayload")
     }
     
+    func testLabelsForOverloading() {
+        let event = MockEvent.overload(str: "10")
+        let overloading = MockEvent.overload(int: 10)
+        XCTAssertEqual(event.label, "overload")
+        XCTAssertEqual(overloading.label, "overload")
+    }
+    
     func testLabelsForEventsWithAnonymousPayloads() {
         let event = MockEvent.withAnonymousPayload("David Bowie")
         XCTAssertEqual(event.label, "withAnonymousPayload")
@@ -136,6 +143,18 @@ class EventsTests: XCTestCase {
     func testThatItCanExtractPayload() {
         let expectedPayload = "David Bowie"
         let event = MockEvent.withAnonymousPayload(expectedPayload)
+        XCTAssertEqual(event.extractPayload(), expectedPayload)
+    }
+    
+    func testThatItCanExtractPayloadOverloading() {
+        let expectedPayload = "David Bowie"
+        let event = MockEvent.overload(str: expectedPayload)
+        XCTAssertEqual(event.extractPayload(), expectedPayload)
+    }
+    
+    func testThatItCanExtractPayloadOverloaded() {
+        let expectedPayload = 10
+        let event = MockEvent.overload(int: expectedPayload)
         XCTAssertEqual(event.extractPayload(), expectedPayload)
     }
     

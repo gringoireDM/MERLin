@@ -8,9 +8,9 @@
 
 import Foundation
 
-class RestaurantsListViewController: UITableViewController, DisplayingError {
-    func displayError(_ error: DisplayableError) {
-        let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
+class RestaurantsListViewController: UITableViewController {
+    func displayError(_ error: Error) {
+        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
@@ -41,7 +41,7 @@ class RestaurantsListViewController: UITableViewController, DisplayingError {
         let getFirstPage = Driver.merge(Driver<Void>.just(()), refreshControl.rx.controlEvent(.valueChanged).asDriverIgnoreError())
         
         let didSelect = tableView.rx.itemSelected.compactMap { [weak self] in
-            return self?.items[$0.row]
+            self?.items[$0.row]
         }.asDriverIgnoreError()
         
         let input = Input(getFirstPage: getFirstPage, nextPage: requestNewPage.asDriverIgnoreError(), didSelect: didSelect)

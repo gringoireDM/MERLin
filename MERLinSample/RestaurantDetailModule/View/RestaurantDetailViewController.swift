@@ -20,9 +20,9 @@ enum DetailSectionRows: Int {
     }
 }
 
-class RestaurantDetailViewController: UIViewController, DisplayingError, UITableViewDelegate, UITableViewDataSource {
-    func displayError(_ error: DisplayableError) {
-        let alert = UIAlertController(title: error.title, message: error.errorMessage, preferredStyle: .alert)
+class RestaurantDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func displayError(_ error: Error) {
+        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)

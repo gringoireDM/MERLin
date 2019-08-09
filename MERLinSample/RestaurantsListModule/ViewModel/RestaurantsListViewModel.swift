@@ -17,7 +17,7 @@ protocol RestaurantsListVMInput {
 protocol RestaurantsListVMOutput {
     var newRestaurantsList: Driver<[ShortRestaurantProtocol]> { get }
     var newPage: Driver<[ShortRestaurantProtocol]> { get }
-    var error: Driver<DisplayableError> { get }
+    var error: Driver<Error> { get }
 }
 
 protocol RestaurantsListViewModelProtocol {
@@ -29,7 +29,7 @@ class RestaurantsListViewModel: RestaurantsListViewModelProtocol {
     struct Output: RestaurantsListVMOutput {
         let newRestaurantsList: Driver<[ShortRestaurantProtocol]>
         var newPage: Driver<[ShortRestaurantProtocol]>
-        let error: Driver<DisplayableError>
+        let error: Driver<Error>
     }
     
     let disposeBag = DisposeBag()
@@ -49,18 +49,28 @@ class RestaurantsListViewModel: RestaurantsListViewModelProtocol {
             .drive(events)
             .disposed(by: disposeBag)
         
-        let errors = PublishSubject<DisplayableError>()
+        let errors = PublishSubject<Error>()
         let getFirstPage = repositories.getFirstPage()
         
         let newRestaurantsOutput = input.getFirstPage
-            .flatMap({ _ in getFirstPage.asDriver(onErrorSendErrorTo: errors) })
+            .flatMap { _ in
+                getFirstPage
+                    .asDriver(onErrorRecover: {
+                        errors.onNext($0)
+                        return .empty()
+                    })
+            }
         
         let getNextPage = repositories.getNextPage()
         
         let nextPage = input.nextPage
-            .flatMap({ _ in
-                getNextPage.asDriver(onErrorSendErrorTo: errors)
-            })
+            .flatMap { _ in
+                getNextPage
+                    .asDriver(onErrorRecover: {
+                        errors.onNext($0)
+                        return .empty()
+                    })
+            }
         
         let output = Output(newRestaurantsList: newRestaurantsOutput, newPage: nextPage, error: errors.asDriverIgnoreError())
         return output

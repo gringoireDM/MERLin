@@ -15,7 +15,7 @@ protocol RestaurantDetailVMInput {
 
 protocol RestaurantDetailVMOutput {
     var restaurantDetailFetched: Driver<RestaurantProtocol> { get }
-    var error: Driver<DisplayableError> { get }
+    var error: Driver<Error> { get }
 }
 
 protocol RestaurantDetailViewModelProtcol {
@@ -26,7 +26,7 @@ protocol RestaurantDetailViewModelProtcol {
 class RestaurantDetailViewModel: RestaurantDetailViewModelProtcol {
     struct Output: RestaurantDetailVMOutput {
         var restaurantDetailFetched: Driver<RestaurantProtocol>
-        var error: Driver<DisplayableError>
+        var error: Driver<Error>
     }
     
     let disposeBag = DisposeBag()
@@ -47,11 +47,18 @@ class RestaurantDetailViewModel: RestaurantDetailViewModelProtcol {
             .drive(events)
             .disposed(by: disposeBag)
         
-        let errors = PublishSubject<DisplayableError>()
+        let errors = PublishSubject<Error>()
         
         let getDetail = repositories.getDetail(for: id)
         
-        let restaurantDetailFetched = input.viewWillAppear.flatMap({ _ in getDetail.asDriver(onErrorSendErrorTo: errors) })
+        let restaurantDetailFetched = input.viewWillAppear
+            .flatMap { _ in
+                getDetail
+                    .asDriver(onErrorRecover: {
+                        errors.onNext($0)
+                        return .empty()
+                    })
+            }
         
         return Output(restaurantDetailFetched: restaurantDetailFetched, error: errors.asDriverIgnoreError())
     }

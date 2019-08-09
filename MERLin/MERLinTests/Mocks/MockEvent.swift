@@ -14,6 +14,9 @@ enum MockEvent: EventProtocol, Equatable {
     case anotherWithoutPayload
     case withAnonymousPayload(String)
     case withNamedPayload(payload: String)
+    case overload(str: String)
+    case overload(int: Int)
+    case overload(int2: Int)
 }
 
 enum MockBlockEvent: EventProtocol, Equatable {
