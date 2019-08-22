@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RxCocoa/RxCocoa.h>
 #import <MERLin/DeeplinkMatcher.h>
 
+@import EnumKit;
+
+@import RxSwift;
+@import RxEnumKit;
 //! Project version number for MERLin.
 FOUNDATION_EXPORT double MERLinVersionNumber;
 

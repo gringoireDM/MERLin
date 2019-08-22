@@ -8,7 +8,7 @@
 
 import RxSwift
 
-public protocol AnyEventsProducer: class {
+public protocol AnyEventsProducer: AnyObject {
     var disposeBag: DisposeBag { get }
     var anyEvents: Observable<EventProtocol> { get }
     
@@ -23,11 +23,11 @@ public protocol EventsProducer: AnyEventsProducer {
 
 public extension AnyEventsProducer {
     func capture<E: EventProtocol>(event target: E) -> Observable<E> {
-        return anyEvents.capture(event: target)
+        return anyEvents.filter(case: target)
     }
     
     func capture<E: EventProtocol, Payload>(event pattern: @escaping (Payload) -> E) -> Observable<Payload> {
-        return anyEvents.capture(event: pattern)
+        return anyEvents.capture(case: pattern)
     }
     
     subscript<E: EventProtocol>(event target: E) -> Observable<E> {
