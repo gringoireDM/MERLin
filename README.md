@@ -15,5 +15,5 @@ Wanna talk with us and ask for more information? Join our [slack channel](https:
 
 ## External Resources
 
-Medium -> [Events Driven Architectures with MERLin](https://medium.com/better-programming/events-driven-architecture-in-ios-with-merlin-63d211e64698)
-About our Events -> [Swift Enums, Mind the Gap: EnumKit to the Rescue](https://medium.com/better-programming/swift-enums-mind-the-gap-3573378d2d9f)
+- Medium -> [Events Driven Architectures with MERLin](https://medium.com/better-programming/events-driven-architecture-in-ios-with-merlin-63d211e64698)
+- About our Events -> [Swift Enums, Mind the Gap: EnumKit to the Rescue](https://medium.com/better-programming/swift-enums-mind-the-gap-3573378d2d9f)
