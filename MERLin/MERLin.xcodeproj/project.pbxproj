@@ -36,7 +36,6 @@
 		502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */; };
 		502C508C21465CD3002B70A4 /* MockDeeplinkableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */; };
 		502C509021465D91002B70A4 /* MockModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C508F21465D91002B70A4 /* MockModule.swift */; };
-		502E0E5C21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E5B21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift */; };
 		502E0E5F21CF9482004A4F56 /* RxExtension+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E5E21CF9482004A4F56 /* RxExtension+Bool.swift */; };
 		502E0E6121CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6021CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift */; };
 		502E0E6321D2F40D004A4F56 /* RxExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6221D2F40D004A4F56 /* RxExtensionTests.swift */; };
@@ -103,7 +102,6 @@
 		502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventsTests.swift; sourceTree = "<group>"; };
 		502C508B21465CD3002B70A4 /* MockDeeplinkableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeeplinkableModule.swift; sourceTree = "<group>"; };
 		502C508F21465D91002B70A4 /* MockModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModule.swift; sourceTree = "<group>"; };
-		502E0E5B21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableEventsProtocolTests.swift; sourceTree = "<group>"; };
 		502E0E5E21CF9482004A4F56 /* RxExtension+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxExtension+Bool.swift"; sourceTree = "<group>"; };
 		502E0E6021CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxCocoa+UICollectionViewFlowLayout.swift"; sourceTree = "<group>"; };
 		502E0E6221D2F40D004A4F56 /* RxExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtensionTests.swift; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 				5006670621A983ED00CDA08C /* EventsProducerTests.swift */,
 				505D0A8022BD498C00547532 /* EventsListenerTests.swift */,
 				505D0A8222BD4B0600547532 /* ModuleListenerTests.swift */,
-				502E0E5B21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift */,
 				502C508821465C8D002B70A4 /* ViewControllerEventsTests.swift */,
 			);
 			path = Events;
@@ -458,8 +455,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MERLinTests/Pods-MERLinTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EnumKit/EnumKit.framework",
 				"${BUILT_PRODUCTS_DIR}/LNZWeakCollection/LNZWeakCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxEnumKit/RxEnumKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
@@ -468,8 +467,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EnumKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNZWeakCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxEnumKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
@@ -564,7 +565,6 @@
 				502C508921465C8D002B70A4 /* ViewControllerEventsTests.swift in Sources */,
 				500652E821D3C1A0009466F9 /* MockRouter.swift in Sources */,
 				502B9B7321452D6600BBFFC3 /* EventsTests.swift in Sources */,
-				502E0E5C21CF8BE1004A4F56 /* ObservableEventsProtocolTests.swift in Sources */,
 				502E0E6321D2F40D004A4F56 /* RxExtensionTests.swift in Sources */,
 				502C509021465D91002B70A4 /* MockModule.swift in Sources */,
 				500652E621D3C14C009466F9 /* RouterTests.swift in Sources */,

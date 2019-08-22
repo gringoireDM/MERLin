@@ -70,7 +70,7 @@ class EventsProducerTests: XCTestCase {
     func testThatItCanEmitEventsThroughAnyEventProxy() {
         let observer = scheduler.createObserver(MockEvent.self)
         let events = producer.observable(of: AnyEvent.self)
-        events?.capture(event: MockEvent.noPayload)
+        events?.capture(case: MockEvent.noPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -107,7 +107,7 @@ class EventsProducerTests: XCTestCase {
         let expectedPayload = "David Bowie"
         let observer = scheduler.createObserver(String.self)
         let events = producer.observable(of: MockEvent.self)
-        events?.capture(event: MockEvent.withAnonymousPayload)
+        events?.capture(case: MockEvent.withAnonymousPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -126,7 +126,7 @@ class EventsProducerTests: XCTestCase {
         let expectedPayload = "David Bowie"
         let observer = scheduler.createObserver(String.self)
         let events = producer.observable(of: AnyEvent.self)
-        events?.capture(event: MockEvent.withAnonymousPayload)
+        events?.capture(case: MockEvent.withAnonymousPayload)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
