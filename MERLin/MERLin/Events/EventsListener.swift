@@ -38,6 +38,8 @@ public protocol EventsListenersAggregator: AnyEventsListener {
 public extension EventsListenersAggregator {
     @discardableResult
     func listenEvents(from producer: AnyEventsProducer) -> Bool {
-        return listeners.reduce(false) { $0 || $1.listenEvents(from: producer) }
+        return listeners
+            .map { $0.listenEvents(from: producer) }
+            .reduce(false) { $0 || $1 }
     }
 }
