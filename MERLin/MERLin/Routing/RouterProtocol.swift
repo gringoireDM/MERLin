@@ -52,7 +52,6 @@ public extension Router {
     internal func currentViewController() -> UIViewController {
         var currentController = topViewController
         while let presented = currentController.presentedViewController {
-            print(presented)
             currentController = presented
         }
         return currentController
@@ -219,7 +218,7 @@ public extension Router {
     }
     
     /// If the deeplink is composed by a part that was not matched by the deeplinked controller
-    ///there might be a next deeplink path. Ex: thebay://productarray/1234/pdp/112233
+    /// there might be a next deeplink path. Ex: thebay://productarray/1234/pdp/112233
     /// would cause product array to match the first part, and to have `/pdp/112233` unmatched
     /// a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
     @discardableResult
