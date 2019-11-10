@@ -42,6 +42,7 @@
 		502E0E6521D2FF29004A4F56 /* RxExtensionTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6421D2FF29004A4F56 /* RxExtensionTestCase.swift */; };
 		502E0E6721D2FF9F004A4F56 /* BoolRxExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6621D2FF9F004A4F56 /* BoolRxExtensionTests.swift */; };
 		502E0E6921D3A8C5004A4F56 /* RxExtension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E0E6821D3A8C5004A4F56 /* RxExtension+String.swift */; };
+		503E60B52377019F00EE01A2 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E60B42377019F00EE01A2 /* OSLog.swift */; };
 		504308DE22AEA789008AC2AB /* MockModuleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504308DD22AEA789008AC2AB /* MockModuleListener.swift */; };
 		504A93EE22ACF1F700D6C63C /* ModuleEventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A93ED22ACF1F700D6C63C /* ModuleEventsListener.swift */; };
 		505D0A7F22BD352D00547532 /* ViewControllerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D0A7E22BD352D00547532 /* ViewControllerEvent.swift */; };
@@ -108,6 +109,7 @@
 		502E0E6421D2FF29004A4F56 /* RxExtensionTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtensionTestCase.swift; sourceTree = "<group>"; };
 		502E0E6621D2FF9F004A4F56 /* BoolRxExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolRxExtensionTests.swift; sourceTree = "<group>"; };
 		502E0E6821D3A8C5004A4F56 /* RxExtension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxExtension+String.swift"; sourceTree = "<group>"; };
+		503E60B42377019F00EE01A2 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		504308DD22AEA789008AC2AB /* MockModuleListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModuleListener.swift; sourceTree = "<group>"; };
 		504A93ED22ACF1F700D6C63C /* ModuleEventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleEventsListener.swift; sourceTree = "<group>"; };
 		505D0A7E22BD352D00547532 /* ViewControllerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEvent.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				50FDFF8B214E737C00BC5CFD /* MERLin.podspec */,
 				501D6F082130BB4F00114F5A /* MERLin.h */,
+				503E60B42377019F00EE01A2 /* OSLog.swift */,
 				501D6F6E2130BD1200114F5A /* Module.swift */,
 				501D6F6D2130BD1200114F5A /* ModuleContext.swift */,
 				501D6F6C2130BD1100114F5A /* BaseModuleManager.swift */,
@@ -545,6 +548,7 @@
 				501D6F722130BD1200114F5A /* Module.swift in Sources */,
 				501D6FAE2130BD3800114F5A /* EventsListener.swift in Sources */,
 				501D6FAD2130BD3800114F5A /* RxExtension.swift in Sources */,
+				503E60B52377019F00EE01A2 /* OSLog.swift in Sources */,
 				502E0E6121CF9641004A4F56 /* RxCocoa+UICollectionViewFlowLayout.swift in Sources */,
 				50B1186F213BF84F008928AF /* RxSwift+EventProtocol.swift in Sources */,
 				501D6F712130BD1200114F5A /* ModuleContext.swift in Sources */,
@@ -676,7 +680,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merlintech.MERLin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TEST";
@@ -847,7 +851,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merlintech.MERLin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
@@ -877,7 +881,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lanuovaera.MERLin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merlintech.MERLin;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";

@@ -8,6 +8,7 @@
 
 import Foundation
 import LNZWeakCollection
+import os.log
 
 class ModuleWrapper: Hashable {
     static func == (lhs: ModuleWrapper, rhs: ModuleWrapper) -> Bool {
@@ -45,8 +46,17 @@ open class BaseModuleManager {
     }
     
     public func setupEventsListeners(for producer: AnyEventsProducer) {
-        eventsListeners.forEach { manager in
-            manager.listenEvents(from: producer)
+        #if DEBUG
+            producer.anyEvents.map { $0.label }
+                .subscribe(onNext: { [weak producer] event in
+                    guard let producer = producer else { return }
+                    os_log("✉️ %@ emitted a new event: %@", log: .producer, type: .debug, String(describing: type(of: producer)), event)
+                }).disposed(by: producer.disposeBag)
+        #endif
+        eventsListeners.forEach { listener in
+            guard listener.listenEvents(from: producer) else { return }
+            os_log("👂 Listener %@ accepted events from %@", log: .moduleManager, type: .debug,
+                   String(describing: type(of: listener)), String(describing: type(of: producer)))
         }
     }
     
@@ -62,10 +72,13 @@ open class BaseModuleManager {
     public func addEventsListeners(_ listeners: [AnyEventsListener]) {
         for listener in listeners {
             eventsListeners.append(listener)
+            os_log("👂 Added new events listener %@", log: .moduleManager, type: .debug, String(describing: type(of: listener)))
             
             moduleRetainer.values.forEach { (wrapper) in
                 guard let producer = wrapper.module as? AnyEventsProducer else { return }
-                listener.listenEvents(from: producer)
+                guard listener.listenEvents(from: producer) else { return }
+                os_log("👂 New listener %@ accepted events from %@", log: .moduleManager,
+                       String(describing: type(of: listener)), String(describing: type(of: producer)))
             }
         }
     }
@@ -81,10 +94,17 @@ extension BaseModuleManager: DeeplinkManaging {
             return value as? Deeplinkable.Type
         }
         
-        guard let type = responders.sorted(by: { (lhs, rhs) -> Bool in
+        guard let responderType = responders.sorted(by: { (lhs, rhs) -> Bool in
             lhs.priority.rawValue > rhs.priority.rawValue
-        }).first else { return nil }
-        return type
+        }).first else {
+            os_log("🔗 Could not find any deeplink responder for deeplink %@", log: .moduleManager, type: .debug, deeplink)
+            return nil
+        }
+        
+        os_log("🔗 Found deeplink responder for deeplink (%@): %@", log: .moduleManager, type: .debug,
+               deeplink, String(describing: type(of: responderType)))
+        
+        return responderType
     }
     
     public func viewControllerType(fromDeeplink deeplink: String) -> UIViewController.Type? {
@@ -115,6 +135,9 @@ extension BaseModuleManager: ViewControllerBuilding {
     public func setup<T: UIViewController>(_ moduleController: (module: AnyModule, controller: T)) -> T {
         let (module, controller) = moduleController
         
+        os_log("🖼 Built new module of type %@ with its viewController: %@", log: .moduleManager, type: .debug,
+               String(describing: type(of: module)), String(describing: type(of: controller)))
+
         module.newViewControllers.skip(1)
             .observeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
             .subscribe(onNext: { [weak self, weak module] newVC in
@@ -130,6 +153,7 @@ extension BaseModuleManager: ViewControllerBuilding {
     }
     
     public func viewController(for routingStep: PresentableRoutingStep) -> UIViewController {
+        os_log("🖼 Building module for step: %@", log: .moduleManager, type: .info, routingStep.description)
         return setup(routingStep.step.make())
     }
 }
