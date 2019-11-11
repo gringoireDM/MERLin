@@ -110,17 +110,17 @@ class RouterTests: XCTestCase {
     
     func testSimpleDeeplink() {
         let deeplink = "test://mock/"
-        let controller = router.route(toDeeplink: deeplink, userInfo: nil)
-        
-        XCTAssert(controller is UINavigationController)
-        XCTAssert((controller as? UINavigationController)?.viewControllers.first is MockViewController)
+        let controllers = router.route(toDeeplink: deeplink, userInfo: nil)
+        XCTAssertEqual(controllers?.count, 1)
+        XCTAssert(controllers?.first is MockViewController)
+        XCTAssertEqual(controllers?.first, (router.currentViewController() as? UINavigationController)?.viewControllers.last)
     }
     
     func testSmartDeeplink() {
         let deeplink = "test://mock/product/1234"
-        let controller = router.route(toDeeplink: deeplink, userInfo: nil)
+        let controllers = router.route(toDeeplink: deeplink, userInfo: nil)
         
-        XCTAssertEqual((controller as? UINavigationController)?.viewControllers.count, 2)
+        XCTAssertEqual(controllers?.count, 2)
     }
     
     func setupTabBarRootViewController() -> (MockRouter, MockDeeplinkable, LowPriorityMockDeeplinkableModule) {
@@ -142,29 +142,34 @@ class RouterTests: XCTestCase {
         let (tabBarRouter, _, _) = setupTabBarRootViewController()
         
         let deeplink = "test://mock/"
-        let controller = tabBarRouter.route(toDeeplink: deeplink, userInfo: nil)
+        let controllers = tabBarRouter.route(toDeeplink: deeplink, userInfo: nil)
         
-        XCTAssert(controller is UINavigationController)
-        XCTAssert((controller as? UINavigationController)?.viewControllers.first is MockViewController)
+        XCTAssert(controllers?.first is MockViewController)
+        XCTAssertEqual(controllers, (tabBarRouter.currentViewController() as? UINavigationController)?.viewControllers)
     }
     
     func testItCanFindUpdatableModuleInTabBarViewController() {
         let (tabBarRouter, _, updatable) = setupTabBarRootViewController()
         
         let deeplink = "test://product/1234"
-        let controller = tabBarRouter.route(toDeeplink: deeplink, userInfo: nil)
+        let controllers = tabBarRouter.route(toDeeplink: deeplink, userInfo: nil)
         
-        XCTAssertEqual(controller, tabBarRouter.topViewController)
-        XCTAssertEqual((controller as? UITabBarController)?.selectedIndex, 1)
-        XCTAssertEqual(((controller as? UITabBarController)?.selectedViewController as? UINavigationController)?.viewControllers, [updatable.rootViewController!])
+        guard let tabbarController = tabBarRouter.topViewController as? UITabBarController else {
+            XCTFail("At this point this controller should be a tab bar")
+            return
+        }
+        
+        XCTAssertEqual(controllers, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers)
+        XCTAssertEqual(tabbarController.selectedIndex, 1)
+        XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers, [updatable.rootViewController!])
     }
     
     func testItCanPushFromCurrentContext() {
         let deeplink = "test://mock/"
-        let controller = router.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
+        let controllers = router.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
         
-        XCTAssertEqual(controller, router.topViewController)
-        XCTAssertEqual((controller as? UINavigationController)?.viewControllers.count, 2)
+        XCTAssertEqual((router.topViewController as? UINavigationController)?.viewControllers.count, 2)
+        XCTAssertEqual(controllers?.first, (router.topViewController as? UINavigationController)?.viewControllers.last)
     }
     
     func testItCanPushFromCurrentContextInTabBarViewController() {
@@ -181,9 +186,9 @@ class RouterTests: XCTestCase {
             tabbarController.selectedIndex = index
             XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 1)
             
-            let controller = tabBarRouter.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
+            let controllers = tabBarRouter.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
             
-            XCTAssertEqual(controller, tabbarController)
+            XCTAssertEqual(controllers?.first, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers.last)
             XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 2)
         }
     }
@@ -192,10 +197,15 @@ class RouterTests: XCTestCase {
         let (tabBarRouter, _, _) = setupTabBarRootViewController()
         let deeplink = "test://mock/product/1234"
         
-        let controller = tabBarRouter.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
+        let controllers = tabBarRouter.handleDeeplink(deeplink, shouldPush: true, userInfo: nil)
         
-        XCTAssertEqual(controller, tabBarRouter.topViewController)
-        XCTAssertEqual((controller as? UITabBarController)?.selectedIndex, 0)
-        XCTAssertEqual(((controller as? UITabBarController)?.selectedViewController as? UINavigationController)?.viewControllers.count, 3)
+        guard let tabbarController = tabBarRouter.topViewController as? UITabBarController else {
+            XCTFail("At this point this controller should be a tab bar")
+            return
+        }
+        
+        XCTAssertEqual(controllers, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers.suffix(2))
+        XCTAssertEqual(tabbarController.selectedIndex, 0)
+        XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 3)
     }
 }

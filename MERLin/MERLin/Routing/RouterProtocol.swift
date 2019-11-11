@@ -37,7 +37,7 @@ public protocol Router: AnyObject {
      */
     @discardableResult func route(to destination: PresentableRoutingStep) -> UIViewController?
     @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController?
-    @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> UIViewController?
+    @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> [UIViewController]?
     
     func handleShortcutItem(_ item: UIApplicationShortcutItem)
     
@@ -129,7 +129,7 @@ public extension Router {
 // MARK: Deeplink
 
 public extension Router {
-    @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> UIViewController? {
+    @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> [UIViewController]? {
         return handleDeeplink(deeplink, userInfo: userInfo)
     }
     
@@ -153,7 +153,7 @@ public extension Router {
      also ignores updatable controllers, unless the deeplink is not updatable itself from the current deeplink
      */
     @discardableResult
-    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, traverseAll: Bool = false, userInfo: [String: Any]?) -> UIViewController? {
+    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, traverseAll: Bool = false, userInfo: [String: Any]?) -> [UIViewController]? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
             return nil
@@ -163,16 +163,18 @@ public extension Router {
         var currentController = from ?? currentViewController()
         
         var handled = false
-        
+        var deeplinkedController: UIViewController?
         let controllers = (currentController as? UITabBarController)?.viewControllers?.enumerated() ?? [currentController].enumerated()
         for (i, controller) in controllers {
             if controller.isMember(of: controllerClass) {
                 handled = viewControllersFactory.update(viewController: controller, fromDeeplink: deeplink, userInfo: userInfo)
+                deeplinkedController = controller
             } else if !shouldPush || traverseAll || controller == (currentController as? UITabBarController)?.selectedViewController,
                 let contained = (controller as? UINavigationController)?.viewControllers.last,
                 contained.isMember(of: controllerClass) {
                 // currentController might be a navigation controller (most likely) containing the controller class
                 handled = viewControllersFactory.update(viewController: contained, fromDeeplink: deeplink, userInfo: userInfo)
+                deeplinkedController = contained
             }
             
             if handled {
@@ -208,17 +210,19 @@ public extension Router {
                 deeplinkedViewController.navigationItem.leftBarButtonItem = closeButton(for: deeplinkedViewController, onClose: nil)
                 currentController = navigationController
             }
+            
+            deeplinkedController = deeplinkedViewController
         }
         
-        return pushUnmatched(fromDeeplink: deeplink, from: currentController, userInfo: userInfo) ?? currentController
+        return (deeplinkedController.map { [$0] } ?? []) + (pushUnmatched(fromDeeplink: deeplink, from: currentController, userInfo: userInfo) ?? [])
     }
     
     /// If the deeplink is composed by a part that was not matched by the deeplinked controller
-    ///there might be a next deeplink path. Ex: thebay://productarray/1234/pdp/112233
+    /// there might be a next deeplink path. Ex: thebay://productarray/1234/pdp/112233
     /// would cause product array to match the first part, and to have `/pdp/112233` unmatched
     /// a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
     @discardableResult
-    func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?, userInfo: [String: Any]?) -> UIViewController? {
+    func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?, userInfo: [String: Any]?) -> [UIViewController]? {
         guard let newDeeplink = viewControllersFactory?.unmatchedDeeplinkRemainder(fromDeeplink: deeplink) else {
             return nil
         }
