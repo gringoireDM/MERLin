@@ -8,6 +8,7 @@
 
 @testable import MERLin
 import RxSwift
+import RxTest
 import XCTest
 
 class ModuleManagerTests: XCTestCase {
@@ -30,6 +31,23 @@ class ModuleManagerTests: XCTestCase {
         let viewController = moduleManager.viewController(for: mockStep())
         XCTAssertEqual(moduleManager.livingModules().count, 1)
         XCTAssertNotNil(moduleManager.module(for: viewController))
+    }
+    
+    func testThatItCanRetainModulesWithInternalRoutings() {
+        var viewController: UIViewController? = moduleManager.viewController(for: mockStep())
+        guard let module = moduleManager.module(for: viewController!) else {
+            XCTFail("Expected to be there"); return
+        }
+        
+        let newVC = MockViewController()
+        module.signalNew(viewController: newVC)
+        
+        XCTAssertEqual(moduleManager.livingModules().count, 1)
+        XCTAssertNotNil(moduleManager.module(for: viewController!))
+        
+        autoreleasepool { viewController = nil }
+        XCTAssertEqual(moduleManager.moduleRetainer.count, 1)
+        XCTAssert(moduleManager.module(for: newVC)?.isEqual(module) == true)
     }
     
     func testItCanAddEventsListeners() {

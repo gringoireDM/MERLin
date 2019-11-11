@@ -9,10 +9,18 @@
 import Foundation
 import LNZWeakCollection
 
-class ModuleWrapper {
+class ModuleWrapper: Hashable {
+    static func == (lhs: ModuleWrapper, rhs: ModuleWrapper) -> Bool {
+        return lhs.module === rhs.module
+    }
+    
     let module: AnyModule
     init(_ module: AnyModule) {
         self.module = module
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(module.hash)
     }
 }
 
@@ -43,7 +51,8 @@ open class BaseModuleManager {
     }
     
     public func livingModules() -> [AnyModule] {
-        return moduleRetainer.values.map { $0.module }
+        return Set(moduleRetainer.values.map { ModuleWrapper($0.module) })
+            .map { $0.module }
     }
     
     public func module(for viewController: UIViewController) -> AnyModule? {
@@ -104,9 +113,20 @@ extension BaseModuleManager: DeeplinkManaging {
 
 extension BaseModuleManager: ViewControllerBuilding {
     public func setup<T: UIViewController>(_ moduleController: (module: AnyModule, controller: T)) -> T {
-        moduleRetainer.set(ModuleWrapper(moduleController.module), forKey: moduleController.controller)
-        setupEventsListeners(for: moduleController.module)
-        return moduleController.controller
+        let (module, controller) = moduleController
+        
+        module.newViewControllers.skip(1)
+            .observeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+            .subscribe(onNext: { [weak self, weak module] newVC in
+                guard let module = module else { return }
+                self?.moduleRetainer.set(ModuleWrapper(module), forKey: newVC)
+            }).disposed(by: module.disposeBag)
+        
+        moduleRetainer.set(ModuleWrapper(module), forKey: controller)
+        
+        setupEventsListeners(for: module)
+        
+        return controller
     }
     
     public func viewController(for routingStep: PresentableRoutingStep) -> UIViewController {
