@@ -6,6 +6,7 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
+import os.log
 import RxSwift
 
 public typealias ViewControllersFactory = ViewControllerBuilding & DeeplinkManaging
@@ -37,7 +38,11 @@ public protocol Router: AnyObject {
      */
     @discardableResult func route(to destination: PresentableRoutingStep) -> UIViewController?
     @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController?
+    
     @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> [UIViewController]?
+    @discardableResult func route(toDeeplink deeplink: String, shouldPush: Bool, userInfo: [String: Any]?) -> [UIViewController]?
+    @discardableResult func route(toDeeplink deeplink: String, traverseAll: Bool, userInfo: [String: Any]?) -> [UIViewController]?
+    @discardableResult func route(toDeeplink deeplink: String, shouldPush: Bool, traverseAll: Bool, userInfo: [String: Any]?) -> [UIViewController]?
     
     func handleShortcutItem(_ item: UIApplicationShortcutItem)
     
@@ -60,6 +65,7 @@ public extension Router {
     @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController? {
         if case let .embed(info) = mode {
             // We can avoid to compute the topController in this case
+            os_log("Embedding %@ in %@", log: .router, type: .debug, viewController, info.parentController)
             return embed(viewController: viewController, embedInfo: info)
         }
         
@@ -68,12 +74,15 @@ public extension Router {
             topController = selectedController
         }
         
+        os_log("Showing %@ with presentation mode %@", log: .router, type: .debug, viewController, mode.description)
+        
         switch mode {
         case let .push(closeButton, onClose):
             if closeButton {
                 viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
             }
             guard let navController = topController as? UINavigationController else {
+                os_log("Could not push %@. Presenting it instead", log: .router, type: .fault, viewController)
                 topController.present(viewController, animated: animated, completion: nil)
                 return viewController
             }
@@ -97,6 +106,7 @@ public extension Router {
     @discardableResult func route(to destination: PresentableRoutingStep) -> UIViewController? {
         guard let viewControllersFactory = viewControllersFactory else { return nil }
         let viewController = viewControllersFactory.viewController(for: destination)
+        os_log("got %@ for routing step: %@", log: .router, type: .debug, viewController, destination.description)
         return route(to: viewController, withPresentationMode: destination.presentationMode, animated: destination.animated)
     }
     
@@ -120,6 +130,7 @@ public extension Router {
     private func closeButton(for viewController: UIViewController, onClose: (() -> Void)?) -> UIBarButtonItem {
         let button = UIBarButtonItem(title: closeButtonString, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
+            os_log("%@ dismissed using MERLin close button", log: .router, type: .info, viewController)
             viewController.dismiss(animated: true, completion: onClose)
         }).disposed(by: disposeBag)
         return button
@@ -130,7 +141,19 @@ public extension Router {
 
 public extension Router {
     @discardableResult func route(toDeeplink deeplink: String, userInfo: [String: Any]?) -> [UIViewController]? {
-        return handleDeeplink(deeplink, userInfo: userInfo)
+        return handleDeeplink(deeplink, shouldPush: false, traverseAll: true, userInfo: userInfo)
+    }
+    
+    @discardableResult func route(toDeeplink deeplink: String, shouldPush: Bool, userInfo: [String: Any]?) -> [UIViewController]? {
+        return handleDeeplink(deeplink, shouldPush: shouldPush, traverseAll: true, userInfo: userInfo)
+    }
+    
+    @discardableResult func route(toDeeplink deeplink: String, traverseAll: Bool, userInfo: [String: Any]?) -> [UIViewController]? {
+        return handleDeeplink(deeplink, shouldPush: false, traverseAll: traverseAll, userInfo: userInfo)
+    }
+    
+    @discardableResult func route(toDeeplink deeplink: String, shouldPush: Bool, traverseAll: Bool, userInfo: [String: Any]?) -> [UIViewController]? {
+        return handleDeeplink(deeplink, shouldPush: shouldPush, traverseAll: traverseAll, userInfo: userInfo)
     }
     
     /**
@@ -151,13 +174,21 @@ public extension Router {
      - parameter shouldPush: Determine if the deeplinked viewController should be pushed or presented
      modally in case the "top of the stack" viewController is an UINavigationController. Should push
      also ignores updatable controllers, unless the deeplink is not updatable itself from the current deeplink
+     - parameter traverseAll: Determine if the updatable view controller should be searched in depth
+     in case of nesting of containers in the currently visible view controller. Specifically, in case of a tab bar controller
+     containing for each controller a navigation controller. With this parameter as false the search would stop to the
+     navigation controller, while with true the search will inspect the view controllers contained in the navigation controller also
      */
     @discardableResult
-    func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, traverseAll: Bool = false, userInfo: [String: Any]?) -> [UIViewController]? {
+    private func handleDeeplink(_ deeplink: String, from: UIViewController? = nil, shouldPush: Bool = false, traverseAll: Bool = false, userInfo: [String: Any]?) -> [UIViewController]? {
         guard let viewControllersFactory = viewControllersFactory,
             let controllerClass = viewControllersFactory.viewControllerType(fromDeeplink: deeplink) else {
+            os_log("🔗 Could not find a responder for deeplink %@", log: .router, type: .debug, deeplink)
             return nil
         }
+        
+        os_log("🔗 Found responder for deeplink (%@), searching for a controller of type %@",
+               log: .router, type: .debug, deeplink, String(describing: controllerClass))
         
         // First check on top of the stack
         var currentController = from ?? currentViewController()
@@ -169,12 +200,16 @@ public extension Router {
             if controller.isMember(of: controllerClass) {
                 handled = viewControllersFactory.update(viewController: controller, fromDeeplink: deeplink, userInfo: userInfo)
                 deeplinkedController = controller
+                os_log("🔗 Found controller candidate for deeplink %@: %@ the controller was %@updated",
+                       log: .router, type: .debug, deeplink, controller, handled ? "" : "not ")
             } else if !shouldPush || traverseAll || controller == (currentController as? UITabBarController)?.selectedViewController,
                 let contained = (controller as? UINavigationController)?.viewControllers.last,
                 contained.isMember(of: controllerClass) {
                 // currentController might be a navigation controller (most likely) containing the controller class
                 handled = viewControllersFactory.update(viewController: contained, fromDeeplink: deeplink, userInfo: userInfo)
                 deeplinkedController = contained
+                os_log("🔗 Found controller candidate for deeplink %@: %@ the controller was %@updated",
+                       log: .router, type: .debug, deeplink, contained, handled ? "" : "not ")
             }
             
             if handled {
@@ -187,9 +222,11 @@ public extension Router {
         // we want to fallback on the default present/push logic
         if !handled {
             guard let deeplinkedViewController = viewControllersFactory.viewController(fromDeeplink: deeplink, userInfo: userInfo) else {
+                os_log("🔗 Could not create a controller for the deeplink %@ expected a view controller given that a responder exists.",
+                       log: .router, type: .fault, deeplink)
                 return nil
             }
-            
+            os_log("🔗 Obtained a new viewController for deeplink %@ : %@", log: .router, type: .debug, deeplink, deeplinkedViewController)
             var animated = false
             
             #if !TEST
@@ -202,13 +239,21 @@ public extension Router {
                 let navigationController = currentController as? UINavigationController ??
                 (currentController as? UITabBarController)?.selectedViewController as? UINavigationController {
                 navigationController.pushViewController(deeplinkedViewController, animated: animated)
+                
+                os_log("🔗 Pushed view controller %@ for deeplink %@", log: .router, type: .debug, deeplinkedViewController, deeplink)
             } else {
+                if shouldPush {
+                    os_log("🔗 Could not push as the current view controller (%@) is not a navigation controller and does not contain a navigation controller",
+                           log: .router, type: .debug, currentController)
+                }
                 let navigationController = UINavigationController(rootViewController: deeplinkedViewController)
                 
                 currentController.present(navigationController, animated: animated, completion: nil)
                 
                 deeplinkedViewController.navigationItem.leftBarButtonItem = closeButton(for: deeplinkedViewController, onClose: nil)
                 currentController = navigationController
+                os_log("🔗 Presenting %@ modally in a new navigation controller for deeplink %@",
+                       log: .router, type: .debug, deeplinkedViewController, deeplink)
             }
             
             deeplinkedController = deeplinkedViewController
@@ -222,11 +267,12 @@ public extension Router {
     /// would cause product array to match the first part, and to have `/pdp/112233` unmatched
     /// a new deeplink is then generated in this method to be theBay://pdp/112233 and then pushed
     @discardableResult
-    func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?, userInfo: [String: Any]?) -> [UIViewController]? {
+    private func pushUnmatched(fromDeeplink deeplink: String, from: UIViewController?, userInfo: [String: Any]?) -> [UIViewController]? {
         guard let newDeeplink = viewControllersFactory?.unmatchedDeeplinkRemainder(fromDeeplink: deeplink) else {
             return nil
         }
-        
+        os_log("🔗 Deeplink %@ was routed and has a remainder formed by a contiguous portion of the url not consumed by the responder: %@",
+               log: .router, type: .debug, deeplink, newDeeplink)
         return handleDeeplink(newDeeplink, from: from, shouldPush: true, traverseAll: false, userInfo: userInfo)
     }
 }

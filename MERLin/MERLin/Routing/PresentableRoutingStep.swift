@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum RoutingStepPresentationMode {
+public enum RoutingStepPresentationMode: CustomStringConvertible {
     case none
     case embed(parentController: UIViewController, containerView: UIView)
     case push(withCloseButton: Bool, onClose: (() -> Void)?)
@@ -22,9 +22,29 @@ public enum RoutingStepPresentationMode {
         case .embed, .modal, .none: return nil
         }
     }
+    
+    public var description: String {
+        switch self {
+        case .none: return "none"
+        case .embed(let parentController, _):
+            return "embed into \(parentController)"
+        case let .push(withCloseButton, onClose):
+            return "push" +
+                (withCloseButton ?
+                    " forcing close button" + (onClose == nil ? "" : ", injecting custom action on close") :
+                    "")
+        case let .modal(modalPresentationStyle):
+            return "modal with style \(modalPresentationStyle)"
+        case let .modalWithNavigation(modalPresentationStyle, withCloseButton, onClose):
+            return "modal with style \(modalPresentationStyle) in navigation bar" +
+                (withCloseButton ?
+                    " forcing close button" + (onClose == nil ? "" : ", injecting custom action on close") :
+                    "")
+        }
+    }
 }
 
-public struct ModuleRoutingStep {
+public struct ModuleRoutingStep: CustomStringConvertible {
     private var wrappedMaker: AnyModuleContextProtocol
     public var routingContext: String { return wrappedMaker.routingContext }
     
@@ -35,9 +55,13 @@ public struct ModuleRoutingStep {
     public init(withMaker maker: AnyModuleContextProtocol) {
         wrappedMaker = maker
     }
+    
+    public var description: String {
+        return "Context: \(wrappedMaker); Flow: \(routingContext)"
+    }
 }
 
-public struct PresentableRoutingStep {
+public struct PresentableRoutingStep: CustomStringConvertible {
     public let step: ModuleRoutingStep
     public let presentationMode: RoutingStepPresentationMode
     public let animated: Bool
@@ -46,5 +70,9 @@ public struct PresentableRoutingStep {
         self.step = step
         self.presentationMode = presentationMode
         self.animated = animated
+    }
+    
+    public var description: String {
+        return "\(step) -|- Presentation mode: \(presentationMode) -|- Animated: \(animated)"
     }
 }
