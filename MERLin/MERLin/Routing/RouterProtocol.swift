@@ -107,6 +107,7 @@ public extension Router {
         guard let viewControllersFactory = viewControllersFactory else { return nil }
         let viewController = viewControllersFactory.viewController(for: destination)
         os_log("got %@ for routing step: %@", log: .router, type: .debug, viewController, destination.description)
+        destination.beforePresenting?(viewController)
         return route(to: viewController, withPresentationMode: destination.presentationMode, animated: destination.animated)
     }
     

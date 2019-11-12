@@ -66,10 +66,19 @@ public struct PresentableRoutingStep: CustomStringConvertible {
     public let presentationMode: RoutingStepPresentationMode
     public let animated: Bool
     
-    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode, animated: Bool = true) {
+    /// This closure will be invoked right before the viewController associated to the step will be pushed/presented.
+    /// This closure should be used for further customization of the presentation style like custom animators.
+    ///
+    /// The viewController passed to this closure will be the ViewController after the presentation mode customization
+    /// but before this is associated to a container, meaning that it will not have any parent, not a navigationController
+    /// or a tabBarController.
+    public let beforePresenting: ((UIViewController) -> Void)?
+    
+    public init(withStep step: ModuleRoutingStep, presentationMode: RoutingStepPresentationMode, animated: Bool = true, beforePresenting: ((UIViewController) -> Void)? = nil) {
         self.step = step
         self.presentationMode = presentationMode
         self.animated = animated
+        self.beforePresenting = beforePresenting
     }
     
     public var description: String {
