@@ -199,20 +199,12 @@
 		501D6F7D2130BD3600114F5A /* Deeplinking */ = {
 			isa = PBXGroup;
 			children = (
+				501D6F812130BD3600114F5A /* DeeplinkMatcher.h */,
+				501D6F802130BD3600114F5A /* DeeplinkMatcher.m */,
 				501D6F7E2130BD3600114F5A /* Deeplink.swift */,
-				501D6F7F2130BD3600114F5A /* Extensions */,
 				501D6F822130BD3600114F5A /* DeeplinkManaging.swift */,
 			);
 			path = Deeplinking;
-			sourceTree = "<group>";
-		};
-		501D6F7F2130BD3600114F5A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				501D6F812130BD3600114F5A /* DeeplinkMatcher.h */,
-				501D6F802130BD3600114F5A /* DeeplinkMatcher.m */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		501D6F862130BD3700114F5A /* Routing */ = {

@@ -12,9 +12,9 @@
 
 @implementation DeeplinkMatcher
 
-static NSMutableDictionary * _availableDeeplinkHandlers;
+static NSMutableDictionary<NSRegularExpression *, Class> * _availableDeeplinkHandlers;
 
-+ (NSMutableDictionary *) availableDeeplinkHandlers {
++ (NSMutableDictionary<NSRegularExpression *, Class>  *) availableDeeplinkHandlers {
     return _availableDeeplinkHandlers;
 }
 

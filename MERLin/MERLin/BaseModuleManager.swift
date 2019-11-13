@@ -114,7 +114,7 @@ extension BaseModuleManager: DeeplinkManaging {
     
     @discardableResult public func update(viewController: UIViewController, fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
         guard let module = self.module(for: viewController) as? DeeplinkContextUpdatable else { return false }
-        return module.updateContext(fromDeeplink: deeplink, userInfo: userInfo)
+        return module.updateContext(for: viewController, fromDeeplink: deeplink, userInfo: userInfo)
     }
     
     public func viewController(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> UIViewController? {
@@ -137,7 +137,7 @@ extension BaseModuleManager: ViewControllerBuilding {
         
         os_log("🖼 Built new module of type %@ with its viewController: %@", log: .moduleManager, type: .debug,
                String(describing: type(of: module)), String(describing: type(of: controller)))
-
+        
         module.newViewControllers.skip(1)
             .observeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
             .subscribe(onNext: { [weak self, weak module] newVC in

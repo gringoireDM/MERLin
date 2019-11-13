@@ -25,17 +25,18 @@ deeplink, if not the module itself.
 
 /// The schemas that can be used for the deeplink. They will be used in the regex
 /// chained as **or** matches. `(schema1|schema2):\/\/....`
-@property (class, nonatomic, retain) NSArray<NSString *> *deeplinkSchemaNames;
+@property (class, nonatomic, retain) NSArray<NSString *> * _Nonnull deeplinkSchemaNames;
 
 /// The regex to parse the deeplink and decide if the module implementing Deeplinkable
 /// can handle the deeplink.
-+ (NSArray<NSRegularExpression *> *) deeplinkRegexes;
++ (NSArray<NSRegularExpression *> * _Nonnull) deeplinkRegexes;
 
 @end
 
+
 @interface DeeplinkMatcher : NSObject
 
-+ (NSMutableDictionary *) availableDeeplinkHandlers;
++ (NSMutableDictionary<NSRegularExpression *, Class> * _Nonnull) availableDeeplinkHandlers;
 
 @end
 

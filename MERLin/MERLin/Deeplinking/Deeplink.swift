@@ -46,7 +46,7 @@ public protocol DeeplinkContextUpdatable: Deeplinkable {
     /// This method will update the context of an existing module using a deeplink.
     /// If the module cannot handle the request for any reason the return value of this
     /// method will be false.
-    @discardableResult func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool
+    @discardableResult func updateContext(for controller: UIViewController, fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool
 }
 
 public extension Deeplinkable {
@@ -57,12 +57,11 @@ public extension Deeplinkable {
     }
     
     static func defaultRemainderDeeplink(fromDeeplink deeplink: String) -> String? {
-        let optionalSchema = deeplinkSchemaNames.first {
-            deeplink.hasPrefix($0)
-        }
-        
-        guard let schema = optionalSchema,
-            let match = deeplinkRegexes()?.compactMap({ $0.firstMatch(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) }).first,
+        guard let schema = deeplinkSchemaNames.first(where: { deeplink.hasPrefix($0) }),
+            let match = deeplinkRegexes().compactMap({
+                $0.firstMatch(in: deeplink,
+                              range: NSRange(location: 0, length: deeplink.count))
+            }).first,
             let range = Range(match.range(at: 0), in: deeplink) else { return nil }
         
         let remainder = String(deeplink.suffix(from: range.upperBound))
@@ -73,7 +72,8 @@ public extension Deeplinkable {
         
         guard remainder.count > 0, remainder != "/" else { return nil }
         
-        let resultingDeeplink = "\(schema)://\(remainder)".replacingOccurrences(of: "///", with: "//")
+        let resultingDeeplink = "\(schema)://\(remainder)"
+            .replacingOccurrences(of: "///", with: "//")
         return resultingDeeplink
     }
 }
@@ -85,11 +85,11 @@ public extension Deeplinkable {
 /// Deeplinkable protocol and subclassing Module.
 public extension DeeplinkMatcher {
     static var typedAvailableDeeplinkHandlers: [NSRegularExpression: DeeplinkResponder.Type] {
-        return DeeplinkMatcher.availableDeeplinkHandlers().reduce([NSRegularExpression: DeeplinkResponder.Type]()) {
-            guard let key = $1.key as? NSRegularExpression, let value = $1.value as? DeeplinkResponder.Type else { return $0 }
-            var mutableInitial = $0
-            mutableInitial[key] = value
-            return mutableInitial
-        }
+        return DeeplinkMatcher.availableDeeplinkHandlers()
+            .reduce(into: [NSRegularExpression: DeeplinkResponder.Type]()) {
+                guard let key = $1.key as? NSRegularExpression,
+                    let value = $1.value as? DeeplinkResponder.Type else { return }
+                $0[key] = value
+            }
     }
 }
