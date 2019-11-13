@@ -18,7 +18,7 @@ extension UIStoryboard {
     }
 }
 
-public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
+public class RestaurantsListModule: ModuleProtocol, EventsProducer {
     public var context: ModuleContext
     
     public var events: Observable<RestaurantsListEvent> { return _events }
@@ -34,6 +34,5 @@ public class RestaurantsListModule: NSObject, ModuleProtocol, EventsProducer {
     
     public required init(usingContext buildContext: ModuleContext) {
         context = buildContext
-        super.init()
     }
 }
