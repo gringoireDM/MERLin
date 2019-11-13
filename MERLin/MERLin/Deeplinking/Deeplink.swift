@@ -16,29 +16,6 @@ public enum DeeplinkMatchingPriority: Int {
     case veryHigh
 }
 
-/**
- Make a Module subclass conforming this protocol to make that module
- automatically deeplinkable. The principle behind this automatic implementation
- is that to make a module deeplinkable should be simple enough and should not
- require additional code, and the list of available deeplinkable modules should
- reflect (and expand) accordingly to the modules built in the app.
- The removal or the addition of a Deeplinkable module **must** not affect the
- rest of the app. The list of available deeplinkable modules is built in runtime
- so that no maintenance is needed once the deeplink engin is built to be agnostic
- respect the modules that are going to be deeplinked. In this way, also god
- deeplink managers are avoided, and nobody knows how to build a module out of a
- deeplink, if not the module itself.
- */
-@objc public protocol DeeplinkResponder: NSObjectProtocol {
-    /// The schemas that can be used for the deeplink. They will be used in the regex
-    /// chained as **or** matches. `(schema1|schema2):\/\/....`
-    static var deeplinkSchemaNames: [String] { get set }
-    
-    /// The regex to parse the deeplink and decide if the module implementing Deeplinkable
-    /// can handle the deeplink.
-    @objc static func deeplinkRegexes() -> [NSRegularExpression]?
-}
-
 public protocol Deeplinkable: DeeplinkResponder {
     static var priority: DeeplinkMatchingPriority { get }
     
@@ -81,7 +58,7 @@ public extension Deeplinkable {
     
     static func defaultRemainderDeeplink(fromDeeplink deeplink: String) -> String? {
         let optionalSchema = deeplinkSchemaNames.first {
-            return deeplink.hasPrefix($0)
+            deeplink.hasPrefix($0)
         }
         
         guard let schema = optionalSchema,
@@ -94,7 +71,7 @@ public extension Deeplinkable {
             .map(String.init)
             .joined(separator: "/")
         
-        guard remainder.count > 0 && remainder != "/" else { return nil }
+        guard remainder.count > 0, remainder != "/" else { return nil }
         
         let resultingDeeplink = "\(schema)://\(remainder)".replacingOccurrences(of: "///", with: "//")
         return resultingDeeplink

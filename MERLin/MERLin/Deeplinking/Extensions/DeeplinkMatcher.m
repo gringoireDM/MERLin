@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MERLin/DeeplinkMatcher.h>
-#import <MERLin/MERLin-Swift.h>
+#import <Objc/Runtime.h>
 
 @implementation DeeplinkMatcher
 
