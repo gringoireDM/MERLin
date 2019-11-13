@@ -238,7 +238,8 @@ public extension Router {
             }
             if handled { deeplinkedController = controller }
         case .traverseAll:
-            let controllers = (currentController as? UITabBarController)?.viewControllers?.enumerated() ?? [currentController].enumerated()
+            let controllers = (currentController as? UITabBarController)?
+                .viewControllers?.enumerated() ?? [currentController].enumerated()
             var index: Int?
             for (i, controller) in controllers {
                 guard let found = visit(controller, controllerClass) else { continue }
@@ -260,12 +261,14 @@ public extension Router {
         }
         
         if !handled {
-            guard let deeplinkedViewController = viewControllersFactory.viewController(fromDeeplink: deeplink, userInfo: userInfo) else {
+            guard let deeplinkedViewController = viewControllersFactory
+                .viewController(fromDeeplink: deeplink, userInfo: userInfo) else {
                 os_log("🔗 Could not create a controller for the deeplink %@ expected a view controller given that a responder exists.",
                        log: .router, type: .fault, deeplink)
                 return []
             }
-            os_log("🔗 Obtained a new viewController for deeplink %@ : %@", log: .router, type: .debug, deeplink, deeplinkedViewController)
+            os_log("🔗 Obtained a new viewController for deeplink %@ : %@",
+                   log: .router, type: .debug, deeplink, deeplinkedViewController)
             var animated = false
             
             #if !TEST
@@ -279,7 +282,6 @@ public extension Router {
                 guard let navigationController = currentController as? UINavigationController ??
                     (currentController as? UITabBarController)?.selectedViewController as? UINavigationController else { fallthrough }
                 navigationController.pushViewController(deeplinkedViewController, animated: animated)
-                
                 os_log("🔗 Pushed view controller %@ for deeplink %@", log: .router, type: .debug, deeplinkedViewController, deeplink)
             case .alwaysModally:
                 if behaviour.presentationStyle == .pushIfPossible {

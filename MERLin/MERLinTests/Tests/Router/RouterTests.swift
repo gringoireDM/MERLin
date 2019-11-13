@@ -47,7 +47,11 @@ class RouterTests: XCTestCase {
     }
     
     func testRoutToPushWithoutCloseButton() {
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .push(withCloseButton: false, onClose: nil), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .push(withCloseButton: false, onClose: nil),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssertEqual(root.viewControllers.last, expected)
@@ -55,7 +59,11 @@ class RouterTests: XCTestCase {
     }
     
     func testRoutToPushWithCloseButton() {
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .push(withCloseButton: true, onClose: nil), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .push(withCloseButton: true, onClose: nil),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssertEqual(root.viewControllers.last, expected)
@@ -66,21 +74,35 @@ class RouterTests: XCTestCase {
         let topController = UIViewController()
         router.topViewController = topController
         
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .push(withCloseButton: false, onClose: nil), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .push(withCloseButton: false, onClose: nil),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssertEqual(topController.presentedViewController, expected)
     }
     
     func testRouteToModal() {
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .modal(modalPresentationStyle: .fullScreen), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .modal(modalPresentationStyle: .fullScreen),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssertEqual(root.presentedViewController, expected)
     }
     
     func testRouteToModalWithNavigationWithoutCloseButton() {
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen, withCloseButton: false, onClose: nil), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
+                                                   withCloseButton: false,
+                                                   onClose: nil),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssert(root.presentedViewController is UINavigationController)
@@ -89,7 +111,13 @@ class RouterTests: XCTestCase {
     }
     
     func testRouteToModalWithNavigationWithCloseButton() {
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen, withCloseButton: true, onClose: nil), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
+                                                   withCloseButton: true,
+                                                   onClose: nil),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssert(root.presentedViewController is UINavigationController)
@@ -101,7 +129,12 @@ class RouterTests: XCTestCase {
         let topController = UIViewController()
         router.topViewController = topController
         
-        let step = PresentableRoutingStep(withStep: .mock(), presentationMode: .embed(parentController: topController, containerView: topController.view), animated: false)
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .embed(parentController: topController,
+                                     containerView: topController.view),
+            animated: false
+        )
         let expected = router.route(to: step)
         XCTAssertNotNil(expected)
         XCTAssertEqual(topController.children.first, expected)
@@ -144,11 +177,13 @@ class RouterTests: XCTestCase {
         let (tabBarRouter, _, _, _) = setupTabBarRootViewController()
         
         let deeplink = "test://mock/"
-        let controllers = tabBarRouter.route(toDeeplink: deeplink,
-                                             behaviour: DeeplinkBehaviour(presentationStyle: .alwaysModally,
-                                                                          updatableSearchPreference: .traverseAll,
-                                                                          shouldFollowRemainder: true),
-                                             userInfo: nil)
+        let controllers = tabBarRouter.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .alwaysModally,
+                                         updatableSearchPreference: .traverseAll,
+                                         shouldFollowRemainder: true),
+            userInfo: nil
+        )
         
         XCTAssert(controllers.first is MockViewController)
         XCTAssertEqual(controllers, (tabBarRouter.currentViewController() as? UINavigationController)?.viewControllers)
@@ -182,11 +217,13 @@ class RouterTests: XCTestCase {
         
         tabbarController.selectedIndex = 2
         
-        let controllers = tabBarRouter.route(toDeeplink: deeplink,
-                                             behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
-                                                                          updatableSearchPreference: .justInCurrentContext,
-                                                                          shouldFollowRemainder: false),
-                                             userInfo: nil)
+        let controllers = tabBarRouter.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: false),
+            userInfo: nil
+        )
         
         XCTAssertEqual(controllers, [tabbarController.selectedViewController!])
         XCTAssertEqual(tabbarController.selectedIndex, 2)
@@ -195,11 +232,13 @@ class RouterTests: XCTestCase {
     
     func testItCanPushFromCurrentContext() {
         let deeplink = "test://mock/"
-        let controllers = router.route(toDeeplink: deeplink,
-                                       behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
-                                                                    updatableSearchPreference: .justInCurrentContext,
-                                                                    shouldFollowRemainder: false),
-                                       userInfo: nil)
+        let controllers = router.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: false),
+            userInfo: nil
+        )
         
         XCTAssertEqual((router.topViewController as? UINavigationController)?.viewControllers.count, 2)
         XCTAssertEqual(controllers.first, (router.topViewController as? UINavigationController)?.viewControllers.last)
@@ -221,11 +260,13 @@ class RouterTests: XCTestCase {
             tabbarController.selectedIndex = index
             XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 1)
             
-            let controllers = tabBarRouter.route(toDeeplink: deeplink,
-                                                 behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
-                                                                              updatableSearchPreference: .justInCurrentContext,
-                                                                              shouldFollowRemainder: false),
-                                                 userInfo: nil)
+            let controllers = tabBarRouter.route(
+                toDeeplink: deeplink,
+                behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                             updatableSearchPreference: .justInCurrentContext,
+                                             shouldFollowRemainder: false),
+                userInfo: nil
+            )
             
             XCTAssertEqual(controllers.first, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers.last)
             XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 2)
@@ -243,11 +284,13 @@ class RouterTests: XCTestCase {
         
         tabbarController.viewControllers = Array(tabbarController.viewControllers?[0 ... 1] ?? [])
         
-        let controllers = tabBarRouter.route(toDeeplink: deeplink,
-                                             behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
-                                                                          updatableSearchPreference: .justInCurrentContext,
-                                                                          shouldFollowRemainder: true),
-                                             userInfo: nil)
+        let controllers = tabBarRouter.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: true),
+            userInfo: nil
+        )
         
         XCTAssertEqual(controllers, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers.suffix(2))
         XCTAssertEqual(tabbarController.selectedIndex, 0)
