@@ -21,7 +21,7 @@ class ModuleWrapper: Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(module.hash)
+        hasher.combine(Unmanaged.passUnretained(module as AnyObject).toOpaque())
     }
 }
 

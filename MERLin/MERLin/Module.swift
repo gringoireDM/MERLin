@@ -8,7 +8,7 @@
 
 import RxSwift
 
-public protocol AnyModule: AnyObject, NSObjectProtocol {
+public protocol AnyModule: AnyObject {
     var routingContext: String { get }
     
     func unmanagedRootViewController() -> UIViewController

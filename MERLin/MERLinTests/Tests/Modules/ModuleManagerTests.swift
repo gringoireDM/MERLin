@@ -48,7 +48,7 @@ class ModuleManagerTests: XCTestCase {
         
         autoreleasepool { viewController = nil }
         XCTAssertEqual(moduleManager.moduleRetainer.count, 1)
-        XCTAssert(moduleManager.module(for: newVC)?.isEqual(module) == true)
+        XCTAssert(moduleManager.module(for: newVC) === module)
     }
     
     func testItCanAddEventsListeners() {
