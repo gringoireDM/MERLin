@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <MERLin/DeeplinkMatcher.h>
-#import <MERLin/MERLin-Swift.h>
+#import <Objc/Runtime.h>
 
 @implementation DeeplinkMatcher
 
-static NSMutableDictionary * _availableDeeplinkHandlers;
+static NSMutableDictionary<NSRegularExpression *, Class> * _availableDeeplinkHandlers;
 
-+ (NSMutableDictionary *) availableDeeplinkHandlers {
++ (NSMutableDictionary<NSRegularExpression *, Class>  *) availableDeeplinkHandlers {
     return _availableDeeplinkHandlers;
 }
 

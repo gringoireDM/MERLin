@@ -39,7 +39,7 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
         return URL(string: "test://mock")
     }
     
-    static func deeplinkRegexes() -> [NSRegularExpression]? {
+    static func deeplinkRegexes() -> [NSRegularExpression] {
         let testRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
         let anotherTestRegEx = try! NSRegularExpression(pattern: "\\banotherTest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
         
@@ -75,7 +75,7 @@ class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkConte
         return URL(string: "test://mock")
     }
     
-    static func deeplinkRegexes() -> [NSRegularExpression]? {
+    static func deeplinkRegexes() -> [NSRegularExpression] {
         let testRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
         let testProductRegEx = try! NSRegularExpression(pattern: "\\btest\\:\\/\\/.*product\\/?([0-9]+)", options: .caseInsensitive)
         let anotherTestRegEx = try! NSRegularExpression(pattern: "\\banotherTest\\:\\/\\/mock\\/?([0-9]*)", options: .caseInsensitive)
@@ -84,7 +84,7 @@ class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkConte
         return [testRegEx, testProductRegEx, anotherTestRegEx, anotherTestProductRegEx]
     }
     
-    func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
+    func updateContext(for controller: UIViewController, fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
         return !deeplink.contains("mock")
     }
 }

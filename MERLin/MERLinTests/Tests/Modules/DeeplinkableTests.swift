@@ -12,17 +12,17 @@ import XCTest
 class DeeplinkableTests: XCTestCase {
     func testThatMockIsIncludedInAvailableDeeplinkHandlers() {
         let mockType = DeeplinkMatcher.typedAvailableDeeplinkHandlers.values.filter { (type) -> Bool in
-            return type == MockDeeplinkable.self
+            type == MockDeeplinkable.self
         }
-        XCTAssertEqual(mockType.count, MockDeeplinkable.deeplinkRegexes()!.count)
+        XCTAssertEqual(mockType.count, MockDeeplinkable.deeplinkRegexes().count)
     }
     
     func testThatMockRegularExpressionsAreInAvailableDeeplinkHandlers() {
         let regExp = DeeplinkMatcher.typedAvailableDeeplinkHandlers.keys.filter { (regEx) -> Bool in
-            return DeeplinkMatcher.typedAvailableDeeplinkHandlers[regEx] == MockDeeplinkable.self
+            DeeplinkMatcher.typedAvailableDeeplinkHandlers[regEx] == MockDeeplinkable.self
         }
         
-        XCTAssertEqual(Set(regExp), Set(MockDeeplinkable.deeplinkRegexes()!))
+        XCTAssertEqual(Set(regExp), Set(MockDeeplinkable.deeplinkRegexes()))
     }
     
     func testDeeplinkRemainder() {

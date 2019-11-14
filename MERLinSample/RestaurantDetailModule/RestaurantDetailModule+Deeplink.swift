@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension RestaurantDetailModule: DeeplinkContextUpdatable {
+extension RestaurantDetailModule: Deeplinkable {
     public static var deeplinkSchemaNames: [String] = ["rest"]
-    public static func deeplinkRegexes() -> [NSRegularExpression]? {
-        guard deeplinkSchemaNames.count > 0 else { return nil }
+    public static func deeplinkRegexes() -> [NSRegularExpression] {
+        guard deeplinkSchemaNames.count > 0 else { return [] }
         
         var regexString = "\\b("
         regexString += deeplinkSchemaNames.joined(separator: "|") + ")\\:\\/\\/"
@@ -31,7 +31,10 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
     }
     
     private static func context(fromDeeplink deeplink: String) -> RestaurantDetailBuildContext? {
-        guard let match = deeplinkRegexes()?.compactMap({ $0.firstMatch(in: deeplink, range: NSRange(location: 0, length: deeplink.count)) }).first,
+        guard let match = deeplinkRegexes()
+            .compactMap({
+                $0.firstMatch(in: deeplink, range: NSRange(location: 0, length: deeplink.count))
+            }).first,
             let idRange = Range(match.range(at: match.numberOfRanges - 1), in: deeplink) else { return nil }
         
         let id = String(deeplink[idRange])
@@ -43,10 +46,6 @@ extension RestaurantDetailModule: DeeplinkContextUpdatable {
         
         let module = RestaurantDetailModule(usingContext: context)
         return (module, module.prepareRootViewController())
-    }
-    
-    public func updateContext(fromDeeplink deeplink: String, userInfo: [String: Any]?) -> Bool {
-        return false // don't want to replace the current restaurant on screen if any.
     }
 }
 
