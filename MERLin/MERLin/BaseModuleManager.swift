@@ -129,6 +129,11 @@ extension BaseModuleManager: DeeplinkManaging {
         guard let type = deeplinkable(fromDeeplink: deeplink) else { return nil }
         return type.remainderDeeplink(fromDeeplink: deeplink)
     }
+    
+    public func canPush(viewController: UIViewController, forDeeplink deeplink: String) -> Bool {
+        guard let module = self.module(for: viewController) as? Deeplinkable else { return true }
+        return module.canPush(viewController: viewController, forDeeplink: deeplink)
+    }
 }
 
 extension BaseModuleManager: ViewControllerBuilding {
