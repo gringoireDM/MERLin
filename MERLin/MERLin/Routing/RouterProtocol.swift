@@ -279,15 +279,20 @@ public extension Router {
             
             switch behaviour.presentationStyle {
             case .pushIfPossible:
+                guard viewControllersFactory.canPush(viewController: deeplinkedViewController, forDeeplink: deeplink) else {
+                    os_log("🔗 Could not push as the current view controller (%@) cannot be pushed because of its module's preferences",
+                           log: .router, type: .debug, currentController)
+                    fallthrough
+                }
                 guard let navigationController = currentController as? UINavigationController ??
-                    (currentController as? UITabBarController)?.selectedViewController as? UINavigationController else { fallthrough }
+                    (currentController as? UITabBarController)?.selectedViewController as? UINavigationController else {
+                    os_log("🔗 Could not push as the current view controller (%@) is not a navigation controller and does not contain a navigation controller",
+                           log: .router, type: .debug, currentController)
+                    fallthrough
+                }
                 navigationController.pushViewController(deeplinkedViewController, animated: animated)
                 os_log("🔗 Pushed view controller %@ for deeplink %@", log: .router, type: .debug, deeplinkedViewController, deeplink)
             case .alwaysModally:
-                if behaviour.presentationStyle == .pushIfPossible {
-                    os_log("🔗 Could not push as the current view controller (%@) is not a navigation controller and does not contain a navigation controller",
-                           log: .router, type: .debug, currentController)
-                }
                 let navigationController = UINavigationController(rootViewController: deeplinkedViewController)
                 
                 currentController.present(navigationController, animated: animated, completion: nil)
