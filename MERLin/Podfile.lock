@@ -21,7 +21,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI (~> 0.40.5)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - EnumKit
     - LNZWeakCollection
     - RxCocoa
@@ -43,4 +43,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 743e7c5bf9c8ee2178993004e987a2d8c02bcd45
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4

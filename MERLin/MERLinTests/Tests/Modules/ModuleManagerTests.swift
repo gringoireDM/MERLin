@@ -24,7 +24,7 @@ class ModuleManagerTests: XCTestCase {
     }
     
     func mockStep() -> PresentableRoutingStep {
-        return PresentableRoutingStep(withStep: .mock(), presentationMode: .push(withCloseButton: false, onClose: nil))
+        return PresentableRoutingStep(withStep: .mock(), presentationMode: .push(withCloseButton: .none))
     }
     
     func testThatItCanRetainModules() {

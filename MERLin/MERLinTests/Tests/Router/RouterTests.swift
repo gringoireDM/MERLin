@@ -49,7 +49,7 @@ class RouterTests: XCTestCase {
     func testRoutToPushWithoutCloseButton() {
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: false, onClose: nil),
+            presentationMode: .push(withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -61,7 +61,7 @@ class RouterTests: XCTestCase {
     func testRoutToPushWithCloseButton() {
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: true, onClose: nil),
+            presentationMode: .push(withCloseButton: .title("Close", onClose: nil)),
             animated: false
         )
         let expected = router.route(to: step)
@@ -76,7 +76,7 @@ class RouterTests: XCTestCase {
         
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: false, onClose: nil),
+            presentationMode: .push(withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -99,8 +99,7 @@ class RouterTests: XCTestCase {
         let step = PresentableRoutingStep(
             withStep: .mock(),
             presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
-                                                   withCloseButton: false,
-                                                   onClose: nil),
+                                                   withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -114,8 +113,7 @@ class RouterTests: XCTestCase {
         let step = PresentableRoutingStep(
             withStep: .mock(),
             presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
-                                                   withCloseButton: true,
-                                                   onClose: nil),
+                                                   withCloseButton: .title("Close", onClose: nil)),
             animated: false
         )
         let expected = router.route(to: step)
