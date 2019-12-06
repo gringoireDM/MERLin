@@ -13,6 +13,14 @@ public enum CloseButtonType: CustomStringConvertible {
     case title(String, onClose: (() -> Void)?)
     case image(UIImage, onClose: (() -> Void)?)
     
+    var onCloseAction: (() -> Void)? {
+        switch self {
+        case .none: return nil
+        case let .title(_, onClose),
+             let .image(_, onClose): return onClose
+        }
+    }
+    
     public var description: String {
         switch self {
         case .none: return "no close button"

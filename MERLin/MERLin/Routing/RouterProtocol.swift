@@ -149,20 +149,17 @@ public extension Router {
     
     internal func closeButton(for viewController: UIViewController, closeButtonType: CloseButtonType) -> UIBarButtonItem? {
         let button: UIBarButtonItem
-        let onCloseAction: (() -> Void)?
         switch closeButtonType {
         case .none: return nil
-        case let .title(title, onClose):
+        case let .title(title, _):
             button = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
-            onCloseAction = onClose
-        case let .image(image, onClose):
+        case let .image(image, _):
             button = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
-            onCloseAction = onClose
         }
         
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
             os_log("%@ dismissed using MERLin close button", log: .router, type: .info, viewController)
-            viewController.dismiss(animated: true, completion: onCloseAction)
+            viewController.dismiss(animated: true, completion: closeButtonType.onCloseAction)
         }).disposed(by: disposeBag)
         
         return button
