@@ -13,27 +13,35 @@ import XCTest
 class RoutingStepPresentationModeTests: XCTestCase {
     func testItCanOverridePushWithCloseButton() {
         var value = 1
-        let mode = RoutingStepPresentationMode.push(withCloseButton: false, onClose: nil)
-        guard let newMode = mode.override(withCloseButton: true, onClose: { value += 1 }),
-            case let .push(closeButton, onClose) = newMode else {
+        let mode = RoutingStepPresentationMode.push(withCloseButton: .none)
+        guard let newMode = mode.override(withCloseButton: .title("Close", onClose: { value += 1 })),
+            case let .push(closeButton) = newMode else {
             XCTFail("newMode is not push")
             return
         }
-        XCTAssert(closeButton)
+        guard case let .title(_, onClose) = closeButton else {
+            XCTFail("button is not title")
+            return
+        }
+        
         onClose?()
         XCTAssert(value == 2)
     }
     
     func testItCanOverrideModalWithNavigation() {
         var value = 1
-        let mode = RoutingStepPresentationMode.modalWithNavigation(modalPresentationStyle: .currentContext, withCloseButton: false, onClose: nil)
-        guard let newMode = mode.override(withCloseButton: true, onClose: { value += 1 }),
-            case let .modalWithNavigation(style, closeButton, onClose) = newMode else {
+        let mode = RoutingStepPresentationMode.modalWithNavigation(modalPresentationStyle: .currentContext, withCloseButton: .none)
+        guard let newMode = mode.override(withCloseButton: .title("Close", onClose: { value += 1 })),
+            case let .modalWithNavigation(style, closeButton) = newMode else {
             XCTFail("newMode is not modal with navigation")
             return
         }
         XCTAssertEqual(style, .currentContext)
-        XCTAssert(closeButton)
+        
+        guard case let .title(_, onClose) = closeButton else {
+            XCTFail("button is not title")
+            return
+        }
         onClose?()
         XCTAssertEqual(value, 2)
     }
@@ -46,7 +54,7 @@ class RoutingStepPresentationModeTests: XCTestCase {
         ]
         
         for mode in modes {
-            XCTAssertNil(mode.override(withCloseButton: true) {})
+            XCTAssertNil(mode.override(withCloseButton: CloseButtonType.title("Close", onClose: nil)))
         }
     }
 }

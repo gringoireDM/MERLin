@@ -45,6 +45,10 @@ class MockDeeplinkable: NSObject, ModuleProtocol, Deeplinkable {
         
         return [testRegEx, anotherTestRegEx]
     }
+    
+    func canPush(viewController: UIViewController, forDeeplink deeplink: String) -> Bool {
+        return !deeplink.hasSuffix("noPush")
+    }
 }
 
 class LowPriorityMockDeeplinkableModule: NSObject, ModuleProtocol, DeeplinkContextUpdatable {

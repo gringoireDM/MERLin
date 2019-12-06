@@ -44,7 +44,7 @@ public protocol Router: AnyObject {
     var topViewController: UIViewController { get }
     var disposeBag: DisposeBag { get }
     
-    var closeButtonString: String { get }
+    var defaultCloseButtonType: CloseButtonType { get }
     /**
      This method has the duty to return the right rootViewController depending on launching options. If there is a deeplink,
      this method should catch it and adjust the rootviewcontroller stack accordingly.
@@ -75,7 +75,8 @@ public protocol Router: AnyObject {
 // MARK: Route to...
 
 public extension Router {
-    var closeButtonString: String { return "Close" }
+    var defaultCloseButtonType: CloseButtonType { return .title("Close", onClose: nil) }
+    
     internal func currentViewController() -> UIViewController {
         var currentController = topViewController
         while let presented = currentController.presentedViewController {
@@ -99,10 +100,8 @@ public extension Router {
         os_log("Showing %@ with presentation mode %@", log: .router, type: .debug, viewController, mode.description)
         
         switch mode {
-        case let .push(closeButton, onClose):
-            if closeButton {
-                viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
-            }
+        case let .push(closeButtonType):
+            viewController.navigationItem.leftBarButtonItem = closeButton(for: viewController, closeButtonType: closeButtonType)
             guard let navController = topController as? UINavigationController else {
                 os_log("Could not push %@. Presenting it instead", log: .router, type: .fault, viewController)
                 topController.present(viewController, animated: animated, completion: nil)
@@ -112,11 +111,9 @@ public extension Router {
         case let .modal(style):
             viewController.modalPresentationStyle = style
             topController.present(viewController, animated: animated, completion: nil)
-        case let .modalWithNavigation(style, closeButton, onClose):
+        case let .modalWithNavigation(style, closeButtonType):
             let navigationController = UINavigationController(rootViewController: viewController)
-            if closeButton {
-                viewController.navigationItem.leftBarButtonItem = self.closeButton(for: viewController, onClose: onClose)
-            }
+            viewController.navigationItem.leftBarButtonItem = closeButton(for: viewController, closeButtonType: closeButtonType)
             navigationController.modalPresentationStyle = style
             topController.present(navigationController, animated: animated, completion: nil)
         case .embed, .none: return viewController
@@ -150,12 +147,21 @@ public extension Router {
         return viewController
     }
     
-    internal func closeButton(for viewController: UIViewController, onClose: (() -> Void)?) -> UIBarButtonItem {
-        let button = UIBarButtonItem(title: closeButtonString, style: .plain, target: nil, action: nil)
+    internal func closeButton(for viewController: UIViewController, closeButtonType: CloseButtonType) -> UIBarButtonItem? {
+        let button: UIBarButtonItem
+        switch closeButtonType {
+        case .none: return nil
+        case let .title(title, _):
+            button = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
+        case let .image(image, _):
+            button = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+        }
+        
         button.rx.tap.subscribe(onNext: { [unowned viewController] in
             os_log("%@ dismissed using MERLin close button", log: .router, type: .info, viewController)
-            viewController.dismiss(animated: true, completion: onClose)
+            viewController.dismiss(animated: true, completion: closeButtonType.onCloseAction)
         }).disposed(by: disposeBag)
+        
         return button
     }
 }
@@ -297,7 +303,8 @@ public extension Router {
                 
                 currentController.present(navigationController, animated: animated, completion: nil)
                 
-                deeplinkedViewController.navigationItem.leftBarButtonItem = closeButton(for: deeplinkedViewController, onClose: nil)
+                deeplinkedViewController.navigationItem.leftBarButtonItem = closeButton(for: deeplinkedViewController,
+                                                                                        closeButtonType: defaultCloseButtonType)
                 currentController = navigationController
                 os_log("🔗 Presenting %@ modally in a new navigation controller for deeplink %@",
                        log: .router, type: .debug, deeplinkedViewController, deeplink)

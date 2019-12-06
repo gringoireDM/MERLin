@@ -49,7 +49,7 @@ class RouterTests: XCTestCase {
     func testRoutToPushWithoutCloseButton() {
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: false, onClose: nil),
+            presentationMode: .push(withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -58,10 +58,22 @@ class RouterTests: XCTestCase {
         XCTAssertNil(root.viewControllers.last?.navigationItem.leftBarButtonItem)
     }
     
-    func testRoutToPushWithCloseButton() {
+    func testRouteToPushWithCloseButton() {
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: true, onClose: nil),
+            presentationMode: .push(withCloseButton: .title("Close", onClose: nil)),
+            animated: false
+        )
+        let expected = router.route(to: step)
+        XCTAssertNotNil(expected)
+        XCTAssertEqual(root.viewControllers.last, expected)
+        XCTAssertNotNil(root.viewControllers.last?.navigationItem.leftBarButtonItem)
+    }
+    
+    func testRouteToPushWithCloseButtonImage() {
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .push(withCloseButton: .image(UIImage(), onClose: nil)),
             animated: false
         )
         let expected = router.route(to: step)
@@ -76,7 +88,7 @@ class RouterTests: XCTestCase {
         
         let step = PresentableRoutingStep(
             withStep: .mock(),
-            presentationMode: .push(withCloseButton: false, onClose: nil),
+            presentationMode: .push(withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -99,8 +111,7 @@ class RouterTests: XCTestCase {
         let step = PresentableRoutingStep(
             withStep: .mock(),
             presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
-                                                   withCloseButton: false,
-                                                   onClose: nil),
+                                                   withCloseButton: .none),
             animated: false
         )
         let expected = router.route(to: step)
@@ -114,8 +125,21 @@ class RouterTests: XCTestCase {
         let step = PresentableRoutingStep(
             withStep: .mock(),
             presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
-                                                   withCloseButton: true,
-                                                   onClose: nil),
+                                                   withCloseButton: .title("Close", onClose: nil)),
+            animated: false
+        )
+        let expected = router.route(to: step)
+        XCTAssertNotNil(expected)
+        XCTAssert(root.presentedViewController is UINavigationController)
+        XCTAssertEqual(root.presentedViewController?.children.first, expected)
+        XCTAssertNotNil(root.presentedViewController?.children.first?.navigationItem.leftBarButtonItem)
+    }
+    
+    func testRouteToModalWithNavigationWithCloseButtonImage() {
+        let step = PresentableRoutingStep(
+            withStep: .mock(),
+            presentationMode: .modalWithNavigation(modalPresentationStyle: .fullScreen,
+                                                   withCloseButton: .image(UIImage(), onClose: nil)),
             animated: false
         )
         let expected = router.route(to: step)
@@ -244,6 +268,34 @@ class RouterTests: XCTestCase {
         XCTAssertEqual(controllers.first, (router.topViewController as? UINavigationController)?.viewControllers.last)
     }
     
+    func testItCanRejectPushAndFallbackOnModal() {
+        router.topViewController = UIViewController()
+        let deeplink = "test://mock/"
+        let controllers = router.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: false),
+            userInfo: nil
+        )
+        
+        XCTAssertEqual((router.topViewController.presentedViewController as? UINavigationController)?.viewControllers.last, controllers.first)
+    }
+    
+    func testItCanFailPushForMissingNavigationController() {
+        let deeplink = "test://mock/noPush"
+        let controllers = router.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: false),
+            userInfo: nil
+        )
+        
+        XCTAssertEqual((router.topViewController as? UINavigationController)?.viewControllers.count, 1)
+        XCTAssertEqual((router.topViewController.presentedViewController as? UINavigationController)?.viewControllers.last, controllers.first)
+    }
+    
     func testItCanPushFromCurrentContextInTabBarViewController() {
         let (tabBarRouter, _, _, _) = setupTabBarRootViewController()
         
@@ -295,5 +347,17 @@ class RouterTests: XCTestCase {
         XCTAssertEqual(controllers, (tabbarController.selectedViewController as? UINavigationController)?.viewControllers.suffix(2))
         XCTAssertEqual(tabbarController.selectedIndex, 0)
         XCTAssertEqual((tabbarController.selectedViewController as? UINavigationController)?.viewControllers.count, 3)
+    }
+    
+    func testItCanFailDeeplinking() {
+        let deeplink = "test://frank/sinatra"
+        let controllers = router.route(
+            toDeeplink: deeplink,
+            behaviour: DeeplinkBehaviour(presentationStyle: .pushIfPossible,
+                                         updatableSearchPreference: .justInCurrentContext,
+                                         shouldFollowRemainder: false),
+            userInfo: nil
+        )
+        XCTAssert(controllers.isEmpty)
     }
 }

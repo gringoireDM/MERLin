@@ -8,17 +8,41 @@
 
 import Foundation
 
+public enum CloseButtonType: CustomStringConvertible {
+    case none
+    case title(String, onClose: (() -> Void)?)
+    case image(UIImage, onClose: (() -> Void)?)
+    
+    var onCloseAction: (() -> Void)? {
+        switch self {
+        case .none: return nil
+        case let .title(_, onClose),
+             let .image(_, onClose): return onClose
+        }
+    }
+    
+    public var description: String {
+        switch self {
+        case .none: return "no close button"
+        case let .title(title, onClose):
+            return "close button with title \"\(title)\"" + (onClose == nil ? "" : ", injecting custom action on close")
+        case let .image(_, onClose):
+            return "close button with image" + (onClose == nil ? "" : ", injecting custom action on close")
+        }
+    }
+}
+
 public enum RoutingStepPresentationMode: CustomStringConvertible {
     case none
     case embed(parentController: UIViewController, containerView: UIView)
-    case push(withCloseButton: Bool, onClose: (() -> Void)?)
+    case push(withCloseButton: CloseButtonType)
     case modal(modalPresentationStyle: UIModalPresentationStyle)
-    case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: Bool, onClose: (() -> Void)?)
+    case modalWithNavigation(modalPresentationStyle: UIModalPresentationStyle, withCloseButton: CloseButtonType)
     
-    public func override(withCloseButton closeButton: Bool, onClose: (() -> Void)?) -> RoutingStepPresentationMode? {
+    public func override(withCloseButton closeButton: CloseButtonType) -> RoutingStepPresentationMode? {
         switch self {
-        case .push: return .push(withCloseButton: closeButton, onClose: onClose)
-        case let .modalWithNavigation(style, _, _): return .modalWithNavigation(modalPresentationStyle: style, withCloseButton: closeButton, onClose: onClose)
+        case .push: return .push(withCloseButton: closeButton)
+        case let .modalWithNavigation(style, _): return .modalWithNavigation(modalPresentationStyle: style, withCloseButton: closeButton)
         case .embed, .modal, .none: return nil
         }
     }
@@ -28,18 +52,12 @@ public enum RoutingStepPresentationMode: CustomStringConvertible {
         case .none: return "none"
         case .embed(let parentController, _):
             return "embed into \(parentController)"
-        case let .push(withCloseButton, onClose):
-            return "push" +
-                (withCloseButton ?
-                    " forcing close button" + (onClose == nil ? "" : ", injecting custom action on close") :
-                    "")
+        case let .push(closeButtonType):
+            return "push with " + closeButtonType.description
         case let .modal(modalPresentationStyle):
             return "modal with style \(modalPresentationStyle)"
-        case let .modalWithNavigation(modalPresentationStyle, withCloseButton, onClose):
-            return "modal with style \(modalPresentationStyle) in navigation bar" +
-                (withCloseButton ?
-                    " forcing close button" + (onClose == nil ? "" : ", injecting custom action on close") :
-                    "")
+        case let .modalWithNavigation(modalPresentationStyle, closeButtonType):
+            return "modal with style \(modalPresentationStyle) in navigation bar and " + closeButtonType.description
         }
     }
 }
