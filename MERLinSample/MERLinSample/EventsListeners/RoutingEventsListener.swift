@@ -21,7 +21,7 @@ class RoutingEventsListener: EventsListener {
             .map { $0.id }
             .subscribe(onNext: { [weak self] id in
                 let step = ModuleRoutingStep.restaurantsDetail(restaurantId: id)
-                let presentableStep = PresentableRoutingStep(withStep: step, presentationMode: .push(withCloseButton: false, onClose: nil))
+                let presentableStep = PresentableRoutingStep(withStep: step, presentationMode: .push(withCloseButton: .none))
                 _ = self?.router.route(to: presentableStep)
             }).disposed(by: producer.disposeBag)
         
