@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
     s.source = {
         :git => "https://github.com/gringoireDM/MERLin.git",
-        :tag => "v3.0.0"
+        :tag => s.version.to_s
     }
     
 	s.dependency 'LNZWeakCollection', '~>1.3.2'
