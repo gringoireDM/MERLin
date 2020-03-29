@@ -1,10 +1,10 @@
 os: osx
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11
 podfile: ./MERLin/Podfile
 xcode_workspace: ./MERLin/MERLin.xcworkspace
 xcode_scheme: MERLin
-xcode_destination: platform=iOS Simulator,OS=11.4,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone 11
 
 before_install:
     - pod repo update
