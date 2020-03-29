@@ -6,7 +6,6 @@
 //  Copyright © 2018 Giuseppe Lanza. All rights reserved.
 //
 
-import RxCocoa
 import RxSwift
 
 public extension ObservableType where Element: EventProtocol {

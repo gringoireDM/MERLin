@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.platform = :ios
-    s.version = "3.0.0"
+    s.version = "3.0.1"
     s.ios.deployment_target = '10.0'
     s.name = "MERLin"
  	s.summary      = "A framework to build an event based, reactive architecture for swift iOS projects"
@@ -23,7 +23,9 @@ Pod::Spec.new do |s|
     }
     
 	s.dependency 'LNZWeakCollection', '~>1.3.2'
-    s.dependency 'RxEnumKit', '~>1.0.1'
+    s.dependency 'RxEnumKit', '~>1.0.2'
+    s.dependency 'RxSwift', '~>5.1.0'
+    s.dependency 'RxCocoa', '~>5.0.1'
 
     s.framework = "UIKit"
 	

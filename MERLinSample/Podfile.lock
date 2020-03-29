@@ -1,24 +1,25 @@
 PODS:
-  - EnumKit (1.0.0)
+  - EnumKit (1.1.1)
   - LNZWeakCollection (1.3.2)
   - MERLin (3.0.0):
     - LNZWeakCollection (~> 1.3.2)
-    - RxEnumKit (~> 1.0.1)
-  - RxCocoa (5.0.0):
+    - RxEnumKit (~> 1.0.2)
+    - RxSwift (~> 5.1.0)
+  - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxEnumKit (1.0.1):
-    - EnumKit (~> 1.0.0)
+  - RxEnumKit (1.0.2):
+    - EnumKit (~> 1.1.1)
     - RxCocoa (~> 5.0.0)
-  - RxRelay (5.0.0):
+  - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.0)
+  - RxSwift (5.1.1)
 
 DEPENDENCIES:
   - MERLin (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - EnumKit
     - LNZWeakCollection
     - RxCocoa
@@ -31,14 +32,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  EnumKit: 8ee9561b3a7d2696d2e5aa37d5b9eba5f7139783
+  EnumKit: b49db845ff6de43d55b58214fb89e676edc349fa
   LNZWeakCollection: 0211da4f8778cb35d1b9fa788a3cb395e26a0226
-  MERLin: fcc7a1671122be4e25136f3fd644aea180e32b70
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxEnumKit: f51b6ae14fdae994a66b8a39d166116b8e0befc1
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  MERLin: 8abf492167e2df6b301ad185fcdda08bd8042f51
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxEnumKit: 76495d3640bbd2a4c672150f1c1da419cf99d342
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
 PODFILE CHECKSUM: a6ee1cdd068da55588ef8cb0033cd9d15dfe14e3
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0
