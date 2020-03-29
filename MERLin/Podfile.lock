@@ -1,5 +1,5 @@
 PODS:
-  - EnumKit (1.1.1)
+  - EnumKit (1.1.2)
   - LNZWeakCollection (1.3.2)
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
@@ -15,6 +15,7 @@ PODS:
   - SwiftFormat/CLI (0.40.14)
 
 DEPENDENCIES:
+  - EnumKit (~> 1.1.2)
   - LNZWeakCollection (~> 1.3.2)
   - RxEnumKit (~> 1.0.1)
   - RxTest (~> 5.0.0)
@@ -32,7 +33,7 @@ SPEC REPOS:
     - SwiftFormat
 
 SPEC CHECKSUMS:
-  EnumKit: b49db845ff6de43d55b58214fb89e676edc349fa
+  EnumKit: d44634a9755c252cd0b52c8ec5e8e97160895c6b
   LNZWeakCollection: 0211da4f8778cb35d1b9fa788a3cb395e26a0226
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxEnumKit: 76495d3640bbd2a4c672150f1c1da419cf99d342
@@ -41,6 +42,6 @@ SPEC CHECKSUMS:
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
   SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
 
-PODFILE CHECKSUM: 743e7c5bf9c8ee2178993004e987a2d8c02bcd45
+PODFILE CHECKSUM: 25934ce422ffd440022efe94b3a682a3800533bd
 
 COCOAPODS: 1.9.0

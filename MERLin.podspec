@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
     }
     
 	s.dependency 'LNZWeakCollection', '~>1.3.2'
+    s.dependency 'EnumKit', '~>1.1.2'
     s.dependency 'RxEnumKit', '~>1.0.2'
     s.dependency 'RxSwift', '~>5.1.0'
     s.dependency 'RxCocoa', '~>5.0.1'

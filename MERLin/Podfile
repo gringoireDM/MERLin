@@ -4,6 +4,7 @@ inhibit_all_warnings! # supresses pods project warnings
 
 def common
     pod 'LNZWeakCollection', '~>1.3.2'
+    pod 'EnumKit', '~>1.1.2'
     pod 'RxEnumKit', '~>1.0.1'
     pod 'SwiftFormat/CLI', '~>0.40.5'
 end

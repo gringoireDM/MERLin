@@ -86,10 +86,10 @@ public extension Router {
     }
     
     @discardableResult func route(to viewController: UIViewController, withPresentationMode mode: RoutingStepPresentationMode, animated: Bool) -> UIViewController? {
-        if case let .embed(info) = mode {
+        if case let .embed(parentController, view) = mode {
             // We can avoid to compute the topController in this case
-            os_log("Embedding %@ in %@", log: .router, type: .debug, viewController, info.parentController)
-            return embed(viewController: viewController, embedInfo: info)
+            os_log("Embedding %@ in %@", log: .router, type: .debug, viewController, parentController)
+            return embed(viewController: viewController, embedInfo: (parentController, view))
         }
         
         var topController = currentViewController()
