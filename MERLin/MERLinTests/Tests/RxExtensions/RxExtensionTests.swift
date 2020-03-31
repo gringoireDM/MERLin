@@ -171,26 +171,6 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         XCTAssertEqual(observer.events, expected)
     }
     
-    func testItCanCompactMapDriver() {
-        let events = [
-            Recorded.next(1, "1"),
-            .next(2, "2"),
-            .next(3, "a")
-        ]
-        
-        let observer = buildTest(emitting: events) { emitter in
-            emitter.asDriverIgnoreError()
-                .compactMap(Int.init)
-        }
-        
-        let expected = [
-            Recorded.next(1, 1),
-            .next(2, 2)
-        ]
-        
-        XCTAssertEqual(observer.events, expected)
-    }
-    
     // MARK: Single Extension
     
     func testItCanUnwrapSingle() {
@@ -314,22 +294,6 @@ class RxExtensionTests: XCTestCase, RxExtensionTestCase {
         
         let expected: [Recorded<Event<Bool>>] = [
             .error(200, expectedError)
-        ]
-        
-        XCTAssertEqual(observer.events, expected)
-    }
-    
-    // MARK: Maybe Extension
-    
-    func testItCanCompactMapMaybe() {
-        let observer = buildTest(value: "1") { emitter in
-            emitter.asMaybe()
-                .compactMap(Int.init)
-        }
-        
-        let expected = [
-            Recorded.next(200, 1),
-            .completed(200)
         ]
         
         XCTAssertEqual(observer.events, expected)
