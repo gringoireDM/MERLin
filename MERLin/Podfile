@@ -3,6 +3,8 @@ use_frameworks!
 inhibit_all_warnings! # supresses pods project warnings
 
 def common
+    pod 'RxSwift', '~>5.1'
+    pod 'RxCocoa', '~>5.1'
     pod 'LNZWeakCollection', '~>1.3.2'
     pod 'EnumKit', '~>1.1.2'
     pod 'RxEnumKit', '~>1.0.1'
@@ -15,7 +17,7 @@ end
 
 target 'MERLinTests' do
     common
-    pod 'RxTest', '~>5.0.0'
+    pod 'RxTest', '~>5.1'
 end
 
 post_install do |installer|

@@ -1,24 +1,26 @@
 PODS:
   - EnumKit (1.1.2)
   - LNZWeakCollection (1.3.2)
-  - RxCocoa (5.0.1):
+  - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxEnumKit (1.0.2):
-    - EnumKit (~> 1.1.1)
-    - RxCocoa (~> 5.0.0)
+  - RxEnumKit (1.0.3):
+    - EnumKit (~> 1.1)
+    - RxCocoa (~> 5.0)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - RxTest (5.0.1):
+  - RxTest (5.1.1):
     - RxSwift (~> 5)
   - SwiftFormat/CLI (0.40.14)
 
 DEPENDENCIES:
   - EnumKit (~> 1.1.2)
   - LNZWeakCollection (~> 1.3.2)
+  - RxCocoa (~> 5.1)
   - RxEnumKit (~> 1.0.1)
-  - RxTest (~> 5.0.0)
+  - RxSwift (~> 5.1)
+  - RxTest (~> 5.1)
   - SwiftFormat/CLI (~> 0.40.5)
 
 SPEC REPOS:
@@ -35,13 +37,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   EnumKit: d44634a9755c252cd0b52c8ec5e8e97160895c6b
   LNZWeakCollection: 0211da4f8778cb35d1b9fa788a3cb395e26a0226
-  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxEnumKit: 76495d3640bbd2a4c672150f1c1da419cf99d342
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxEnumKit: f7ac14227624ee45e234f1be8bd9ccfed2102d28
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
+  RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
 
-PODFILE CHECKSUM: 25934ce422ffd440022efe94b3a682a3800533bd
+PODFILE CHECKSUM: 05083726938c0605ddedd82951f7d7132447b9b4
 
 COCOAPODS: 1.9.0
